@@ -4,9 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>沖繩 5天4夜・恩納 × 那霸｜2026.11.25–29</title>
-<meta name="theme-color" content="#0a4f63">
+<meta name="theme-color" content="#064273">
 <style>
-  /* ===== Offline: 不載外部字型，使用系統字型；iPhone 上即為 SF + 蘋方的原生 iOS 樣式 ===== */
   :root{
     --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
     --mono:ui-monospace,"SF Mono","Menlo","Roboto Mono",monospace;
@@ -14,99 +13,111 @@
     --ink-soft:#33545d;
     --ink-faint:#5d7a82;
     --line:rgba(12,42,51,.12);
-    --glass:rgba(255,255,255,.55);
+    --glass:rgba(255,255,255,.56);
     --glass-strong:rgba(255,255,255,.72);
-    --glass-dark:rgba(10,34,42,.42);
-    --accent:#0a91a8;
-    --accent-deep:#0a5f72;
+    --glass-dark:rgba(6,28,48,.55);
+    --accent:#0ea5a0;
+    --accent-deep:#087f7b;
     --coral:#ff6b53;
-    --gold:#ffb23e;
-    --radius:24px;
+    --gold:#f0a050;
+    --radius:22px;
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
   html{scroll-behavior:smooth;}
   body{
     margin:0;color:var(--ink);font-family:var(--sans);
-    line-height:1.7;font-size:16px;letter-spacing:.01em;
+    line-height:1.72;font-size:16px;letter-spacing:.01em;
     -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
-    padding-bottom:96px;overflow-x:hidden;
+    padding-bottom:40px;overflow-x:hidden;background:#041c30;
   }
-  /* ===== ocean wallpaper (fixed, blurred blobs) ===== */
-  .bg{position:fixed;inset:0;z-index:-2;background:linear-gradient(180deg,#0a4f63 0%,#0b6f7e 38%,#16a6a0 72%,#7fd6c4 100%);}
-  .bg::before,.bg::after,.blob{content:"";position:fixed;border-radius:50%;filter:blur(60px);opacity:.65;z-index:-1;}
-  .bg::before{width:60vw;height:60vw;background:#36d6c0;top:-12vw;right:-14vw;}
-  .bg::after{width:55vw;height:55vw;background:#0a3d66;bottom:-16vw;left:-12vw;opacity:.7;}
-  .blob{width:46vw;height:46vw;background:#ffd98a;top:40vh;left:-18vw;opacity:.28;}
-  @media (prefers-reduced-motion:no-preference){
-    .bg::before{animation:drift1 22s ease-in-out infinite alternate;}
-    .bg::after{animation:drift2 26s ease-in-out infinite alternate;}
-  }
-  @keyframes drift1{to{transform:translate(-4vw,6vh) scale(1.08);}}
-  @keyframes drift2{to{transform:translate(5vw,-5vh) scale(1.1);}}
 
-  .wrap{max-width:760px;margin:0 auto;padding:0 18px;}
+  /* ===== 每日天空漸變 ===== */
+  .sky{position:fixed;inset:0;z-index:-3;}
+  .skyl{position:absolute;inset:0;opacity:0;transition:opacity 1.6s ease;}
+  .skyl.on{opacity:1;}
+  .sky-hero{background:linear-gradient(170deg,#041c30 0%,#064273 30%,#0b7a8a 60%,#1ecdc6 85%,#a8edea 100%);}
+  .sky-d1{background:linear-gradient(170deg,#052a4a 0%,#0b6e8a 35%,#1cb5a0 65%,#f0d08a 92%,#f5b04a 100%);}
+  .sky-d2{background:linear-gradient(170deg,#020e2a 0%,#041e50 32%,#063a78 58%,#0a5590 78%,#1088b0 100%);}
+  .sky-d3{background:linear-gradient(170deg,#064273 0%,#0a8a7a 38%,#30c9a0 68%,#b8e8c8 90%,#e0f5e8 100%);}
+  .sky-d4{background:linear-gradient(170deg,#1a0a30 0%,#3a1860 30%,#8a3070 55%,#e06040 78%,#f5b040 100%);}
+  .sky-d5{background:linear-gradient(170deg,#0a2040 0%,#2a4a6a 35%,#6a8090 60%,#c0b8a0 80%,#e8dcc0 100%);}
+  #ocean-canvas{position:fixed;inset:0;z-index:-1;pointer-events:none;}
 
-  /* ===== glass primitive ===== */
+  .wrap{max-width:740px;margin:0 auto;padding:0 20px;}
+
   .glass{
     background:var(--glass);
     -webkit-backdrop-filter:blur(22px) saturate(180%);
     backdrop-filter:blur(22px) saturate(180%);
-    border:1px solid rgba(255,255,255,.55);
+    border:1px solid rgba(255,255,255,.5);
     border-radius:var(--radius);
-    box-shadow:0 8px 30px rgba(6,30,40,.18),inset 0 1px 0 rgba(255,255,255,.6);
+    box-shadow:0 8px 32px rgba(4,28,48,.2),inset 0 1px 0 rgba(255,255,255,.55);
   }
 
   /* ===== hero ===== */
-  header.hero{padding:max(34px,env(safe-area-inset-top)) 0 14px;}
-  .hero .glass{padding:30px 26px 28px;}
-  .eyebrow{font-family:var(--mono);font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 16px;}
-  .hero h1{font-size:clamp(2rem,8vw,3rem);font-weight:800;line-height:1.08;margin:0;letter-spacing:-.01em;}
-  .hero h1 small{display:block;font-size:clamp(.95rem,3.6vw,1.2rem);font-weight:600;color:var(--accent-deep);margin-top:12px;letter-spacing:0;}
-  .hero .dates{font-family:var(--mono);font-size:clamp(1rem,4vw,1.3rem);font-weight:700;margin:22px 0 0;color:var(--ink);}
+  header.hero{min-height:94svh;display:flex;align-items:center;padding:max(34px,env(safe-area-inset-top)) 0 40px;}
+  .hero .glass{padding:34px 28px 30px;}
+  .eyebrow{font-family:var(--mono);font-size:.64rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 18px;}
+  .hero h1{font-size:clamp(2.1rem,8.5vw,3.2rem);font-weight:800;line-height:1.1;margin:0;letter-spacing:-.02em;text-wrap:balance;}
+  .hero h1 small{display:block;font-size:clamp(.88rem,3.2vw,1.1rem);font-weight:600;color:var(--accent-deep);margin-top:14px;letter-spacing:0;line-height:1.5;}
+  .hero .dates{font-family:var(--mono);font-size:clamp(1rem,4vw,1.28rem);font-weight:700;margin:24px 0 0;color:var(--ink);}
   .hero .dates b{color:var(--coral);}
   .seg{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
-  .seg span{font-size:.8rem;font-weight:600;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.6);color:var(--ink);}
+  .seg span{font-size:.78rem;font-weight:600;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.48);border:1px solid rgba(255,255,255,.55);color:var(--ink);}
   .seg span b{color:var(--accent-deep);}
-  .hook{margin:20px 0 0;padding-left:14px;border-left:3px solid var(--accent);color:var(--ink-soft);font-size:.92rem;line-height:1.8;}
-  .route{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:22px;font-family:var(--mono);font-size:.76rem;color:var(--ink-soft);}
+  .hook{margin:22px 0 0;padding-left:14px;border-left:3px solid var(--accent);color:var(--ink-soft);font-size:.9rem;line-height:1.85;}
+  .route{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:22px;font-family:var(--mono);font-size:.74rem;color:var(--ink-soft);}
   .route b{color:var(--ink);}
   .route i{color:var(--accent);font-style:normal;}
+  .scrolldown{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:28px;color:var(--accent-deep);font-family:var(--mono);font-size:.66rem;letter-spacing:.22em;}
+  .scrolldown .arr{font-size:1.2rem;line-height:1;animation:bob 2.4s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(8px);}}
 
-  /* ===== section heads ===== */
-  .sec{padding-top:40px;scroll-margin-top:14px;}
-  .sec > .lbl{font-family:var(--mono);font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:#eafffb;margin:0 0 6px;padding-left:4px;text-shadow:0 1px 6px rgba(6,30,40,.4);}
-  .sec > h2{font-size:clamp(1.4rem,5.4vw,1.9rem);font-weight:800;margin:0 0 14px;color:#fff;padding-left:4px;letter-spacing:-.01em;text-shadow:0 2px 12px rgba(6,30,40,.35);}
+  /* ===== scene illustrations (SVG per day) ===== */
+  .scene{width:100%;max-width:680px;margin:0 auto 20px;display:block;opacity:.88;}
+  .scene svg{width:100%;height:auto;display:block;filter:drop-shadow(0 4px 20px rgba(4,28,48,.3));}
 
-  /* ===== day cards ===== */
-  .day{padding:20px 20px 8px;margin-bottom:16px;}
-  .day-top{display:flex;align-items:baseline;gap:14px;padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:6px;}
-  .day-no{font-family:var(--mono);font-weight:700;font-size:.95rem;color:var(--coral);white-space:nowrap;}
-  .day-title h3{font-size:1.12rem;font-weight:700;margin:0;line-height:1.3;}
-  .day-title .dow{font-family:var(--mono);font-size:.72rem;color:var(--ink-faint);margin-top:3px;letter-spacing:.06em;}
-  .day-stay{margin-left:auto;text-align:right;font-size:.72rem;color:var(--ink-faint);line-height:1.45;white-space:nowrap;}
-  .day-stay b{display:block;color:var(--accent-deep);font-weight:700;font-size:.78rem;}
+  /* ===== day sections ===== */
+  .dsec{min-height:100svh;padding:14svh 0 10svh;scroll-margin-top:0;position:relative;}
+  .dhead{position:relative;margin-bottom:28px;padding-left:4px;}
+  .dhead .big{font-family:var(--mono);font-weight:800;font-size:clamp(4.8rem,22vw,8.5rem);line-height:.88;color:rgba(255,255,255,.18);letter-spacing:-.04em;text-shadow:0 2px 24px rgba(4,28,48,.15);user-select:none;}
+  .dhead .ttl{position:relative;margin-top:-1.1em;}
+  .dhead .lbl{font-family:var(--mono);font-size:.64rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.7);margin:0 0 6px;text-shadow:0 1px 8px rgba(4,28,48,.5);}
+  .dhead h2{font-size:clamp(1.5rem,6vw,2.2rem);font-weight:800;margin:0;color:#fff;letter-spacing:-.01em;text-shadow:0 2px 16px rgba(4,28,48,.45);text-wrap:balance;}
+  .dhead .sub{margin:10px 0 0;color:rgba(255,255,255,.85);font-size:.88rem;line-height:1.7;text-shadow:0 1px 8px rgba(4,28,48,.4);}
+  .dhead .sub b{color:#fff;}
+
+  .day{padding:20px 20px 10px;margin-bottom:16px;}
+  .day-stay{display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--ink-faint);padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:4px;}
+  .day-stay b{color:var(--accent-deep);font-weight:700;}
+  .day-stay .tag{font-family:var(--mono);font-size:.62rem;color:#fff;background:var(--accent-deep);padding:3px 8px;border-radius:7px;letter-spacing:.06em;}
 
   .tl{position:relative;padding:6px 0 14px;}
   .stop{position:relative;padding:13px 0 3px 74px;}
-  .stop::before{content:"";position:absolute;left:60px;top:0;bottom:0;width:2px;background:linear-gradient(rgba(10,145,168,.25),rgba(10,145,168,.55));}
+  .stop::before{content:"";position:absolute;left:60px;top:0;bottom:0;width:2px;background:linear-gradient(rgba(14,165,160,.22),rgba(14,165,160,.5));}
   .stop:first-child::before{top:20px;}
   .stop:last-child::before{height:20px;bottom:auto;}
-  .stop .node{position:absolute;left:54px;top:18px;width:13px;height:13px;border-radius:50%;background:#fff;border:2px solid var(--accent);z-index:2;box-shadow:0 1px 4px rgba(6,30,40,.2);}
+  .stop .node{position:absolute;left:54px;top:18px;width:13px;height:13px;border-radius:50%;background:#fff;border:2px solid var(--accent);z-index:2;box-shadow:0 1px 4px rgba(4,28,48,.2);}
   .stop.key .node{background:var(--coral);border-color:var(--coral);box-shadow:0 0 0 5px rgba(255,107,83,.18);}
   .stop .time{position:absolute;left:0;top:15px;width:48px;text-align:right;font-family:var(--mono);font-size:.8rem;font-weight:700;color:var(--ink);}
   .stop h4{margin:0 0 2px;font-size:1rem;font-weight:700;}
   .stop p{margin:0;color:var(--ink-soft);font-size:.88rem;}
-  .drive{display:inline-block;margin-top:4px;font-family:var(--mono);font-size:.7rem;color:var(--accent-deep);border:1px dashed rgba(10,145,168,.45);border-radius:7px;padding:1px 8px;}
-  .meal{margin-top:9px;background:rgba(10,145,168,.08);border:1px solid rgba(10,145,168,.16);border-radius:14px;padding:10px 12px;}
+  .transit{display:inline-block;margin-top:4px;font-family:var(--mono);font-size:.7rem;color:var(--accent-deep);border:1px dashed rgba(14,165,160,.45);border-radius:7px;padding:1px 8px;}
+  .meal{margin-top:9px;background:rgba(14,165,160,.08);border:1px solid rgba(14,165,160,.16);border-radius:14px;padding:10px 12px;}
   .meal .mh{font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 6px;}
   .meal ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:5px;}
   .meal li{font-size:.84rem;color:var(--ink-soft);line-height:1.5;}
   .meal li b{color:var(--ink);}
   .meal li .t{font-family:var(--mono);font-size:.62rem;color:var(--coral);margin-left:3px;}
+  .planb{margin-top:9px;background:rgba(240,160,80,.14);border:1px solid rgba(240,160,80,.4);border-radius:14px;padding:10px 12px;font-size:.82rem;color:var(--ink-soft);}
+  .planb b{color:var(--ink);}
 
-  /* ===== stay / shop cards ===== */
+  /* ===== stay / shop / appendix ===== */
+  .sec{padding-top:46px;scroll-margin-top:14px;}
+  .sec>.lbl{font-family:var(--mono);font-size:.64rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.7);margin:0 0 6px;padding-left:4px;text-shadow:0 1px 6px rgba(4,28,48,.4);}
+  .sec>h2{font-size:clamp(1.4rem,5.4vw,1.9rem);font-weight:800;margin:0 0 14px;color:#fff;padding-left:4px;letter-spacing:-.01em;text-shadow:0 2px 12px rgba(4,28,48,.35);}
   .card{padding:20px 20px 16px;margin-bottom:16px;}
-  .card h3.area{font-size:1.1rem;font-weight:700;margin:0 0 4px;display:flex;align-items:center;gap:9px;}
+  .card h3.area{font-size:1.08rem;font-weight:700;margin:0 0 4px;display:flex;align-items:center;gap:9px;}
   .card h3.area .pin{font-family:var(--mono);font-size:.64rem;color:#fff;background:var(--accent-deep);padding:3px 8px;border-radius:7px;letter-spacing:.06em;}
   .card .note{font-size:.82rem;color:var(--ink-faint);margin:0 0 14px;}
   .tier{border-top:1px solid var(--line);padding:13px 0 3px;}
@@ -118,282 +129,606 @@
   .tier li{font-size:.86rem;color:var(--ink-soft);line-height:1.5;padding-left:14px;position:relative;}
   .tier li::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;border-radius:50%;background:var(--accent);}
   .tier li b{color:var(--ink);font-weight:600;}
-  .pxbar{font-size:.76rem;color:var(--ink-faint);background:rgba(255,178,62,.16);border:1px solid rgba(255,178,62,.4);border-radius:12px;padding:9px 12px;margin-top:6px;}
+  .pxbar{font-size:.76rem;color:var(--ink-faint);background:rgba(240,160,80,.14);border:1px solid rgba(240,160,80,.38);border-radius:12px;padding:9px 12px;margin-top:6px;}
 
   .shoplist{padding:6px 0 4px;}
   .shop{display:flex;gap:13px;padding:13px 0;border-top:1px solid var(--line);}
   .shop:first-child{border-top:none;}
   .shop .when{font-family:var(--mono);font-size:.62rem;font-weight:700;color:#fff;background:var(--accent);border-radius:8px;padding:4px 7px;height:fit-content;white-space:nowrap;}
   .shop .when.opt{background:var(--ink-faint);}
-  .shop h4{margin:0 0 3px;font-size:.96rem;font-weight:700;}
-  .shop p{margin:0;font-size:.85rem;color:var(--ink-soft);line-height:1.55;}
+  .shop h4{margin:0 0 3px;font-size:.94rem;font-weight:700;}
+  .shop p{margin:0;font-size:.84rem;color:var(--ink-soft);line-height:1.55;}
   .shop .buy{display:block;margin-top:4px;font-size:.78rem;color:var(--accent-deep);}
 
-  /* ===== supplementary (dark glass) ===== */
-  .supp .panel{background:var(--glass-dark);-webkit-backdrop-filter:blur(22px) saturate(160%);backdrop-filter:blur(22px) saturate(160%);border:1px solid rgba(255,255,255,.18);border-radius:var(--radius);box-shadow:0 8px 30px rgba(6,30,40,.25);overflow:hidden;color:#eaf7f5;}
-  .supp details{border-bottom:1px solid rgba(255,255,255,.12);}
+  .supp .panel{background:var(--glass-dark);-webkit-backdrop-filter:blur(22px) saturate(160%);backdrop-filter:blur(22px) saturate(160%);border:1px solid rgba(255,255,255,.18);border-radius:var(--radius);box-shadow:0 8px 30px rgba(4,28,48,.28);overflow:hidden;color:#d8f0ec;}
+  .supp details{border-bottom:1px solid rgba(255,255,255,.1);}
   .supp details:last-child{border-bottom:none;}
   .supp summary{cursor:pointer;list-style:none;padding:17px 18px;font-weight:700;font-size:1rem;color:#fff;display:flex;align-items:center;gap:12px;}
   .supp summary::-webkit-details-marker{display:none;}
-  .supp summary .ix{font-family:var(--mono);font-size:.72rem;color:#9af0e2;}
-  .supp summary .pl{margin-left:auto;font-size:1.25rem;color:#9af0e2;transition:transform .25s;line-height:1;}
+  .supp summary .ix{font-family:var(--mono);font-size:.72rem;color:#5ee8d0;}
+  .supp summary .pl{margin-left:auto;font-size:1.25rem;color:#5ee8d0;transition:transform .25s;line-height:1;}
   .supp details[open] summary .pl{transform:rotate(45deg);}
-  .supp .body{padding:0 18px 18px 44px;color:#cfe8e4;font-size:.88rem;line-height:1.8;}
+  .supp .body{padding:0 18px 18px 44px;color:#b8dcd6;font-size:.88rem;line-height:1.8;}
   .supp .body p{margin:0 0 10px;}
   .supp .body ul{margin:0 0 10px;padding-left:16px;}
   .supp .body li{margin:0 0 6px;}
   .supp .body b{color:#fff;}
-  .supp .body .warn{color:#ffc4b3;}
-  .supp .body .m{color:#9af0e2;font-family:var(--mono);}
-  .dt{width:100%;border-collapse:collapse;font-size:.82rem;margin:2px 0 10px;}
-  .dt td{border-bottom:1px solid rgba(255,255,255,.12);padding:7px 5px;vertical-align:top;}
+  .supp .body .warn{color:#ffb8a0;}
+  .supp .body .m{color:#5ee8d0;font-family:var(--mono);}
+  .dt{width:100%;border-collapse:collapse;font-size:.82rem;margin:2px 0 10px;font-variant-numeric:tabular-nums;}
+  .dt td{border-bottom:1px solid rgba(255,255,255,.1);padding:7px 5px;vertical-align:top;}
   .dt td:first-child{color:#fff;font-family:var(--mono);width:40%;}
-  .src a{color:#9af0e2;text-decoration:none;border-bottom:1px solid rgba(154,240,226,.4);}
 
-  /* draft + deploy note */
-  .draft{padding:16px 18px;margin:22px 0 0;background:rgba(255,107,83,.16);border:1px solid rgba(255,107,83,.45);}
-  .draft b{color:#fff;}
-  .draft, .draft *{color:#fff;}
-  .draft{color:#fff;}
+  .draft{padding:16px 18px;margin:22px 0 0;background:rgba(255,107,83,.14);border:1px solid rgba(255,107,83,.4);border-radius:var(--radius);}
+  .draft,.draft *{color:#fff;}
 
-  /* ===== iOS bottom tab bar ===== */
-  .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;justify-content:center;padding:0 14px calc(12px + env(safe-area-inset-bottom));pointer-events:none;}
-  .tabbar nav{pointer-events:auto;display:flex;gap:2px;padding:6px;background:rgba(255,255,255,.62);-webkit-backdrop-filter:blur(26px) saturate(180%);backdrop-filter:blur(26px) saturate(180%);border:1px solid rgba(255,255,255,.6);border-radius:22px;box-shadow:0 10px 34px rgba(6,30,40,.28);}
-  .tabbar a{display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 16px;border-radius:16px;font-size:.66rem;font-weight:600;color:var(--ink-soft);text-decoration:none;transition:background .2s,color .2s;}
-  .tabbar a .ic{font-size:1.05rem;line-height:1;}
-  .tabbar a.active{background:rgba(10,145,168,.16);color:var(--accent-deep);}
+  /* ===== 右側日程導覽 ===== */
+  .rail{position:fixed;right:10px;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:10px;}
+  .rail a{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;
+    background:rgba(255,255,255,.3);border:1px solid rgba(255,255,255,.45);
+    -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+    font-family:var(--mono);font-size:.6rem;font-weight:700;color:rgba(255,255,255,.8);text-decoration:none;
+    transition:all .35s;box-shadow:0 2px 8px rgba(4,28,48,.2);}
+  .rail a.active{background:rgba(255,255,255,.92);color:var(--accent-deep);transform:scale(1.28);box-shadow:0 3px 14px rgba(4,28,48,.35);}
+  @media(max-width:600px){.rail{right:5px;gap:7px;}.rail a{width:24px;height:24px;font-size:.52rem;}}
 
-  footer.foot{text-align:center;color:rgba(255,255,255,.85);font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;padding:30px 0 10px;text-shadow:0 1px 6px rgba(6,30,40,.4);}
+  footer.foot{text-align:center;color:rgba(255,255,255,.8);font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;padding:30px 0 14px;text-shadow:0 1px 6px rgba(4,28,48,.4);}
 
   :focus-visible{outline:3px solid #fff;outline-offset:2px;border-radius:6px;}
-  .reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease;}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease;}
   .reveal.in{opacity:1;transform:none;}
-  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}html{scroll-behavior:auto;}}
-  @media (max-width:520px){
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+    .scrolldown .arr{animation:none;}
+    .skyl{transition:none;}
+  }
+  @media(max-width:520px){
     .stop{padding-left:62px;}.stop::before{left:48px;}.stop .node{left:42px;}
-    .stop .time{width:40px;font-size:.74rem;}.day-stay{display:none;}
-    .tabbar a{padding:7px 12px;}
+    .stop .time{width:40px;font-size:.74rem;}
   }
 </style>
 </head>
 <body>
-<div class="bg"></div><div class="blob"></div>
 
-<header class="hero"><div class="wrap reveal">
+<div class="sky" aria-hidden="true">
+  <div class="skyl sky-hero on" data-sky="hero"></div>
+  <div class="skyl sky-d1" data-sky="d1"></div>
+  <div class="skyl sky-d2" data-sky="d2"></div>
+  <div class="skyl sky-d3" data-sky="d3"></div>
+  <div class="skyl sky-d4" data-sky="d4"></div>
+  <div class="skyl sky-d5" data-sky="d5"></div>
+</div>
+<canvas id="ocean-canvas" aria-hidden="true"></canvas>
+
+<!-- ============ HERO ============ -->
+<header class="hero" data-day="hero"><div class="wrap reveal">
   <div class="glass">
-    <p class="eyebrow">Okinawa · 恩納 × 那霸 · 自駕</p>
-    <h1>美ら海慢旅<small>5 天 4 夜 ‧ 恩納 2 晚 + 那霸 2 晚 ‧ 自駕約 2 天</small></h1>
+    <p class="eyebrow">Okinawa · 恩納 × 那霸 · 大眾運輸</p>
+    <h1>沖繩碧海慢旅<small>5 天 4 夜 ‧ 恩納度假村 3 晚 + 那霸機場旁 1 晚 ‧ 不租車</small></h1>
     <p class="dates">2026 / 11 / <b>25 — 29</b>　(三–日)</p>
     <div class="seg">
-      <span>上午去下午回　<b>TPE 08:30 → OKA 11:00</b></span>
+      <span>去程　<b>TPE 08:30 → OKA 11:00</b></span>
       <span>回程　<b>OKA 17:30 → TPE 18:00</b></span>
-      <span>海生館 <b>一整天</b></span>
+      <span>水族館 <b>一整天</b></span>
     </div>
-    <p class="hook">挑 11 月下旬，把颱風風險、人潮、價格一次壓最低，順手接住 11/23 才開放的首里城正殿。代價是海水偏涼、海灘多已封閉禁泳——主打海邊發呆與度假飯店，不是下海戲水。</p>
-    <p class="route"><b>那霸機場</b><i>→</i><b>恩納</b><i>→</i><b>本部・美ら海</b><i>→</i><b>那霸市區</b>　·　4 NIGHTS</p>
+    <p class="hook">挑 11 月下旬出發，颱風風險、人潮與價格一次壓到最低，順手接住 11/23 才重新開放的首里城正殿。不租車，全程搭利木津巴士、觀光巴士與計程車——行李交給飯店，人只管放空。代價是海灘多已封閉禁泳，但恩納的度假飯店有溫水泳池，主打的是海邊發呆，不是下海戲水。</p>
+    <p class="route"><b>那霸機場</b><i>→</i><b>恩納度假村 ×3</b><i>→</i><b>美麗海水族館</b><i>→</i><b>那霸市區</b><i>→</i><b>機場旁飯店</b><i>✈</i><b>桃園</b></p>
+    <div class="scrolldown"><span>往下滑 · 一天一頁</span><span class="arr">▾</span></div>
   </div>
 </div></header>
 
-<main class="wrap">
+<main>
 
-  <!-- ============ 行程 ============ -->
-  <section class="sec" id="plan">
-    <p class="lbl reveal">Itinerary · 詳細行程</p>
-    <h2 class="reveal">五天的潛行路線</h2>
+  <!-- ============ DAY 1 ============ -->
+  <section class="dsec" data-day="d1" id="d1"><div class="wrap">
+    <div class="dhead reveal">
+      <div class="big">01</div>
+      <div class="ttl">
+        <p class="lbl">Day 1 · 落地即度假</p>
+        <h2>午前抵達，直奔恩納西海岸</h2>
+        <p class="sub">上午班機落地沖繩，搭<b>利木津巴士直達度假飯店</b>。放好行李，剩下的時間只有泳池、海灘和夕陽。</p>
+      </div>
+    </div>
+
+    <!-- Scene: resort sunset silhouette -->
+    <div class="scene reveal">
+      <svg viewBox="0 0 680 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="sky1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f5b04a"/><stop offset=".5" stop-color="#f08050"/><stop offset="1" stop-color="#064273"/></linearGradient>
+          <linearGradient id="sea1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b6e8a" stop-opacity=".6"/><stop offset="1" stop-color="#041c30" stop-opacity=".8"/></linearGradient>
+        </defs>
+        <rect width="680" height="200" rx="16" fill="url(#sky1)"/>
+        <circle cx="340" cy="110" r="28" fill="#fff" opacity=".9"/>
+        <path d="M0 135 Q80 125,160 138 T320 130 T480 140 T640 128 L680 128 680 200 0 200Z" fill="url(#sea1)"/>
+        <path d="M440 130 L455 90 470 130Z" fill="#0a3040" opacity=".7"/>
+        <rect x="448" y="95" width="14" height="35" rx="1" fill="#0a3040" opacity=".6"/>
+        <path d="M520 130 L530 105 540 130Z" fill="#0a3040" opacity=".5"/>
+        <rect x="500" y="108" width="20" height="22" rx="1" fill="#0a3040" opacity=".55"/>
+        <path d="M80 140 Q100 120,130 140" stroke="#fff" stroke-width="1.5" fill="none" opacity=".3"/>
+        <path d="M200 145 Q225 130,250 145" stroke="#fff" stroke-width="1.2" fill="none" opacity=".25"/>
+        <path d="M550 138 Q575 122,600 138" stroke="#fff" stroke-width="1" fill="none" opacity=".2"/>
+      </svg>
+    </div>
 
     <div class="glass day reveal">
-      <div class="day-top"><span class="day-no">DAY 01</span><div class="day-title"><h3>落地 → 恩納</h3><div class="dow">11/25 WED</div></div><div class="day-stay"><b>恩納 度假飯店</b>海灘 · 泳池</div></div>
+      <div class="day-stay"><span class="tag">宿</span><b>恩納度假飯店</b>　西海岸海景・第 1 晚</div>
       <div class="tl">
-        <div class="stop"><span class="time">11:00</span><span class="node"></span><h4>那霸機場落地</h4><p>出關、領行李。</p></div>
-        <div class="stop"><span class="time">11:10</span><span class="node"></span><h4>取車</h4><p>租車櫃台多在機場外，含接駁＋手續約一小時。<span class="drive">手續 ≈ 60m</span></p></div>
-        <div class="stop"><span class="time">13:00</span><span class="node"></span><h4>西海岸北上 · 午餐</h4><p>沿 58 號往恩納，途中或抵達後午餐。<span class="drive">那霸→恩納 ≈ 60m</span></p>
-          <div class="meal"><p class="mh">午餐備案</p><ul><li><b>ステーキ88 恩納店</b>　60 年牛排老店<span class="t">排隊不收訂位</span></li><li><b>恩納海景咖啡</b>　先吃輕食，把胃留給晚餐</li></ul></div>
+        <div class="stop"><span class="time">11:00</span><span class="node"></span><h4>那霸機場落地</h4><p>出關、領行李，約 30–40 分鐘。</p></div>
+        <div class="stop"><span class="time">11:45</span><span class="node"></span><h4>搭利木津巴士或計程車前往恩納</h4><p>利木津巴士從機場直達多數恩納度假飯店門口，車程約 90–120 分鐘，免搬行李。趕時間可改搭計程車，約 60 分鐘。<span class="transit">利木津巴士 ≈ 90–120 分</span></p></div>
+        <div class="stop key"><span class="time">13:30</span><span class="node"></span><h4>抵達恩納・辦理入住</h4><p>寄放行李或直接進房。先在飯店內用午餐，也可以到附近覓食。</p>
+          <div class="meal"><p class="mh">午餐備案</p><ul><li><b>牛排88 恩納店</b>　60 年老字號牛排，不接受訂位、常需排隊<span class="t">現場候位</span></li><li><b>飯店內餐廳</b>　輕鬆用餐，把胃留給晚上</li></ul></div>
         </div>
-        <div class="stop"><span class="time">14:30</span><span class="node"></span><h4>萬座毛</h4><p>象鼻海崖，停車到展望步道很短，順路放鬆。</p></div>
-        <div class="stop key"><span class="time">15:30</span><span class="node"></span><h4>入住度假飯店</h4><p>放行李，直接攻佔海灘或泳池發呆。</p></div>
-        <div class="stop"><span class="time">17:40</span><span class="node"></span><h4>海邊夕陽</h4><p>11 月底日落約 17:40，西海岸正對夕陽。</p></div>
+        <div class="stop"><span class="time">14:30</span><span class="node"></span><h4>萬座毛</h4><p>象鼻形海崖，從飯店搭計程車約 10 分鐘。展望步道來回輕鬆走完，斷崖下是透明的珊瑚海。<span class="transit">計程車 ≈ 10 分</span></p></div>
+        <div class="stop"><span class="time">15:30</span><span class="node"></span><h4>回飯店・泳池與海灘放空</h4><p>11 月氣溫舒適但海水偏涼，溫水泳池更實用。把節奏放到最慢。</p></div>
+        <div class="stop"><span class="time">17:40</span><span class="node"></span><h4>海邊夕陽</h4><p>西海岸正對落日，11 月底日落約 17:40。拿杯飲料坐在沙灘上就好。</p></div>
         <div class="stop"><span class="time">18:45</span><span class="node"></span><h4>晚餐</h4>
-          <div class="meal"><p class="mh">晚餐備案 · 恩納</p><ul><li><b>Resort Steak &amp; Seafood OCEAN</b>　海邊鐵板、活龍蝦</li><li><b>豚匠 碧〜ao〜</b>　あぐー豬涮涮鍋，想清爽選這家</li></ul></div>
+          <div class="meal"><p class="mh">晚餐備案 · 恩納</p><ul><li><b>度假鐵板燒 OCEAN</b>　海邊鐵板燒、活龍蝦，氣氛絕佳</li><li><b>豚匠 碧</b>　阿古豬涮涮鍋，想吃清爽選這家</li></ul></div>
         </div>
       </div>
     </div>
+  </div></section>
 
-    <div class="glass day reveal">
-      <div class="day-top"><span class="day-no">DAY 02</span><div class="day-title"><h3>海生館一整天（自駕）</h3><div class="dow">11/26 THU</div></div><div class="day-stay"><b>恩納 度假飯店</b>第 2 晚</div></div>
-      <div class="tl">
-        <div class="stop"><span class="time">07:30</span><span class="node"></span><h4>飯店早餐</h4><p>吃飽出發，節奏全握在自己手裡。</p></div>
-        <div class="stop"><span class="time">08:15</span><span class="node"></span><h4>出發前往美ら海</h4><p><span class="drive">恩納→美ら海 ≈ 60–90m</span></p></div>
-        <div class="stop key"><span class="time">09:30</span><span class="node"></span><h4>沖繩美麗海水族館</h4><p>一開館就進場避人潮（停車免費）。黑潮之海、鯊魚博士之房慢慢逛。當天票根蓋章可再入館，午餐外出再回來。</p></div>
-        <div class="stop"><span class="time">12:00</span><span class="node"></span><h4>午餐 · 本部そば街道</h4><p>縣道 84 號沿線吃沖繩麵。<span class="drive">水族館→麵街 ≈ 5–10m</span></p>
-          <div class="meal"><p class="mh">午餐備案 · 本部</p><ul><li><b>きしもと食堂</b>　明治 38 年名店，車程 5 分<span class="t">週三公休·賣完打烊</span></li><li><b>山原そば</b>　排隊名店，軟骨ソーキそば</li><li><b>海人料理 海邦丸</b>　海鮮丼，不吃麵選這家</li></ul></div>
-        </div>
-        <div class="stop"><span class="time">13:30</span><span class="node"></span><h4>回園區續攻</h4><p>海豚秀（免費）、海龜館、海牛館、熱帶夢幻中心。</p></div>
-        <div class="stop"><span class="time">16:00</span><span class="node"></span><h4>備瀬福木林道</h4><p>公園旁的綠色隧道散步，慢慢走。</p></div>
-        <div class="stop"><span class="time">17:00</span><span class="node"></span><h4>古宇利島・大橋</h4><p>跨海大橋＋夕陽，累了可直接折返。<span class="drive">美ら海→古宇利 ≈ 30–40m</span></p></div>
-        <div class="stop"><span class="time">19:00</span><span class="node"></span><h4>晚餐 · 回程或恩納</h4><p>可在名護一帶吃完再開回，避免太晚趕路。<span class="drive">古宇利→恩納 ≈ 75m</span></p></div>
+  <!-- ============ DAY 2 ============ -->
+  <section class="dsec" data-day="d2" id="d2"><div class="wrap">
+    <div class="dhead reveal">
+      <div class="big">02</div>
+      <div class="ttl">
+        <p class="lbl">Day 2 · 黑潮之海</p>
+        <h2>美麗海水族館，一整天慢慢逛</h2>
+        <p class="sub">從恩納出發比那霸近一個小時。<b>觀光巴士一日遊</b>最省心，不必自己抓末班車；想自由一點就搭計程車。</p>
       </div>
     </div>
 
+    <!-- Scene: aquarium whale shark -->
+    <div class="scene reveal">
+      <svg viewBox="0 0 680 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="deep" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#041e50"/><stop offset=".6" stop-color="#063a78"/><stop offset="1" stop-color="#0a5590"/></linearGradient>
+          <radialGradient id="glow" cx=".5" cy=".4" r=".5"><stop offset="0" stop-color="#1088b0" stop-opacity=".4"/><stop offset="1" stop-color="#041e50" stop-opacity="0"/></radialGradient>
+        </defs>
+        <rect width="680" height="200" rx="16" fill="url(#deep)"/>
+        <rect width="680" height="200" rx="16" fill="url(#glow)"/>
+        <!-- whale shark silhouette -->
+        <g transform="translate(180,50)" opacity=".85">
+          <ellipse cx="160" cy="55" rx="130" ry="42" fill="#0d4a70"/>
+          <path d="M290 55 Q310 35,320 55 Q310 75,290 55Z" fill="#0d4a70"/>
+          <path d="M30 55 L10 30 20 50 5 55 20 60 10 80 30 55Z" fill="#0d4a70"/>
+          <path d="M200 25 L230 10 220 28Z" fill="#0d4a70"/>
+          <path d="M200 85 L230 100 220 82Z" fill="#0d4a70"/>
+          <circle cx="65" cy="48" r="4" fill="#1a7ab0" opacity=".7"/>
+          <circle cx="100" cy="38" r="2" fill="#3ab0d8" opacity=".5"/>
+          <circle cx="130" cy="42" r="2.5" fill="#3ab0d8" opacity=".45"/>
+          <circle cx="160" cy="35" r="2" fill="#3ab0d8" opacity=".4"/>
+          <circle cx="115" cy="55" r="1.8" fill="#3ab0d8" opacity=".35"/>
+          <circle cx="145" cy="60" r="2" fill="#3ab0d8" opacity=".3"/>
+          <circle cx="180" cy="50" r="1.5" fill="#3ab0d8" opacity=".35"/>
+        </g>
+        <!-- small fish -->
+        <g opacity=".4">
+          <ellipse cx="80" cy="140" rx="8" ry="4" fill="#5eb8d8"/><path d="M88 140 L95 135 95 145Z" fill="#5eb8d8"/>
+          <ellipse cx="110" cy="155" rx="6" ry="3" fill="#5eb8d8"/><path d="M116 155 L122 151 122 159Z" fill="#5eb8d8"/>
+          <ellipse cx="560" cy="50" rx="7" ry="3.5" fill="#5eb8d8"/><path d="M567 50 L573 46 573 54Z" fill="#5eb8d8"/>
+          <ellipse cx="600" cy="70" rx="5" ry="2.5" fill="#5eb8d8"/><path d="M605 70 L610 67 610 73Z" fill="#5eb8d8"/>
+        </g>
+        <!-- bubbles -->
+        <circle cx="420" cy="160" r="5" stroke="#5ee8d0" stroke-width=".8" fill="none" opacity=".3"/>
+        <circle cx="430" cy="130" r="3" stroke="#5ee8d0" stroke-width=".6" fill="none" opacity=".25"/>
+        <circle cx="415" cy="100" r="4" stroke="#5ee8d0" stroke-width=".7" fill="none" opacity=".2"/>
+        <circle cx="150" cy="170" r="3.5" stroke="#5ee8d0" stroke-width=".6" fill="none" opacity=".2"/>
+      </svg>
+    </div>
+
     <div class="glass day reveal">
-      <div class="day-top"><span class="day-no">DAY 03</span><div class="day-title"><h3>西海岸 → 還車 → 那霸</h3><div class="dow">11/27 FRI</div></div><div class="day-stay"><b>那霸 市區飯店</b>單軌生活圈</div></div>
+      <div class="day-stay"><span class="tag">宿</span><b>恩納度假飯店</b>　第 2 晚</div>
       <div class="tl">
-        <div class="stop"><span class="time">09:00</span><span class="node"></span><h4>飯店悠閒早餐</h4><p>最後享受一次度假村泳池，不趕。</p></div>
-        <div class="stop"><span class="time">10:30</span><span class="node"></span><h4>退房 · 殘波岬放空</h4><p>白燈塔＋斷崖海景，這天有車最好用。</p></div>
-        <div class="stop"><span class="time">12:30</span><span class="node"></span><h4>美浜美國村（選配購物）</h4><p>北谷正好在南下路上，海邊美式商場逛街午餐。<span class="drive">恩納→北谷 ≈ 45m</span></p></div>
-        <div class="stop key"><span class="time">15:00</span><span class="node"></span><h4>那霸市區還車 + 入住</h4><p>市區營業所還車，之後不留車省麻煩。<span class="drive">北谷→那霸 ≈ 40m</span></p></div>
-        <div class="stop"><span class="time">16:30</span><span class="node"></span><h4>國際通 · 第一牧志公設市場</h4><p>市場 2023 整修重開，1 樓挑食材、2 樓代客料理。</p></div>
+        <div class="stop"><span class="time">07:30</span><span class="node"></span><h4>飯店早餐</h4><p>吃飽出發，今天是行程最滿的一天。</p></div>
+        <div class="stop"><span class="time">08:15</span><span class="node"></span><h4>出發前往美麗海水族館</h4><p>推薦兩種方式，依喜好擇一。<span class="transit">恩納→水族館 ≈ 60–90 分</span></p>
+          <div class="planb"><b>方案 A・觀光巴士一日遊：</b>飯店出發，含水族館＋古宇利島＋萬座毛，約 ¥5,000–8,000／人（常含門票），傍晚直接送回飯店，最省心。<br><b>方案 B・計程車自由行：</b>恩納→水族館約 ¥6,000–8,000，時間完全自己掌控。</div>
+        </div>
+        <div class="stop key"><span class="time">09:30</span><span class="node"></span><h4>沖繩美麗海水族館</h4><p>一開館就進場避開人潮。黑潮之海的巨型水槽、鯨鯊與鬼蝠魟悠游其中，站在水槽前什麼都不想也很好。票根蓋章可當天再入館。</p></div>
+        <div class="stop"><span class="time">12:00</span><span class="node"></span><h4>午餐・本部麵街道</h4><p>縣道 84 號沿線的沖繩麵名店聚集區，從水族館搭計程車約 5–10 分鐘。<span class="transit">計程車 ≈ 5–10 分</span></p>
+          <div class="meal"><p class="mh">午餐備案 · 本部</p><ul><li><b>岸本食堂</b>　明治 38 年創業沖繩麵老店（週三公休，Day 2 恰好是週四）<span class="t">賣完即打烊</span></li><li><b>山原蕎麥麵</b>　軟骨排骨麵，排隊人氣名店</li><li><b>海人料理 海邦丸</b>　海鮮丼，不吃麵的好選擇</li></ul></div>
+        </div>
+        <div class="stop"><span class="time">13:30</span><span class="node"></span><h4>回園區繼續逛</h4><p>海豚表演（免費）、海龜館、海牛館、熱帶夢幻中心，慢慢看到下午。</p></div>
+        <div class="stop"><span class="time">16:00</span><span class="node"></span><h4>備瀨福木林道</h4><p>公園旁的綠色隧道，陽光從樹冠灑落，散步放鬆的好地方。</p></div>
+        <div class="stop"><span class="time">17:00</span><span class="node"></span><h4>古宇利島・跨海大橋（視交通方式）</h4><p>若參加巴士團通常已包含這站。自行前往的話，搭計程車約 30–40 分鐘，跨海大橋配夕陽值得一看，累了可直接折返。<span class="transit">水族館→古宇利 ≈ 30–40 分</span></p></div>
+        <div class="stop"><span class="time">19:00</span><span class="node"></span><h4>回恩納・晚餐</h4><p>巴士團會送回飯店；自行前往可在名護一帶先吃晚餐再搭計程車返回。<span class="transit">古宇利→恩納 ≈ 75 分</span></p></div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- ============ DAY 3 ============ -->
+  <section class="dsec" data-day="d3" id="d3"><div class="wrap">
+    <div class="dhead reveal">
+      <div class="big">03</div>
+      <div class="ttl">
+        <p class="lbl">Day 3 · 南下那霸</p>
+        <h2>最後的度假村早晨，午後轉進那霸</h2>
+        <p class="sub">悠閒享受恩納的最後一個上午，退房後<b>利木津巴士南下那霸</b>，傍晚逛進國際通的人潮與市場裡。</p>
+      </div>
+    </div>
+
+    <!-- Scene: Naha cityscape -->
+    <div class="scene reveal">
+      <svg viewBox="0 0 680 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="city" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#30c9a0" stop-opacity=".3"/><stop offset="1" stop-color="#064273" stop-opacity=".5"/></linearGradient>
+        </defs>
+        <rect width="680" height="200" rx="16" fill="#0a8a7a"/>
+        <rect width="680" height="200" rx="16" fill="url(#city)"/>
+        <!-- buildings skyline -->
+        <g fill="#064a5a" opacity=".7">
+          <rect x="40" y="100" width="30" height="100" rx="2"/>
+          <rect x="80" y="80" width="25" height="120" rx="2"/>
+          <rect x="115" y="110" width="35" height="90" rx="2"/>
+          <rect x="160" y="70" width="20" height="130" rx="2"/>
+          <rect x="190" y="90" width="40" height="110" rx="2"/>
+          <rect x="245" y="60" width="22" height="140" rx="2"/>
+          <rect x="280" y="95" width="35" height="105" rx="2"/>
+          <rect x="330" y="75" width="28" height="125" rx="2"/>
+          <rect x="370" y="105" width="32" height="95" rx="2"/>
+          <rect x="415" y="65" width="24" height="135" rx="2"/>
+          <rect x="450" y="85" width="38" height="115" rx="2"/>
+          <rect x="500" y="95" width="26" height="105" rx="2"/>
+          <rect x="540" y="110" width="30" height="90" rx="2"/>
+          <rect x="580" y="78" width="22" height="122" rx="2"/>
+          <rect x="615" y="100" width="35" height="100" rx="2"/>
+        </g>
+        <!-- monorail line -->
+        <line x1="20" y1="120" x2="660" y2="118" stroke="#5ee8d0" stroke-width="2" opacity=".5"/>
+        <rect x="300" y="112" width="40" height="12" rx="4" fill="#5ee8d0" opacity=".6"/>
+        <!-- lanterns (kokusai-dori feel) -->
+        <g opacity=".6">
+          <circle cx="150" cy="145" r="6" fill="#ff8060"/>
+          <circle cx="250" cy="148" r="5" fill="#ffb060"/>
+          <circle cx="350" cy="146" r="6" fill="#ff8060"/>
+          <circle cx="450" cy="147" r="5" fill="#ffb060"/>
+          <circle cx="550" cy="145" r="6" fill="#ff8060"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="glass day reveal">
+      <div class="day-stay"><span class="tag">宿</span><b>恩納度假飯店</b>　第 3 晚（或當日移動至那霸）</div>
+      <div class="tl">
+        <div class="stop"><span class="time">09:00</span><span class="node"></span><h4>飯店悠閒早餐</h4><p>最後一次享受度假村的早晨，不趕。可以再游一次泳池或散步海灘。</p></div>
+        <div class="stop"><span class="time">10:30</span><span class="node"></span><h4>退房</h4><p>行李交給飯店或直接帶走。</p></div>
+        <div class="stop"><span class="time">11:00</span><span class="node"></span><h4>殘波岬（選配）</h4><p>白色燈塔佇立在斷崖之上，搭計程車約 20 分鐘可達。時間充裕值得繞一趟。<span class="transit">恩納→殘波岬 ≈ 計程車 20 分</span></p></div>
+        <div class="stop"><span class="time">12:30</span><span class="node"></span><h4>搭利木津巴士南下那霸</h4><p>從恩納度假飯店直達那霸市區，車上補個眠也好。<span class="transit">利木津巴士 ≈ 90–120 分</span></p></div>
+        <div class="stop key"><span class="time">14:30</span><span class="node"></span><h4>抵達那霸</h4><p>行李先寄放在車站寄物櫃或隔天的飯店（可提前聯繫），輕裝上陣逛街。</p></div>
+        <div class="stop"><span class="time">15:00</span><span class="node"></span><h4>國際通・第一牧志公設市場</h4><p>2023 年整修重新開幕的市場，一樓挑食材、二樓代客料理。從市場往國際通一路逛過去，傍晚人潮最熱鬧。</p></div>
         <div class="stop"><span class="time">18:30</span><span class="node"></span><h4>晚餐</h4>
-          <div class="meal"><p class="mh">晚餐備案 · 那霸</p><ul><li><b>ゆうなんぎい</b>　老字號沖繩家庭料理居酒屋<span class="t">不收訂位常排隊</span></li><li><b>牧志公設市場 2F 食堂</b>　海鮮＋沖繩料理</li></ul></div>
+          <div class="meal"><p class="mh">晚餐備案 · 那霸</p><ul><li><b>油南義</b>　老字號沖繩家庭料理居酒屋，不收訂位常需排隊<span class="t">排隊名店</span></li><li><b>牧志公設市場二樓食堂</b>　一樓選海鮮，二樓現場料理</li></ul></div>
         </div>
       </div>
     </div>
+  </div></section>
+
+  <!-- ============ DAY 4 ============ -->
+  <section class="dsec" data-day="d4" id="d4"><div class="wrap">
+    <div class="dhead reveal">
+      <div class="big">04</div>
+      <div class="ttl">
+        <p class="lbl">Day 4 · 古城與黃昏</p>
+        <h2>首里城、購物，入住機場旁飯店</h2>
+        <p class="sub">全程<b>單軌電車＋步行＋短程計程車</b>。看完全新正殿、買齊伴手禮，傍晚移住機場旁的好飯店，明天從容出發。</p>
+      </div>
+    </div>
+
+    <!-- Scene: Shuri Castle sunset -->
+    <div class="scene reveal">
+      <svg viewBox="0 0 680 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="dusk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f5b040"/><stop offset=".4" stop-color="#e06040"/><stop offset=".8" stop-color="#8a3070"/><stop offset="1" stop-color="#1a0a30"/></linearGradient>
+        </defs>
+        <rect width="680" height="200" rx="16" fill="url(#dusk)"/>
+        <circle cx="340" cy="90" r="32" fill="#fff" opacity=".25"/>
+        <!-- Shuri castle silhouette -->
+        <g fill="#1a0a30" opacity=".75" transform="translate(200,70)">
+          <rect x="60" y="60" width="160" height="60" rx="2"/>
+          <rect x="80" y="35" width="120" height="30" rx="2"/>
+          <rect x="100" y="15" width="80" height="25" rx="2"/>
+          <path d="M120 15 L140 0 160 15Z"/>
+          <!-- roof curves -->
+          <path d="M55 60 Q140 48,225 60" stroke="#1a0a30" stroke-width="4" fill="none"/>
+          <path d="M75 35 Q140 24,205 35" stroke="#1a0a30" stroke-width="3" fill="none"/>
+          <path d="M95 15 Q140 6,185 15" stroke="#1a0a30" stroke-width="2.5" fill="none"/>
+          <!-- gate columns -->
+          <rect x="120" y="85" width="8" height="35" rx="1"/>
+          <rect x="152" y="85" width="8" height="35" rx="1"/>
+        </g>
+        <!-- stone steps -->
+        <g fill="#2a1040" opacity=".5">
+          <rect x="280" y="145" width="120" height="8" rx="1"/>
+          <rect x="270" y="155" width="140" height="8" rx="1"/>
+          <rect x="260" y="165" width="160" height="8" rx="1"/>
+          <rect x="250" y="175" width="180" height="8" rx="1"/>
+        </g>
+      </svg>
+    </div>
 
     <div class="glass day reveal">
-      <div class="day-top"><span class="day-no">DAY 04</span><div class="day-title"><h3>那霸市區放鬆（不用車）</h3><div class="dow">11/28 SAT</div></div><div class="day-stay"><b>那霸 市區飯店</b>第 2 晚</div></div>
+      <div class="day-stay"><span class="tag">宿</span><b>那霸機場旁飯店</b>　最後一晚・從容出發</div>
       <div class="tl">
-        <div class="stop"><span class="time">09:30</span><span class="node"></span><h4>早餐 · 市區咖啡</h4><p>慢慢開始，全程單軌＋步行。</p></div>
-        <div class="stop key"><span class="time">10:00</span><span class="node"></span><h4>首里城</h4><p>單軌「首里」站可達。正殿 11/23 才重新開放，剛好看得到全新正殿（內部是否需預約建議現場確認）。</p></div>
+        <div class="stop"><span class="time">09:00</span><span class="node"></span><h4>早餐・市區咖啡廳</h4><p>今天全程搭單軌電車與步行，輕鬆出發。</p></div>
+        <div class="stop key"><span class="time">10:00</span><span class="node"></span><h4>首里城</h4><p>搭單軌電車到「首里」站步行即達。正殿 11/23 才重新開放，這趟旅程正好看到火災重建後的全新正殿。開放初期可能需要預約，出發前確認官方公告。</p></div>
         <div class="stop"><span class="time">12:30</span><span class="node"></span><h4>午餐</h4>
-          <div class="meal"><p class="mh">午餐備案 · 那霸</p><ul><li><b>JUMBO STEAK HAN'S</b>　大份量牛排，午間套餐附沙拉吧</li><li><b>OKINAWA SOBA EIBUN</b>　話題沖繩麵店</li></ul></div>
+          <div class="meal"><p class="mh">午餐備案 · 那霸</p><ul><li><b>JUMBO STEAK HAN'S</b>　大份量牛排，午間套餐附沙拉吧</li><li><b>沖繩麵 EIBUN</b>　話題沖繩麵店，值得一試</li></ul></div>
         </div>
-        <div class="stop"><span class="time">14:00</span><span class="node"></span><h4>新都心 おもろまち（購物）</h4><p>DFS 免稅、大型購物中心補貨；或波上宮、波之上海灘。</p></div>
-        <div class="stop"><span class="time">16:30</span><span class="node"></span><h4>瀨長島 Umikaji Terrace</h4><p>近機場白色海景階梯商店街，咖啡看飛機。<span class="drive">計程車 ≈ 20m</span></p></div>
-        <div class="stop"><span class="time">18:30</span><span class="node"></span><h4>晚餐 · 最後一夜</h4>
-          <div class="meal"><p class="mh">晚餐備案 · 那霸</p><ul><li><b>沖縄の台所 ぱいかじ</b>　表演型沖繩料理居酒屋</li><li><b>波照間 國際通店</b>　三線民謠 live</li></ul></div>
+        <div class="stop"><span class="time">14:00</span><span class="node"></span><h4>新都心・Omoromachi 購物</h4><p>DFS 免稅店、那霸 Main Place 購物中心，品牌、美妝、藥妝一次補齊。</p></div>
+        <div class="stop"><span class="time">15:30</span><span class="node"></span><h4>壺屋陶器街</h4><p>石板老街上的沖繩陶器「燒物」與風獅爺，挑一只手感好的杯碗帶回家。</p></div>
+        <div class="stop"><span class="time">16:30</span><span class="node"></span><h4>瀨長島 海風露台</h4><p>搭計程車約 20 分鐘，白色階梯商店街沿海而建。喝杯咖啡，看飛機從頭頂起降。<span class="transit">計程車 ≈ 20 分</span></p></div>
+        <div class="stop key"><span class="time">18:00</span><span class="node"></span><h4>入住機場旁飯店</h4><p>從瀨長島搭計程車約 10 分鐘即達。放好行李，安心享用最後一晚。</p></div>
+        <div class="stop"><span class="time">19:00</span><span class="node"></span><h4>晚餐・旅程最後一夜</h4>
+          <div class="meal"><p class="mh">晚餐備案 · 那霸</p><ul><li><b>沖繩廚房 拜風</b>　有現場沖繩民謠表演的居酒屋，氣氛熱鬧</li><li><b>波照間 國際通店</b>　三線琴現場演奏，道地沖繩料理</li><li><b>飯店內餐廳</b>　不想跑遠的舒適選擇</li></ul></div>
         </div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- ============ DAY 5 ============ -->
+  <section class="dsec" data-day="d5" id="d5"><div class="wrap">
+    <div class="dhead reveal">
+      <div class="big">05</div>
+      <div class="ttl">
+        <p class="lbl">Day 5 · 歸途</p>
+        <h2>最後掃貨，下午從容回家</h2>
+        <p class="sub">住在機場旁的好處——睡到自然醒，<b>不用趕路</b>。逛完暢貨中心或瀨長島，走進機場就好。</p>
       </div>
     </div>
 
+    <!-- Scene: airplane departure -->
+    <div class="scene reveal">
+      <svg viewBox="0 0 680 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="farewell" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6a8090"/><stop offset=".5" stop-color="#c0b8a0"/><stop offset="1" stop-color="#e8dcc0"/></linearGradient>
+        </defs>
+        <rect width="680" height="200" rx="16" fill="url(#farewell)"/>
+        <!-- runway -->
+        <rect x="0" y="165" width="680" height="35" rx="0" fill="#4a5560" opacity=".4"/>
+        <line x1="60" y1="182" x2="620" y2="182" stroke="#fff" stroke-width="2" stroke-dasharray="30 20" opacity=".5"/>
+        <!-- airplane -->
+        <g transform="translate(350,60) rotate(-15)" opacity=".7">
+          <ellipse cx="0" cy="0" rx="50" ry="8" fill="#fff"/>
+          <path d="M-10 0 L-30 -30 -5 -5Z" fill="#fff"/>
+          <path d="M-10 0 L-30 30 -5 5Z" fill="#fff"/>
+          <path d="M35 0 L50 -12 42 -2Z" fill="#e8dcc0"/>
+          <path d="M35 0 L50 12 42 2Z" fill="#e8dcc0"/>
+        </g>
+        <!-- clouds -->
+        <g fill="#fff" opacity=".3">
+          <ellipse cx="100" cy="45" rx="40" ry="15"/>
+          <ellipse cx="130" cy="40" rx="30" ry="12"/>
+          <ellipse cx="520" cy="35" rx="35" ry="12"/>
+          <ellipse cx="550" cy="30" rx="25" ry="10"/>
+        </g>
+      </svg>
+    </div>
+
     <div class="glass day reveal">
-      <div class="day-top"><span class="day-no">DAY 05</span><div class="day-title"><h3>機場收尾</h3><div class="dow">11/29 SUN</div></div><div class="day-stay"><b>OKA → TPE</b>下午回</div></div>
+      <div class="day-stay"><span class="tag">飛</span><b>OKA → TPE</b>　下午回家</div>
       <div class="tl">
-        <div class="stop"><span class="time">09:30</span><span class="node"></span><h4>退房 · 早午餐與補貨</h4><p>人已在那霸，回程從容；國際通做最後伴手禮採買。</p></div>
-        <div class="stop"><span class="time">14:30</span><span class="node"></span><h4>搭單軌到那霸機場</h4><p>國際線提前約 2.5–3 小時辦理。</p></div>
-        <div class="stop key"><span class="time">17:30</span><span class="node"></span><h4>那霸起飛 → 桃園</h4><p>約 18:00 落地桃園。</p></div>
+        <div class="stop"><span class="time">09:00</span><span class="node"></span><h4>退房・飯店早餐</h4><p>近機場的飯店通常有不錯的早餐。吃完不急，還有一整個上午。</p></div>
+        <div class="stop"><span class="time">10:00</span><span class="node"></span><h4>沖繩 Outlet Mall Ashibinaa 或瀨長島</h4><p>機場旁的暢貨中心，最後掃貨的好機會。搭計程車約 10 分鐘。<span class="transit">計程車 ≈ 10 分</span></p></div>
+        <div class="stop"><span class="time">13:00</span><span class="node"></span><h4>前往那霸機場</h4><p>提前約 2.5–3 小時辦理國際線手續。辦完還能逛機場免稅店做最後採買。</p></div>
+        <div class="stop"><span class="time">14:00</span><span class="node"></span><h4>機場最後補貨</h4><p>紅芋塔、機場限定甜點、忘了買的伴手禮，一次買齊。</p></div>
+        <div class="stop key"><span class="time">17:30</span><span class="node"></span><h4>那霸起飛 → 桃園</h4><p>約 18:00 落地桃園，回家。</p></div>
       </div>
     </div>
-  </section>
+  </div></section>
 
   <!-- ============ 住宿 ============ -->
+  <div class="wrap">
   <section class="sec" id="stay">
-    <p class="lbl reveal">Stay · 住宿候選</p>
+    <p class="lbl reveal">Stay · 住宿資訊</p>
     <h2 class="reveal">兩個落腳點，各挑一間</h2>
 
     <div class="glass card reveal">
-      <h3 class="area"><span class="pin">恩納 · 2 晚</span>西海岸度假</h3>
-      <p class="note">挑全海景＋泳池（11 月偏涼，溫水池更實用）。價格為大致每晚每房區間，淡季常更低。</p>
-      <div class="tier"><div class="th"><span class="name">CP 值・好訂</span><span class="px">約 ¥10,000–18,000</span></div>
-        <ul><li><b>リザンシーパーク谷茶ベイ</b>　800m 海灘、房數多好訂、室內溫水池</li><li><b>ベストウェスタン恩納ビーチ</b>　白沙海灘前、房間寬</li><li><b>ホテルみゆきビーチ</b>　全海景、私人海灘</li></ul></div>
-      <div class="tier"><div class="th"><span class="name">中階・甜蜜點</span><span class="px">約 ¥20,000–38,000</span></div>
-        <ul><li><b>ホテルモントレ沖縄 Spa＆Resort</b>　全海景＋天然溫泉＋造波池，最對味</li><li><b>ルネッサンスリゾート沖縄</b>　全海景、海豚互動、親子強</li><li><b>カフーリゾート フチャク</b>　70m² 套房／公寓式，長住感</li></ul></div>
-      <div class="tier"><div class="th"><span class="name">奢華・發呆無極限</span><span class="px">約 ¥55,000 起</span></div>
-        <ul><li><b>ハレクラニ沖縄</b>　360 室全海景，頂級安靜</li><li><b>ANA インターコンチネンタル万座</b>　半島地形視野絕佳</li><li><b>ハイアットリージェンシー瀬良垣アイランド</b>　獨立島嶼度假感</li></ul></div>
-      <p class="pxbar">取車後 ≈ 60–80 分到恩納；多數飯店那霸機場有利木津巴士直達，不開車也能抵達。</p>
+      <h3 class="area"><span class="pin">恩納 · 3 晚</span>西海岸度假飯店</h3>
+      <p class="note">不租車，務必選有<b>利木津巴士直達</b>的飯店。挑全海景＋溫水泳池，11 月偏涼更實用。價格為每晚每房淡季參考區間。</p>
+      <div class="tier"><div class="th"><span class="name">高性價比・好訂</span><span class="px">約 ¥10,000–18,000</span></div>
+        <ul><li><b>麗山海景皇宮度假酒店</b>　800 公尺海灘、室內溫水池、房數多、利木津巴士直達</li><li><b>恩納最佳西方海灘飯店</b>　白沙海灘前、房間寬敞</li><li><b>美雪海灘飯店</b>　全海景、私人海灘、價格親民</li></ul></div>
+      <div class="tier"><div class="th"><span class="name">中階・最佳平衡</span><span class="px">約 ¥20,000–38,000</span></div>
+        <ul><li><b>蒙特利水療度假酒店</b>　全海景＋天然溫泉＋造波池，住宿體驗最到位</li><li><b>文藝復興度假酒店</b>　全海景、海豚互動體驗、適合親子</li><li><b>卡福度假公寓酒店</b>　70 平方公尺套房，公寓式的居住感</li></ul></div>
+      <div class="tier"><div class="th"><span class="name">奢華・極致放空</span><span class="px">約 ¥55,000 起</span></div>
+        <ul><li><b>沖繩哈利庫拉尼</b>　360 間房全海景，頂級靜謐</li><li><b>ANA 萬座洲際酒店</b>　半島地形，三面環海視野絕佳</li><li><b>瀨良垣島凱悅酒店</b>　獨立島嶼，真正與世隔絕的度假感</li></ul></div>
+      <p class="pxbar">那霸機場搭利木津巴士直達恩納各大飯店，約 90–120 分鐘，免轉車免搬行李。</p>
     </div>
 
     <div class="glass card reveal">
-      <h3 class="area"><span class="pin">那霸 · 2 晚</span>單軌生活圈</h3>
-      <p class="note">選單軌站徒步、靠國際通，定點不收行李。市區飯店多需付費停車，這也是 Day 3 先還車的理由。</p>
-      <div class="tier"><div class="th"><span class="name">平價・商務</span><span class="px">約 ¥7,000–14,000</span></div>
-        <ul><li><b>ダイワロイネット 沖縄県庁前</b>　旭橋／県庁前 3 分、房型多</li><li><b>ホテルアベスト那覇国際通り</b>　県庁前 2 分、國際通沿線</li><li><b>各駅前商務飯店</b>　美栄橋／旭橋一帶，最省</li></ul></div>
-      <div class="tier"><div class="th"><span class="name">中階・超方便</span><span class="px">約 ¥13,000–22,000</span></div>
-        <ul><li><b>ダイワロイネット 那覇国際通り</b>　牧志駅天橋直結、國際通 1 分，最好逛</li><li><b>ホテルアクアチッタ那覇</b>　美栄橋、頂樓泳池</li></ul></div>
-      <div class="tier"><div class="th"><span class="name">上階・有泳池放鬆</span><span class="px">約 ¥25,000–48,000</span></div>
-        <ul><li><b>Hotel Collective</b>　國際通上、花園泳池、市區度假感</li><li><b>ハイアットリージェンシー那覇</b>　牧志、泳池、評價高</li><li><b>Royal Park Hotel Iconic 那覇</b>　2026 新開、県庁前 2 分、高樓景觀</li></ul></div>
-      <p class="pxbar">那霸機場 → 國際通各站單軌約 14–15 分；首里城、波上宮都在單軌＋步行範圍。</p>
+      <h3 class="area"><span class="pin">機場旁 · 1 晚</span>最後一晚從容出發</h3>
+      <p class="note">離機場近、品質好的飯店，讓最後一天完全不趕。隔天走進機場只需幾分鐘。</p>
+      <div class="tier"><div class="th"><span class="name">度假型</span><span class="px">約 ¥15,000–35,000</span></div>
+        <ul><li><b>南方海灘度假酒店</b>　機場車程約 15 分鐘，海景泳池、有度假感</li><li><b>琉球溫泉 瀨長島飯店</b>　緊鄰海風露台，天然溫泉、看飛機起降</li></ul></div>
+      <div class="tier"><div class="th"><span class="name">便利型</span><span class="px">約 ¥10,000–20,000</span></div>
+        <ul><li><b>那霸日航城市飯店</b>　單軌電車「赤嶺」站旁，到機場一站</li><li><b>Loisir 那霸飯店</b>　機場旁、有溫泉與泳池，性價比高</li></ul></div>
+      <p class="pxbar">Day 4 傍晚從瀨長島搭計程車約 10 分鐘即可抵達。隔天搭計程車或單軌到機場，輕鬆出發。</p>
     </div>
   </section>
 
   <!-- ============ 購物 ============ -->
   <section class="sec" id="shop">
-    <p class="lbl reveal">Shopping · 逛街購物</p>
+    <p class="lbl reveal">Shopping · 伴手禮採買</p>
     <h2 class="reveal">順路把伴手禮買齊</h2>
     <div class="glass card reveal">
-      <p class="note">標籤對應行程日：把購物塞進原本就會經過的點，不額外繞路。</p>
+      <p class="note">購物塞進動線裡，不額外繞路。標籤對應行程日。</p>
       <div class="shoplist">
-        <div class="shop"><span class="when opt">DAY 3 選配</span><div><h4>美浜美國村（北谷）</h4><p>南下還車路上順遊。海邊美式露天商場，雜貨、服飾、進口品、海景餐廳。</p><span class="buy">買：服飾雜貨 · 沖繩風小物 · 拍照</span></div></div>
-        <div class="shop"><span class="when">DAY 3</span><div><h4>國際通 + 平和通／市場本通商店街</h4><p>那霸主購物街與拱廊市場，傍晚最熱鬧。</p><span class="buy">買：紅芋塔（御菓子御殿）· ちんすこう · 黑糖 · 泡盛 · 鹽 · T 恤</span></div></div>
-        <div class="shop"><span class="when">DAY 3</span><div><h4>第一牧志公設市場</h4><p>在地市場，乾貨與沖繩食材；1 樓買、2 樓代煮。</p><span class="buy">買：海葡萄 · 柴魚 · 沖繩限定食材</span></div></div>
-        <div class="shop"><span class="when">DAY 4</span><div><h4>新都心 おもろまち · DFS T Galleria</h4><p>免稅店＋大型購物中心（Naha Main Place 等），品牌、美妝、藥妝一次解決。</p><span class="buy">買：免稅品牌 · 美妝藥妝 · 名產整箱</span></div></div>
-        <div class="shop"><span class="when">DAY 4</span><div><h4>壺屋やちむん通り</h4><p>石板老街，沖繩陶器（やちむん）與風獅爺，挑一只手感杯碗。</p><span class="buy">買：陶器 · シーサー · 琉球玻璃</span></div></div>
-        <div class="shop"><span class="when">DAY 4 夜</span><div><h4>唐吉訶德 國際通店</h4><p>24 小時，零食藥妝伴手禮最便宜，晚上回飯店前掃貨。</p><span class="buy">買：零食 · 藥妝 · 沖繩限定泡麵零嘴</span></div></div>
-        <div class="shop"><span class="when">DAY 5</span><div><h4>那霸機場</h4><p>登機前最後補貨，紅芋塔、生鮮（保冷宅配）、限定甜點。</p><span class="buy">買：漏買的伴手禮 · 機場限定</span></div></div>
+        <div class="shop"><span class="when">DAY 3</span><div><h4>國際通＋平和通商店街</h4><p>那霸最熱鬧的購物街與拱廊商店街，傍晚人潮最旺。</p><span class="buy">買：紅芋塔（御菓子御殿）· 金楚糕 · 黑糖 · 泡盛 · 沖繩鹽 · T 恤</span></div></div>
+        <div class="shop"><span class="when">DAY 3</span><div><h4>第一牧志公設市場</h4><p>在地人的廚房，乾貨、鮮食與沖繩食材齊聚。一樓買、二樓代煮。</p><span class="buy">買：海葡萄 · 柴魚 · 沖繩限定食材</span></div></div>
+        <div class="shop"><span class="when">DAY 4</span><div><h4>新都心・DFS 免稅店</h4><p>免稅品牌＋那霸 Main Place 購物中心，美妝藥妝一次解決。</p><span class="buy">買：免稅品牌 · 美妝藥妝 · 名產整箱</span></div></div>
+        <div class="shop"><span class="when">DAY 4</span><div><h4>壺屋陶器街</h4><p>石板老街，沖繩陶器與風獅爺的集中地，挑一只手工杯碗。</p><span class="buy">買：燒物陶器 · 風獅爺 · 琉球玻璃</span></div></div>
+        <div class="shop"><span class="when opt">DAY 4 夜</span><div><h4>驚安殿堂 國際通店</h4><p>24 小時營業，零食藥妝最便宜，晚上回飯店前掃貨。</p><span class="buy">買：零食 · 藥妝 · 沖繩限定泡麵</span></div></div>
+        <div class="shop"><span class="when">DAY 5</span><div><h4>Outlet Mall Ashibinaa</h4><p>機場旁暢貨中心，最後的品牌掃貨機會。</p><span class="buy">買：品牌折扣 · 運動用品</span></div></div>
+        <div class="shop"><span class="when">DAY 5</span><div><h4>那霸機場</h4><p>登機前最後補貨，紅芋塔、機場限定甜點一次買齊。</p><span class="buy">買：漏買的伴手禮 · 機場限定</span></div></div>
       </div>
     </div>
   </section>
 
   <!-- ============ 補充資訊 ============ -->
   <section class="sec supp" id="info">
-    <p class="lbl reveal">Appendix · 補充資訊區</p>
-    <h2 class="reveal">查證資料與替代方案</h2>
+    <p class="lbl reveal">Appendix · 補充資訊</p>
+    <h2 class="reveal">查證資料與旅行須知</h2>
     <div class="panel reveal">
+
       <details open><summary><span class="ix">A1</span>為什麼選 11 月下旬<span class="pl">+</span></summary><div class="body">
-        <ul><li><b>天氣穩定</b>：均溫約 22°C、最高約 24–25°C，全年降雨最少時段之一。</li><li><b>颱風風險低</b>：11 月接近機率大幅下降，對訂機加酒最安全。</li><li><b>人少便宜</b>：非旺季，機酒常只有暑假尖峰的一半左右。</li><li><b>首里城紅利</b>：正殿 11/23 起開放內部，並避開 11/22–23 開幕假日高峰。</li><li><b>避公休</b>：海生館日落在週四，避開きしもと週三公休。</li></ul>
-        <p class="warn"><b>取捨：</b>海水溫約 24–25°C，但氣溫已降、多數海灘 10 月底結束開放，<b>不適合下海游泳</b>。本行程主打海邊發呆與度假飯店（多有溫水池）。想下海戲水要改 10 月或更早，但颱風風險上升。</p>
+        <ul><li><b>天氣穩定</b>：均溫約 22°C，最高約 24–25°C，是全年降雨最少的時段之一。</li><li><b>颱風風險低</b>：11 月後颱風接近機率大幅下降，訂機加酒最安心。</li><li><b>人少價低</b>：非旺季，機票與飯店價格常只有暑假尖峰的一半。</li><li><b>首里城紅利</b>：正殿 11/23 起開放內部，行程日期剛好在開放後。</li><li><b>避開公休</b>：水族館排在週四，巧妙避開岸本食堂週三公休。</li></ul>
+        <p class="warn"><b>取捨：</b>海水溫約 24–25°C，但氣溫已降，多數海灘 10 月底結束開放，<b>不適合下海游泳</b>。本行程主打海邊發呆與度假飯店（多有溫水泳池），想下水要改 10 月或更早，但颱風風險隨之上升。</p>
       </div></details>
+
       <details><summary><span class="ix">A2</span>班機與時差<span class="pl">+</span></summary><div class="body">
-        <p>桃園 ⇄ 那霸飛行約 <span class="m">1.5h</span>，<b>日本快 1 小時</b>，落地當地時間 ≈ 起飛 + 2.5h。華航、長榮、星宇、虎航、樂桃都有飛。</p>
-        <table class="dt"><tr><td>上午批（本行程）</td><td>桃園約 07–09 起飛，那霸約 10–12 落地</td></tr><tr><td>下午批</td><td>桃園約 13–16 起飛，那霸下午到傍晚落地</td></tr></table>
-        <p>錨點：去 <span class="m">TPE 08:30→OKA 11:00</span>、回 <span class="m">OKA 17:30→TPE 18:00</span>，訂到實際航班再微調。</p>
+        <p>桃園 ⇄ 那霸飛行約 <span class="m">1.5 小時</span>，<b>日本快 1 小時</b>，落地當地時間 ≈ 起飛 + 2.5 小時。華航、長榮、星宇、虎航、樂桃都有飛。</p>
+        <table class="dt"><tr><td>上午班（本行程）</td><td>桃園約 07–09 起飛，那霸約 10–12 落地</td></tr><tr><td>下午班</td><td>桃園約 13–16 起飛，那霸下午至傍晚落地</td></tr></table>
+        <p>錨點：去 <span class="m">TPE 08:30→OKA 11:00</span>、回 <span class="m">OKA 17:30→TPE 18:00</span>，訂到實際航班後再微調時間。</p>
       </div></details>
-      <details><summary><span class="ix">A3</span>自駕重點（台灣駕照）<span class="pl">+</span></summary><div class="body">
-        <ul><li class="warn"><b>台灣駕照需「日文譯本」</b>（非國際駕照），台灣監理單位或日本 JAF 申辦，沒帶無法取車。</li><li><b>旺季早訂</b>：旺季租車一位難求。</li><li><b>市區還車</b>：Day 3 那霸市區還車，之後不留車省停車費與找位。</li><li><b>停車</b>：海洋博公園免費；那霸市區飯店多需付費停車。</li><li><b>重度開車只有 Day 2</b>（海生館往返），Day 1、3 是帶停點的移動。</li></ul>
+
+      <details><summary><span class="ix">A3</span>大眾運輸與計程車指南<span class="pl">+</span></summary><div class="body">
+        <p>本行程全程不租車，以下是各路段的交通方式：</p>
+        <table class="dt">
+          <tr><td>機場→恩納</td><td>利木津巴士直達飯店（90–120 分）或計程車（≈60 分/¥8,000–10,000）</td></tr>
+          <tr><td>恩納→水族館</td><td>觀光巴士一日遊（¥5,000–8,000/人含門票）或計程車（¥6,000–8,000）</td></tr>
+          <tr><td>恩納→那霸</td><td>利木津巴士（90–120 分）或計程車（≈60 分/¥8,000–10,000）</td></tr>
+          <tr><td>那霸市內</td><td>單軌電車（ゆいレール）＋步行，涵蓋國際通、市場、首里城、新都心</td></tr>
+          <tr><td>瀨長島</td><td>計程車 ≈ 20 分</td></tr>
+        </table>
+        <p><b>利木津巴士</b>是不租車旅客的最佳夥伴：從機場直達恩納各大度假飯店門口，行李放車廂，到站下車即可。建議提前查詢班次時刻。</p>
+        <p>那霸市內單軌電車「Yui-Rail」可到達國際通、牧志市場、首里城、波上宮、新都心，基本上市區觀光不需要車。</p>
       </div></details>
-      <details><summary><span class="ix">A4</span>不自駕的替代方案<span class="pl">+</span></summary><div class="body">
-        <p>哪天不想開車，海生館有兩種不自駕做法（本行程選自駕，是為了自己控制時間）：</p>
-        <table class="dt"><tr><td>一日巴士團</td><td>那霸/飯店約 8:00–9:50 出發、傍晚回；水族館停留約 2.5h，常含門票，多串古宇利、萬座毛，含午餐約 ¥7,800／人。</td></tr><tr><td>直達接駁巴士</td><td>單程約 ¥2,000、車程約 2h、一天約 8 班；末班約園區 17:13 發。可自訂停留，但來回約 4.5h、要盯末班車。</td></tr></table>
-        <p>市區內：單軌（ゆいレール）＋步行可解決國際通、牧志市場、首里城、波上宮、新都心。</p>
+
+      <details><summary><span class="ix">A4</span>美麗海水族館・實用資訊<span class="pl">+</span></summary><div class="body">
+        <table class="dt"><tr><td>開館</td><td>平常期 8:30–18:30（最後入館 17:30）</td></tr><tr><td>繁忙期</td><td>部分期間延長至 20:00（11 月為平常期）</td></tr><tr><td>門票</td><td>成人 ¥2,180／高中 ¥1,440／國中小 ¥710／6 歲以下免費</td></tr><tr><td>參觀時間</td><td>水族館約 1.5–2 小時（不含海豚秀等）</td></tr><tr><td>停車</td><td>海洋博公園免費</td></tr><tr><td>再入館</td><td>當日票根蓋章可再入館</td></tr></table>
       </div></details>
-      <details><summary><span class="ix">A5</span>美麗海水族館 · 實用資訊<span class="pl">+</span></summary><div class="body">
-        <table class="dt"><tr><td>開館</td><td>平常期 8:30–18:30（最後入館 17:30）</td></tr><tr><td>繁忙期</td><td>部分期間延長至 20:00（11 月為平常期）</td></tr><tr><td>入館料</td><td>大人 ¥2,180／高中 ¥1,440／中小學 ¥710／6 歲以下免費</td></tr><tr><td>平均參觀</td><td>水族館約 1.5–2h（不含海豚秀等）</td></tr><tr><td>停車</td><td>海洋博公園免費</td></tr><tr><td>再入館</td><td>當日憑票根蓋章可再入館</td></tr></table>
+
+      <details><summary><span class="ix">A5</span>首里城・開放進度<span class="pl">+</span></summary><div class="body">
+        <p>正殿 2019 年大火後重建，<b>2026/11/23 起正式開放內部</b>（前一天 11/22 舉行復原完成式）。本行程 11/28 造訪，正好在開放後。開放初期可能採預約制或設有人潮管制，出發前務必確認官方公告。</p>
       </div></details>
-      <details><summary><span class="ix">A6</span>首里城 · 開放進度<span class="pl">+</span></summary><div class="body">
-        <p>正殿 2019 大火後重建，<b>2026/11/23 起正式開放內部</b>（前一天 11/22 復原完成式）。在那之前只能看外觀。本行程日期在開放後，看得到全新正殿；開放初期可能採預約制或人潮管制，出發前確認公告。</p>
+
+      <details><summary><span class="ix">A6</span>各區完整餐廳清單<span class="pl">+</span></summary><div class="body">
+        <p><b>恩納：</b>牛排88 恩納店／度假鐵板燒 OCEAN／大地鐵板燒（A5 和牛海景）／豚匠 碧（阿古豬涮涮鍋）</p>
+        <p><b>本部：</b>岸本食堂（週三休）／山原蕎麥麵／澤之屋 本部本店／海人料理 海邦丸／花人逢（絕景披薩）</p>
+        <p><b>那霸：</b>油南義／JUMBO STEAK HAN'S／果然牛排（平價）／牧志市場二樓食堂／沖繩廚房 拜風・波照間（表演居酒屋）</p>
       </div></details>
-      <details><summary><span class="ix">A7</span>各區完整餐廳清單<span class="pl">+</span></summary><div class="body">
-        <p><b>恩納：</b>ステーキ88 恩納店／Resort Steak &amp; Seafood OCEAN／鉄板焼き 大地（A5 和牛海景）／豚匠 碧〜ao〜（あぐー豬涮涮）</p>
-        <p><b>本部：</b>きしもと食堂（週三休）／山原そば／さわのや 本部本店／海人料理 海邦丸／ピザ喫茶 花人逢（絕景披薩）</p>
-        <p><b>那霸：</b>ゆうなんぎい／JUMBO STEAK HAN'S／やっぱりステーキ（平價）／牧志市場 2F 食堂／沖縄の台所 ぱいかじ・波照間（表演居酒屋）</p>
+
+      <details><summary><span class="ix">A7</span>11 月下旬注意事項<span class="pl">+</span></summary><div class="body">
+        <ul><li>11 月後半偶有冬季氣壓帶影響，出發前多看天氣預報。</li><li>早晚溫差大（最低約 19–20°C），帶薄外套或帽 T。</li><li>多數海灘已封閉禁泳，以散步觀景為主。</li><li>紫外線仍強，防曬別省。</li><li>11/3、11/23 為日本國定假日，本行程已避開 11/23 高峰。</li></ul>
       </div></details>
-      <details><summary><span class="ix">A8</span>11 月下旬注意事項<span class="pl">+</span></summary><div class="body">
-        <ul><li>11 月後半偶有冬季氣壓帶陰天，多看預報。</li><li>早晚溫差大（最低約 19–20°C），帶薄外套／帽 T。</li><li>多數海灘已封閉禁泳。</li><li>紫外線仍強，防曬別省。</li><li>11/3、11/23 為日本假日，避開可省機酒費（本行程已避 11/23）。</li></ul>
+
+      <details><summary><span class="ix">A8</span>資料來源<span class="pl">+</span></summary><div class="body">
+        <ul><li>美麗海水族館：churaumi.okinawa ／ oki-churaumi.jp</li><li>海洋博公園：oki-park.jp/kaiyohaku</li><li>首里城公園：oki-park.jp/shurijo</li></ul>
+        <p>住宿價格與餐廳資訊整理自多家訂房與食評網站，實際以各店家官網與即時報價為準。</p>
       </div></details>
-      <details><summary><span class="ix">A9</span>資料來源（可複查）<span class="pl">+</span></summary><div class="body src">
-        <ul><li>美ら海水族館：churaumi.okinawa ／ oki-churaumi.jp</li><li>海洋博公園：oki-park.jp/kaiyohaku</li><li>首里城公園：oki-park.jp/shurijo</li></ul>
-        <p>住宿價格與餐廳資訊整理自多家訂房／食評網站，實際以各店家官網與訂房網即時報價為準。</p>
-      </div></details>
+
     </div>
 
-    <div class="glass draft reveal"><b>草稿 v2。</b>住宿是候選名單＋大致價位（淡季通常更低），不是已訂；班機時刻為「上午去下午回」錨點。訂到實際航班與飯店後告訴我，我把 Day 1／Day 5 時間與住宿名稱對齊。</div>
+    <div class="glass draft reveal"><b>草稿 v3。</b>住宿為候選名單＋淡季參考價位，尚未預訂；班機時刻為「上午去下午回」錨點。訂到實際航班與飯店後告訴我，我再把時間與住宿名稱對齊。</div>
   </section>
 
-  <footer class="foot">沖繩 5D4N · 草稿 v2 · 離線版 · iOS Glass</footer>
+  <footer class="foot">沖繩 5D4N · 草稿 v3 · 碧海長卷版</footer>
+  </div>
 </main>
 
-<div class="tabbar"><nav>
-  <a href="#plan" class="active"><span class="ic">🗺️</span>行程</a>
-  <a href="#stay"><span class="ic">🏨</span>住宿</a>
-  <a href="#shop"><span class="ic">🛍️</span>購物</a>
-  <a href="#info"><span class="ic">ℹ️</span>資訊</a>
-</nav></div>
+<nav class="rail" aria-label="每日快速跳轉">
+  <a href="#d1" data-rail="d1">1</a>
+  <a href="#d2" data-rail="d2">2</a>
+  <a href="#d3" data-rail="d3">3</a>
+  <a href="#d4" data-rail="d4">4</a>
+  <a href="#d5" data-rail="d5">5</a>
+</nav>
 
 <script>
-  (function(){
-    var els=document.querySelectorAll('.reveal');
-    if('IntersectionObserver' in window){
-      var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.1});
-      els.forEach(function(e){io.observe(e);});
-    }else{els.forEach(function(e){e.classList.add('in');});}
+(function(){
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    var secs=['plan','stay','shop','info'].map(function(id){return document.getElementById(id);});
-    var tabs=document.querySelectorAll('.tabbar a');
-    function onScroll(){
-      var y=window.scrollY+window.innerHeight*0.4,cur=0;
-      secs.forEach(function(s,i){if(s&&s.offsetTop<=y)cur=i;});
-      tabs.forEach(function(t,i){t.classList.toggle('active',i===cur);});
+  /* reveal on scroll */
+  var els=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.08});
+    els.forEach(function(e){io.observe(e);});
+  }else{els.forEach(function(e){e.classList.add('in');});}
+
+  /* sky gradient + rail sync */
+  var current='hero';
+  var skyls=document.querySelectorAll('.skyl');
+  var rails=document.querySelectorAll('.rail a');
+  function setDay(d){
+    if(d===current)return;
+    current=d;
+    skyls.forEach(function(l){l.classList.toggle('on',l.getAttribute('data-sky')===d);});
+    rails.forEach(function(a){a.classList.toggle('active',a.getAttribute('data-rail')===d);});
+  }
+  var secs=document.querySelectorAll('[data-day]');
+  if('IntersectionObserver' in window){
+    var dio=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){setDay(e.target.getAttribute('data-day'));}});
+    },{rootMargin:'-38% 0px -38% 0px'});
+    secs.forEach(function(s){dio.observe(s);});
+  }
+
+  /* ocean particles */
+  var cv=document.getElementById('ocean-canvas');
+  if(!reduced&&cv&&cv.getContext){
+    var ctx=cv.getContext('2d'),W,H,particles=[];
+    var palettes={
+      hero:{colors:['#1ecdc6','#a8edea','#0b7a8a','#fff'],count:18,type:'bubble'},
+      d1:{colors:['#f5b04a','#f08050','#1cb5a0','#fff'],count:12,type:'sparkle'},
+      d2:{colors:['#1088b0','#3ab0d8','#5ee8d0','#063a78'],count:22,type:'bubble'},
+      d3:{colors:['#30c9a0','#5ee8d0','#b8e8c8','#fff'],count:10,type:'sparkle'},
+      d4:{colors:['#f5b040','#e06040','#ff8060','#fff'],count:14,type:'sparkle'},
+      d5:{colors:['#c0b8a0','#e8dcc0','#6a8090','#fff'],count:8,type:'sparkle'}
+    };
+    function rs(){W=cv.width=innerWidth*devicePixelRatio;H=cv.height=innerHeight*devicePixelRatio;
+      cv.style.width=innerWidth+'px';cv.style.height=innerHeight+'px';}
+    rs();addEventListener('resize',rs);
+    function spawn(top){
+      var p=palettes[current]||palettes.hero;
+      var isBubble=p.type==='bubble';
+      return{
+        x:Math.random()*W,
+        y:top?(isBubble?H+20*devicePixelRatio:-20*devicePixelRatio):Math.random()*H,
+        s:(isBubble?3+Math.random()*6:1.5+Math.random()*3)*devicePixelRatio,
+        vy:(isBubble?-(0.3+Math.random()*0.6):(0.15+Math.random()*0.4))*devicePixelRatio,
+        vx:(Math.random()-.5)*0.4*devicePixelRatio,
+        sway:Math.random()*Math.PI*2,
+        c:p.colors[Math.floor(Math.random()*p.colors.length)],
+        o:.15+Math.random()*.35,
+        isBubble:isBubble
+      };
     }
-    window.addEventListener('scroll',onScroll,{passive:true});onScroll();
-  })();
+    var initP=palettes.hero;
+    for(var i=0;i<initP.count;i++)particles.push(spawn(false));
+    function drawP(p){
+      ctx.globalAlpha=p.o;
+      if(p.isBubble){
+        ctx.strokeStyle=p.c;ctx.lineWidth=1*devicePixelRatio;
+        ctx.beginPath();ctx.arc(p.x,p.y,p.s,0,Math.PI*2);ctx.stroke();
+      }else{
+        ctx.fillStyle=p.c;
+        ctx.beginPath();ctx.arc(p.x,p.y,p.s,0,Math.PI*2);ctx.fill();
+      }
+    }
+    var hidden=false;
+    document.addEventListener('visibilitychange',function(){hidden=document.hidden;});
+    (function tick(){
+      requestAnimationFrame(tick);
+      if(hidden)return;
+      ctx.clearRect(0,0,W,H);
+      var target=(palettes[current]||palettes.hero).count;
+      if(particles.length<target&&Math.random()<.08)particles.push(spawn(true));
+      for(var i=particles.length-1;i>=0;i--){
+        var p=particles[i];
+        p.sway+=0.008;
+        p.x+=p.vx+Math.sin(p.sway)*0.4*devicePixelRatio;
+        p.y+=p.vy;
+        var outOfBounds=p.isBubble?(p.y<-30*devicePixelRatio):(p.y>H+30*devicePixelRatio);
+        if(outOfBounds){
+          if(particles.length>target){particles.splice(i,1);continue;}
+          particles[i]=spawn(true);
+        }
+        drawP(particles[i]);
+      }
+    })();
+  }
+})();
 </script>
 </body>
 </html>
