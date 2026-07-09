@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>和歌山 白濱川久・秋楓 5天4夜｜2026.11</title>
-<meta name="theme-color" content="#5c1a0a">
+<title>和歌山 白濱川久・秋楓 6天5夜｜2026.11</title>
+<meta name="theme-color" content="#4a0e08">
 <style>
   :root{
     --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
@@ -13,9 +13,8 @@
     --ink-soft:#6b4226;
     --ink-faint:#8b6347;
     --line:rgba(61,28,11,.12);
-    --glass:rgba(255,255,255,.55);
-    --glass-strong:rgba(255,255,255,.72);
-    --glass-dark:rgba(61,20,10,.50);
+    --glass:rgba(255,255,255,.58);
+    --glass-dark:rgba(46,16,8,.52);
     --accent:#b5351e;
     --accent-deep:#8b1a1a;
     --coral:#d35400;
@@ -28,25 +27,24 @@
     margin:0;color:var(--ink);font-family:var(--sans);
     line-height:1.7;font-size:16px;letter-spacing:.01em;
     -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
-    padding-bottom:96px;overflow-x:hidden;
+    padding-bottom:40px;overflow-x:hidden;background:#3a1408;
   }
 
-  /* ===== autumn wallpaper ===== */
-  .bg{position:fixed;inset:0;z-index:-2;background:linear-gradient(170deg,#5c1a0a 0%,#8b3a1a 28%,#c06830 52%,#d4943a 76%,#e8c76a 100%);}
-  .bg::before,.bg::after,.blob{content:"";position:fixed;border-radius:50%;filter:blur(70px);opacity:.55;z-index:-1;}
-  .bg::before{width:55vw;height:55vw;background:#d44a1a;top:-14vw;right:-10vw;}
-  .bg::after{width:50vw;height:50vw;background:#5c1a0a;bottom:-18vw;left:-14vw;opacity:.6;}
-  .blob{width:42vw;height:42vw;background:#f0c040;top:45vh;left:-16vw;opacity:.3;}
-  @media(prefers-reduced-motion:no-preference){
-    .bg::before{animation:drift1 24s ease-in-out infinite alternate;}
-    .bg::after{animation:drift2 28s ease-in-out infinite alternate;}
-  }
-  @keyframes drift1{to{transform:translate(-5vw,7vh) scale(1.06);}}
-  @keyframes drift2{to{transform:translate(6vw,-4vh) scale(1.08);}}
+  /* ===== 漸變天空：每一天一層，滑到哪換到哪 ===== */
+  .sky{position:fixed;inset:0;z-index:-3;}
+  .skyl{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease;}
+  .skyl.on{opacity:1;}
+  .sky-hero{background:linear-gradient(165deg,#3a1408 0%,#7a2d12 35%,#c46a2b 70%,#e8b85c 100%);}
+  .sky-d1{background:linear-gradient(170deg,#16152e 0%,#3d2a5c 38%,#8a4a6b 68%,#e08a5a 100%);}
+  .sky-d2{background:linear-gradient(170deg,#0a3a52 0%,#0e6d86 42%,#3fae9e 72%,#bfe3d0 100%);}
+  .sky-d3{background:linear-gradient(170deg,#4a0e08 0%,#8b1a10 34%,#c2431d 64%,#e8942f 100%);}
+  .sky-d4{background:linear-gradient(170deg,#5c4526 0%,#a3793f 40%,#d9bc80 70%,#f2e6c8 100%);}
+  .sky-d5{background:linear-gradient(170deg,#4a2408 0%,#8a4a10 38%,#c98a1e 68%,#e6c46a 100%);}
+  .sky-d6{background:linear-gradient(170deg,#2a1030 0%,#6b2445 38%,#c2543a 68%,#f0a05c 100%);}
+  #leaves{position:fixed;inset:0;z-index:-1;pointer-events:none;}
 
   .wrap{max-width:760px;margin:0 auto;padding:0 18px;}
 
-  /* ===== glass primitive ===== */
   .glass{
     background:var(--glass);
     -webkit-backdrop-filter:blur(22px) saturate(180%);
@@ -57,10 +55,10 @@
   }
 
   /* ===== hero ===== */
-  header.hero{padding:max(34px,env(safe-area-inset-top)) 0 14px;}
-  .hero .glass{padding:30px 26px 28px;}
+  header.hero{min-height:92svh;display:flex;align-items:center;padding:max(34px,env(safe-area-inset-top)) 0 40px;}
+  .hero .glass{padding:32px 26px 30px;}
   .eyebrow{font-family:var(--mono);font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 16px;}
-  .hero h1{font-size:clamp(2rem,8vw,3rem);font-weight:800;line-height:1.08;margin:0;letter-spacing:-.01em;}
+  .hero h1{font-size:clamp(2rem,8vw,3rem);font-weight:800;line-height:1.12;margin:0;letter-spacing:-.01em;text-wrap:balance;}
   .hero h1 small{display:block;font-size:clamp(.95rem,3.6vw,1.2rem);font-weight:600;color:var(--accent-deep);margin-top:12px;letter-spacing:0;}
   .hero .dates{font-family:var(--mono);font-size:clamp(1rem,4vw,1.3rem);font-weight:700;margin:22px 0 0;color:var(--ink);}
   .hero .dates b{color:var(--coral);}
@@ -71,20 +69,24 @@
   .route{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:22px;font-family:var(--mono);font-size:.76rem;color:var(--ink-soft);}
   .route b{color:var(--ink);}
   .route i{color:var(--accent);font-style:normal;}
+  .scrolldown{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:26px;color:var(--accent-deep);font-family:var(--mono);font-size:.68rem;letter-spacing:.22em;}
+  .scrolldown .arr{font-size:1.2rem;line-height:1;animation:bob 2.2s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(7px);}}
 
-  /* ===== section heads ===== */
-  .sec{padding-top:40px;scroll-margin-top:14px;}
-  .sec>.lbl{font-family:var(--mono);font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:#ffecd2;margin:0 0 6px;padding-left:4px;text-shadow:0 1px 6px rgba(40,12,4,.4);}
-  .sec>h2{font-size:clamp(1.4rem,5.4vw,1.9rem);font-weight:800;margin:0 0 14px;color:#fff;padding-left:4px;letter-spacing:-.01em;text-shadow:0 2px 12px rgba(40,12,4,.35);}
+  /* ===== day sections（長頁滑動的主體）===== */
+  .dsec{min-height:100svh;padding:12svh 0 10svh;scroll-margin-top:0;position:relative;}
+  .dhead{position:relative;margin-bottom:26px;padding-left:4px;}
+  .dhead .big{font-family:var(--mono);font-weight:800;font-size:clamp(4.6rem,20vw,8rem);line-height:.9;color:rgba(255,255,255,.22);letter-spacing:-.04em;text-shadow:0 2px 20px rgba(40,12,4,.15);user-select:none;}
+  .dhead .ttl{position:relative;margin-top:-1.2em;}
+  .dhead .lbl{font-family:var(--mono);font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:#ffecd2;margin:0 0 6px;text-shadow:0 1px 6px rgba(40,12,4,.45);}
+  .dhead h2{font-size:clamp(1.5rem,6vw,2.1rem);font-weight:800;margin:0;color:#fff;letter-spacing:-.01em;text-shadow:0 2px 14px rgba(40,12,4,.4);text-wrap:balance;}
+  .dhead .sub{margin:8px 0 0;color:rgba(255,255,255,.88);font-size:.9rem;text-shadow:0 1px 8px rgba(40,12,4,.4);}
+  .dhead .sub b{color:#fff;}
 
-  /* ===== day cards ===== */
-  .day{padding:20px 20px 8px;margin-bottom:16px;}
-  .day-top{display:flex;align-items:baseline;gap:14px;padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:6px;}
-  .day-no{font-family:var(--mono);font-weight:700;font-size:.95rem;color:var(--coral);white-space:nowrap;}
-  .day-title h3{font-size:1.12rem;font-weight:700;margin:0;line-height:1.3;}
-  .day-title .dow{font-family:var(--mono);font-size:.72rem;color:var(--ink-faint);margin-top:3px;letter-spacing:.06em;}
-  .day-stay{margin-left:auto;text-align:right;font-size:.72rem;color:var(--ink-faint);line-height:1.45;white-space:nowrap;}
-  .day-stay b{display:block;color:var(--accent-deep);font-weight:700;font-size:.78rem;}
+  .day{padding:20px 20px 10px;margin-bottom:16px;}
+  .day-stay{display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--ink-faint);padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:4px;}
+  .day-stay b{color:var(--accent-deep);font-weight:700;}
+  .day-stay .tag{font-family:var(--mono);font-size:.62rem;color:#fff;background:var(--accent-deep);padding:3px 8px;border-radius:7px;letter-spacing:.06em;}
 
   .tl{position:relative;padding:6px 0 14px;}
   .stop{position:relative;padding:13px 0 3px 74px;}
@@ -104,8 +106,13 @@
   .meal li{font-size:.84rem;color:var(--ink-soft);line-height:1.5;}
   .meal li b{color:var(--ink);}
   .meal li .t{font-family:var(--mono);font-size:.62rem;color:var(--coral);margin-left:3px;}
+  .planb{margin-top:9px;background:rgba(230,168,23,.14);border:1px solid rgba(230,168,23,.4);border-radius:14px;padding:10px 12px;font-size:.82rem;color:var(--ink-soft);}
+  .planb b{color:var(--ink);}
 
-  /* ===== stay / info cards ===== */
+  /* ===== stay / appendix ===== */
+  .sec{padding-top:46px;scroll-margin-top:14px;}
+  .sec>.lbl{font-family:var(--mono);font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:#ffecd2;margin:0 0 6px;padding-left:4px;text-shadow:0 1px 6px rgba(40,12,4,.4);}
+  .sec>h2{font-size:clamp(1.4rem,5.4vw,1.9rem);font-weight:800;margin:0 0 14px;color:#fff;padding-left:4px;letter-spacing:-.01em;text-shadow:0 2px 12px rgba(40,12,4,.35);}
   .card{padding:20px 20px 16px;margin-bottom:16px;}
   .card h3.area{font-size:1.1rem;font-weight:700;margin:0 0 4px;display:flex;align-items:center;gap:9px;}
   .card h3.area .pin{font-family:var(--mono);font-size:.64rem;color:#fff;background:var(--accent-deep);padding:3px 8px;border-radius:7px;letter-spacing:.06em;}
@@ -121,7 +128,6 @@
   .tier li b{color:var(--ink);font-weight:600;}
   .pxbar{font-size:.76rem;color:var(--ink-faint);background:rgba(230,168,23,.16);border:1px solid rgba(230,168,23,.4);border-radius:12px;padding:9px 12px;margin-top:6px;}
 
-  /* ===== supplementary (dark glass) ===== */
   .supp .panel{background:var(--glass-dark);-webkit-backdrop-filter:blur(22px) saturate(160%);backdrop-filter:blur(22px) saturate(160%);border:1px solid rgba(255,255,255,.18);border-radius:var(--radius);box-shadow:0 8px 30px rgba(40,12,4,.25);overflow:hidden;color:#ffecd2;}
   .supp details{border-bottom:1px solid rgba(255,255,255,.12);}
   .supp details:last-child{border-bottom:none;}
@@ -137,184 +143,278 @@
   .supp .body b{color:#fff;}
   .supp .body .warn{color:#ffb088;}
   .supp .body .m{color:#f0c060;font-family:var(--mono);}
-  .dt{width:100%;border-collapse:collapse;font-size:.82rem;margin:2px 0 10px;}
+  .dt{width:100%;border-collapse:collapse;font-size:.82rem;margin:2px 0 10px;font-variant-numeric:tabular-nums;}
   .dt td{border-bottom:1px solid rgba(255,255,255,.12);padding:7px 5px;vertical-align:top;}
   .dt td:first-child{color:#fff;font-family:var(--mono);width:40%;}
 
   .draft{padding:16px 18px;margin:22px 0 0;background:rgba(211,84,0,.16);border:1px solid rgba(211,84,0,.45);}
-  .draft b{color:#fff;}
   .draft,.draft *{color:#fff;}
 
-  /* ===== tab bar ===== */
-  .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;justify-content:center;padding:0 14px calc(12px + env(safe-area-inset-bottom));pointer-events:none;}
-  .tabbar nav{pointer-events:auto;display:flex;gap:2px;padding:6px;background:rgba(255,255,255,.62);-webkit-backdrop-filter:blur(26px) saturate(180%);backdrop-filter:blur(26px) saturate(180%);border:1px solid rgba(255,255,255,.6);border-radius:22px;box-shadow:0 10px 34px rgba(40,12,4,.28);}
-  .tabbar a{display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 16px;border-radius:16px;font-size:.66rem;font-weight:600;color:var(--ink-soft);text-decoration:none;transition:background .2s,color .2s;}
-  .tabbar a .ic{font-size:1.05rem;line-height:1;}
-  .tabbar a.active{background:rgba(181,53,30,.16);color:var(--accent-deep);}
+  /* ===== 右側 day 進度軌 ===== */
+  .rail{position:fixed;right:10px;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:10px;}
+  .rail a{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;
+    background:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.5);
+    -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+    font-family:var(--mono);font-size:.6rem;font-weight:700;color:rgba(61,28,11,.75);text-decoration:none;
+    transition:all .3s;box-shadow:0 2px 8px rgba(40,12,4,.15);}
+  .rail a.active{background:#fff;color:var(--accent-deep);transform:scale(1.25);box-shadow:0 3px 12px rgba(40,12,4,.3);}
+  @media(max-width:600px){.rail{right:6px;gap:7px;}.rail a{width:24px;height:24px;font-size:.54rem;}}
 
   footer.foot{text-align:center;color:rgba(255,255,255,.85);font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;padding:30px 0 10px;text-shadow:0 1px 6px rgba(40,12,4,.4);}
 
   :focus-visible{outline:3px solid #fff;outline-offset:2px;border-radius:6px;}
-  .reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease;}
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
   .reveal.in{opacity:1;transform:none;}
-  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}html{scroll-behavior:auto;}}
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+    .scrolldown .arr{animation:none;}
+    .skyl{transition:none;}
+  }
   @media(max-width:520px){
     .stop{padding-left:62px;}.stop::before{left:48px;}.stop .node{left:42px;}
-    .stop .time{width:40px;font-size:.74rem;}.day-stay{display:none;}
-    .tabbar a{padding:7px 12px;}
+    .stop .time{width:40px;font-size:.74rem;}
   }
 </style>
 </head>
 <body>
-<div class="bg"></div><div class="blob"></div>
 
-<header class="hero"><div class="wrap reveal">
+<div class="sky" aria-hidden="true">
+  <div class="skyl sky-hero on" data-sky="hero"></div>
+  <div class="skyl sky-d1" data-sky="d1"></div>
+  <div class="skyl sky-d2" data-sky="d2"></div>
+  <div class="skyl sky-d3" data-sky="d3"></div>
+  <div class="skyl sky-d4" data-sky="d4"></div>
+  <div class="skyl sky-d5" data-sky="d5"></div>
+  <div class="skyl sky-d6" data-sky="d6"></div>
+</div>
+<canvas id="leaves" aria-hidden="true"></canvas>
+
+<!-- ============ HERO ============ -->
+<header class="hero" data-day="hero"><div class="wrap reveal">
   <div class="glass">
     <p class="eyebrow">Wakayama · 白濱川久 · 秋楓</p>
-    <h1>南紀白濱秋楓慢旅<small>5 天 4 夜 ‧ 川久旅館 3 晚 + 關西機場 1 晚 ‧ 包車</small></h1>
-    <p class="dates">2026 / 11 / <b>中旬～下旬</b>　(五天四夜)</p>
+    <h1>南紀白濱秋楓慢旅<small>6 天 5 夜 ‧ 川久旅館 3 晚 ‧ 楓紅兩景 ‧ 包車兩日</small></h1>
+    <p class="dates">2026 / 11 / <b>中旬～下旬</b>　(六天五夜)</p>
     <div class="seg">
-      <span>長榮早班去　<b>BR132 TPE 08:30</b></span>
-      <span>長榮傍晚回　<b>BR129 KIX 18:30</b></span>
-      <span>川久旅館 <b>三晚連泊</b></span>
-      <span>紅葉 <b>兩處賞楓</b></span>
+      <span>去程　<b>BR130 TPE 13:35 → KIX 17:15</b></span>
+      <span>回程　<b>BR129 KIX 18:30 → TPE 20:30</b></span>
+      <span>川久 <b>三晚連泊</b></span>
     </div>
-    <p class="hook">挑 11 月中下旬，那智瀑布與和歌山城紅葉渓庭園同時迎來見頃。川久連住三晚不換飯店，兩天包車、一天純休息，節奏從容不趕路。</p>
-    <p class="route"><b>桃園</b><i>✈</i><b>關西機場</b><i>→</i><b>白濱川久</b><i>→</i><b>熊野那智</b><i>→</i><b>和歌山市</b><i>→</i><b>臨空城</b><i>✈</i><b>桃園</b></p>
+    <p class="hook">第一晚先在機場旁睡飽，隔天搭黑潮號慢慢晃進白濱。川久連住三晚不搬行李，包車賞楓、包車遊和歌山各一天，中間留一天純休息。最後一天臨空城購物四小時，傍晚班機從容回家。</p>
+    <p class="route"><b>桃園</b><i>✈</i><b>關西機場</b><i>🚄</i><b>白濱川久 ×3</b><i>→</i><b>那智楓紅</b><i>→</i><b>和歌山市</b><i>→</i><b>臨空城</b><i>✈</i><b>桃園</b></p>
+    <div class="scrolldown"><span>往下滑・一天一頁</span><span class="arr">▾</span></div>
   </div>
 </div></header>
 
-<main class="wrap">
+<main>
 
-  <!-- ============ 行程 ============ -->
-  <section class="sec" id="plan">
-    <p class="lbl reveal">Itinerary · 詳細行程</p>
-    <h2 class="reveal">五天的楓紅路線</h2>
-
-    <!-- DAY 1 -->
-    <div class="glass day reveal">
-      <div class="day-top"><span class="day-no">DAY 01</span><div class="day-title"><h3>桃園出發 → 直抵川久</h3><div class="dow">長榮 BR132 · 機場接送</div></div><div class="day-stay"><b>川久旅館</b>第 1 晚</div></div>
-      <div class="tl">
-        <div class="stop"><span class="time">08:30</span><span class="node"></span><h4>桃園機場起飛</h4><p>長榮 BR132，飛行約 2 小時 40 分。</p></div>
-        <div class="stop"><span class="time">12:10</span><span class="node"></span><h4>關西機場落地</h4><p>日本快 1 小時。通關、提領行李約 30–40 分鐘。</p></div>
-        <div class="stop"><span class="time">13:00</span><span class="node"></span><h4>機場接送出發</h4><p>預約包車/接送直接前往白濱，走阪和自動車道＋紀勢自動車道。<span class="drive">KIX → 川久 ≈ 2h~2.5h / 120km</span></p></div>
-        <div class="stop key"><span class="time">15:15</span><span class="node"></span><h4>入住川久旅館</h4><p>Check-in 15:00。放行李、換浴衣，先在館內逛逛「美術館飯店」的華麗大廳。</p></div>
-        <div class="stop"><span class="time">16:00</span><span class="node"></span><h4>白良浜散步</h4><p>步行可達的白沙海灘，秋天人少，散步吹海風。</p></div>
-        <div class="stop"><span class="time">16:40</span><span class="node"></span><h4>円月島夕陽</h4><p>白濱地標，11 月日落約 16:50。夕陽落入島中圓洞的瞬間是白濱最經典的畫面。</p></div>
-        <div class="stop key"><span class="time">18:00</span><span class="node"></span><h4>王様のビュッフェ 晚餐</h4><p>川久招牌晚餐：現握壽司、現炸天婦羅、紀州食材盛宴。</p></div>
+  <!-- ============ DAY 1 ============ -->
+  <section class="dsec" data-day="d1" id="d1"><div class="wrap">
+    <div class="dhead reveal">
+      <div class="big">01</div>
+      <div class="ttl">
+        <p class="lbl">Day 1 · 出發日 ✈</p>
+        <h2>午后起飛，暮色裡降落關西</h2>
+        <p class="sub">不用早起趕飛機。<b>下午班機</b>，晚上在機場旁的飯店好好睡一覺。</p>
       </div>
     </div>
-
-    <!-- DAY 2 -->
     <div class="glass day reveal">
-      <div class="day-top"><span class="day-no">DAY 02</span><div class="day-title"><h3>包車賞楓 — 熊野古道・那智瀑布</h3><div class="dow">包車一日 · 紅葉重頭戲</div></div><div class="day-stay"><b>川久旅館</b>第 2 晚</div></div>
+      <div class="day-stay"><span class="tag">宿</span><b>Hotel Nikko 關西空港</b>　航廈直結・走路 3 分</div>
       <div class="tl">
-        <div class="stop"><span class="time">08:00</span><span class="node"></span><h4>川久早餐</h4><p>王様のビュッフェ 早餐版，吃飽出發。</p></div>
-        <div class="stop"><span class="time">08:45</span><span class="node"></span><h4>包車出發・南下</h4><p>沿海岸線國道 42 號及紀勢自動車道往那智方向。<span class="drive">白濱 → 橋杭岩 ≈ 55m</span></p></div>
-        <div class="stop"><span class="time">09:45</span><span class="node"></span><h4>橋杭岩（途中休息）</h4><p>串本町的奇景：大小 40 餘根岩柱矗立海面如橋墩，搭配朝光拍照絕美。停留約 20 分鐘，伸展筋骨。</p></div>
-        <div class="stop"><span class="time">10:10</span><span class="node"></span><h4>繼續前往那智</h4><p><span class="drive">橋杭岩 → 大門坂 ≈ 45m</span></p></div>
-        <div class="stop maple"><span class="time">11:00</span><span class="node"></span><h4>大門坂石階步道</h4><p>熊野古道最經典的初心者路線。樹齢 800 年的夫婦杉迎接，石板古道兩側楓紅。全程約 2.5km，慢走 40–60 分鐘可達那智大社。</p></div>
-        <div class="stop maple"><span class="time">12:00</span><span class="node"></span><h4>熊野那智大社・那智瀑布</h4><p>日本三大名瀑之一，落差 133m。11 月中下旬紅葉圍繞瀑布，秋色最壯觀。那智大社與青岸渡寺的三重塔配瀑布＋紅葉是經典構圖。</p></div>
-        <div class="stop"><span class="time">13:15</span><span class="node"></span><h4>午餐・紀伊勝浦</h4><p>下山後車程約 15 分鐘到勝浦漁港。<span class="drive">那智 → 勝浦 ≈ 15m</span></p>
-          <div class="meal"><p class="mh">午餐備案 · 勝浦</p><ul><li><b>まぐろ三昧 那智</b>　在地鮪魚定食</li><li><b>竹原</b>　勝浦漁港直送生鮪魚丼</li><li><b>桂城</b>　老字號海鮮料理</li></ul></div>
-        </div>
-        <div class="stop"><span class="time">14:15</span><span class="node"></span><h4>回程出發</h4><p>回程走高速較快。<span class="drive">勝浦 → 潮岬 ≈ 40m</span></p></div>
-        <div class="stop"><span class="time">15:00</span><span class="node"></span><h4>潮岬（途中休息）</h4><p>本州最南端。岬上有展望台與「本州最南端」紀念碑，草坪開闊。停留約 20 分鐘拍照休息。</p></div>
-        <div class="stop"><span class="time">15:30</span><span class="node"></span><h4>回程白濱</h4><p><span class="drive">潮岬 → 川久 ≈ 55m</span></p></div>
-        <div class="stop"><span class="time">16:30</span><span class="node"></span><h4>回到川久・泡湯</h4><p>走了一天，回來泡 Royal Spa 消除疲勞。田邊灣海景露天風呂。</p></div>
-        <div class="stop key"><span class="time">18:00</span><span class="node"></span><h4>王様のビュッフェ 晚餐</h4><p>第二晚，可以試不同的料理檯。</p></div>
-      </div>
-    </div>
-
-    <!-- DAY 3 -->
-    <div class="glass day reveal">
-      <div class="day-top"><span class="day-no">DAY 03</span><div class="day-title"><h3>休息日 — 川久 & 白濱散策</h3><div class="dow">悠閒一日 · 溫泉 · 海鮮</div></div><div class="day-stay"><b>川久旅館</b>第 3 晚</div></div>
-      <div class="tl">
-        <div class="stop"><span class="time">09:00</span><span class="node"></span><h4>悠閒早餐</h4><p>不設鬧鐘，自然醒再去吃。</p></div>
-        <div class="stop"><span class="time">10:00</span><span class="node"></span><h4>川久 Royal Spa 溫泉</h4><p>「悠久之森」森林療癒空間或大浴場，慢慢泡。男女湯每日輪替。</p></div>
-        <div class="stop"><span class="time">11:30</span><span class="node"></span><h4>三段壁・千畳敷</h4><p>步行或搭計程車即達。三段壁：50m 斷崖＋地下洞窟（搭電梯下 36m）。千畳敷：層疊岩盤配太平洋浪花。兩景點相距步行約 10 分鐘。<span class="drive">川久 → 三段壁 ≈ 5m 車程</span></p></div>
-        <div class="stop"><span class="time">12:30</span><span class="node"></span><h4>とれとれ市場 午餐</h4><p>西日本最大海鮮市場。現場挑海鮮現烤、壽司、海鮮丼。買紀州梅、みかん 當伴手禮。<span class="drive">千畳敷 → とれとれ ≈ 10m</span></p>
-          <div class="meal"><p class="mh">推薦品嚐</p><ul><li><b>生鮪魚丼</b>　勝浦直送</li><li><b>現烤扇貝・海螺</b>　市場內 BBQ 區</li><li><b>紀州南高梅</b>　買回家的最佳伴手禮<span class="t">送禮首選</span></li></ul></div>
-        </div>
-        <div class="stop"><span class="time">14:00</span><span class="node"></span><h4>白良浜海邊放空</h4><p>秋天的白良浜遊客少，海灘散步、咖啡放空。或改去 Adventure World 看熊貓（車程 10 分鐘）。</p></div>
-        <div class="stop"><span class="time">16:00</span><span class="node"></span><h4>回川久泡湯</h4><p>傍晚再泡一回，把三晚的溫泉用好用滿。</p></div>
-        <div class="stop key"><span class="time">18:00</span><span class="node"></span><h4>王様のビュッフェ 最後一晚</h4><p>最後一餐川久晚餐，好好享用。</p></div>
-      </div>
-    </div>
-
-    <!-- DAY 4 -->
-    <div class="glass day reveal">
-      <div class="day-top"><span class="day-no">DAY 04</span><div class="day-title"><h3>包車 → 和歌山市賞楓 → 機場</h3><div class="dow">包車一日 · 紅葉渓庭園 · 黒潮市場</div></div><div class="day-stay"><b>機場飯店</b>關西空港</div></div>
-      <div class="tl">
-        <div class="stop"><span class="time">08:00</span><span class="node"></span><h4>最後一次川久早餐</h4><p>好好吃、好好拍。</p></div>
-        <div class="stop"><span class="time">10:30</span><span class="node"></span><h4>退房・包車出發北上</h4><p>Check-out 10:30。包車沿阪和自動車道往和歌山市方向。<span class="drive">白濱 → 和歌山市 ≈ 1h50m / 100km</span></p></div>
-        <div class="stop"><span class="time">12:20</span><span class="node"></span><h4>黒潮市場 午餐</h4><p>和歌山Marina City 內。每日三回鮪魚解體秀（11:00 / 12:30 / 15:00），現切現吃生鮪魚。</p>
-          <div class="meal"><p class="mh">推薦</p><ul><li><b>鮪魚解體秀</b>　現場解體後直接販售，最鮮</li><li><b>海鮮丼・壽司</b>　市場內各攤</li><li><b>紀州名產</b>　南高梅、蜜柑、醬油</li></ul></div>
-        </div>
-        <div class="stop maple"><span class="time">13:30</span><span class="node"></span><h4>和歌山城・紅葉渓庭園</h4><p>紀州德川家初代藩主賴宣築造的西之丸庭園。11 月下旬紅葉最盛，池面倒映楓紅是名景。庭園內有茶室「紅松庵」，可品抹茶賞楓。入園免費。<span class="drive">Marina City → 和歌山城 ≈ 20m</span></p></div>
-        <div class="stop"><span class="time">15:00</span><span class="node"></span><h4>和歌山城天守閣</h4><p>登天守閣眺望市區與紀之川。德川御三家的城池氣勢不凡。</p></div>
-        <div class="stop"><span class="time">15:45</span><span class="node"></span><h4>出發往關西機場</h4><p><span class="drive">和歌山市 → KIX 附近 ≈ 40m</span></p></div>
-        <div class="stop key"><span class="time">16:30</span><span class="node"></span><h4>入住機場飯店</h4><p>放行李、休息。傍晚可到 りんくうタウン 散步或先探路明天的 Outlet。</p></div>
-        <div class="stop"><span class="time">18:30</span><span class="node"></span><h4>晚餐</h4>
-          <div class="meal"><p class="mh">晚餐備案</p><ul><li><b>りんくうタウン 餐廳街</b>　多樣選擇</li><li><b>機場飯店內餐廳</b>　不想移動的懶人選項</li></ul></div>
+        <div class="stop"><span class="time">11:00</span><span class="node"></span><h4>桃園機場集合</h4><p>下午班機，早上在家吃完午餐再出門也來得及。</p></div>
+        <div class="stop key"><span class="time">13:35</span><span class="node"></span><h4>長榮 BR130 起飛</h4><p>Boeing 787-10，飛行約 2 小時 40 分。</p></div>
+        <div class="stop"><span class="time">17:15</span><span class="node"></span><h4>關西機場落地</h4><p>日本快 1 小時。通關、領行李約 40 分鐘。</p></div>
+        <div class="stop key"><span class="time">18:15</span><span class="node"></span><h4>入住 Hotel Nikko 關西空港</h4><p>航廈天橋直結，拖著行李走 3 分鐘就到，不用搭任何車。</p></div>
+        <div class="stop"><span class="time">19:00</span><span class="node"></span><h4>晚餐・早點休息</h4><p>飯店內或 Aeroplaza 餐廳簡單吃，養精蓄銳。</p>
+          <div class="meal"><p class="mh">晚餐備案</p><ul><li><b>飯店內日式/西式餐廳</b>　最省力</li><li><b>機場航廈餐廳街</b>　選擇多，步行 3 分</li></ul></div>
         </div>
       </div>
     </div>
+  </div></section>
 
-    <!-- DAY 5 -->
-    <div class="glass day reveal">
-      <div class="day-top"><span class="day-no">DAY 05</span><div class="day-title"><h3>臨空城 Outlet → 回家</h3><div class="dow">購物日 · 長榮 BR129 傍晚回</div></div><div class="day-stay"><b>KIX → TPE</b>傍晚回</div></div>
-      <div class="tl">
-        <div class="stop"><span class="time">09:00</span><span class="node"></span><h4>飯店早餐・退房</h4><p>行李寄放飯店或 Outlet 寄物櫃。</p></div>
-        <div class="stop key"><span class="time">10:00</span><span class="node"></span><h4>りんくうプレミアム・アウトレット</h4><p>開門即入！約 250 間品牌店。秋冬折扣季品項豐富。營業時間 10:00–20:00。<span class="drive">機場飯店 → Outlet ≈ 步行 / 電車一站</span></p></div>
-        <div class="stop"><span class="time">14:00</span><span class="node"></span><h4>結束購物（4 小時）</h4><p>回飯店取行李 → 前往機場。りんくうタウン站到關西空港站電車約 6 分鐘。</p></div>
-        <div class="stop"><span class="time">15:30</span><span class="node"></span><h4>關西機場 辦理登機</h4><p>國際線建議提前 2.5–3 小時。機場內還有最後的免稅購物機會。</p></div>
-        <div class="stop key"><span class="time">18:30</span><span class="node"></span><h4>長榮 BR129 起飛</h4><p>KIX 18:30 → TPE 約 20:30 落地桃園。</p></div>
+  <!-- ============ DAY 2 ============ -->
+  <section class="dsec" data-day="d2" id="d2"><div class="wrap">
+    <div class="dhead reveal">
+      <div class="big">02</div>
+      <div class="ttl">
+        <p class="lbl">Day 2 · 海線列車 🚄</p>
+        <h2>黑潮號沿海南下，入住川久</h2>
+        <p class="sub">睡到自然醒，中午的<b>特急くろしお</b>沿紀伊半島海岸線晃進白濱。運氣好搭到熊貓彩繪列車。</p>
       </div>
     </div>
-  </section>
+    <div class="glass day reveal">
+      <div class="day-stay"><span class="tag">宿</span><b>川久旅館</b>　第 1 晚・一泊二食</div>
+      <div class="tl">
+        <div class="stop"><span class="time">09:00</span><span class="node"></span><h4>飯店悠閒早餐</h4><p>不趕時間，吃完在航廈逛逛便利商店補給。</p></div>
+        <div class="stop"><span class="time">11:00</span><span class="node"></span><h4>退房・搭 JR</h4><p>關空快速到日根野轉乘（約 10 分），或依班次直接搭。</p></div>
+        <div class="stop key"><span class="time">11:45</span><span class="node"></span><h4>特急くろしお 南下</h4><p>指定席約 ¥5,000/人。右側靠海座位風景最好，沿線是太平洋與蜜柑山。<span class="drive">日根野 → 白濱 ≈ 1h40m</span></p></div>
+        <div class="stop"><span class="time">13:30</span><span class="node"></span><h4>白濱站到著</h4><p>計程車約 10 分鐘到川久。</p></div>
+        <div class="stop key"><span class="time">14:00</span><span class="node"></span><h4>川久旅館・寄行李逛大廳</h4><p>Check-in 15:00 前先寄行李。金色穹頂、羅馬柱、名家美術品——「美術館飯店」的大廳本身就是景點。</p></div>
+        <div class="stop"><span class="time">15:00</span><span class="node"></span><h4>正式入住・換浴衣</h4><p>全室套房 70m² 起，窗外就是田邊灣。</p></div>
+        <div class="stop maple"><span class="time">16:20</span><span class="node"></span><h4>円月島夕陽</h4><p>白濱地標，11 月日落約 16:50，夕陽掉進島中央圓洞的瞬間是招牌畫面。計程車 5 分鐘。</p></div>
+        <div class="stop key"><span class="time">18:00</span><span class="node"></span><h4>王様のビュッフェ 晚餐 ①</h4><p>川久招牌晚宴：料理人現握壽司、現炸天婦羅，紀州食材盛宴。</p></div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- ============ DAY 3 ============ -->
+  <section class="dsec" data-day="d3" id="d3"><div class="wrap">
+    <div class="dhead reveal">
+      <div class="big">03</div>
+      <div class="ttl">
+        <p class="lbl">Day 3 · 包車賞楓 🍁</p>
+        <h2>熊野古道・那智瀑布楓紅</h2>
+        <p class="sub">全日包車。開一小時就下車休息一次，<b>楓紅配日本三大名瀑</b>是這趟旅程的高潮。</p>
+      </div>
+    </div>
+    <div class="glass day reveal">
+      <div class="day-stay"><span class="tag">宿</span><b>川久旅館</b>　第 2 晚・回來泡湯</div>
+      <div class="tl">
+        <div class="stop"><span class="time">08:00</span><span class="node"></span><h4>川久早餐</h4><p>王様のビュッフェ早餐版，吃飽出發。</p></div>
+        <div class="stop"><span class="time">08:45</span><span class="node"></span><h4>包車出發・沿海南下</h4><p><span class="drive">白濱 → 橋杭岩 ≈ 55m</span></p></div>
+        <div class="stop"><span class="time">09:45</span><span class="node"></span><h4>橋杭岩（下車休息 ①）</h4><p>串本奇景：40 餘根岩柱一列排開如橋墩。伸展筋骨、拍照 20 分鐘。</p></div>
+        <div class="stop"><span class="time">10:10</span><span class="node"></span><h4>續行那智</h4><p><span class="drive">橋杭岩 → 大門坂 ≈ 45m</span></p></div>
+        <div class="stop maple"><span class="time">11:00</span><span class="node"></span><h4>大門坂・熊野古道石階</h4><p>樹齢 800 年夫婦杉迎接，杉木參道兩側楓紅。慢走 40–60 分鐘上到那智大社。</p>
+          <div class="planb"><b>Plan B：</b>若膝蓋不想爬石階，包車直接開到那智大社停車場，只走大社 → 瀑布的下坡段（約 15 分鐘），風景一樣好。</div>
+        </div>
+        <div class="stop maple"><span class="time">12:00</span><span class="node"></span><h4>熊野那智大社・那智瀑布</h4><p>落差 133m 的日本三大名瀑。三重塔＋瀑布＋楓紅的構圖，11 月中下旬正是見頃。</p></div>
+        <div class="stop"><span class="time">13:15</span><span class="node"></span><h4>午餐・紀伊勝浦漁港</h4><p>生鮪魚水揚量日本第一的漁港。<span class="drive">那智 → 勝浦 ≈ 15m</span></p>
+          <div class="meal"><p class="mh">午餐備案 · 勝浦</p><ul><li><b>まぐろ三昧 那智</b>　鮪魚定食專門店</li><li><b>竹原</b>　漁港直送生鮪魚丼</li><li><b>桂城</b>　老字號海鮮料理</li></ul></div>
+        </div>
+        <div class="stop"><span class="time">14:30</span><span class="node"></span><h4>回程・往潮岬</h4><p><span class="drive">勝浦 → 潮岬 ≈ 40m</span></p></div>
+        <div class="stop"><span class="time">15:10</span><span class="node"></span><h4>潮岬（下車休息 ②）</h4><p>本州最南端紀念碑＋大草坪＋燈塔，看太平洋 20 分鐘。</p></div>
+        <div class="stop"><span class="time">16:30</span><span class="node"></span><h4>回到川久・泡湯</h4><p>Royal Spa 海景露天風呂，把一天的疲勞泡掉。<span class="drive">潮岬 → 川久 ≈ 55m</span></p></div>
+        <div class="stop key"><span class="time">18:30</span><span class="node"></span><h4>王様のビュッフェ 晚餐 ②</h4><p>晚點吃，泡完湯胃口正好。</p></div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- ============ DAY 4 ============ -->
+  <section class="dsec" data-day="d4" id="d4"><div class="wrap">
+    <div class="dhead reveal">
+      <div class="big">04</div>
+      <div class="ttl">
+        <p class="lbl">Day 4 · 休息日 ♨</p>
+        <h2>白濱慢日子：溫泉、斷崖、海鮮市場</h2>
+        <p class="sub">不包車、不趕路。睡到飽，<b>景點都在 10 分鐘車程內</b>，計程車隨叫隨到。</p>
+      </div>
+    </div>
+    <div class="glass day reveal">
+      <div class="day-stay"><span class="tag">宿</span><b>川久旅館</b>　第 3 晚・最後一夜</div>
+      <div class="tl">
+        <div class="stop"><span class="time">09:00</span><span class="node"></span><h4>自然醒・悠閒早餐</h4><p>今天唯一的行程就是放鬆。</p></div>
+        <div class="stop key"><span class="time">10:00</span><span class="node"></span><h4>川久 Royal Spa・悠久之森</h4><p>早上人最少，泡湯配海景。男女湯每日輪替，今天泡的和昨天不一樣。</p></div>
+        <div class="stop"><span class="time">11:30</span><span class="node"></span><h4>三段壁・千畳敷</h4><p>50m 斷崖配黑潮拍岸；電梯下 36m 是熊野水軍傳說的洞窟。千畳敷層疊岩盤在旁邊，步行 10 分互通。<span class="drive">川久 → 三段壁 ≈ 8m 車程</span></p></div>
+        <div class="stop"><span class="time">12:40</span><span class="node"></span><h4>とれとれ市場 午餐</h4><p>西日本最大海鮮市場：現切海鮮丼、現烤扇貝，順手把紀州南高梅、蜜柑伴手禮買齊。<span class="drive">三段壁 → とれとれ ≈ 10m</span></p>
+          <div class="meal"><p class="mh">推薦品嚐</p><ul><li><b>生鮪魚丼</b>　勝浦直送</li><li><b>市場 BBQ 區</b>　現挑現烤</li><li><b>紀州南高梅</b>　送禮首選<span class="t">宅配可寄機場</span></li></ul></div>
+        </div>
+        <div class="stop"><span class="time">14:30</span><span class="node"></span><h4>白良浜散步・咖啡放空</h4><p>秋天的白沙灘遊客稀少，散步吹海風。</p>
+          <div class="planb"><b>替代方案：</b>想看熊貓的話，Adventure World 車程 10 分鐘（入園 ¥5,300，14:30 入園看重點約 2.5 小時）。</div>
+        </div>
+        <div class="stop"><span class="time">16:30</span><span class="node"></span><h4>崎の湯（選配）或回川久泡湯</h4><p>1350 年歷史的海邊露天古湯（¥500），浪花就打在湯池旁；或直接回川久把溫泉泡好泡滿。</p></div>
+        <div class="stop key"><span class="time">18:00</span><span class="node"></span><h4>王様のビュッフェ 晚餐 ③</h4><p>川久最後一夜，慢慢吃。</p></div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- ============ DAY 5 ============ -->
+  <section class="dsec" data-day="d5" id="d5"><div class="wrap">
+    <div class="dhead reveal">
+      <div class="big">05</div>
+      <div class="ttl">
+        <p class="lbl">Day 5 · 包車北上 🏯</p>
+        <h2>醬油老街・和歌山城楓紅庭園</h2>
+        <p class="sub">告別川久，包車一路玩回北邊：<b>湯浅老街、紅葉渓庭園</b>，傍晚抵達臨空城。</p>
+      </div>
+    </div>
+    <div class="glass day reveal">
+      <div class="day-stay"><span class="tag">宿</span><b>Star Gate Hotel 關西</b>　臨空城站旁・全室海景</div>
+      <div class="tl">
+        <div class="stop"><span class="time">08:30</span><span class="node"></span><h4>最後一次川久早餐</h4><p>好好吃、好好拍，跟金色大廳道別。</p></div>
+        <div class="stop"><span class="time">10:00</span><span class="node"></span><h4>退房・包車北上</h4><p>Check-out 10:30 前。<span class="drive">白濱 → 湯浅 ≈ 1h10m</span></p></div>
+        <div class="stop"><span class="time">11:10</span><span class="node"></span><h4>湯浅・醬油發祥老街＋午餐</h4><p>日本醬油的發源地。江戶老街散步 40 分鐘，「角長」古法醬油藏參觀試買；午餐吃湯浅名物しらす丼（吻仔魚丼）。</p>
+          <div class="meal"><p class="mh">午餐備案 · 湯浅</p><ul><li><b>かどや食堂</b>　生しらす丼名店</li><li><b>魚河岸</b>　海鮮定食</li></ul></div>
+        </div>
+        <div class="stop"><span class="time">13:00</span><span class="node"></span><h4>續行和歌山市</h4><p><span class="drive">湯浅 → 和歌山城 ≈ 50m</span></p></div>
+        <div class="stop maple"><span class="time">14:00</span><span class="node"></span><h4>和歌山城・紅葉渓庭園</h4><p>紀州德川家的名園，池面倒映楓紅正是 11 月下旬名景。茶室「紅松庵」點一份抹茶＋和菓子，坐著賞楓（入園免費、抹茶 ¥460）。</p></div>
+        <div class="stop"><span class="time">15:20</span><span class="node"></span><h4>和歌山城天守閣</h4><p>德川御三家居城，登天守望紀之川與市街。</p></div>
+        <div class="stop"><span class="time">16:10</span><span class="node"></span><h4>出發往臨空城</h4><p><span class="drive">和歌山市 → りんくう ≈ 45m</span></p></div>
+        <div class="stop key"><span class="time">17:00</span><span class="node"></span><h4>入住 Star Gate Hotel</h4><p>臨空城站旁 54 層超高層，房間看海景＋機場夜景。Outlet 步行圈內。</p></div>
+        <div class="stop"><span class="time">18:30</span><span class="node"></span><h4>晚餐・りんくう</h4>
+          <div class="meal"><p class="mh">晚餐備案</p><ul><li><b>りんくうタウン 餐廳街</b>　選擇多</li><li><b>Outlet 內餐廳</b>　營業到 20:00，順便探路明天動線</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- ============ DAY 6 ============ -->
+  <section class="dsec" data-day="d6" id="d6"><div class="wrap">
+    <div class="dhead reveal">
+      <div class="big">06</div>
+      <div class="ttl">
+        <p class="lbl">Day 6 · 購物・歸途 🛍</p>
+        <h2>臨空城 Outlet 四小時，傍晚回家</h2>
+        <p class="sub">開門就進場，<b>整整四小時</b>採買。一站電車 6 分鐘到機場，完全不趕。</p>
+      </div>
+    </div>
+    <div class="glass day reveal">
+      <div class="day-stay"><span class="tag">飛</span><b>BR129</b>　KIX 18:30 → TPE 20:30</div>
+      <div class="tl">
+        <div class="stop"><span class="time">09:00</span><span class="node"></span><h4>早餐・退房</h4><p>行李寄放飯店櫃台。</p></div>
+        <div class="stop key"><span class="time">10:00</span><span class="node"></span><h4>りんくうプレミアム・アウトレット</h4><p>開門即入！約 250 間店，秋冬折扣季。從飯店走過去就到。</p></div>
+        <div class="stop"><span class="time">14:00</span><span class="node"></span><h4>購物結束・取行李</h4><p>回飯店拿行李，りんくうタウン站搭車。<span class="drive">りんくう → 關西空港 ≈ 電車 6m</span></p></div>
+        <div class="stop"><span class="time">15:00</span><span class="node"></span><h4>關西機場・辦理登機</h4><p>提前 3 小時到，報到後還能逛機場免稅店做最後採買。</p></div>
+        <div class="stop key"><span class="time">18:30</span><span class="node"></span><h4>長榮 BR129 起飛</h4><p>約 20:30 落地桃園，回家。</p></div>
+      </div>
+    </div>
+  </div></section>
 
   <!-- ============ 住宿 ============ -->
+  <div class="wrap">
   <section class="sec" id="stay">
     <p class="lbl reveal">Stay · 住宿資訊</p>
-    <h2 class="reveal">兩個落腳點</h2>
+    <h2 class="reveal">三個落腳點</h2>
 
     <div class="glass card reveal">
       <h3 class="area"><span class="pin">白濱 · 3 晚</span>ホテル川久</h3>
-      <p class="note">美術館飯店。全室套房、一泊二食（王様のビュッフェ）、溫泉、海景。</p>
-      <div class="tier"><div class="th"><span class="name">飯店特色</span></div>
+      <p class="note">本次旅程的主角。美術館飯店、全室套房、一泊二食。</p>
+      <div class="tier"><div class="th"><span class="name">特色</span></div>
         <ul>
-          <li><b>美術館建築</b>　金色穹頂、羅馬風裝潢，大廳宛如歐洲宮殿</li>
-          <li><b>全室套房</b>　70~90m² 起跳，和洋室、按摩浴缸房型等多種選擇</li>
-          <li><b>王様のビュッフェ</b>　招牌晚餐＆早餐自助餐，現場握壽司、天婦羅、紀州食材料理人實演</li>
-          <li><b>Royal Spa</b>　溫泉大浴場＋露天風呂，眺望田邊灣。另有「悠久之森」森林療癒空間</li>
+          <li><b>美術館建築</b>　金色穹頂、羅馬柱大廳，館內收藏名家美術品</li>
+          <li><b>全室套房</b>　70~90m² 起，和洋室、按摩浴缸等房型</li>
+          <li><b>王様のビュッフェ</b>　晚＆早餐，料理人現場實演，紀州食材</li>
+          <li><b>Royal Spa</b>　溫泉大浴場＋露天風呂眺望田邊灣；「悠久之森」療癒空間</li>
         </ul>
       </div>
-      <div class="tier"><div class="th"><span class="name">實用資訊</span></div>
+      <div class="tier"><div class="th"><span class="name">實用資訊</span><span class="px">¥26,500~80,000/人/晚</span></div>
         <ul>
           <li><b>Check-in</b> 15:00 ／ <b>Check-out</b> 10:30</li>
-          <li><b>參考價位</b>　一泊二食約 ¥26,500~¥80,000/人/晚（依房型與季節）</li>
           <li><b>地址</b>　和歌山県西牟婁郡白浜町3745</li>
         </ul>
       </div>
-      <p class="pxbar">川久連住三晚不換飯店、不搬行李，每天回來就是泡湯＋大餐，最適合帶長輩的節奏。</p>
+      <p class="pxbar">連住三晚不搬行李，每天回來就是泡湯＋大餐——帶長輩的最佳節奏。</p>
     </div>
 
     <div class="glass card reveal">
-      <h3 class="area"><span class="pin">關西機場 · 1 晚</span>Day 4 轉場住宿</h3>
-      <p class="note">目的是隔天一早 Outlet 開門衝＋傍晚從容搭機，選最方便的。</p>
-      <div class="tier"><div class="th"><span class="name">Hotel Nikko 關西空港</span><span class="px">約 ¥15,000–25,000</span></div>
+      <h3 class="area"><span class="pin">機場 · 第 1 晚</span>Hotel Nikko 關西空港</h3>
+      <p class="note">落地晚上直接睡機場旁，隔天從容搭黑潮號。</p>
+      <div class="tier"><div class="th"><span class="name">重點</span><span class="px">約 ¥15,000–25,000/房</span></div>
         <ul>
-          <li><b>航廈直結</b>　走路 3 分鐘到第一航廈，不用搬行李搭車</li>
-          <li><b>到 Outlet</b>　電車一站（りんくうタウン站）約 6 分鐘</li>
-          <li>最穩、最方便，長輩首選</li>
+          <li><b>航廈直結</b>　天橋走 3 分鐘，落地不用再搭車</li>
+          <li><b>JR 就在樓下</b>　隔天搭關空快速轉黑潮號無縫接軌</li>
         </ul>
       </div>
-      <div class="tier"><div class="th"><span class="name">Star Gate Hotel 關西</span><span class="px">約 ¥12,000–22,000</span></div>
+    </div>
+
+    <div class="glass card reveal">
+      <h3 class="area"><span class="pin">臨空城 · 第 5 晚</span>Star Gate Hotel 關西</h3>
+      <p class="note">為了 Day 6 的 Outlet 而住：走路就到，開門即進場。</p>
+      <div class="tier"><div class="th"><span class="name">重點</span><span class="px">約 ¥12,000–22,000/房</span></div>
         <ul>
-          <li><b>りんくうタウン站旁</b>　54 層超高層，全室海景或空景</li>
-          <li><b>Outlet 步行可達</b>　就在同一區</li>
-          <li>景觀更好，離 Outlet 更近；但到機場要搭一站電車</li>
+          <li><b>りんくうタウン站旁</b>　54 層超高層，海景＋機場夜景</li>
+          <li><b>Outlet 步行圈</b>　Day 6 不用拖行李移動</li>
+          <li><b>到機場一站</b>　電車 6 分鐘</li>
         </ul>
       </div>
     </div>
@@ -328,128 +428,208 @@
 
       <details open><summary><span class="ix">A1</span>為什麼選 11 月中下旬<span class="pl">+</span></summary><div class="body">
         <ul>
-          <li><b>那智瀑布紅葉</b>：見頃 11 月中旬～下旬，瀑布＋紅葉是一年中最壯觀的時期。</li>
-          <li><b>和歌山城紅葉渓庭園</b>：見頃 11 月下旬～12 月上旬，池面倒映楓紅是名景。</li>
-          <li><b>兩處賞楓同時命中</b>：11 月 18–25 日前後是交集最佳期。</li>
-          <li><b>白濱氣候宜人</b>：南紀 11 月均溫約 12–18°C，秋高氣爽。</li>
-          <li><b>避開人潮</b>：11/23 勤労感謝の日前後會小擠，可選 11/18–22 避開。</li>
+          <li><b>那智瀑布紅葉</b>：見頃 11 月中旬～下旬，瀑布＋楓紅一年最壯觀。</li>
+          <li><b>和歌山城紅葉渓庭園</b>：見頃 11 月下旬～12 月上旬，池面倒映楓紅。</li>
+          <li><b>兩處賞楓同時命中</b>：11/18–25 前後是交集最佳期。</li>
+          <li><b>白濱氣候</b>：南紀 11 月約 12–18°C，秋高氣爽。</li>
+          <li><b>避開連休</b>：11/23 勤労感謝の日前後人多，選平日出發更好訂房。</li>
         </ul>
-        <p class="warn"><b>注意：</b>11 月白濱海灘已結束海水浴季（10 月底封閉），但散步、看海、拍照不受影響。本行程主打溫泉＋賞楓＋美食，不下海。</p>
+        <p class="warn"><b>注意：</b>11 月海水浴季已結束，海灘只散步不下水；本行程主打溫泉＋賞楓＋美食。</p>
       </div></details>
 
-      <details><summary><span class="ix">A2</span>航班資訊<span class="pl">+</span></summary><div class="body">
-        <p>桃園 ⇄ 關西飛行約 <span class="m">2h40m</span>，日本快 1 小時。</p>
+      <details><summary><span class="ix">A2</span>航班資訊（長榮）<span class="pl">+</span></summary><div class="body">
         <table class="dt">
-          <tr><td>去程 BR132</td><td>TPE 08:30 → KIX 12:10（每日）</td></tr>
-          <tr><td>回程 BR129</td><td>KIX 18:30 → TPE ~20:30（每日）</td></tr>
+          <tr><td>去程 BR130</td><td>TPE 13:35 → KIX 17:15（每日）</td></tr>
+          <tr><td>回程 BR129</td><td>KIX 18:30 → TPE 約 20:30（每日）</td></tr>
         </table>
-        <p>長榮大阪線使用 <b>Boeing 787-10</b>，兩班都是每日運行。去程 08:30 出發，不需太早到機場（約 06:00 到桃園即可）；回程 18:30 走，Day 5 購物時間充裕。</p>
-        <p>長榮另有 <b>BR178</b>（06:30→10:10 更早到）與 <b>BR130</b>（13:35→17:15 午班），可依實際票價調整。</p>
+        <p>皆為 <b>Boeing 787-10</b>。去程下午班不用早起；回程傍晚班讓 Day 6 有完整購物時間。長榮同路線另有 BR178（06:30 早班）、BR132（08:30 午前班）可比價備選。</p>
+        <p class="warn">實際時刻依訂票時航司公告為準，本頁為 2025–26 年常態班表。</p>
       </div></details>
 
-      <details><summary><span class="ix">A3</span>機場接送 & 包車<span class="pl">+</span></summary><div class="body">
-        <p><b>Day 1 機場接送</b>：關西機場→川久旅館，車程約 2~2.5 小時（120km，走阪和自動車道＋紀勢自動車道）。建議預約 9 人座商務車，長輩坐得舒適，行李空間充足。</p>
-        <p><b>Day 2 包車（那智方向）</b>：全日約 8–9 小時，白濱↔那智來回約 300km。</p>
-        <p><b>Day 4 包車（和歌山市方向）</b>：約 7–8 小時，白濱→和歌山市→KIX 附近飯店約 160km。</p>
-        <p>包車業者可洽：<b>明光タクシー</b>（白浜）、<b>串本タクシー</b>、<b>SOGO TAXI</b>（和歌山市）。也可透過 VELTRA、KKday 等平台預訂。</p>
-        <p class="warn">包車費用依車型、時間、距離而異。9 人座全日包車粗估約 ¥50,000–80,000/日，建議直接向業者詢價。</p>
+      <details><summary><span class="ix">A3</span>JR 特急くろしお（黑潮號）<span class="pl">+</span></summary><div class="body">
+        <table class="dt">
+          <tr><td>區間</td><td>日根野（關空轉乘）→ 白濱，約 1h40m</td></tr>
+          <tr><td>班次</td><td>約每小時 1 班</td></tr>
+          <tr><td>票價</td><td>指定席約 ¥5,000/人（關西機場出發合計）</td></tr>
+          <tr><td>訂票</td><td>JR 西日本 e5489 網上預訂，有早鳥折扣</td></tr>
+        </table>
+        <p><b>熊貓黑潮號（パンダくろしお）</b>：全車熊貓彩繪的特別編成，每天固定班次運行，時刻公布在 JR 西日本官網——訂得到的話長輩會很開心。</p>
+        <p>座位選<b>海側（往白濱方向左側為山、右側為海）</b>，記得劃右側。</p>
       </div></details>
 
-      <details><summary><span class="ix">A4</span>川久旅館 — 王様のビュッフェ<span class="pl">+</span></summary><div class="body">
-        <p>川久的招牌是<b>「王様のビュッフェ」</b>（國王的自助餐），自 2015 年開始提供，在一泊二食方案中包含晚餐與早餐。</p>
+      <details><summary><span class="ix">A4</span>包車安排（Day 3・Day 5）<span class="pl">+</span></summary><div class="body">
+        <p><b>Day 3 那智來回</b>：全日 8–9 小時、約 300km。行程：橋杭岩→大門坂→那智大社/瀑布→勝浦午餐→潮岬→回白濱。</p>
+        <p><b>Day 5 北上轉場</b>：約 7 小時、160km。行程：湯浅→和歌山城→臨空城放人。</p>
+        <p>業者可洽：<b>明光タクシー</b>（白浜 0739-42-2727）、<b>白浜第一交通</b>、<b>串本タクシー</b>；或 VELTRA、KKday 平台預訂含中文服務車款。</p>
+        <p class="warn">9 人座全日包車粗估 ¥50,000–80,000/日，依車型與時數報價，建議兩個月前詢價預約。</p>
+      </div></details>
+
+      <details><summary><span class="ix">A5</span>大門坂攻略＆Plan B<span class="pl">+</span></summary><div class="body">
+        <table class="dt">
+          <tr><td>路線</td><td>大門坂入口 → 那智大社 → 那智瀑布，約 2.5km</td></tr>
+          <tr><td>時間</td><td>慢走含參拜約 2~2.5 小時</td></tr>
+          <tr><td>難度</td><td>石階上坡為主，部分路段較陡</td></tr>
+        </table>
+        <p class="warn"><b>石階有苔蘚會滑</b>，務必穿防滑好走的鞋。</p>
+        <p><b>Plan B（免爬坡）</b>：包車直上那智大社停車場，參拜後只走大社→瀑布的下坡段約 15 分鐘，包車在瀑布口接人。當天視體力臨場決定即可，兩案路線司機都熟。</p>
+      </div></details>
+
+      <details><summary><span class="ix">A6</span>王様のビュッフェ 三晚吃什麼<span class="pl">+</span></summary><div class="body">
+        <p>川久一泊二食含晚＆早餐，晚餐即招牌<b>「王様のビュッフェ」</b>：</p>
         <ul>
-          <li><b>現場實演</b>：料理人在眼前握壽司、炸天婦羅、烤牛排</li>
-          <li><b>紀州食材</b>：在地海鮮、熊野牛、紀州梅、蜜柑等當季食材</li>
-          <li><b>用餐空間</b>：金碧輝煌的大廳，氣氛如晚宴</li>
+          <li><b>現場實演</b>　料理人眼前握壽司、炸天婦羅、切烤牛</li>
+          <li><b>紀州食材</b>　在地海鮮、熊野牛、紀州梅、蜜柑</li>
+          <li><b>金色大廳</b>　用餐空間本身就是美術館</li>
         </ul>
-        <p>連住三晚每餐菜色會有變化，不用擔心重複。</p>
-      </div></details>
-
-      <details><summary><span class="ix">A5</span>熊野古道・大門坂攻略<span class="pl">+</span></summary><div class="body">
-        <p><b>大門坂→那智大社→那智瀑布</b>是最經典的初心者路線，適合長輩。</p>
-        <table class="dt">
-          <tr><td>全長</td><td>約 2.5km（大門坂入口→那智瀑布）</td></tr>
-          <tr><td>所需時間</td><td>慢走約 2~2.5 小時（含參拜、拍照）</td></tr>
-          <tr><td>難度</td><td>石階上坡為主，有些路段較陡。穿好走的鞋！</td></tr>
-          <tr><td>起點</td><td>大門坂駐車場（免費停車、有廁所）</td></tr>
-        </table>
-        <p class="warn"><b>石階有苔蘚會滑</b>，建議穿防滑鞋底的鞋子。如果長輩體力有疑慮，可改搭車到那智大社停車場，只走大社→瀑布的短程（約 15 分鐘下坡）。</p>
-      </div></details>
-
-      <details><summary><span class="ix">A6</span>和歌山城・紅葉渓庭園<span class="pl">+</span></summary><div class="body">
-        <p>紀州德川家初代藩主<b>德川賴宣</b>築造的西之丸庭園，自古以「紅葉渓」聞名。</p>
-        <table class="dt">
-          <tr><td>紅葉見頃</td><td>11 月下旬～12 月上旬</td></tr>
-          <tr><td>樹種</td><td>唐楓、伊呂波紅葉</td></tr>
-          <tr><td>入園</td><td>免費・9:00–17:00</td></tr>
-          <tr><td>茶室 紅松庵</td><td>抹茶＋和菓子，邊喝邊賞楓（~16:30）</td></tr>
-          <tr><td>夜間點燈</td><td>11 月下旬起，18:00–23:00（如 Day 4 時間允許可考慮）</td></tr>
-        </table>
+        <p>菜色每日輪換，連住三晚不重複的程度足夠；吃不慣自助餐的話部分房價方案可換會席料理，訂房時確認。</p>
       </div></details>
 
       <details><summary><span class="ix">A7</span>りんくうプレミアム・アウトレット<span class="pl">+</span></summary><div class="body">
         <table class="dt">
-          <tr><td>營業時間</td><td>10:00–20:00（3月～1月）</td></tr>
+          <tr><td>營業時間</td><td>10:00–20:00</td></tr>
           <tr><td>店舗數</td><td>約 250 間</td></tr>
-          <tr><td>位置</td><td>りんくうタウン站步行可達</td></tr>
-          <tr><td>距機場</td><td>電車一站（南海/JR）約 6 分鐘</td></tr>
+          <tr><td>位置</td><td>りんくうタウン站步行；Star Gate Hotel 旁</td></tr>
+          <tr><td>距機場</td><td>電車一站約 6 分鐘</td></tr>
         </table>
-        <p>預計 10:00–14:00 逛 4 小時。秋冬折扣季品項豐富，精品、運動品牌、日系服飾都有。寄物櫃設施齊全。</p>
+        <p>安排 10:00–14:00 共 4 小時。海邊 outlet 風大，秋末記得帶外套。部分店家出示護照有外國旅客折價券（服務中心領取）。</p>
       </div></details>
 
-      <details><summary><span class="ix">A8</span>11 月白濱穿著 & 注意事項<span class="pl">+</span></summary><div class="body">
+      <details><summary><span class="ix">A8</span>11 月穿著與注意事項<span class="pl">+</span></summary><div class="body">
         <ul>
-          <li><b>氣溫</b>：南紀白濱 11 月均溫約 12–18°C，早晚涼，白天舒適。</li>
-          <li><b>穿著</b>：薄羽絨或外套＋長袖，洋蔥式穿法。泡完湯出來要注意保暖。</li>
-          <li><b>雨具</b>：11 月降雨較少，但帶把折傘備用。</li>
-          <li><b>鞋子</b>：Day 2 走熊野古道，穿好走的運動鞋或防滑健走鞋。</li>
-          <li><b>日落時間</b>：11 月中下旬日落約 16:45–16:55，活動盡量在日落前結束。</li>
+          <li><b>氣溫</b>：白濱 12–18°C、那智山區再低 2–3°C，洋蔥式穿法。</li>
+          <li><b>鞋子</b>：Day 3 走古道，防滑運動鞋必備。</li>
+          <li><b>日落</b>：11 月中下旬約 16:50，行程都排在天黑前結束。</li>
+          <li><b>泡湯</b>：出浴後注意保暖再出門。</li>
+          <li><b>雨具</b>：11 月少雨，帶折傘備用即可。</li>
         </ul>
       </div></details>
 
-      <details><summary><span class="ix">A9</span>預算概估<span class="pl">+</span></summary><div class="body">
-        <p>以下為每人粗估，實際依訂房時間、房型、航班艙等而異：</p>
+      <details><summary><span class="ix">A9</span>預算概估（每人）<span class="pl">+</span></summary><div class="body">
         <table class="dt">
-          <tr><td>機票 (長榮經濟)</td><td>約 NT$8,000–15,000 來回</td></tr>
-          <tr><td>川久 3 晚 (一泊二食)</td><td>約 ¥80,000–180,000/人（依房型）</td></tr>
-          <tr><td>機場飯店 1 晚</td><td>約 ¥15,000–25,000/房</td></tr>
-          <tr><td>機場接送 (Day 1)</td><td>約 ¥35,000–50,000/趟</td></tr>
-          <tr><td>包車 ×2 天</td><td>約 ¥50,000–80,000/日</td></tr>
-          <tr><td>午餐・雜費</td><td>約 ¥3,000–5,000/人/日</td></tr>
+          <tr><td>機票（長榮經濟）</td><td>約 NT$8,000–15,000 來回</td></tr>
+          <tr><td>川久 3 晚（一泊二食）</td><td>約 ¥80,000–180,000/人</td></tr>
+          <tr><td>機場飯店＋臨空城飯店</td><td>約 ¥27,000–47,000/房（2 晚合計）</td></tr>
+          <tr><td>JR くろしお</td><td>約 ¥5,000/人 單程</td></tr>
+          <tr><td>包車 ×2 日</td><td>約 ¥100,000–160,000（全車）</td></tr>
+          <tr><td>午餐・計程車・雜費</td><td>約 ¥4,000–6,000/人/日</td></tr>
         </table>
-        <p class="warn">川久是此行最大支出。建議早訂，秋季不算最貴季節，價格比暑假合理。</p>
+        <p class="warn">川久是最大支出，房型價差大；秋季屬中價季節，越早訂越好。</p>
       </div></details>
 
     </div>
 
-    <div class="glass draft reveal"><b>草稿 v1。</b>航班以長榮 BR132/BR129 為錨點，日期尚未鎖定（建議 11/18–22 前後）。川久房型、包車業者、機場飯店待確認後對齊。</div>
+    <div class="glass draft reveal"><b>草稿 v2。</b>結構定案：機場 1 晚 → 川久 3 晚 → 臨空城 1 晚。日期未鎖定（建議 11/18–22 前後平日出發）；黑潮號班次、包車業者、川久房型訂妥後我再把時刻對齊。</div>
   </section>
 
-  <footer class="foot">和歌山 白濱川久 5D4N · 草稿 v1 · 秋楓版</footer>
+  <footer class="foot">和歌山 白濱川久 6D5N · 草稿 v2 · 秋楓長卷版</footer>
+  </div>
 </main>
 
-<div class="tabbar"><nav>
-  <a href="#plan" class="active"><span class="ic">🍁</span>行程</a>
-  <a href="#stay"><span class="ic">♨️</span>住宿</a>
-  <a href="#info"><span class="ic">📋</span>資訊</a>
-</nav></div>
+<nav class="rail" aria-label="每日快速跳轉">
+  <a href="#d1" data-rail="d1">1</a>
+  <a href="#d2" data-rail="d2">2</a>
+  <a href="#d3" data-rail="d3">3</a>
+  <a href="#d4" data-rail="d4">4</a>
+  <a href="#d5" data-rail="d5">5</a>
+  <a href="#d6" data-rail="d6">6</a>
+</nav>
 
 <script>
-  (function(){
-    var els=document.querySelectorAll('.reveal');
-    if('IntersectionObserver' in window){
-      var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.1});
-      els.forEach(function(e){io.observe(e);});
-    }else{els.forEach(function(e){e.classList.add('in');});}
-    var secs=['plan','stay','info'].map(function(id){return document.getElementById(id);});
-    var tabs=document.querySelectorAll('.tabbar a');
-    function onScroll(){
-      var y=window.scrollY+window.innerHeight*0.4,cur=0;
-      secs.forEach(function(s,i){if(s&&s.offsetTop<=y)cur=i;});
-      tabs.forEach(function(t,i){t.classList.toggle('active',i===cur);});
+(function(){
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* reveal */
+  var els=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.08});
+    els.forEach(function(e){io.observe(e);});
+  }else{els.forEach(function(e){e.classList.add('in');});}
+
+  /* 每日主題：天空漸變 + 楓葉配色 */
+  var palettes={
+    hero:{colors:['#c2431d','#e8942f','#8b1a10'],count:14},
+    d1:{colors:['#e08a5a','#c9b458','#8a4a6b'],count:6},
+    d2:{colors:['#3fae9e','#bfe3d0','#e8d9a0'],count:5},
+    d3:{colors:['#c2431d','#8b1a10','#e8942f','#d35400'],count:26},
+    d4:{colors:['#d9bc80','#e0956a','#c98a4e'],count:8},
+    d5:{colors:['#c98a1e','#a34a10','#e6c46a','#b5351e'],count:20},
+    d6:{colors:['#f0a05c','#c2543a','#e6a817'],count:8}
+  };
+  var current='hero';
+  var skyls=document.querySelectorAll('.skyl');
+  var rails=document.querySelectorAll('.rail a');
+  function setDay(d){
+    if(d===current)return;
+    current=d;
+    skyls.forEach(function(l){l.classList.toggle('on',l.getAttribute('data-sky')===d);});
+    rails.forEach(function(a){a.classList.toggle('active',a.getAttribute('data-rail')===d);});
+  }
+  var secs=document.querySelectorAll('[data-day]');
+  if('IntersectionObserver' in window){
+    var dio=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){setDay(e.target.getAttribute('data-day'));}});
+    },{rootMargin:'-40% 0px -40% 0px'});
+    secs.forEach(function(s){dio.observe(s);});
+  }
+
+  /* 楓葉粒子 */
+  var cv=document.getElementById('leaves');
+  if(!reduced&&cv&&cv.getContext){
+    var ctx=cv.getContext('2d'),W,H,leaves=[];
+    function rs(){W=cv.width=innerWidth*devicePixelRatio;H=cv.height=innerHeight*devicePixelRatio;
+      cv.style.width=innerWidth+'px';cv.style.height=innerHeight+'px';}
+    rs();addEventListener('resize',rs);
+    function spawn(top){
+      var p=palettes[current]||palettes.hero;
+      return{
+        x:Math.random()*W,
+        y:top?-30*devicePixelRatio:Math.random()*H,
+        s:(6+Math.random()*9)*devicePixelRatio,
+        vy:(0.4+Math.random()*0.8)*devicePixelRatio,
+        vx:(Math.random()-.5)*0.6*devicePixelRatio,
+        rot:Math.random()*Math.PI*2,
+        vr:(Math.random()-.5)*0.03,
+        sway:Math.random()*Math.PI*2,
+        c:p.colors[Math.floor(Math.random()*p.colors.length)],
+        o:.4+Math.random()*.45
+      };
     }
-    window.addEventListener('scroll',onScroll,{passive:true});onScroll();
-  })();
+    for(var i=0;i<palettes.hero.count;i++)leaves.push(spawn(false));
+    function leaf(l){
+      ctx.save();ctx.translate(l.x,l.y);ctx.rotate(l.rot);
+      ctx.globalAlpha=l.o;ctx.fillStyle=l.c;
+      ctx.beginPath();
+      ctx.moveTo(0,-l.s);
+      ctx.bezierCurveTo(l.s*.9,-l.s*.4,l.s*.7,l.s*.6,0,l.s);
+      ctx.bezierCurveTo(-l.s*.7,l.s*.6,-l.s*.9,-l.s*.4,0,-l.s);
+      ctx.fill();
+      ctx.restore();
+    }
+    var hidden=false;
+    document.addEventListener('visibilitychange',function(){hidden=document.hidden;});
+    (function tick(){
+      requestAnimationFrame(tick);
+      if(hidden)return;
+      ctx.clearRect(0,0,W,H);
+      var target=(palettes[current]||palettes.hero).count;
+      if(leaves.length<target&&Math.random()<.1)leaves.push(spawn(true));
+      if(leaves.length>target){
+        /* 多餘的葉子飄出畫面後不再補 */
+      }
+      for(var i=leaves.length-1;i>=0;i--){
+        var l=leaves[i];
+        l.sway+=0.01;
+        l.x+=l.vx+Math.sin(l.sway)*0.5*devicePixelRatio;
+        l.y+=l.vy;l.rot+=l.vr;
+        if(l.y>H+40*devicePixelRatio){
+          if(leaves.length>target){leaves.splice(i,1);continue;}
+          leaves[i]=spawn(true);
+        }
+        leaf(leaves[i]);
+      }
+    })();
+  }
+})();
 </script>
 </body>
 </html>
