@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
@@ -26,7 +26,7 @@
   html{scroll-behavior:smooth;}
   body{
     margin:0;color:var(--ink);font-family:var(--sans);
-    line-height:1.72;font-size:16px;letter-spacing:.01em;
+    line-height:1.72;font-size:1.16rem;letter-spacing:.01em;
     -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
     padding-bottom:40px;overflow-x:hidden;background:#041c30;
   }
@@ -57,20 +57,20 @@
   /* ===== hero ===== */
   header.hero{min-height:94svh;display:flex;align-items:center;padding:max(34px,env(safe-area-inset-top)) 0 40px;}
   .hero .glass{padding:34px 28px 30px;}
-  .eyebrow{font-family:var(--mono);font-size:.875rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 18px;}
+  .eyebrow{font-family:var(--mono);font-size:1.16rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 18px;}
   .hero h1{font-size:clamp(2.1rem,8.5vw,3.2rem);font-weight:800;line-height:1.1;margin:0;letter-spacing:-.02em;text-wrap:balance;}
-  .hero h1 small{display:block;font-size:clamp(.88rem,3.2vw,1.1rem);font-weight:600;color:var(--accent-deep);margin-top:14px;letter-spacing:0;line-height:1.5;}
-  .hero .dates{font-family:var(--mono);font-size:clamp(1rem,4vw,1.28rem);font-weight:700;margin:24px 0 0;color:var(--ink);}
+  .hero h1 small{display:block;font-size:clamp(1.16rem,3.2vw,1.1rem);font-weight:600;color:var(--accent-deep);margin-top:14px;letter-spacing:0;line-height:1.5;}
+  .hero .dates{font-family:var(--mono);font-size:clamp(1.16rem,4vw,1.28rem);font-weight:700;margin:24px 0 0;color:var(--ink);}
   .hero .dates b{color:var(--coral);}
   .seg{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
-  .seg span{font-size:.875rem;font-weight:600;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.48);border:1px solid rgba(255,255,255,.55);color:var(--ink);}
+  .seg span{font-size:1.16rem;font-weight:600;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.48);border:1px solid rgba(255,255,255,.55);color:var(--ink);}
   .seg span b{color:var(--accent-deep);}
-  .hook{margin:22px 0 0;padding-left:14px;border-left:3px solid var(--accent);color:var(--ink-soft);font-size:.9rem;line-height:1.85;}
-  .route{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:22px;font-family:var(--mono);font-size:.875rem;color:var(--ink-soft);}
+  .hook{margin:22px 0 0;padding-left:14px;border-left:3px solid var(--accent);color:var(--ink-soft);font-size:1.45rem;line-height:1.85;}
+  .route{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:22px;font-family:var(--mono);font-size:1.16rem;color:var(--ink-soft);}
   .route b{color:var(--ink);}
   .route i{color:var(--accent);font-style:normal;}
-  .scrolldown{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:28px;color:var(--accent-deep);font-family:var(--mono);font-size:.875rem;letter-spacing:.22em;}
-  .scrolldown .arr{font-size:1.2rem;line-height:1;animation:bob 2.4s ease-in-out infinite;}
+  .scrolldown{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:28px;color:var(--accent-deep);font-family:var(--mono);font-size:1.16rem;letter-spacing:.22em;}
+  .scrolldown .arr{font-size:1.45rem;line-height:1;animation:bob 2.4s ease-in-out infinite;}
   @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(8px);}}
 
   /* ===== scene illustrations (images per day) ===== */
@@ -82,15 +82,15 @@
   .dhead{position:relative;margin-bottom:28px;padding-left:4px;}
   .dhead .big{font-family:var(--mono);font-weight:800;font-size:clamp(4.8rem,22vw,8.5rem);line-height:.88;color:rgba(255,255,255,.18);letter-spacing:-.04em;text-shadow:0 2px 24px rgba(4,28,48,.15);user-select:none;}
   .dhead .ttl{position:relative;margin-top:-1.1em;}
-  .dhead .lbl{font-family:var(--mono);font-size:.875rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.7);margin:0 0 6px;text-shadow:0 1px 8px rgba(4,28,48,.5);}
+  .dhead .lbl{font-family:var(--mono);font-size:1.16rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.7);margin:0 0 6px;text-shadow:0 1px 8px rgba(4,28,48,.5);}
   .dhead h2{font-size:clamp(1.5rem,6vw,2.2rem);font-weight:800;margin:0;color:#fff;letter-spacing:-.01em;text-shadow:0 2px 16px rgba(4,28,48,.45);text-wrap:balance;}
-  .dhead .sub{margin:10px 0 0;color:rgba(255,255,255,.85);font-size:.9rem;line-height:1.7;text-shadow:0 1px 8px rgba(4,28,48,.4);}
+  .dhead .sub{margin:10px 0 0;color:rgba(255,255,255,.85);font-size:1.45rem;line-height:1.7;text-shadow:0 1px 8px rgba(4,28,48,.4);}
   .dhead .sub b{color:#fff;}
 
   .day{padding:20px 20px 10px;margin-bottom:16px;}
-  .day-stay{display:flex;align-items:center;gap:8px;font-size:.875rem;color:var(--ink-faint);padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:4px;}
+  .day-stay{display:flex;align-items:center;gap:8px;font-size:1.16rem;color:var(--ink-faint);padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:4px;}
   .day-stay b{color:var(--accent-deep);font-weight:700;}
-  .day-stay .tag{font-family:var(--mono);font-size:.875rem;color:#fff;background:var(--accent-deep);padding:3px 8px;border-radius:7px;letter-spacing:.06em;}
+  .day-stay .tag{font-family:var(--mono);font-size:1.16rem;color:#fff;background:var(--accent-deep);padding:3px 8px;border-radius:7px;letter-spacing:.06em;}
 
   .tl{position:relative;padding:6px 0 14px;}
   .stop{position:relative;padding:13px 0 3px 74px;}
@@ -99,63 +99,63 @@
   .stop:last-child::before{height:20px;bottom:auto;}
   .stop .node{position:absolute;left:54px;top:18px;width:13px;height:13px;border-radius:50%;background:#fff;border:2px solid var(--accent);z-index:2;box-shadow:0 1px 4px rgba(4,28,48,.2);}
   .stop.key .node{background:var(--coral);border-color:var(--coral);box-shadow:0 0 0 5px rgba(255,107,83,.18);}
-  .stop .time{position:absolute;left:0;top:15px;width:48px;text-align:right;font-family:var(--mono);font-size:.875rem;font-weight:700;color:var(--ink);}
-  .stop h4{margin:0 0 2px;font-size:1rem;font-weight:700;}
-  .stop p{margin:0;color:var(--ink-soft);font-size:.9rem;}
-  .transit{display:inline-block;margin-top:4px;font-family:var(--mono);font-size:.875rem;color:var(--accent-deep);border:1px dashed rgba(14,165,160,.45);border-radius:7px;padding:1px 8px;}
+  .stop .time{position:absolute;left:0;top:15px;width:48px;text-align:right;font-family:var(--mono);font-size:1.16rem;font-weight:700;color:var(--ink);}
+  .stop h4{margin:0 0 2px;font-size:1.3rem;font-weight:700;}
+  .stop p{margin:0;color:var(--ink-soft);font-size:1.45rem;}
+  .transit{display:inline-block;margin-top:4px;font-family:var(--mono);font-size:1.16rem;color:var(--accent-deep);border:1px dashed rgba(14,165,160,.45);border-radius:7px;padding:1px 8px;}
   .meal{margin-top:9px;background:rgba(14,165,160,.08);border:1px solid rgba(14,165,160,.16);border-radius:14px;padding:10px 12px;}
-  .meal .mh{font-family:var(--mono);font-size:.875rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 6px;}
+  .meal .mh{font-family:var(--mono);font-size:1.16rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 6px;}
   .meal ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:5px;}
-  .meal li{font-size:.875rem;color:var(--ink-soft);line-height:1.5;}
+  .meal li{font-size:1.16rem;color:var(--ink-soft);line-height:1.5;}
   .meal li b{color:var(--ink);}
-  .meal li .t{font-family:var(--mono);font-size:.875rem;color:var(--coral);margin-left:3px;}
-  .planb{margin-top:9px;background:rgba(240,160,80,.14);border:1px solid rgba(240,160,80,.4);border-radius:14px;padding:10px 12px;font-size:.875rem;color:var(--ink-soft);}
+  .meal li .t{font-family:var(--mono);font-size:1.16rem;color:var(--coral);margin-left:3px;}
+  .planb{margin-top:9px;background:rgba(240,160,80,.14);border:1px solid rgba(240,160,80,.4);border-radius:14px;padding:10px 12px;font-size:1.16rem;color:var(--ink-soft);}
   .planb b{color:var(--ink);}
 
   /* ===== stay / shop / appendix ===== */
   .sec{padding-top:46px;scroll-margin-top:14px;}
-  .sec>.lbl{font-family:var(--mono);font-size:.875rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.7);margin:0 0 6px;padding-left:4px;text-shadow:0 1px 6px rgba(4,28,48,.4);}
+  .sec>.lbl{font-family:var(--mono);font-size:1.16rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.7);margin:0 0 6px;padding-left:4px;text-shadow:0 1px 6px rgba(4,28,48,.4);}
   .sec>h2{font-size:clamp(1.4rem,5.4vw,1.9rem);font-weight:800;margin:0 0 14px;color:#fff;padding-left:4px;letter-spacing:-.01em;text-shadow:0 2px 12px rgba(4,28,48,.35);}
   .card{padding:20px 20px 16px;margin-bottom:16px;}
-  .card h3.area{font-size:1.08rem;font-weight:700;margin:0 0 4px;display:flex;align-items:center;gap:9px;}
-  .card h3.area .pin{font-family:var(--mono);font-size:.875rem;color:#fff;background:var(--accent-deep);padding:3px 8px;border-radius:7px;letter-spacing:.06em;}
-  .card .note{font-size:.875rem;color:var(--ink-faint);margin:0 0 14px;}
+  .card h3.area{font-size:1.35rem;font-weight:700;margin:0 0 4px;display:flex;align-items:center;gap:9px;}
+  .card h3.area .pin{font-family:var(--mono);font-size:1.16rem;color:#fff;background:var(--accent-deep);padding:3px 8px;border-radius:7px;letter-spacing:.06em;}
+  .card .note{font-size:1.16rem;color:var(--ink-faint);margin:0 0 14px;}
   .tier{border-top:1px solid var(--line);padding:13px 0 3px;}
   .tier:first-of-type{border-top:none;}
   .tier .th{display:flex;align-items:baseline;gap:8px;margin-bottom:7px;}
-  .tier .th .name{font-weight:700;font-size:.925rem;}
-  .tier .th .px{margin-left:auto;font-family:var(--mono);font-size:.875rem;font-weight:700;color:var(--accent-deep);white-space:nowrap;}
+  .tier .th .name{font-weight:700;font-size:1.5rem;}
+  .tier .th .px{margin-left:auto;font-family:var(--mono);font-size:1.16rem;font-weight:700;color:var(--accent-deep);white-space:nowrap;}
   .tier ul{margin:0 0 8px;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;}
-  .tier li{font-size:.875rem;color:var(--ink-soft);line-height:1.5;padding-left:14px;position:relative;}
+  .tier li{font-size:1.16rem;color:var(--ink-soft);line-height:1.5;padding-left:14px;position:relative;}
   .tier li::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;border-radius:50%;background:var(--accent);}
   .tier li b{color:var(--ink);font-weight:600;}
-  .pxbar{font-size:.875rem;color:var(--ink-faint);background:rgba(240,160,80,.14);border:1px solid rgba(240,160,80,.38);border-radius:12px;padding:9px 12px;margin-top:6px;}
+  .pxbar{font-size:1.16rem;color:var(--ink-faint);background:rgba(240,160,80,.14);border:1px solid rgba(240,160,80,.38);border-radius:12px;padding:9px 12px;margin-top:6px;}
 
   .shoplist{padding:6px 0 4px;}
   .shop{display:flex;gap:13px;padding:13px 0;border-top:1px solid var(--line);}
   .shop:first-child{border-top:none;}
-  .shop .when{font-family:var(--mono);font-size:.875rem;font-weight:700;color:#fff;background:var(--accent);border-radius:8px;padding:4px 7px;height:fit-content;white-space:nowrap;}
+  .shop .when{font-family:var(--mono);font-size:1.16rem;font-weight:700;color:#fff;background:var(--accent);border-radius:8px;padding:4px 7px;height:fit-content;white-space:nowrap;}
   .shop .when.opt{background:var(--ink-faint);}
-  .shop h4{margin:0 0 3px;font-size:.94rem;font-weight:700;}
-  .shop p{margin:0;font-size:.875rem;color:var(--ink-soft);line-height:1.55;}
-  .shop .buy{display:block;margin-top:4px;font-size:.875rem;color:var(--accent-deep);}
+  .shop h4{margin:0 0 3px;font-size:1.5rem;font-weight:700;}
+  .shop p{margin:0;font-size:1.16rem;color:var(--ink-soft);line-height:1.55;}
+  .shop .buy{display:block;margin-top:4px;font-size:1.16rem;color:var(--accent-deep);}
 
   .supp .panel{background:var(--glass-dark);-webkit-backdrop-filter:blur(22px) saturate(160%);backdrop-filter:blur(22px) saturate(160%);border:1px solid rgba(255,255,255,.18);border-radius:var(--radius);box-shadow:0 8px 30px rgba(4,28,48,.28);overflow:hidden;color:#d8f0ec;}
   .supp details{border-bottom:1px solid rgba(255,255,255,.1);}
   .supp details:last-child{border-bottom:none;}
-  .supp summary{cursor:pointer;list-style:none;padding:17px 18px;font-weight:700;font-size:1rem;color:#fff;display:flex;align-items:center;gap:12px;}
+  .supp summary{cursor:pointer;list-style:none;padding:17px 18px;font-weight:700;font-size:1.3rem;color:#fff;display:flex;align-items:center;gap:12px;}
   .supp summary::-webkit-details-marker{display:none;}
-  .supp summary .ix{font-family:var(--mono);font-size:.875rem;color:#5ee8d0;}
-  .supp summary .pl{margin-left:auto;font-size:1.25rem;color:#5ee8d0;transition:transform .25s;line-height:1;}
+  .supp summary .ix{font-family:var(--mono);font-size:1.16rem;color:#5ee8d0;}
+  .supp summary .pl{margin-left:auto;font-size:1.5rem;color:#5ee8d0;transition:transform .25s;line-height:1;}
   .supp details[open] summary .pl{transform:rotate(45deg);}
-  .supp .body{padding:0 18px 18px 44px;color:#b8dcd6;font-size:.9rem;line-height:1.8;}
+  .supp .body{padding:0 18px 18px 44px;color:#b8dcd6;font-size:1.45rem;line-height:1.8;}
   .supp .body p{margin:0 0 10px;}
   .supp .body ul{margin:0 0 10px;padding-left:16px;}
   .supp .body li{margin:0 0 6px;}
   .supp .body b{color:#fff;}
   .supp .body .warn{color:#ffb8a0;}
   .supp .body .m{color:#5ee8d0;font-family:var(--mono);}
-  .dt{width:100%;border-collapse:collapse;font-size:.875rem;margin:2px 0 10px;font-variant-numeric:tabular-nums;}
+  .dt{width:100%;border-collapse:collapse;font-size:1.16rem;margin:2px 0 10px;font-variant-numeric:tabular-nums;}
   .dt td{border-bottom:1px solid rgba(255,255,255,.1);padding:7px 5px;vertical-align:top;}
   .dt td:first-child{color:#fff;font-family:var(--mono);width:40%;}
 
@@ -167,12 +167,12 @@
   .rail a{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;
     background:rgba(255,255,255,.3);border:1px solid rgba(255,255,255,.45);
     -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
-    font-family:var(--mono);font-size:.875rem;font-weight:700;color:rgba(255,255,255,.8);text-decoration:none;
+    font-family:var(--mono);font-size:1.16rem;font-weight:700;color:rgba(255,255,255,.8);text-decoration:none;
     transition:all .35s;box-shadow:0 2px 8px rgba(4,28,48,.2);}
   .rail a.active{background:rgba(255,255,255,.92);color:var(--accent-deep);transform:scale(1.28);box-shadow:0 3px 14px rgba(4,28,48,.35);}
-  @media(max-width:600px){.rail{right:5px;gap:7px;}.rail a{width:28px;height:28px;font-size:.875rem;}}
+  @media(max-width:600px){.rail{right:5px;gap:7px;}.rail a{width:28px;height:28px;font-size:1.16rem;}}
 
-  footer.foot{text-align:center;color:rgba(255,255,255,.8);font-family:var(--mono);font-size:.875rem;letter-spacing:.06em;padding:30px 0 14px;text-shadow:0 1px 6px rgba(4,28,48,.4);}
+  footer.foot{text-align:center;color:rgba(255,255,255,.8);font-family:var(--mono);font-size:1.16rem;letter-spacing:.06em;padding:30px 0 14px;text-shadow:0 1px 6px rgba(4,28,48,.4);}
 
   :focus-visible{outline:3px solid #fff;outline-offset:2px;border-radius:6px;}
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease;}
@@ -185,7 +185,7 @@
   }
   @media(max-width:520px){
     .stop{padding-left:62px;}.stop::before{left:48px;}.stop .node{left:42px;}
-    .stop .time{width:40px;font-size:.875rem;}
+    .stop .time{width:40px;font-size:1.16rem;}
   }
 </style>
 </head>
@@ -311,7 +311,7 @@
         <div class="stop"><span class="time">09:00</span><span class="node"></span><h4>飯店悠閒早餐</h4><p>最後一次享受度假村的早晨，不趕。可以再游一次泳池或散步海灘。</p></div>
         <div class="stop"><span class="time">10:30</span><span class="node"></span><h4>退房</h4><p>行李交給飯店或直接帶走。</p></div>
         <div class="stop"><span class="time">11:00</span><span class="node"></span><h4>殘波岬（選配）</h4><p>白色燈塔佇立在斷崖之上，搭計程車約 20 分鐘可達。時間充裕值得繞一趟。<span class="transit">恩納→殘波岬 ≈ 計程車 20 分</span></p></div>
-        <div class="stop"><span class="time">12:30</span><span class="node"></span><h4>搭利木津巴士南下那霸</h4><p>從恩納度假飯店直達那霸市區，車上補個眠也好。<span class="transit">利木津巴士 ≈ 90–120 分</span></p></div>
+        <div class="stop"><span class="time">12:30</span><span class="node"></span><h4>前往美國村逛街看夕陽</h4><p>從恩納度假飯店直達那霸市區，車上補個眠也好。<span class="transit">利木津巴士 ≈ 90–120 分</span></p></div>
         <div class="stop key"><span class="time">14:30</span><span class="node"></span><h4>抵達那霸</h4><p>行李先寄放在車站寄物櫃或隔天的飯店（可提前聯繫），輕裝上陣逛街。</p></div>
         <div class="stop"><span class="time">15:00</span><span class="node"></span><h4>國際通・第一牧志公設市場</h4><p>2023 年整修重新開幕的市場，一樓挑食材、二樓代客料理。從市場往國際通一路逛過去，傍晚人潮最熱鬧。</p></div>
         <div class="stop"><span class="time">18:30</span><span class="node"></span><h4>晚餐</h4>

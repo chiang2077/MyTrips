@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
@@ -25,7 +25,7 @@
   html{scroll-behavior:smooth;}
   body{
     margin:0;color:var(--ink);font-family:var(--sans);
-    line-height:1.7;font-size:16px;letter-spacing:.01em;
+    line-height:1.7;font-size:1.16rem;letter-spacing:.01em;
     -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
     padding-bottom:40px;overflow-x:hidden;background:#3a1408;
   }
@@ -59,8 +59,8 @@
   .hero .glass{padding:32px 26px 30px;}
   .eyebrow{font-family:var(--mono);font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 16px;}
   .hero h1{font-size:clamp(2rem,8vw,3rem);font-weight:800;line-height:1.12;margin:0;letter-spacing:-.01em;text-wrap:balance;}
-  .hero h1 small{display:block;font-size:clamp(.95rem,3.6vw,1.2rem);font-weight:600;color:var(--accent-deep);margin-top:12px;letter-spacing:0;}
-  .hero .dates{font-family:var(--mono);font-size:clamp(1rem,4vw,1.3rem);font-weight:700;margin:22px 0 0;color:var(--ink);}
+  .hero h1 small{display:block;font-size:clamp(1.16rem,3.6vw,1.2rem);font-weight:600;color:var(--accent-deep);margin-top:12px;letter-spacing:0;}
+  .hero .dates{font-family:var(--mono);font-size:clamp(1.16rem,4vw,1.3rem);font-weight:700;margin:22px 0 0;color:var(--ink);}
   .hero .dates b{color:var(--coral);}
   .seg{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
   .seg span{font-size:.8rem;font-weight:600;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.6);color:var(--ink);}
@@ -70,8 +70,11 @@
   .route b{color:var(--ink);}
   .route i{color:var(--accent);font-style:normal;}
   .scrolldown{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:26px;color:var(--accent-deep);font-family:var(--mono);font-size:.68rem;letter-spacing:.22em;}
-  .scrolldown .arr{font-size:1.2rem;line-height:1;animation:bob 2.2s ease-in-out infinite;}
+  .scrolldown .arr{font-size:1.45rem;line-height:1;animation:bob 2.2s ease-in-out infinite;}
   @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(7px);}}
+  /* ===== scene illustrations ===== */
+  .scene{width:100%;max-width:700px;margin:0 auto 20px;display:block;opacity:.88;}
+  .scene img{width:100%;height:280px;object-fit:cover;display:block;border-radius:16px;filter:drop-shadow(0 4px 20px rgba(40,12,4,.3));}
 
   /* ===== day sections（長頁滑動的主體）===== */
   .dsec{min-height:100svh;padding:12svh 0 10svh;scroll-margin-top:0;position:relative;}
@@ -80,7 +83,7 @@
   .dhead .ttl{position:relative;margin-top:-1.2em;}
   .dhead .lbl{font-family:var(--mono);font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:#ffecd2;margin:0 0 6px;text-shadow:0 1px 6px rgba(40,12,4,.45);}
   .dhead h2{font-size:clamp(1.5rem,6vw,2.1rem);font-weight:800;margin:0;color:#fff;letter-spacing:-.01em;text-shadow:0 2px 14px rgba(40,12,4,.4);text-wrap:balance;}
-  .dhead .sub{margin:8px 0 0;color:rgba(255,255,255,.88);font-size:.9rem;text-shadow:0 1px 8px rgba(40,12,4,.4);}
+  .dhead .sub{margin:8px 0 0;color:rgba(255,255,255,.88);font-size:1.45rem;text-shadow:0 1px 8px rgba(40,12,4,.4);}
   .dhead .sub b{color:#fff;}
 
   .day{padding:20px 20px 10px;margin-bottom:16px;}
@@ -97,7 +100,7 @@
   .stop.key .node{background:var(--coral);border-color:var(--coral);box-shadow:0 0 0 5px rgba(211,84,0,.18);}
   .stop.maple .node{background:var(--accent);border-color:var(--accent-deep);box-shadow:0 0 0 5px rgba(139,26,26,.2);}
   .stop .time{position:absolute;left:0;top:15px;width:48px;text-align:right;font-family:var(--mono);font-size:.8rem;font-weight:700;color:var(--ink);}
-  .stop h4{margin:0 0 2px;font-size:1rem;font-weight:700;}
+  .stop h4{margin:0 0 2px;font-size:1.3rem;font-weight:700;}
   .stop p{margin:0;color:var(--ink-soft);font-size:.88rem;}
   .drive{display:inline-block;margin-top:4px;font-family:var(--mono);font-size:.7rem;color:var(--accent-deep);border:1px dashed rgba(181,53,30,.45);border-radius:7px;padding:1px 8px;}
   .meal{margin-top:9px;background:rgba(181,53,30,.08);border:1px solid rgba(181,53,30,.16);border-radius:14px;padding:10px 12px;}
@@ -114,7 +117,7 @@
   .sec>.lbl{font-family:var(--mono);font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:#ffecd2;margin:0 0 6px;padding-left:4px;text-shadow:0 1px 6px rgba(40,12,4,.4);}
   .sec>h2{font-size:clamp(1.4rem,5.4vw,1.9rem);font-weight:800;margin:0 0 14px;color:#fff;padding-left:4px;letter-spacing:-.01em;text-shadow:0 2px 12px rgba(40,12,4,.35);}
   .card{padding:20px 20px 16px;margin-bottom:16px;}
-  .card h3.area{font-size:1.1rem;font-weight:700;margin:0 0 4px;display:flex;align-items:center;gap:9px;}
+  .card h3.area{font-size:1.35rem;font-weight:700;margin:0 0 4px;display:flex;align-items:center;gap:9px;}
   .card h3.area .pin{font-family:var(--mono);font-size:.64rem;color:#fff;background:var(--accent-deep);padding:3px 8px;border-radius:7px;letter-spacing:.06em;}
   .card .note{font-size:.82rem;color:var(--ink-faint);margin:0 0 14px;}
   .tier{border-top:1px solid var(--line);padding:13px 0 3px;}
@@ -131,10 +134,10 @@
   .supp .panel{background:var(--glass-dark);-webkit-backdrop-filter:blur(22px) saturate(160%);backdrop-filter:blur(22px) saturate(160%);border:1px solid rgba(255,255,255,.18);border-radius:var(--radius);box-shadow:0 8px 30px rgba(40,12,4,.25);overflow:hidden;color:#ffecd2;}
   .supp details{border-bottom:1px solid rgba(255,255,255,.12);}
   .supp details:last-child{border-bottom:none;}
-  .supp summary{cursor:pointer;list-style:none;padding:17px 18px;font-weight:700;font-size:1rem;color:#fff;display:flex;align-items:center;gap:12px;}
+  .supp summary{cursor:pointer;list-style:none;padding:17px 18px;font-weight:700;font-size:1.3rem;color:#fff;display:flex;align-items:center;gap:12px;}
   .supp summary::-webkit-details-marker{display:none;}
   .supp summary .ix{font-family:var(--mono);font-size:.72rem;color:#f0c060;}
-  .supp summary .pl{margin-left:auto;font-size:1.25rem;color:#f0c060;transition:transform .25s;line-height:1;}
+  .supp summary .pl{margin-left:auto;font-size:1.5rem;color:#f0c060;transition:transform .25s;line-height:1;}
   .supp details[open] summary .pl{transform:rotate(45deg);}
   .supp .body{padding:0 18px 18px 44px;color:#e8cdb0;font-size:.88rem;line-height:1.8;}
   .supp .body p{margin:0 0 10px;}
