@@ -57,40 +57,40 @@
   /* ===== hero ===== */
   header.hero{min-height:94svh;display:flex;align-items:center;padding:max(34px,env(safe-area-inset-top)) 0 40px;}
   .hero .glass{padding:34px 28px 30px;}
-  .eyebrow{font-family:var(--mono);font-size:.64rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 18px;}
+  .eyebrow{font-family:var(--mono);font-size:.875rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 18px;}
   .hero h1{font-size:clamp(2.1rem,8.5vw,3.2rem);font-weight:800;line-height:1.1;margin:0;letter-spacing:-.02em;text-wrap:balance;}
   .hero h1 small{display:block;font-size:clamp(.88rem,3.2vw,1.1rem);font-weight:600;color:var(--accent-deep);margin-top:14px;letter-spacing:0;line-height:1.5;}
   .hero .dates{font-family:var(--mono);font-size:clamp(1rem,4vw,1.28rem);font-weight:700;margin:24px 0 0;color:var(--ink);}
   .hero .dates b{color:var(--coral);}
   .seg{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
-  .seg span{font-size:.78rem;font-weight:600;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.48);border:1px solid rgba(255,255,255,.55);color:var(--ink);}
+  .seg span{font-size:.875rem;font-weight:600;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.48);border:1px solid rgba(255,255,255,.55);color:var(--ink);}
   .seg span b{color:var(--accent-deep);}
   .hook{margin:22px 0 0;padding-left:14px;border-left:3px solid var(--accent);color:var(--ink-soft);font-size:.9rem;line-height:1.85;}
-  .route{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:22px;font-family:var(--mono);font-size:.74rem;color:var(--ink-soft);}
+  .route{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:22px;font-family:var(--mono);font-size:.875rem;color:var(--ink-soft);}
   .route b{color:var(--ink);}
   .route i{color:var(--accent);font-style:normal;}
-  .scrolldown{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:28px;color:var(--accent-deep);font-family:var(--mono);font-size:.66rem;letter-spacing:.22em;}
+  .scrolldown{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:28px;color:var(--accent-deep);font-family:var(--mono);font-size:.875rem;letter-spacing:.22em;}
   .scrolldown .arr{font-size:1.2rem;line-height:1;animation:bob 2.4s ease-in-out infinite;}
   @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(8px);}}
 
-  /* ===== scene illustrations (SVG per day) ===== */
+  /* ===== scene illustrations (images per day) ===== */
   .scene{width:100%;max-width:680px;margin:0 auto 20px;display:block;opacity:.88;}
-  .scene svg{width:100%;height:auto;display:block;filter:drop-shadow(0 4px 20px rgba(4,28,48,.3));}
+  .scene img{width:100%;height:280px;object-fit:cover;display:block;border-radius:16px;filter:drop-shadow(0 4px 20px rgba(4,28,48,.3));}
 
   /* ===== day sections ===== */
   .dsec{min-height:100svh;padding:14svh 0 10svh;scroll-margin-top:0;position:relative;}
   .dhead{position:relative;margin-bottom:28px;padding-left:4px;}
   .dhead .big{font-family:var(--mono);font-weight:800;font-size:clamp(4.8rem,22vw,8.5rem);line-height:.88;color:rgba(255,255,255,.18);letter-spacing:-.04em;text-shadow:0 2px 24px rgba(4,28,48,.15);user-select:none;}
   .dhead .ttl{position:relative;margin-top:-1.1em;}
-  .dhead .lbl{font-family:var(--mono);font-size:.64rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.7);margin:0 0 6px;text-shadow:0 1px 8px rgba(4,28,48,.5);}
+  .dhead .lbl{font-family:var(--mono);font-size:.875rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.7);margin:0 0 6px;text-shadow:0 1px 8px rgba(4,28,48,.5);}
   .dhead h2{font-size:clamp(1.5rem,6vw,2.2rem);font-weight:800;margin:0;color:#fff;letter-spacing:-.01em;text-shadow:0 2px 16px rgba(4,28,48,.45);text-wrap:balance;}
-  .dhead .sub{margin:10px 0 0;color:rgba(255,255,255,.85);font-size:.88rem;line-height:1.7;text-shadow:0 1px 8px rgba(4,28,48,.4);}
+  .dhead .sub{margin:10px 0 0;color:rgba(255,255,255,.85);font-size:.9rem;line-height:1.7;text-shadow:0 1px 8px rgba(4,28,48,.4);}
   .dhead .sub b{color:#fff;}
 
   .day{padding:20px 20px 10px;margin-bottom:16px;}
-  .day-stay{display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--ink-faint);padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:4px;}
+  .day-stay{display:flex;align-items:center;gap:8px;font-size:.875rem;color:var(--ink-faint);padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:4px;}
   .day-stay b{color:var(--accent-deep);font-weight:700;}
-  .day-stay .tag{font-family:var(--mono);font-size:.62rem;color:#fff;background:var(--accent-deep);padding:3px 8px;border-radius:7px;letter-spacing:.06em;}
+  .day-stay .tag{font-family:var(--mono);font-size:.875rem;color:#fff;background:var(--accent-deep);padding:3px 8px;border-radius:7px;letter-spacing:.06em;}
 
   .tl{position:relative;padding:6px 0 14px;}
   .stop{position:relative;padding:13px 0 3px 74px;}
@@ -99,63 +99,63 @@
   .stop:last-child::before{height:20px;bottom:auto;}
   .stop .node{position:absolute;left:54px;top:18px;width:13px;height:13px;border-radius:50%;background:#fff;border:2px solid var(--accent);z-index:2;box-shadow:0 1px 4px rgba(4,28,48,.2);}
   .stop.key .node{background:var(--coral);border-color:var(--coral);box-shadow:0 0 0 5px rgba(255,107,83,.18);}
-  .stop .time{position:absolute;left:0;top:15px;width:48px;text-align:right;font-family:var(--mono);font-size:.8rem;font-weight:700;color:var(--ink);}
+  .stop .time{position:absolute;left:0;top:15px;width:48px;text-align:right;font-family:var(--mono);font-size:.875rem;font-weight:700;color:var(--ink);}
   .stop h4{margin:0 0 2px;font-size:1rem;font-weight:700;}
-  .stop p{margin:0;color:var(--ink-soft);font-size:.88rem;}
-  .transit{display:inline-block;margin-top:4px;font-family:var(--mono);font-size:.7rem;color:var(--accent-deep);border:1px dashed rgba(14,165,160,.45);border-radius:7px;padding:1px 8px;}
+  .stop p{margin:0;color:var(--ink-soft);font-size:.9rem;}
+  .transit{display:inline-block;margin-top:4px;font-family:var(--mono);font-size:.875rem;color:var(--accent-deep);border:1px dashed rgba(14,165,160,.45);border-radius:7px;padding:1px 8px;}
   .meal{margin-top:9px;background:rgba(14,165,160,.08);border:1px solid rgba(14,165,160,.16);border-radius:14px;padding:10px 12px;}
-  .meal .mh{font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 6px;}
+  .meal .mh{font-family:var(--mono);font-size:.875rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 6px;}
   .meal ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:5px;}
-  .meal li{font-size:.84rem;color:var(--ink-soft);line-height:1.5;}
+  .meal li{font-size:.875rem;color:var(--ink-soft);line-height:1.5;}
   .meal li b{color:var(--ink);}
-  .meal li .t{font-family:var(--mono);font-size:.62rem;color:var(--coral);margin-left:3px;}
-  .planb{margin-top:9px;background:rgba(240,160,80,.14);border:1px solid rgba(240,160,80,.4);border-radius:14px;padding:10px 12px;font-size:.82rem;color:var(--ink-soft);}
+  .meal li .t{font-family:var(--mono);font-size:.875rem;color:var(--coral);margin-left:3px;}
+  .planb{margin-top:9px;background:rgba(240,160,80,.14);border:1px solid rgba(240,160,80,.4);border-radius:14px;padding:10px 12px;font-size:.875rem;color:var(--ink-soft);}
   .planb b{color:var(--ink);}
 
   /* ===== stay / shop / appendix ===== */
   .sec{padding-top:46px;scroll-margin-top:14px;}
-  .sec>.lbl{font-family:var(--mono);font-size:.64rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.7);margin:0 0 6px;padding-left:4px;text-shadow:0 1px 6px rgba(4,28,48,.4);}
+  .sec>.lbl{font-family:var(--mono);font-size:.875rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.7);margin:0 0 6px;padding-left:4px;text-shadow:0 1px 6px rgba(4,28,48,.4);}
   .sec>h2{font-size:clamp(1.4rem,5.4vw,1.9rem);font-weight:800;margin:0 0 14px;color:#fff;padding-left:4px;letter-spacing:-.01em;text-shadow:0 2px 12px rgba(4,28,48,.35);}
   .card{padding:20px 20px 16px;margin-bottom:16px;}
   .card h3.area{font-size:1.08rem;font-weight:700;margin:0 0 4px;display:flex;align-items:center;gap:9px;}
-  .card h3.area .pin{font-family:var(--mono);font-size:.64rem;color:#fff;background:var(--accent-deep);padding:3px 8px;border-radius:7px;letter-spacing:.06em;}
-  .card .note{font-size:.82rem;color:var(--ink-faint);margin:0 0 14px;}
+  .card h3.area .pin{font-family:var(--mono);font-size:.875rem;color:#fff;background:var(--accent-deep);padding:3px 8px;border-radius:7px;letter-spacing:.06em;}
+  .card .note{font-size:.875rem;color:var(--ink-faint);margin:0 0 14px;}
   .tier{border-top:1px solid var(--line);padding:13px 0 3px;}
   .tier:first-of-type{border-top:none;}
   .tier .th{display:flex;align-items:baseline;gap:8px;margin-bottom:7px;}
-  .tier .th .name{font-weight:700;font-size:.92rem;}
-  .tier .th .px{margin-left:auto;font-family:var(--mono);font-size:.74rem;font-weight:700;color:var(--accent-deep);white-space:nowrap;}
+  .tier .th .name{font-weight:700;font-size:.925rem;}
+  .tier .th .px{margin-left:auto;font-family:var(--mono);font-size:.875rem;font-weight:700;color:var(--accent-deep);white-space:nowrap;}
   .tier ul{margin:0 0 8px;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;}
-  .tier li{font-size:.86rem;color:var(--ink-soft);line-height:1.5;padding-left:14px;position:relative;}
+  .tier li{font-size:.875rem;color:var(--ink-soft);line-height:1.5;padding-left:14px;position:relative;}
   .tier li::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;border-radius:50%;background:var(--accent);}
   .tier li b{color:var(--ink);font-weight:600;}
-  .pxbar{font-size:.76rem;color:var(--ink-faint);background:rgba(240,160,80,.14);border:1px solid rgba(240,160,80,.38);border-radius:12px;padding:9px 12px;margin-top:6px;}
+  .pxbar{font-size:.875rem;color:var(--ink-faint);background:rgba(240,160,80,.14);border:1px solid rgba(240,160,80,.38);border-radius:12px;padding:9px 12px;margin-top:6px;}
 
   .shoplist{padding:6px 0 4px;}
   .shop{display:flex;gap:13px;padding:13px 0;border-top:1px solid var(--line);}
   .shop:first-child{border-top:none;}
-  .shop .when{font-family:var(--mono);font-size:.62rem;font-weight:700;color:#fff;background:var(--accent);border-radius:8px;padding:4px 7px;height:fit-content;white-space:nowrap;}
+  .shop .when{font-family:var(--mono);font-size:.875rem;font-weight:700;color:#fff;background:var(--accent);border-radius:8px;padding:4px 7px;height:fit-content;white-space:nowrap;}
   .shop .when.opt{background:var(--ink-faint);}
   .shop h4{margin:0 0 3px;font-size:.94rem;font-weight:700;}
-  .shop p{margin:0;font-size:.84rem;color:var(--ink-soft);line-height:1.55;}
-  .shop .buy{display:block;margin-top:4px;font-size:.78rem;color:var(--accent-deep);}
+  .shop p{margin:0;font-size:.875rem;color:var(--ink-soft);line-height:1.55;}
+  .shop .buy{display:block;margin-top:4px;font-size:.875rem;color:var(--accent-deep);}
 
   .supp .panel{background:var(--glass-dark);-webkit-backdrop-filter:blur(22px) saturate(160%);backdrop-filter:blur(22px) saturate(160%);border:1px solid rgba(255,255,255,.18);border-radius:var(--radius);box-shadow:0 8px 30px rgba(4,28,48,.28);overflow:hidden;color:#d8f0ec;}
   .supp details{border-bottom:1px solid rgba(255,255,255,.1);}
   .supp details:last-child{border-bottom:none;}
   .supp summary{cursor:pointer;list-style:none;padding:17px 18px;font-weight:700;font-size:1rem;color:#fff;display:flex;align-items:center;gap:12px;}
   .supp summary::-webkit-details-marker{display:none;}
-  .supp summary .ix{font-family:var(--mono);font-size:.72rem;color:#5ee8d0;}
+  .supp summary .ix{font-family:var(--mono);font-size:.875rem;color:#5ee8d0;}
   .supp summary .pl{margin-left:auto;font-size:1.25rem;color:#5ee8d0;transition:transform .25s;line-height:1;}
   .supp details[open] summary .pl{transform:rotate(45deg);}
-  .supp .body{padding:0 18px 18px 44px;color:#b8dcd6;font-size:.88rem;line-height:1.8;}
+  .supp .body{padding:0 18px 18px 44px;color:#b8dcd6;font-size:.9rem;line-height:1.8;}
   .supp .body p{margin:0 0 10px;}
   .supp .body ul{margin:0 0 10px;padding-left:16px;}
   .supp .body li{margin:0 0 6px;}
   .supp .body b{color:#fff;}
   .supp .body .warn{color:#ffb8a0;}
   .supp .body .m{color:#5ee8d0;font-family:var(--mono);}
-  .dt{width:100%;border-collapse:collapse;font-size:.82rem;margin:2px 0 10px;font-variant-numeric:tabular-nums;}
+  .dt{width:100%;border-collapse:collapse;font-size:.875rem;margin:2px 0 10px;font-variant-numeric:tabular-nums;}
   .dt td{border-bottom:1px solid rgba(255,255,255,.1);padding:7px 5px;vertical-align:top;}
   .dt td:first-child{color:#fff;font-family:var(--mono);width:40%;}
 
@@ -167,12 +167,12 @@
   .rail a{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;
     background:rgba(255,255,255,.3);border:1px solid rgba(255,255,255,.45);
     -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
-    font-family:var(--mono);font-size:.6rem;font-weight:700;color:rgba(255,255,255,.8);text-decoration:none;
+    font-family:var(--mono);font-size:.875rem;font-weight:700;color:rgba(255,255,255,.8);text-decoration:none;
     transition:all .35s;box-shadow:0 2px 8px rgba(4,28,48,.2);}
   .rail a.active{background:rgba(255,255,255,.92);color:var(--accent-deep);transform:scale(1.28);box-shadow:0 3px 14px rgba(4,28,48,.35);}
-  @media(max-width:600px){.rail{right:5px;gap:7px;}.rail a{width:24px;height:24px;font-size:.52rem;}}
+  @media(max-width:600px){.rail{right:5px;gap:7px;}.rail a{width:28px;height:28px;font-size:.875rem;}}
 
-  footer.foot{text-align:center;color:rgba(255,255,255,.8);font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;padding:30px 0 14px;text-shadow:0 1px 6px rgba(4,28,48,.4);}
+  footer.foot{text-align:center;color:rgba(255,255,255,.8);font-family:var(--mono);font-size:.875rem;letter-spacing:.06em;padding:30px 0 14px;text-shadow:0 1px 6px rgba(4,28,48,.4);}
 
   :focus-visible{outline:3px solid #fff;outline-offset:2px;border-radius:6px;}
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease;}
@@ -185,7 +185,7 @@
   }
   @media(max-width:520px){
     .stop{padding-left:62px;}.stop::before{left:48px;}.stop .node{left:42px;}
-    .stop .time{width:40px;font-size:.74rem;}
+    .stop .time{width:40px;font-size:.875rem;}
   }
 </style>
 </head>
@@ -233,22 +233,7 @@
 
     <!-- Scene: resort sunset silhouette -->
     <div class="scene reveal">
-      <svg viewBox="0 0 680 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="sky1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f5b04a"/><stop offset=".5" stop-color="#f08050"/><stop offset="1" stop-color="#064273"/></linearGradient>
-          <linearGradient id="sea1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b6e8a" stop-opacity=".6"/><stop offset="1" stop-color="#041c30" stop-opacity=".8"/></linearGradient>
-        </defs>
-        <rect width="680" height="200" rx="16" fill="url(#sky1)"/>
-        <circle cx="340" cy="110" r="28" fill="#fff" opacity=".9"/>
-        <path d="M0 135 Q80 125,160 138 T320 130 T480 140 T640 128 L680 128 680 200 0 200Z" fill="url(#sea1)"/>
-        <path d="M440 130 L455 90 470 130Z" fill="#0a3040" opacity=".7"/>
-        <rect x="448" y="95" width="14" height="35" rx="1" fill="#0a3040" opacity=".6"/>
-        <path d="M520 130 L530 105 540 130Z" fill="#0a3040" opacity=".5"/>
-        <rect x="500" y="108" width="20" height="22" rx="1" fill="#0a3040" opacity=".55"/>
-        <path d="M80 140 Q100 120,130 140" stroke="#fff" stroke-width="1.5" fill="none" opacity=".3"/>
-        <path d="M200 145 Q225 130,250 145" stroke="#fff" stroke-width="1.2" fill="none" opacity=".25"/>
-        <path d="M550 138 Q575 122,600 138" stroke="#fff" stroke-width="1" fill="none" opacity=".2"/>
-      </svg>
+      <img src="images/day1.jpg" alt="恩納西海岸黃昏夕陽海景">
     </div>
 
     <div class="glass day reveal">
@@ -282,41 +267,7 @@
 
     <!-- Scene: aquarium whale shark -->
     <div class="scene reveal">
-      <svg viewBox="0 0 680 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="deep" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#041e50"/><stop offset=".6" stop-color="#063a78"/><stop offset="1" stop-color="#0a5590"/></linearGradient>
-          <radialGradient id="glow" cx=".5" cy=".4" r=".5"><stop offset="0" stop-color="#1088b0" stop-opacity=".4"/><stop offset="1" stop-color="#041e50" stop-opacity="0"/></radialGradient>
-        </defs>
-        <rect width="680" height="200" rx="16" fill="url(#deep)"/>
-        <rect width="680" height="200" rx="16" fill="url(#glow)"/>
-        <!-- whale shark silhouette -->
-        <g transform="translate(180,50)" opacity=".85">
-          <ellipse cx="160" cy="55" rx="130" ry="42" fill="#0d4a70"/>
-          <path d="M290 55 Q310 35,320 55 Q310 75,290 55Z" fill="#0d4a70"/>
-          <path d="M30 55 L10 30 20 50 5 55 20 60 10 80 30 55Z" fill="#0d4a70"/>
-          <path d="M200 25 L230 10 220 28Z" fill="#0d4a70"/>
-          <path d="M200 85 L230 100 220 82Z" fill="#0d4a70"/>
-          <circle cx="65" cy="48" r="4" fill="#1a7ab0" opacity=".7"/>
-          <circle cx="100" cy="38" r="2" fill="#3ab0d8" opacity=".5"/>
-          <circle cx="130" cy="42" r="2.5" fill="#3ab0d8" opacity=".45"/>
-          <circle cx="160" cy="35" r="2" fill="#3ab0d8" opacity=".4"/>
-          <circle cx="115" cy="55" r="1.8" fill="#3ab0d8" opacity=".35"/>
-          <circle cx="145" cy="60" r="2" fill="#3ab0d8" opacity=".3"/>
-          <circle cx="180" cy="50" r="1.5" fill="#3ab0d8" opacity=".35"/>
-        </g>
-        <!-- small fish -->
-        <g opacity=".4">
-          <ellipse cx="80" cy="140" rx="8" ry="4" fill="#5eb8d8"/><path d="M88 140 L95 135 95 145Z" fill="#5eb8d8"/>
-          <ellipse cx="110" cy="155" rx="6" ry="3" fill="#5eb8d8"/><path d="M116 155 L122 151 122 159Z" fill="#5eb8d8"/>
-          <ellipse cx="560" cy="50" rx="7" ry="3.5" fill="#5eb8d8"/><path d="M567 50 L573 46 573 54Z" fill="#5eb8d8"/>
-          <ellipse cx="600" cy="70" rx="5" ry="2.5" fill="#5eb8d8"/><path d="M605 70 L610 67 610 73Z" fill="#5eb8d8"/>
-        </g>
-        <!-- bubbles -->
-        <circle cx="420" cy="160" r="5" stroke="#5ee8d0" stroke-width=".8" fill="none" opacity=".3"/>
-        <circle cx="430" cy="130" r="3" stroke="#5ee8d0" stroke-width=".6" fill="none" opacity=".25"/>
-        <circle cx="415" cy="100" r="4" stroke="#5ee8d0" stroke-width=".7" fill="none" opacity=".2"/>
-        <circle cx="150" cy="170" r="3.5" stroke="#5ee8d0" stroke-width=".6" fill="none" opacity=".2"/>
-      </svg>
+      <img src="images/day2.jpg" alt="美麗海水族館黑潮之海鯨鯊">
     </div>
 
     <div class="glass day reveal">
@@ -351,42 +302,7 @@
 
     <!-- Scene: Naha cityscape -->
     <div class="scene reveal">
-      <svg viewBox="0 0 680 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="city" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#30c9a0" stop-opacity=".3"/><stop offset="1" stop-color="#064273" stop-opacity=".5"/></linearGradient>
-        </defs>
-        <rect width="680" height="200" rx="16" fill="#0a8a7a"/>
-        <rect width="680" height="200" rx="16" fill="url(#city)"/>
-        <!-- buildings skyline -->
-        <g fill="#064a5a" opacity=".7">
-          <rect x="40" y="100" width="30" height="100" rx="2"/>
-          <rect x="80" y="80" width="25" height="120" rx="2"/>
-          <rect x="115" y="110" width="35" height="90" rx="2"/>
-          <rect x="160" y="70" width="20" height="130" rx="2"/>
-          <rect x="190" y="90" width="40" height="110" rx="2"/>
-          <rect x="245" y="60" width="22" height="140" rx="2"/>
-          <rect x="280" y="95" width="35" height="105" rx="2"/>
-          <rect x="330" y="75" width="28" height="125" rx="2"/>
-          <rect x="370" y="105" width="32" height="95" rx="2"/>
-          <rect x="415" y="65" width="24" height="135" rx="2"/>
-          <rect x="450" y="85" width="38" height="115" rx="2"/>
-          <rect x="500" y="95" width="26" height="105" rx="2"/>
-          <rect x="540" y="110" width="30" height="90" rx="2"/>
-          <rect x="580" y="78" width="22" height="122" rx="2"/>
-          <rect x="615" y="100" width="35" height="100" rx="2"/>
-        </g>
-        <!-- monorail line -->
-        <line x1="20" y1="120" x2="660" y2="118" stroke="#5ee8d0" stroke-width="2" opacity=".5"/>
-        <rect x="300" y="112" width="40" height="12" rx="4" fill="#5ee8d0" opacity=".6"/>
-        <!-- lanterns (kokusai-dori feel) -->
-        <g opacity=".6">
-          <circle cx="150" cy="145" r="6" fill="#ff8060"/>
-          <circle cx="250" cy="148" r="5" fill="#ffb060"/>
-          <circle cx="350" cy="146" r="6" fill="#ff8060"/>
-          <circle cx="450" cy="147" r="5" fill="#ffb060"/>
-          <circle cx="550" cy="145" r="6" fill="#ff8060"/>
-        </g>
-      </svg>
+      <img src="images/day3.jpg" alt="那霸國際通傍晚街景">
     </div>
 
     <div class="glass day reveal">
@@ -418,34 +334,7 @@
 
     <!-- Scene: Shuri Castle sunset -->
     <div class="scene reveal">
-      <svg viewBox="0 0 680 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="dusk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f5b040"/><stop offset=".4" stop-color="#e06040"/><stop offset=".8" stop-color="#8a3070"/><stop offset="1" stop-color="#1a0a30"/></linearGradient>
-        </defs>
-        <rect width="680" height="200" rx="16" fill="url(#dusk)"/>
-        <circle cx="340" cy="90" r="32" fill="#fff" opacity=".25"/>
-        <!-- Shuri castle silhouette -->
-        <g fill="#1a0a30" opacity=".75" transform="translate(200,70)">
-          <rect x="60" y="60" width="160" height="60" rx="2"/>
-          <rect x="80" y="35" width="120" height="30" rx="2"/>
-          <rect x="100" y="15" width="80" height="25" rx="2"/>
-          <path d="M120 15 L140 0 160 15Z"/>
-          <!-- roof curves -->
-          <path d="M55 60 Q140 48,225 60" stroke="#1a0a30" stroke-width="4" fill="none"/>
-          <path d="M75 35 Q140 24,205 35" stroke="#1a0a30" stroke-width="3" fill="none"/>
-          <path d="M95 15 Q140 6,185 15" stroke="#1a0a30" stroke-width="2.5" fill="none"/>
-          <!-- gate columns -->
-          <rect x="120" y="85" width="8" height="35" rx="1"/>
-          <rect x="152" y="85" width="8" height="35" rx="1"/>
-        </g>
-        <!-- stone steps -->
-        <g fill="#2a1040" opacity=".5">
-          <rect x="280" y="145" width="120" height="8" rx="1"/>
-          <rect x="270" y="155" width="140" height="8" rx="1"/>
-          <rect x="260" y="165" width="160" height="8" rx="1"/>
-          <rect x="250" y="175" width="180" height="8" rx="1"/>
-        </g>
-      </svg>
+      <img src="images/day4.jpg" alt="首里城黃昏景色">
     </div>
 
     <div class="glass day reveal">
@@ -480,30 +369,7 @@
 
     <!-- Scene: airplane departure -->
     <div class="scene reveal">
-      <svg viewBox="0 0 680 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="farewell" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6a8090"/><stop offset=".5" stop-color="#c0b8a0"/><stop offset="1" stop-color="#e8dcc0"/></linearGradient>
-        </defs>
-        <rect width="680" height="200" rx="16" fill="url(#farewell)"/>
-        <!-- runway -->
-        <rect x="0" y="165" width="680" height="35" rx="0" fill="#4a5560" opacity=".4"/>
-        <line x1="60" y1="182" x2="620" y2="182" stroke="#fff" stroke-width="2" stroke-dasharray="30 20" opacity=".5"/>
-        <!-- airplane -->
-        <g transform="translate(350,60) rotate(-15)" opacity=".7">
-          <ellipse cx="0" cy="0" rx="50" ry="8" fill="#fff"/>
-          <path d="M-10 0 L-30 -30 -5 -5Z" fill="#fff"/>
-          <path d="M-10 0 L-30 30 -5 5Z" fill="#fff"/>
-          <path d="M35 0 L50 -12 42 -2Z" fill="#e8dcc0"/>
-          <path d="M35 0 L50 12 42 2Z" fill="#e8dcc0"/>
-        </g>
-        <!-- clouds -->
-        <g fill="#fff" opacity=".3">
-          <ellipse cx="100" cy="45" rx="40" ry="15"/>
-          <ellipse cx="130" cy="40" rx="30" ry="12"/>
-          <ellipse cx="520" cy="35" rx="35" ry="12"/>
-          <ellipse cx="550" cy="30" rx="25" ry="10"/>
-        </g>
-      </svg>
+      <img src="images/day5.jpg" alt="那霸機場飛機起飛藍天白雲">
     </div>
 
     <div class="glass day reveal">
