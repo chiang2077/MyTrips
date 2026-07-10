@@ -74,8 +74,10 @@
   @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(8px);}}
 
   /* ===== scene illustrations (images per day) ===== */
-  .scene{width:100%;max-width:680px;margin:0 auto 20px;display:block;opacity:.88;}
-  .scene img{width:100%;height:280px;object-fit:cover;display:block;border-radius:16px;filter:drop-shadow(0 4px 20px rgba(4,28,48,.3));}
+  .scene{position:relative;width:100%;max-width:680px;margin:0 auto 20px;overflow:hidden;border-radius:16px;box-shadow:0 6px 24px rgba(4,28,48,.3);}
+  .scene img{width:100%;height:280px;object-fit:cover;display:block;}
+  .scene::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(0,0,0,.55));pointer-events:none;z-index:1;}
+  .scene .cap{position:absolute;left:16px;bottom:12px;z-index:2;color:#fff;font-size:.95rem;font-weight:700;text-shadow:0 2px 8px rgba(0,0,0,.7);line-height:1.5;}
 
   /* ===== day sections ===== */
   .dsec{min-height:100svh;padding:14svh 0 10svh;scroll-margin-top:0;position:relative;}
@@ -163,11 +165,12 @@
   .draft,.draft *{color:#fff;}
 
   /* ===== 右側日程導覽 ===== */
-  .rail{position:fixed;right:10px;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:10px;}
+  .rail{position:fixed;right:10px;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:8px;
+    padding:8px 5px;border-radius:999px;background:rgba(10,20,30,.5);
+    -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);}
   .rail a{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;
-    background:rgba(255,255,255,.3);border:1px solid rgba(255,255,255,.45);
-    -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
-    font-family:var(--mono);font-size:0.98rem;font-weight:700;color:rgba(255,255,255,.8);text-decoration:none;
+    background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);
+    font-family:var(--mono);font-size:0.98rem;font-weight:700;color:#fff;text-decoration:none;
     transition:all .35s;box-shadow:0 2px 8px rgba(4,28,48,.2);}
   .rail a.active{background:rgba(255,255,255,.92);color:var(--accent-deep);transform:scale(1.28);box-shadow:0 3px 14px rgba(4,28,48,.35);}
   
@@ -223,6 +226,17 @@
   }
 
   #pbar{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:99;}
+  /* iPhone 15 Pro（393px）窄幅調校 */
+  @media(max-width:430px){
+    .wrap{padding:0 14px;}
+    .day{padding:16px 14px 8px;}
+    .stop{padding-left:58px;}
+    .stop::before{left:47px;}
+    .stop .node{left:41.5px;}
+    .stop .time{width:38px;font-size:.78rem;}
+    .scene img{height:200px;}
+    .hero .glass{padding:26px 20px 24px;}
+  }
 </style>
 </head>
 <body>
@@ -499,6 +513,7 @@
         </table>
         <p><b>利木津巴士</b>是自由行旅客的最佳夥伴：從機場直達恩納各大度假飯店門口，行李放車廂，到站下車即可。建議提前查詢班次時刻。</p>
         <p>那霸市內單軌電車「Yui-Rail」可到達國際通、牧志市場、首里城、波上宮、新都心，基本上市區觀光不需要車。</p>
+        <p class="warn"><b>叫車提醒：</b>恩納屬郊區，傍晚熱門時段不易臨時叫到計程車，叫車 App 涵蓋也不穩定。回程請提前請店家或飯店櫃檯代叫，或事先預約。</p>
       </div></details>
 
       <details><summary><span class="ix">A4</span>美麗海水族館・實用資訊<span class="pl">+</span></summary><div class="body">

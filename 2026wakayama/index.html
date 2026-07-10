@@ -203,7 +203,6 @@
     .stop .time{width:42px;font-size:.8rem;}
   }
 
-
   @media(max-width:600px){
     :root{--glass:rgba(255,255,255,.8);}
     .glass{-webkit-backdrop-filter:blur(12px) saturate(160%);backdrop-filter:blur(12px) saturate(160%);}
@@ -236,6 +235,17 @@
   }
 
   #pbar{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:99;}
+  /* iPhone 15 Pro（393px）窄幅調校 */
+  @media(max-width:430px){
+    .wrap{padding:0 14px;}
+    .day{padding:16px 14px 8px;}
+    .stop{padding-left:58px;}
+    .stop::before{left:47px;}
+    .stop .node{left:41.5px;}
+    .stop .time{width:38px;font-size:.78rem;}
+    .scene img{height:190px;}
+    .hero .glass{padding:26px 20px 24px;}
+  }
 </style>
 </head>
 <body>
