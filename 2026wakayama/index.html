@@ -84,9 +84,9 @@
   .dhead .sub b{color:#fff;}
 
   .day{padding:20px 20px 10px;margin-bottom:16px;}
-  .day-stay{display:flex;align-items:center;gap:8px;font-size:1rem;color:var(--ink-faint);padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:4px;}
+  .day-stay{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:1rem;color:var(--ink-faint);padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:4px;}
   .day-stay b{color:var(--accent-deep);font-weight:700;}
-  .day-stay .tag{font-family:var(--mono);font-size:0.85rem;color:#fff;background:var(--accent-deep);padding:3px 8px;border-radius:7px;letter-spacing:.06em;}
+  .day-stay .tag{font-family:var(--mono);font-size:0.85rem;color:#fff;background:var(--accent-deep);padding:3px 8px;border-radius:7px;letter-spacing:.06em;white-space:nowrap;}
 
   .tl{position:relative;padding:6px 0 14px;}
   .stop{position:relative;padding:13px 0 3px 78px;}
@@ -134,8 +134,8 @@
   .sec>.lbl{font-family:var(--mono);font-size:1rem;letter-spacing:.26em;text-transform:uppercase;color:#ffecd2;margin:0 0 6px;padding-left:4px;text-shadow:0 1px 6px rgba(40,12,4,.4);}
   .sec>h2{font-size:clamp(1.4rem,5.4vw,1.9rem);font-weight:800;margin:0 0 14px;color:#fff;padding-left:4px;letter-spacing:-.01em;text-shadow:0 2px 12px rgba(40,12,4,.35);}
   .card{padding:20px 20px 16px;margin-bottom:16px;}
-  .card h3.area{font-size:1.3rem;font-weight:700;margin:0 0 4px;display:flex;align-items:center;gap:9px;}
-  .card h3.area .pin{font-family:var(--mono);font-size:0.85rem;color:#fff;background:var(--accent-deep);padding:3px 8px;border-radius:7px;letter-spacing:.06em;}
+  .card h3.area{font-size:1.3rem;font-weight:700;margin:0 0 4px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 9px;}
+  .card h3.area .pin{font-family:var(--mono);font-size:0.85rem;color:#fff;background:var(--accent-deep);padding:3px 8px;border-radius:7px;letter-spacing:.06em;white-space:nowrap;flex:none;}
   .card .note{font-size:1rem;color:var(--ink-faint);margin:0 0 14px;}
   .tier{border-top:1px solid var(--line);padding:13px 0 3px;}
   .tier:first-of-type{border-top:none;}
@@ -292,7 +292,7 @@
       </div>
     </div>
     <div class="glass day reveal">
-      <div class="day-stay"><span class="tag">宿</span><b>Hotel Nikko 關西空港</b>　航廈直達 <span class="nb">走路 3 分鐘</span></div>
+      <div class="day-stay"><span class="tag">宿</span><b>Hotel Nikko 關西空港</b><span class="nb">航廈直達 走路 3 分鐘</span></div>
       <div class="tl">
         <div class="stop"><span class="time">11:00</span><span class="node"></span><h4>桃園機場集合</h4><p>下午班機，早上在家吃完早餐再出門也來得及。</p></div>
         <div class="stop key"><span class="time">13:35</span><span class="node"></span><h4>長榮 BR130 起飛</h4><p>Boeing 787-10，飛行約 <span class="nb">2 小時</span> <span class="nb">40 分鐘</span>。</p>
@@ -413,7 +413,7 @@
       </div>
     </div>
     <div class="glass day reveal">
-      <div class="day-stay"><span class="tag">宿</span><b>OMO 關西空港 by 星野集團</b>　臨空城站 <span class="nb">走路 1 分鐘</span></div>
+      <div class="day-stay"><span class="tag">宿</span><b>OMO 關西空港 by 星野集團</b><span class="nb">臨空城站 走路 1 分鐘</span></div>
       <div class="tl">
         <div class="stop"><span class="time">08:30</span><span class="node"></span><h4>最後一次川久早餐</h4><p>好好吃、好好拍，跟金色大廳道別。</p></div>
         <div class="stop"><span class="time">10:00</span><span class="node"></span><h4>退房・包車北上</h4><p>10:30 前退房。<span class="drive">白濱 → 湯淺 ≈ 1h10m</span></p></div>

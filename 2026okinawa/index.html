@@ -90,7 +90,7 @@
   .dhead .sub b{color:#fff;}
 
   .day{padding:20px 20px 10px;margin-bottom:16px;}
-  .day-stay{display:flex;align-items:center;gap:8px;font-size:1rem;color:var(--ink-faint);padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:4px;}
+  .day-stay{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:1rem;color:var(--ink-faint);padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:4px;}
   .day-stay b{color:var(--accent-deep);font-weight:700;}
   .day-stay .tag{font-family:var(--mono);font-size:0.85rem;color:#fff;background:var(--accent-deep);padding:3px 8px;border-radius:7px;letter-spacing:.06em;}
 
@@ -119,8 +119,8 @@
   .sec>.lbl{font-family:var(--mono);font-size:1rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.92);margin:0 0 6px;padding-left:4px;text-shadow:0 1px 6px rgba(4,28,48,.4);}
   .sec>h2{font-size:clamp(1.4rem,5.4vw,1.9rem);font-weight:800;margin:0 0 14px;color:#fff;padding-left:4px;letter-spacing:-.01em;text-shadow:0 2px 12px rgba(4,28,48,.35);}
   .card{padding:20px 20px 16px;margin-bottom:16px;}
-  .card h3.area{font-size:1.35rem;font-weight:700;margin:0 0 4px;display:flex;align-items:center;gap:9px;}
-  .card h3.area .pin{font-family:var(--mono);font-size:0.85rem;color:#fff;background:var(--accent-deep);padding:3px 8px;border-radius:7px;letter-spacing:.06em;}
+  .card h3.area{font-size:1.35rem;font-weight:700;margin:0 0 4px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 9px;}
+  .card h3.area .pin{font-family:var(--mono);font-size:0.85rem;color:#fff;background:var(--accent-deep);padding:3px 8px;border-radius:7px;letter-spacing:.06em;white-space:nowrap;flex:none;}
   .card .note{font-size:1rem;color:var(--ink-faint);margin:0 0 14px;}
   .tier{border-top:1px solid var(--line);padding:13px 0 3px;}
   .tier:first-of-type{border-top:none;}
