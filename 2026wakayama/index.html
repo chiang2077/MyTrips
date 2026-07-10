@@ -57,7 +57,7 @@
   /* ===== hero ===== */
   header.hero{min-height:92svh;display:flex;align-items:center;padding:max(34px,env(safe-area-inset-top)) 0 40px;}
   .hero .glass{padding:32px 26px 30px;}
-  .eyebrow{font-family:var(--mono);font-size:1.16rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 16px;}
+  .eyebrow{font-family:var(--mono);font-size:1rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 16px;}
   .hero h1{font-size:clamp(2rem,8vw,3rem);font-weight:800;line-height:1.12;margin:0;letter-spacing:-.01em;text-wrap:balance;}
   .hero h1 small{display:block;font-size:clamp(1.16rem,3.6vw,1.25rem);font-weight:600;color:var(--accent-deep);margin-top:12px;letter-spacing:0;}
   .hero .dates{font-family:var(--mono);font-size:clamp(1.16rem,4vw,1.3rem);font-weight:700;margin:22px 0 0;color:var(--ink);}
@@ -66,10 +66,10 @@
   .seg span{font-size:1.16rem;font-weight:600;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.6);color:var(--ink);}
   .seg span b{color:var(--accent-deep);}
   .hook{margin:20px 0 0;padding-left:14px;border-left:3px solid var(--accent);color:var(--ink-soft);font-size:1.16rem;line-height:1.8;}
-  .route{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:22px;font-family:var(--mono);font-size:1.16rem;color:var(--ink-soft);}
+  .route{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:22px;font-family:var(--mono);font-size:1rem;color:var(--ink-soft);}
   .route b{color:var(--ink);}
   .route i{color:var(--accent);font-style:normal;}
-  .scrolldown{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:26px;color:var(--accent-deep);font-family:var(--mono);font-size:1.16rem;letter-spacing:.22em;}
+  .scrolldown{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:26px;color:var(--accent-deep);font-family:var(--mono);font-size:1rem;letter-spacing:.22em;}
   .scrolldown .arr{font-size:1.2rem;line-height:1;animation:bob 2.2s ease-in-out infinite;}
   @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(7px);}}
 
@@ -78,7 +78,7 @@
   .dhead{position:relative;margin-bottom:26px;padding-left:4px;}
   .dhead .big{font-family:var(--mono);font-weight:800;font-size:clamp(4.2rem,18vw,7.5rem);line-height:.9;color:rgba(255,255,255,.22);letter-spacing:-.04em;text-shadow:0 2px 20px rgba(40,12,4,.15);user-select:none;}
   .dhead .ttl{position:relative;margin-top:-1.2em;}
-  .dhead .lbl{font-family:var(--mono);font-size:1.16rem;letter-spacing:.26em;text-transform:uppercase;color:#ffecd2;margin:0 0 6px;text-shadow:0 1px 6px rgba(40,12,4,.45);}
+  .dhead .lbl{font-family:var(--mono);font-size:1rem;letter-spacing:.26em;text-transform:uppercase;color:#ffecd2;margin:0 0 6px;text-shadow:0 1px 6px rgba(40,12,4,.45);}
   .dhead h2{font-size:clamp(1.5rem,6vw,2.1rem);font-weight:800;margin:0;color:#fff;letter-spacing:-.01em;text-shadow:0 2px 14px rgba(40,12,4,.4);text-wrap:balance;}
   .dhead .sub{margin:8px 0 0;color:rgba(255,255,255,.88);font-size:1.16rem;text-shadow:0 1px 8px rgba(40,12,4,.4);}
   .dhead .sub b{color:#fff;}
@@ -86,22 +86,22 @@
   .day{padding:20px 20px 10px;margin-bottom:16px;}
   .day-stay{display:flex;align-items:center;gap:8px;font-size:1.16rem;color:var(--ink-faint);padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:4px;}
   .day-stay b{color:var(--accent-deep);font-weight:700;}
-  .day-stay .tag{font-family:var(--mono);font-size:1.16rem;color:#fff;background:var(--accent-deep);padding:3px 8px;border-radius:7px;letter-spacing:.06em;}
+  .day-stay .tag{font-family:var(--mono);font-size:0.98rem;color:#fff;background:var(--accent-deep);padding:3px 8px;border-radius:7px;letter-spacing:.06em;}
 
   .tl{position:relative;padding:6px 0 14px;}
-  .stop{position:relative;padding:13px 0 3px 74px;}
-  .stop::before{content:"";position:absolute;left:60px;top:0;bottom:0;width:2px;background:linear-gradient(rgba(181,53,30,.25),rgba(181,53,30,.55));}
+  .stop{position:relative;padding:13px 0 3px 78px;}
+  .stop::before{content:"";position:absolute;left:66px;top:0;bottom:0;width:2px;background:linear-gradient(rgba(181,53,30,.25),rgba(181,53,30,.55));}
   .stop:first-child::before{top:20px;}
   .stop:last-child::before{height:20px;bottom:auto;}
-  .stop .node{position:absolute;left:54px;top:18px;width:13px;height:13px;border-radius:50%;background:#fff;border:2px solid var(--accent);z-index:2;box-shadow:0 1px 4px rgba(40,12,4,.2);}
+  .stop .node{position:absolute;left:62px;top:18px;width:13px;height:13px;border-radius:50%;background:#fff;border:2px solid var(--accent);z-index:2;box-shadow:0 1px 4px rgba(40,12,4,.2);}
   .stop.key .node{background:var(--coral);border-color:var(--coral);box-shadow:0 0 0 5px rgba(211,84,0,.18);}
   .stop.maple .node{background:var(--accent);border-color:var(--accent-deep);box-shadow:0 0 0 5px rgba(139,26,26,.2);}
   .stop .time{position:absolute;left:0;top:15px;width:48px;text-align:right;font-family:var(--mono);font-size:1.16rem;font-weight:700;color:var(--ink);}
-  .stop h4{margin:0 0 2px;font-size:1.16rem;font-weight:700;}
+  .stop h4{margin:0 0 2px;font-size:1.2rem;font-weight:700;}
   .stop p{margin:0;color:var(--ink-soft);font-size:1.16rem;}
-  .drive{display:inline-block;margin-top:4px;font-family:var(--mono);font-size:1.16rem;color:var(--accent-deep);border:1px dashed rgba(181,53,30,.45);border-radius:7px;padding:1px 8px;}
+  .drive{display:inline-block;margin-top:4px;font-family:var(--mono);font-size:0.98rem;color:var(--accent-deep);border:1px dashed rgba(181,53,30,.45);border-radius:7px;padding:1px 8px;}
   .meal{margin-top:9px;background:rgba(181,53,30,.08);border:1px solid rgba(181,53,30,.16);border-radius:14px;padding:10px 12px;}
-  .meal .mh{font-family:var(--mono);font-size:1.16rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 6px;}
+  .meal .mh{font-family:var(--mono);font-size:1rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 6px;}
   .meal ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:5px;}
   .meal li{font-size:1.16rem;color:var(--ink-soft);line-height:1.5;}
   .meal li b{color:var(--ink);}
@@ -142,16 +142,16 @@
 
   /* ===== stay / appendix ===== */
   .sec{padding-top:46px;scroll-margin-top:14px;}
-  .sec>.lbl{font-family:var(--mono);font-size:1.16rem;letter-spacing:.26em;text-transform:uppercase;color:#ffecd2;margin:0 0 6px;padding-left:4px;text-shadow:0 1px 6px rgba(40,12,4,.4);}
+  .sec>.lbl{font-family:var(--mono);font-size:1rem;letter-spacing:.26em;text-transform:uppercase;color:#ffecd2;margin:0 0 6px;padding-left:4px;text-shadow:0 1px 6px rgba(40,12,4,.4);}
   .sec>h2{font-size:clamp(1.4rem,5.4vw,1.9rem);font-weight:800;margin:0 0 14px;color:#fff;padding-left:4px;letter-spacing:-.01em;text-shadow:0 2px 12px rgba(40,12,4,.35);}
   .card{padding:20px 20px 16px;margin-bottom:16px;}
   .card h3.area{font-size:1.16rem;font-weight:700;margin:0 0 4px;display:flex;align-items:center;gap:9px;}
-  .card h3.area .pin{font-family:var(--mono);font-size:1.16rem;color:#fff;background:var(--accent-deep);padding:3px 8px;border-radius:7px;letter-spacing:.06em;}
+  .card h3.area .pin{font-family:var(--mono);font-size:0.98rem;color:#fff;background:var(--accent-deep);padding:3px 8px;border-radius:7px;letter-spacing:.06em;}
   .card .note{font-size:1.16rem;color:var(--ink-faint);margin:0 0 14px;}
   .tier{border-top:1px solid var(--line);padding:13px 0 3px;}
   .tier:first-of-type{border-top:none;}
   .tier .th{display:flex;align-items:baseline;gap:8px;margin-bottom:7px;}
-  .tier .th .name{font-weight:700;font-size:1.16rem;}
+  .tier .th .name{font-weight:700;font-size:1.2rem;}
   .tier .th .px{margin-left:auto;font-family:var(--mono);font-size:1.16rem;font-weight:700;color:var(--accent-deep);white-space:nowrap;}
   .tier ul{margin:0 0 8px;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;}
   .tier li{font-size:1.16rem;color:var(--ink-soft);line-height:1.5;padding-left:14px;position:relative;}
@@ -164,7 +164,7 @@
   .supp details:last-child{border-bottom:none;}
   .supp summary{cursor:pointer;list-style:none;padding:17px 18px;font-weight:700;font-size:1.16rem;color:#fff;display:flex;align-items:center;gap:12px;}
   .supp summary::-webkit-details-marker{display:none;}
-  .supp summary .ix{font-family:var(--mono);font-size:1.16rem;color:#f0c060;}
+  .supp summary .ix{font-family:var(--mono);font-size:1rem;color:#f0c060;}
   .supp summary .pl{margin-left:auto;font-size:1.25rem;color:#f0c060;transition:transform .25s;line-height:1;}
   .supp details[open] summary .pl{transform:rotate(45deg);}
   .supp .body{padding:0 18px 18px 44px;color:#e8cdb0;font-size:1.16rem;line-height:1.8;}
@@ -186,16 +186,16 @@
   .rail a{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;
     background:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.5);
     -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
-    font-family:var(--mono);font-size:1.16rem;font-weight:700;color:rgba(61,28,11,.75);text-decoration:none;
+    font-family:var(--mono);font-size:0.98rem;font-weight:700;color:rgba(61,28,11,.75);text-decoration:none;
     transition:all .3s;box-shadow:0 2px 8px rgba(40,12,4,.15);}
   .rail a.active{background:#fff;color:var(--accent-deep);transform:scale(1.25);box-shadow:0 3px 12px rgba(40,12,4,.3);}
-  @media(max-width:600px){.rail{right:6px;gap:7px;}.rail a{width:24px;height:24px;font-size:1.16rem;}}
+  @media(max-width:600px){.rail{right:6px;gap:7px;}.rail a{width:24px;height:24px;font-size:0.98rem;}}
 
   /* ===== agency + footer ===== */
   .agency{text-align:center;margin:36px 0 10px;padding:24px 18px;background:rgba(255,255,255,.08);border-top:1px solid rgba(255,255,255,.15);border-bottom:1px solid rgba(255,255,255,.15);border-radius:0;}
   .agency p{margin:0;color:rgba(255,255,255,.92);font-size:1.1rem;font-weight:700;letter-spacing:.1em;text-shadow:0 1px 6px rgba(40,12,4,.4);}
 
-  footer.foot{text-align:center;color:rgba(255,255,255,.85);font-family:var(--mono);font-size:1.16rem;letter-spacing:.05em;padding:20px 0 10px;text-shadow:0 1px 6px rgba(40,12,4,.4);}
+  footer.foot{text-align:center;color:rgba(255,255,255,.85);font-family:var(--mono);font-size:1rem;letter-spacing:.05em;padding:20px 0 10px;text-shadow:0 1px 6px rgba(40,12,4,.4);}
 
   :focus-visible{outline:3px solid #fff;outline-offset:2px;border-radius:6px;}
   .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
@@ -322,21 +322,19 @@
       <div class="tl">
         <div class="stop"><span class="time">08:00</span><span class="node"></span><h4>川久早餐</h4><p>王樣自助餐早餐版，吃飽出發。</p></div>
         <div class="stop"><span class="time">08:45</span><span class="node"></span><h4>包車出發・沿海南下</h4><p><span class="drive">白濱 → 橋杭岩 ≈ 55m</span></p></div>
-        <div class="stop"><span class="time">09:45</span><span class="node"></span><h4>橋杭岩（下車休息 ①）</h4><p>串本奇景：40 餘根岩柱一列排開如橋墩。伸展筋骨、拍照 20 分鐘。</p></div>
-        <div class="stop"><span class="time">10:10</span><span class="node"></span><h4>續行那智</h4><p><span class="drive">橋杭岩 → 大門坂 ≈ 45m</span></p></div>
-        <div class="stop maple"><span class="time">11:00</span><span class="node"></span><h4>大門坂・熊野古道石階</h4><p>樹齡 800 年夫婦杉迎接，杉木參道兩側楓紅。慢走 40–60 分鐘上到那智大社。</p>
-          
-          <div class="planb"><b>Plan B：</b>若膝蓋不想爬石階，包車直接開到那智大社停車場，只走大社 → 瀑布的下坡段（約 15 分鐘），風景一樣好。</div>
+        <div class="stop"><span class="time">09:45</span><span class="node"></span><h4>橋杭岩（下車休息 ①）</h4><p>串本奇景：40 餘根岩柱一列排開如橋墩。下車伸展筋骨、拍照，停留約 30 分鐘慢慢看。</p></div>
+        <div class="stop"><span class="time">10:15</span><span class="node"></span><h4>續行那智</h4><p><span class="drive">橋杭岩 → 那智大社 ≈ 30m</span></p></div>
+        <div class="stop maple"><span class="time">10:45</span><span class="node"></span><h4>那智大社停車場集合</h4><p>包車直接開到那智大社停車場，免去爬石階的辛苦。從停車場走到那智大社只要 10 分鐘平緩步道。</p>
+          <div class="planb"><b>想走古道的人：</b>體力好的家人可以從大門坂入口出發，沿熊野古道石階上行（約 40–60 分鐘）；也可以反過來從那智大社往下走一小段古道，感受 800 年夫婦杉的氛圍後原路折返，輕鬆又有味道。</div>
         </div>
-        <div class="stop maple"><span class="time">12:00</span><span class="node"></span><h4>熊野那智大社・那智瀑布</h4><p>落差 133 公尺的日本三大名瀑。三重塔＋瀑布＋楓紅的構圖，11 月中下旬正是最佳觀賞期。</p>
+        <div class="stop maple"><span class="time">11:15</span><span class="node"></span><h4>熊野那智大社・那智瀑布</h4><p>落差 133 公尺的日本三大名瀑。三重塔＋瀑布＋楓紅的構圖，11 月中下旬正是最佳觀賞期。不趕時間，慢慢拍照。</p>
           <div class="scene" style="background:url('images/day3.jpg') center/cover no-repeat"><span class="cap">那智瀑布秋楓紅葉</span></div>
         </div>
-        <div class="stop"><span class="time">13:15</span><span class="node"></span><h4>午餐・紀伊勝浦漁港</h4><p>生鮪魚水揚量日本第一的漁港。<span class="drive">那智 → 勝浦 ≈ 15m</span></p>
+        <div class="stop"><span class="time">12:30</span><span class="node"></span><h4>午餐・紀伊勝浦漁港</h4><p>生鮪魚水揚量日本第一的漁港。<span class="drive">那智 → 勝浦 ≈ 15m</span></p>
           <div class="meal"><p class="mh">午餐備案 · 勝浦</p><ul><li><b>鮪魚三昧 那智</b>　鮪魚定食專門店</li><li><b>竹原</b>　漁港直送生鮪魚丼</li><li><b>桂城</b>　老字號海鮮料理</li></ul></div>
         </div>
-        <div class="stop"><span class="time">14:30</span><span class="node"></span><h4>回程・往潮岬</h4><p><span class="drive">勝浦 → 潮岬 ≈ 40m</span></p></div>
-        <div class="stop"><span class="time">15:10</span><span class="node"></span><h4>潮岬（下車休息 ②）</h4><p>本州最南端紀念碑＋大草坪＋燈塔，看太平洋 20 分鐘。</p></div>
-        <div class="stop"><span class="time">16:30</span><span class="node"></span><h4>回到川久・泡湯</h4><p>Royal Spa 海景露天風呂，把一天的疲勞泡掉。<span class="drive">潮岬 → 川久 ≈ 55m</span></p></div>
+        <div class="stop"><span class="time">14:00</span><span class="node"></span><h4>回程・沿海北上回白濱</h4><p>吃飽上車，沿海岸線慢慢開回去，途中風景也是享受。<span class="drive">勝浦 → 白濱 ≈ 1h15m</span></p></div>
+        <div class="stop"><span class="time">15:30</span><span class="node"></span><h4>回到川久・泡湯</h4><p>Royal Spa 海景露天風呂，把一天的疲勞泡掉。在房間午睡一會兒也很好。</p></div>
         <div class="stop key"><span class="time">18:30</span><span class="node"></span><h4>王樣自助餐 晚餐 ②</h4><p>晚點吃，泡完湯胃口正好。</p></div>
       </div>
     </div>
@@ -394,7 +392,7 @@
         <div class="stop maple"><span class="time">14:00</span><span class="node"></span><h4>和歌山城・紅葉溪庭園</h4><p>紀州德川家的名園，池面倒映楓紅正是 11 月下旬名景。茶室「紅松庵」點一份抹茶＋和菓子，坐著賞楓（入園免費、抹茶 ¥460）。</p>
           <div class="scene" style="background:url('images/day5.jpg') center/cover no-repeat"><span class="cap">和歌山城秋楓</span></div>
         </div>
-        <div class="stop"><span class="time">15:20</span><span class="node"></span><h4>和歌山城天守閣</h4><p>德川御三家居城，登天守望紀之川與市街。</p></div>
+        <div class="stop"><span class="time">15:20</span><span class="node"></span><h4>和歌山城天守閣</h4><p>德川御三家居城，登天守望紀之川與市街。登頂需爬陡木梯，膝蓋不便的長輩可在紅葉溪庭園茶室休息等候。</p></div>
         <div class="stop"><span class="time">16:10</span><span class="node"></span><h4>出發往臨空城</h4><p><span class="drive">和歌山市 → 臨空城 ≈ 45m</span></p></div>
         <div class="stop key"><span class="time">17:00</span><span class="node"></span><h4>入住 OMO 關西空港 by 星野集團</h4><p>星野集團旗下旅店，臨空城站步行 1 分鐘。大浴場泡碳酸泉、22 樓屋頂酒吧看摩天輪夜景。Outlet 走路就到。</p></div>
         <div class="stop"><span class="time">18:30</span><span class="node"></span><h4>晚餐・臨空城</h4>
@@ -541,6 +539,7 @@
         </table>
         <p><b>熊貓黑潮號</b>：全車熊貓彩繪的特別編成，每天固定班次運行，時刻公布在 JR 西日本官網——訂得到的話長輩會很開心。</p>
         <p>座位選<b>海側（往白濱方向右側為海）</b>，記得劃右側。</p>
+        <p class="warn"><b>帶長輩提醒：</b>務必提前在 e5489 劃位，確保全家座位相鄰且都在海側。現場購票可能被打散。</p>
       </div></details>
 
       <details><summary><span class="ix">A4</span>包車安排（Day 3・Day 5）<span class="pl">+</span></summary><div class="body">
