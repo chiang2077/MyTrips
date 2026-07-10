@@ -14,7 +14,7 @@
     --ink-faint:#8b6347;
     --line:rgba(61,28,11,.12);
     --glass:rgba(255,255,255,.58);
-    --glass-dark:rgba(46,16,8,.52);
+    --glass-dark:rgba(46,16,8,.78);
     --accent:#b5351e;
     --accent-deep:#8b1a1a;
     --coral:#d35400;
@@ -215,6 +215,14 @@
 
   @media(max-width:600px){
     html{font-size:16px;}
+  }
+
+  @media(max-width:600px){
+    :root{--glass:rgba(255,255,255,.8);}
+    .glass{-webkit-backdrop-filter:blur(12px) saturate(160%);backdrop-filter:blur(12px) saturate(160%);}
+  }
+  @supports not (backdrop-filter:blur(1px)){
+    .glass{background:rgba(255,255,255,.93);}
   }
 </style>
 </head>

@@ -11,11 +11,11 @@
     --mono:ui-monospace,"SF Mono","Menlo","Roboto Mono",monospace;
     --ink:#0c2a33;
     --ink-soft:#33545d;
-    --ink-faint:#5d7a82;
+    --ink-faint:#3e5a63;
     --line:rgba(12,42,51,.12);
     --glass:rgba(255,255,255,.56);
     --glass-strong:rgba(255,255,255,.72);
-    --glass-dark:rgba(6,28,48,.55);
+    --glass-dark:rgba(6,28,48,.78);
     --accent:#0ea5a0;
     --accent-deep:#087f7b;
     --coral:#ff6b53;
@@ -82,7 +82,7 @@
   .dhead{position:relative;margin-bottom:28px;padding-left:4px;}
   .dhead .big{font-family:var(--mono);font-weight:800;font-size:clamp(4.8rem,22vw,8.5rem);line-height:.88;color:rgba(255,255,255,.18);letter-spacing:-.04em;text-shadow:0 2px 24px rgba(4,28,48,.15);user-select:none;}
   .dhead .ttl{position:relative;margin-top:-1.1em;}
-  .dhead .lbl{font-family:var(--mono);font-size:1rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.7);margin:0 0 6px;text-shadow:0 1px 8px rgba(4,28,48,.5);}
+  .dhead .lbl{font-family:var(--mono);font-size:1rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.92);margin:0 0 6px;text-shadow:0 1px 8px rgba(4,28,48,.5);}
   .dhead h2{font-size:clamp(1.5rem,6vw,2.2rem);font-weight:800;margin:0;color:#fff;letter-spacing:-.01em;text-shadow:0 2px 16px rgba(4,28,48,.45);text-wrap:balance;}
   .dhead .sub{margin:10px 0 0;color:rgba(255,255,255,.85);font-size:1.1rem;line-height:1.7;text-shadow:0 1px 8px rgba(4,28,48,.4);}
   .dhead .sub b{color:#fff;}
@@ -114,7 +114,7 @@
 
   /* ===== stay / shop / appendix ===== */
   .sec{padding-top:46px;scroll-margin-top:14px;}
-  .sec>.lbl{font-family:var(--mono);font-size:1rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.7);margin:0 0 6px;padding-left:4px;text-shadow:0 1px 6px rgba(4,28,48,.4);}
+  .sec>.lbl{font-family:var(--mono);font-size:1rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.92);margin:0 0 6px;padding-left:4px;text-shadow:0 1px 6px rgba(4,28,48,.4);}
   .sec>h2{font-size:clamp(1.4rem,5.4vw,1.9rem);font-weight:800;margin:0 0 14px;color:#fff;padding-left:4px;letter-spacing:-.01em;text-shadow:0 2px 12px rgba(4,28,48,.35);}
   .card{padding:20px 20px 16px;margin-bottom:16px;}
   .card h3.area{font-size:1.35rem;font-weight:700;margin:0 0 4px;display:flex;align-items:center;gap:9px;}
@@ -188,6 +188,14 @@
     .stop::before{left:52px;}
     .stop .node{left:46.5px;}
     .stop .time{width:42px;font-size:.8rem;}
+  }
+
+  @media(max-width:600px){
+    :root{--glass:rgba(255,255,255,.8);}
+    .glass{-webkit-backdrop-filter:blur(12px) saturate(160%);backdrop-filter:blur(12px) saturate(160%);}
+  }
+  @supports not (backdrop-filter:blur(1px)){
+    .glass{background:rgba(255,255,255,.93);}
   }
 </style>
 </head>
