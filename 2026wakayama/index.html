@@ -25,7 +25,7 @@
   html{scroll-behavior:smooth;font-size:18px;}
   body{
     margin:0;color:var(--ink);font-family:var(--sans);
-    line-height:1.75;font-size:1.05rem;letter-spacing:.01em;
+    line-height:1.75;font-size:1.05rem;letter-spacing:.01em;line-break:strict;
     -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
     padding-bottom:40px;overflow-x:hidden;background:#3a1408;
   }
@@ -99,7 +99,7 @@
   .stop .time{position:absolute;left:0;top:13px;line-height:calc(1.25rem * 1.5);width:48px;text-align:right;font-family:var(--mono);font-size:0.85rem;font-weight:700;color:var(--ink);}
   .stop h4{margin:0 0 2px;font-size:1.25rem;line-height:1.5;font-weight:700;}
   .stop p{margin:0;color:var(--ink-soft);font-size:1.05rem;}
-  .drive{display:inline-block;margin-top:4px;font-family:var(--mono);font-size:0.85rem;color:var(--accent-deep);border:1px dashed rgba(181,53,30,.45);border-radius:7px;padding:1px 8px;}
+  .drive{display:inline-block;margin-top:4px;font-family:var(--mono);font-size:0.85rem;color:var(--accent-deep);border:1px dashed rgba(181,53,30,.45);border-radius:7px;padding:1px 8px;white-space:nowrap;}
   .meal{margin-top:9px;background:rgba(181,53,30,.08);border:1px solid rgba(181,53,30,.16);border-radius:14px;padding:10px 12px;}
   .meal .mh{font-family:var(--mono);font-size:0.85rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 6px;}
   .meal ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:5px;}
@@ -224,6 +224,11 @@
   @supports not (backdrop-filter:blur(1px)){
     .glass{background:rgba(255,255,255,.93);}
   }
+
+  p{text-wrap:pretty;}
+  .nb{white-space:nowrap;}
+
+  .dhead .big .emo{font-size:.42em;letter-spacing:0;vertical-align:baseline;margin-left:.08em;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
 </style>
 </head>
 <body>
@@ -269,16 +274,16 @@
       </div>
     </div>
     <div class="glass day reveal">
-      <div class="day-stay"><span class="tag">宿</span><b>Hotel Nikko 關西空港</b>　航廈直通・走路 3 分鐘</div>
+      <div class="day-stay"><span class="tag">宿</span><b>Hotel Nikko 關西空港</b>　航廈直通・走路 <span class="nb">3 分鐘</span></div>
       <div class="tl">
         <div class="stop"><span class="time">11:00</span><span class="node"></span><h4>桃園機場集合</h4><p>下午班機，早上在家吃完午餐再出門也來得及。</p></div>
-        <div class="stop key"><span class="time">13:35</span><span class="node"></span><h4>長榮 BR130 起飛</h4><p>Boeing 787-10，飛行約 2 小時 40 分鐘。</p>
+        <div class="stop key"><span class="time">13:35</span><span class="node"></span><h4>長榮 BR130 起飛</h4><p>Boeing 787-10，飛行約 <span class="nb">2 小時</span> <span class="nb">40 分鐘</span>。</p>
           <div class="scene" style="background:url('images/day1.jpg') center/cover no-repeat"><span class="cap">關西機場黃昏降落</span></div>
         </div>
-        <div class="stop"><span class="time">17:15</span><span class="node"></span><h4>關西機場落地</h4><p>日本快 1 小時。通關、領行李約 40 分鐘。</p></div>
-        <div class="stop key"><span class="time">18:15</span><span class="node"></span><h4>入住 Hotel Nikko 關西空港</h4><p>航廈天橋直通，拖著行李走 3 分鐘就到，不用搭任何車。</p></div>
+        <div class="stop"><span class="time">17:15</span><span class="node"></span><h4>關西機場落地</h4><p>日本快 <span class="nb">1 小時</span>。通關、領行李約 <span class="nb">40 分鐘</span>。</p></div>
+        <div class="stop key"><span class="time">18:15</span><span class="node"></span><h4>入住 Hotel Nikko 關西空港</h4><p>航廈天橋直通，拖著行李走 <span class="nb">3 分鐘</span>就到，不用搭任何車。</p></div>
         <div class="stop"><span class="time">19:00</span><span class="node"></span><h4>晚餐・早點休息</h4><p>飯店內或 Aeroplaza 餐廳簡單吃，養精蓄銳。</p>
-          <div class="meal"><p class="mh">晚餐備案</p><ul><li><b>飯店內日式／西式餐廳</b>　最省力</li><li><b>機場航廈餐廳街</b>　選擇多，步行 3 分鐘</li></ul></div>
+          <div class="meal"><p class="mh">晚餐備案</p><ul><li><b>飯店內日式／西式餐廳</b>　最省力</li><li><b>機場航廈餐廳街</b>　選擇多，步行 <span class="nb">3 分鐘</span></li></ul></div>
         </div>
       </div>
     </div>
@@ -304,16 +309,16 @@
 
       <div class="tl">
         <div class="stop"><span class="time">09:00</span><span class="node"></span><h4>飯店悠閒早餐</h4><p>不趕時間，吃完在航廈逛逛便利商店補給。</p></div>
-        <div class="stop"><span class="time">11:00</span><span class="node"></span><h4>退房・搭 JR</h4><p>關空快速到日根野轉乘（約 10 分鐘），或依班次直接搭。</p></div>
-        <div class="stop key"><span class="time">11:45</span><span class="node"></span><h4>黑潮號特急列車南下</h4><p>指定席約 ¥5,000／人。右側靠海座位風景最好，沿線是太平洋與蜜柑山。<span class="drive">日根野 → 白濱 ≈ 1h40m</span></p>
+        <div class="stop"><span class="time">11:00</span><span class="node"></span><h4>退房・搭 JR</h4><p>關空快速到日根野轉乘（約 <span class="nb">10 分鐘</span>），或依班次直接搭。</p></div>
+        <div class="stop key"><span class="time">11:45</span><span class="node"></span><h4>黑潮號特急列車南下</h4><p>指定席約 <span class="nb">¥5,000／人</span>。右側靠海座位風景最好，沿線是太平洋與蜜柑山。<span class="drive">日根野 → 白濱 ≈ 1h40m</span></p>
           
         </div>
-        <div class="stop"><span class="time">13:30</span><span class="node"></span><h4>抵達白濱站</h4><p>搭計程車約 10 分鐘到川久。</p></div>
+        <div class="stop"><span class="time">13:30</span><span class="node"></span><h4>抵達白濱站</h4><p>搭計程車約 <span class="nb">10 分鐘</span>到川久。</p></div>
         <div class="stop key"><span class="time">14:00</span><span class="node"></span><h4>川久旅館・寄行李逛大廳</h4><p>15:00 前先寄行李。金色穹頂、羅馬柱、名家美術品——「可以住的美術館」大廳本身就是景點。</p>
           
         </div>
-        <div class="stop"><span class="time">15:00</span><span class="node"></span><h4>正式入住・換浴衣</h4><p>全室套房 70m² 起，窗外就是田邊灣。</p></div>
-        <div class="stop maple"><span class="time">16:20</span><span class="node"></span><h4>円月島夕陽</h4><p>白濱地標，11 月日落約 16:50，夕陽落入島中央圓洞的瞬間是招牌畫面。搭計程車 5 分鐘。</p>
+        <div class="stop"><span class="time">15:00</span><span class="node"></span><h4>正式入住・換浴衣</h4><p>全室套房 <span class="nb">70m²</span> 起，窗外就是田邊灣。</p></div>
+        <div class="stop maple"><span class="time">16:20</span><span class="node"></span><h4>円月島夕陽</h4><p>白濱地標，11 月日落約 16:50，夕陽落入島中央圓洞的瞬間是招牌畫面。搭計程車 <span class="nb">5 分鐘</span>。</p>
           <div class="scene" style="background:url('images/day2.jpg') center/cover no-repeat"><span class="cap">白濱円月島夕陽</span></div>
         </div>
         <div class="stop key"><span class="time">18:00</span><span class="node"></span><h4>王樣自助餐 晚餐 ①</h4><p>川久招牌晚宴：料理人現握壽司、現炸天婦羅，紀州食材盛宴。</p></div>
@@ -336,12 +341,12 @@
       <div class="tl">
         <div class="stop"><span class="time">08:00</span><span class="node"></span><h4>川久早餐</h4><p>王樣自助餐早餐版，吃飽出發。</p></div>
         <div class="stop"><span class="time">08:45</span><span class="node"></span><h4>包車出發・沿海南下</h4><p><span class="drive">白濱 → 橋杭岩 ≈ 55m</span></p></div>
-        <div class="stop"><span class="time">09:45</span><span class="node"></span><h4>橋杭岩（下車休息 ①）</h4><p>串本奇景：40 餘根岩柱一列排開如橋墩。下車伸展筋骨、拍照，停留約 30 分鐘慢慢看。</p></div>
+        <div class="stop"><span class="time">09:45</span><span class="node"></span><h4>橋杭岩（下車休息 ①）</h4><p>串本奇景：40 餘根岩柱一列排開如橋墩。下車伸展筋骨、拍照，停留約 <span class="nb">30 分鐘</span>慢慢看。</p></div>
         <div class="stop"><span class="time">10:15</span><span class="node"></span><h4>續行那智</h4><p><span class="drive">橋杭岩 → 那智大社 ≈ 30m</span></p></div>
-        <div class="stop maple"><span class="time">10:45</span><span class="node"></span><h4>那智大社停車場集合</h4><p>包車直接開到那智大社停車場，免去爬石階的辛苦。從停車場走到那智大社只要 10 分鐘平緩步道。</p>
-          <div class="planb"><b>想走古道的人：</b>體力好的家人可以從大門坂入口出發，沿熊野古道石階上行（約 40–60 分鐘）；也可以反過來從那智大社往下走一小段古道，感受 800 年夫婦杉的氛圍後原路折返，輕鬆又有味道。</div>
+        <div class="stop maple"><span class="time">10:45</span><span class="node"></span><h4>那智大社停車場集合</h4><p>包車直接開到那智大社停車場，免去爬石階的辛苦。從停車場走到那智大社只要 <span class="nb">10 分鐘</span>平緩步道。</p>
+          <div class="planb"><b>想走古道的人：</b>體力好的家人可以從大門坂入口出發，沿熊野古道石階上行（約 <span class="nb">40–<span class="nb">60 分鐘</span></span>）；也可以反過來從那智大社往下走一小段古道，感受 800 年夫婦杉的氛圍後原路折返，輕鬆又有味道。</div>
         </div>
-        <div class="stop maple"><span class="time">11:15</span><span class="node"></span><h4>熊野那智大社・那智瀑布</h4><p>落差 133 公尺的日本三大名瀑。三重塔＋瀑布＋楓紅的構圖，11 月中下旬正是最佳觀賞期。不趕時間，慢慢拍照。</p>
+        <div class="stop maple"><span class="time">11:15</span><span class="node"></span><h4>熊野那智大社・那智瀑布</h4><p>落差 <span class="nb">133 公尺</span>的日本三大名瀑。三重塔＋瀑布＋楓紅的構圖，11 月中下旬正是最佳觀賞期。不趕時間，慢慢拍照。</p>
           <div class="scene" style="background:url('images/day3.jpg') center/cover no-repeat"><span class="cap">那智瀑布秋楓紅葉</span></div>
         </div>
         <div class="stop"><span class="time">12:30</span><span class="node"></span><h4>午餐・紀伊勝浦漁港</h4><p>生鮪魚水揚量日本第一的漁港。<span class="drive">那智 → 勝浦 ≈ 15m</span></p>
@@ -361,7 +366,7 @@
       <div class="ttl">
         <p class="lbl">Day 4 · 休息日 ♨</p>
         <h2>白濱慢日子：溫泉、斷崖、海鮮市場</h2>
-        <p class="sub">不包車、不趕路。睡到飽，<b>景點都在 10 分鐘車程內</b>，計程車隨叫隨到。</p>
+        <p class="sub">不包車、不趕路。睡到飽，<b>景點都在 <span class="nb">10 分鐘</span>車程內</b>，計程車隨叫隨到。</p>
       </div>
     </div>
     <div class="glass day reveal">
@@ -369,14 +374,14 @@
       <div class="tl">
         <div class="stop"><span class="time">09:00</span><span class="node"></span><h4>自然醒・悠閒早餐</h4><p>今天唯一的行程就是放鬆。</p></div>
         <div class="stop key"><span class="time">10:00</span><span class="node"></span><h4>川久 Royal Spa・悠久之森</h4><p>早上人最少，泡湯配海景。男女湯每日輪替，今天泡的和昨天不一樣。</p></div>
-        <div class="stop"><span class="time">11:30</span><span class="node"></span><h4>三段壁・千疊敷</h4><p>50 公尺斷崖配黑潮拍岸；電梯下 36 公尺是熊野水軍傳說的洞窟。千疊敷層疊岩盤在旁邊，步行 10 分鐘互通。<span class="drive">川久 → 三段壁 ≈ 8m 車程</span></p>
+        <div class="stop"><span class="time">11:30</span><span class="node"></span><h4>三段壁・千疊敷</h4><p>50 公尺斷崖配黑潮拍岸；電梯下 36 公尺是熊野水軍傳說的洞窟。千疊敷層疊岩盤在旁邊，步行 <span class="nb">10 分鐘</span>互通。<span class="drive">川久 → 三段壁 ≈ 8m 車程</span></p>
           <div class="scene" style="background:url('images/day4.jpg') center/cover no-repeat"><span class="cap">三段壁斷崖海浪</span></div>
         </div>
         <div class="stop"><span class="time">12:40</span><span class="node"></span><h4>Toretore 海鮮市場午餐</h4><p>西日本最大海鮮市場：現切海鮮丼、現烤扇貝，順手把紀州南高梅、蜜柑伴手禮買齊。<span class="drive">三段壁 → Toretore ≈ 10m</span></p>
           <div class="meal"><p class="mh">推薦品嚐</p><ul><li><b>生鮪魚丼</b>　勝浦直送</li><li><b>市場 BBQ 區</b>　現挑現烤</li><li><b>紀州南高梅</b>　送禮首選<span class="t">宅配可寄機場</span></li></ul></div>
         </div>
         <div class="stop"><span class="time">14:30</span><span class="node"></span><h4>白良濱散步・咖啡放空</h4><p>秋天的白沙灘遊客稀少，散步吹海風。</p>
-          <div class="planb"><b>替代方案：</b>想看熊貓的話，Adventure World（冒險世界）車程 10 分鐘（入園 ¥5,300，14:30 入園看重點約 2.5 小時）。</div>
+          <div class="planb"><b>替代方案：</b>想看熊貓的話，Adventure World（冒險世界）車程 <span class="nb">10 分鐘</span>（入園 <span class="nb">¥5,300</span>，14:30 入園看重點約 <span class="nb">2.5 小時</span>）。</div>
         </div>
         <div class="stop"><span class="time">16:30</span><span class="node"></span><h4>崎之湯（選配）或回川久泡湯</h4><p>1350 年歷史的海邊露天古湯（¥500），浪花就打在湯池旁；或直接回川久把溫泉泡好泡滿。</p></div>
         <div class="stop key"><span class="time">18:00</span><span class="node"></span><h4>王樣自助餐 晚餐 ③</h4><p>川久最後一夜，慢慢吃。</p></div>
@@ -395,11 +400,11 @@
       </div>
     </div>
     <div class="glass day reveal">
-      <div class="day-stay"><span class="tag">宿</span><b>OMO 關西空港 by 星野集團</b>　臨空城站步行 1 分鐘</div>
+      <div class="day-stay"><span class="tag">宿</span><b>OMO 關西空港 by 星野集團</b>　臨空城站步行 <span class="nb">1 分鐘</span></div>
       <div class="tl">
         <div class="stop"><span class="time">08:30</span><span class="node"></span><h4>最後一次川久早餐</h4><p>好好吃、好好拍，跟金色大廳道別。</p></div>
         <div class="stop"><span class="time">10:00</span><span class="node"></span><h4>退房・包車北上</h4><p>10:30 前退房。<span class="drive">白濱 → 湯淺 ≈ 1h10m</span></p></div>
-        <div class="stop"><span class="time">11:10</span><span class="node"></span><h4>湯淺・醬油發祥老街＋午餐</h4><p>日本醬油的發源地。江戶老街散步 40 分鐘，「角長」古法醬油藏參觀試買；午餐吃湯淺名物吻仔魚丼。</p>
+        <div class="stop"><span class="time">11:10</span><span class="node"></span><h4>湯淺・醬油發祥老街＋午餐</h4><p>日本醬油的發源地。江戶老街散步 <span class="nb">40 分鐘</span>，「角長」古法醬油藏參觀試買；午餐吃湯淺名物吻仔魚丼。</p>
           <div class="meal"><p class="mh">午餐備案 · 湯淺</p><ul><li><b>角屋食堂</b>　生吻仔魚丼名店</li><li><b>魚河岸</b>　海鮮定食</li></ul></div>
         </div>
         <div class="stop"><span class="time">13:00</span><span class="node"></span><h4>續行和歌山市</h4><p><span class="drive">湯淺 → 和歌山城 ≈ 50m</span></p></div>
@@ -408,7 +413,7 @@
         </div>
         <div class="stop"><span class="time">15:20</span><span class="node"></span><h4>和歌山城天守閣</h4><p>德川御三家居城，登天守望紀之川與市街。登頂需爬陡峭木梯，若不想爬樓梯，可以在紅葉溪庭園的茶室「紅松庵」喝抹茶賞楓，一樣很享受。</p></div>
         <div class="stop"><span class="time">16:10</span><span class="node"></span><h4>出發往臨空城</h4><p><span class="drive">和歌山市 → 臨空城 ≈ 45m</span></p></div>
-        <div class="stop key"><span class="time">17:00</span><span class="node"></span><h4>入住 OMO 關西空港 by 星野集團</h4><p>星野集團旗下旅店，臨空城站步行 1 分鐘。大浴場泡碳酸泉、22 樓屋頂酒吧看摩天輪夜景。Outlet 走路就到。</p></div>
+        <div class="stop key"><span class="time">17:00</span><span class="node"></span><h4>入住 OMO 關西空港 by 星野集團</h4><p>星野集團旗下旅店，臨空城站步行 <span class="nb">1 分鐘</span>。大浴場泡碳酸泉、22 樓屋頂酒吧看摩天輪夜景。Outlet 走路就到。</p></div>
         <div class="stop"><span class="time">18:30</span><span class="node"></span><h4>晚餐・臨空城</h4>
           <div class="meal"><p class="mh">晚餐備案</p><ul><li><b>臨空城車站周邊餐廳街</b>　選擇多</li><li><b>Outlet 內餐廳</b>　營業到 20:00，順便探路明天動線</li></ul></div>
         </div>
@@ -423,7 +428,7 @@
       <div class="ttl">
         <p class="lbl">Day 6 · 購物・歸途 🛍</p>
         <h2>臨空城 Outlet 四小時，傍晚回家</h2>
-        <p class="sub">開門就進場，<b>整整四小時</b>採買。一站電車 6 分鐘到機場，完全不趕。</p>
+        <p class="sub">開門就進場，<b>整整四小時</b>採買。一站電車 <span class="nb">6 分鐘</span>到機場，完全不趕。</p>
       </div>
     </div>
     <div class="glass day reveal">
@@ -434,7 +439,7 @@
           <div class="scene" style="background:url('images/day6.jpg') center/cover no-repeat"><span class="cap">臨空城 Outlet</span></div>
         </div>
         <div class="stop"><span class="time">14:00</span><span class="node"></span><h4>購物結束・取行李</h4><p>回飯店拿行李，臨空城站搭車。<span class="drive">臨空城 → 關西空港 ≈ 電車 6m</span></p></div>
-        <div class="stop"><span class="time">15:00</span><span class="node"></span><h4>關西機場・辦理登機</h4><p>提前 3 小時到，報到後還能逛機場免稅店做最後採買。</p></div>
+        <div class="stop"><span class="time">15:00</span><span class="node"></span><h4>關西機場・辦理登機</h4><p>提前 <span class="nb">3 小時</span>到，報到後還能逛機場免稅店做最後採買。</p></div>
         <div class="stop key"><span class="time">18:30</span><span class="node"></span><h4>長榮 BR129 起飛</h4><p>約 20:30 落地桃園，回家。</p></div>
       </div>
     </div>
@@ -448,11 +453,7 @@
 
     <div class="glass card reveal" id="kawakyu-detail">
       <h3 class="area"><span class="pin">白濱 · 3 晚</span>川久旅館（Hotel Kawakyu）</h3>
-      <p class="note">本次旅程的主角。可以住的美術館、全室套房、一泊二食。<a href="#d2" class="ki-link">▸ 回到 Day 2 行程</a></p>
-
-      
-
-      <div class="tier"><div class="th"><span class="name">建築與藝術</span></div>
+      <p class="note">本次旅程的主角。可以住的美術館、全室套房、一泊二食。<a href="#d2" class="ki-link">▸ 回到 Day 2 行程</a></p>`n  <div class="tier"><div class="th"><span class="name">建築與藝術</span></div>
         <ul>
           <li><b>1989 年建成</b>　耗資約 400 億日圓打造，1993 年獲村野藤吾建築獎</li>
           <li><b>金箔天花板</b>　金氏世界紀錄認證——世界最大金箔面積</li>
@@ -483,7 +484,7 @@
           <li><b>悠久之森</b>　療癒空間，男女湯每日輪替，每天體驗不同</li>
         </ul>
       </div>
-      <div class="tier"><div class="th"><span class="name">實用資訊</span><span class="px">¥26,500~80,000/人/晚</span></div>
+      <div class="tier"><div class="th"><span class="name">實用資訊</span><span class="px"><span class="nb">¥26,500</span>~80,000/人/晚</span></div>
         <ul>
           <li><b>Check-in</b> 15:00 ／ <b>Check-out</b> 10:30</li>
           <li><b>地址</b>　和歌山縣西牟婁郡白浜町 3745</li>
@@ -494,10 +495,9 @@
 
     <div class="glass card reveal">
       <h3 class="area"><span class="pin">機場 · 第 1 晚</span>Hotel Nikko 關西空港</h3>
-      <p class="note">落地晚上直接睡機場旁，隔天從容搭黑潮號。</p>
-      <div class="tier"><div class="th"><span class="name">重點</span><span class="px">約 ¥15,000–25,000/房</span></div>
+      <p class="note">落地晚上直接睡機場旁，隔天從容搭黑潮號。</p>`n  <div class="tier"><div class="th"><span class="name">重點</span><span class="px">約 <span class="nb">¥15,000–25,000</span>/房</span></div>
         <ul>
-          <li><b>航廈直通</b>　天橋走 3 分鐘，落地不用再搭車</li>
+          <li><b>航廈直通</b>　天橋走 <span class="nb">3 分鐘</span>，落地不用再搭車</li>
           <li><b>JR 就在樓下</b>　隔天搭關空快速轉黑潮號無縫接軌</li>
         </ul>
       </div>
@@ -505,10 +505,9 @@
 
     <div class="glass card reveal">
       <h3 class="area"><span class="pin">臨空城 · 第 5 晚</span>OMO 關西空港 by 星野集團</h3>
-      <p class="note">星野集團旗下都市觀光旅店，為 Day 6 的 Outlet 購物做準備。</p>
-      <div class="tier"><div class="th"><span class="name">特色</span><span class="px">約 ¥10,000–20,000/房</span></div>
+      <p class="note">星野集團旗下都市觀光旅店，為 Day 6 的 Outlet 購物做準備。</p>`n  <div class="tier"><div class="th"><span class="name">特色</span><span class="px">約 <span class="nb">¥10,000–20,000</span>/房</span></div>
         <ul>
-          <li><b>臨空城站步行 1 分鐘</b>　出站即到，不用拖行李走遠路</li>
+          <li><b>臨空城站步行 <span class="nb">1 分鐘</span></b>　出站即到，不用拖行李走遠路</li>
           <li><b>大浴場</b>　碳酸泉、半露天風呂、乾式三溫暖，旅途最後一泡</li>
           <li><b>22 樓屋頂酒吧</b>　看摩天輪＋關西空港夜景</li>
           <li><b>Outlet 步行圈</b>　隔天開門直接走過去</li>
@@ -529,7 +528,7 @@
           <li><b>那智瀑布紅葉</b>：最佳觀賞期 11 月中旬～下旬，瀑布＋楓紅一年最壯觀。</li>
           <li><b>和歌山城紅葉溪庭園</b>：最佳觀賞期 11 月下旬～12 月上旬，池面倒映楓紅。</li>
           <li><b>兩處賞楓同時命中</b>：11/18–25 前後是交集最佳期。</li>
-          <li><b>白濱氣候</b>：南紀 11 月約 12–18°C，秋高氣爽。</li>
+          <li><b>白濱氣候</b>：南紀 11 月約 <span class="nb">12–18°C</span>，秋高氣爽。</li>
           <li><b>避開連假</b>：11/23 勤勞感謝日前後人多，選平日出發更好訂房。</li>
         </ul>
         <p class="warn"><b>注意：</b>11 月海水浴季已結束，海灘只散步不下水；本行程主打溫泉＋賞楓＋美食。</p>
@@ -546,9 +545,9 @@
 
       <details><summary><span class="ix">A3</span>JR 黑潮號特急列車<span class="pl">+</span></summary><div class="body">
         <table class="dt">
-          <tr><td>區間</td><td>日根野（關空轉乘）→ 白濱，約 1 小時 40 分鐘</td></tr>
+          <tr><td>區間</td><td>日根野（關空轉乘）→ 白濱，約 <span class="nb">1 小時</span> <span class="nb">40 分鐘</span></td></tr>
           <tr><td>班次</td><td>約每小時 1 班</td></tr>
-          <tr><td>票價</td><td>指定席約 ¥5,000／人（關西機場出發合計）</td></tr>
+          <tr><td>票價</td><td>指定席約 <span class="nb">¥5,000／人</span>（關西機場出發合計）</td></tr>
           <tr><td>訂票</td><td>JR 西日本 e5489 網上預訂，有早鳥折扣</td></tr>
         </table>
         <p><b>熊貓黑潮號</b>：全車熊貓彩繪的特別編成，每天固定班次運行，時刻公布在 JR 西日本官網——訂得到的話大家一定很開心。</p>
@@ -557,20 +556,20 @@
       </div></details>
 
       <details><summary><span class="ix">A4</span>包車安排（Day 3・Day 5）<span class="pl">+</span></summary><div class="body">
-        <p><b>Day 3 那智來回</b>：全日 7–8 小時、約 220km。行程：橋杭岩→那智大社／瀑布→勝浦午餐→沿海回白濱。</p>
-        <p><b>Day 5 北上轉場</b>：約 7 小時、160km。行程：湯淺→和歌山城→臨空城放人。</p>
+        <p><b>Day 3 那智來回</b>：全日 <span class="nb">7–<span class="nb">8 小時</span></span>、約 220km。行程：橋杭岩→那智大社／瀑布→勝浦午餐→沿海回白濱。</p>
+        <p><b>Day 5 北上轉場</b>：約 <span class="nb">7 小時</span>、160km。行程：湯淺→和歌山城→臨空城放人。</p>
         <p>業者可洽：<b>明光計程車行</b>（白浜 0739-42-2727）、<b>白浜第一交通</b>、<b>串本計程車行</b>；或 VELTRA、KKday 平台預訂含中文服務車款。</p>
-        <p class="warn">9 人座全日包車粗估 ¥50,000–80,000／日，依車型與時數報價，建議兩個月前詢價預約。</p>
+        <p class="warn">9 人座全日包車粗估 <span class="nb">¥50,000–80,000</span>／日，依車型與時數報價，建議兩個月前詢價預約。</p>
       </div></details>
 
       <details><summary><span class="ix">A5</span>大門坂攻略＆Plan B<span class="pl">+</span></summary><div class="body">
         <table class="dt">
           <tr><td>路線</td><td>大門坂入口 → 那智大社 → 那智瀑布，約 2.5km</td></tr>
-          <tr><td>時間</td><td>慢走含參拜約 2~2.5 小時</td></tr>
+          <tr><td>時間</td><td>慢走含參拜約 2~<span class="nb">2.5 小時</span></td></tr>
           <tr><td>難度</td><td>石階上坡為主，部分路段較陡</td></tr>
         </table>
         <p class="warn"><b>石階有苔蘚會滑</b>，務必穿防滑好走的鞋。</p>
-        <p><b>預設方案（免爬坡）</b>：包車直上那智大社停車場，走平緩步道 10 分鐘即達。想挑戰古道的人可從大門坂入口步行上山，或從大社往下走一小段再折返。當天視體力臨場決定即可，兩案路線司機都熟。</p>
+        <p><b>預設方案（免爬坡）</b>：包車直上那智大社停車場，走平緩步道 <span class="nb">10 分鐘</span>即達。想挑戰古道的人可從大門坂入口步行上山，或從大社往下走一小段再折返。當天視體力臨場決定即可，兩案路線司機都熟。</p>
       </div></details>
 
       <details><summary><span class="ix">A6</span>王樣自助餐 三晚吃什麼<span class="pl">+</span></summary><div class="body">
@@ -588,14 +587,14 @@
           <tr><td>營業時間</td><td>10:00–20:00</td></tr>
           <tr><td>店鋪數</td><td>約 250 間</td></tr>
           <tr><td>位置</td><td>臨空城站步行可達；OMO 關西空港旁</td></tr>
-          <tr><td>距機場</td><td>電車一站約 6 分鐘</td></tr>
+          <tr><td>距機場</td><td>電車一站約 <span class="nb">6 分鐘</span></td></tr>
         </table>
-        <p>安排 10:00–14:00 共 4 小時。海邊 Outlet 風大，秋末記得帶外套。部分店家出示護照有外國旅客折價券（服務中心領取）。</p>
+        <p>安排 10:00–14:00 共 <span class="nb">4 小時</span>。海邊 Outlet 風大，秋末記得帶外套。部分店家出示護照有外國旅客折價券（服務中心領取）。</p>
       </div></details>
 
       <details><summary><span class="ix">A8</span>11 月穿著與注意事項<span class="pl">+</span></summary><div class="body">
         <ul>
-          <li><b>氣溫</b>：白濱 12–18°C、那智山區再低 2–3°C，洋蔥式穿法。</li>
+          <li><b>氣溫</b>：白濱 <span class="nb">12–18°C</span>、那智山區再低 <span class="nb">2–3°C</span>，洋蔥式穿法。</li>
           <li><b>鞋子</b>：Day 3 走古道，防滑運動鞋必備。</li>
           <li><b>日落</b>：11 月中下旬約 16:50，行程都排在天黑前結束。</li>
           <li><b>泡湯</b>：出浴後注意保暖再出門。</li>
@@ -605,12 +604,12 @@
 
       <details><summary><span class="ix">A9</span>預算概估（每人）<span class="pl">+</span></summary><div class="body">
         <table class="dt">
-          <tr><td>機票（長榮經濟艙）</td><td>約 NT$8,000–15,000 來回</td></tr>
-          <tr><td>川久 3 晚（一泊二食）</td><td>約 ¥80,000–180,000／人</td></tr>
-          <tr><td>機場飯店＋臨空城飯店</td><td>約 ¥25,000–45,000／房（2 晚合計）</td></tr>
-          <tr><td>JR 黑潮號</td><td>約 ¥5,000／人 單程</td></tr>
-          <tr><td>包車 ×2 日</td><td>約 ¥100,000–160,000（全車）</td></tr>
-          <tr><td>午餐・計程車・雜費</td><td>約 ¥4,000–6,000／人／日</td></tr>
+          <tr><td>機票（長榮經濟艙）</td><td>約 <span class="nb">NT$8,000–15,000</span> 來回</td></tr>
+          <tr><td>川久 3 晚（一泊二食）</td><td>約 <span class="nb">¥80,000–180,000／人</span></td></tr>
+          <tr><td>機場飯店＋臨空城飯店</td><td>約 <span class="nb">¥25,000–45,000</span>／房（2 晚合計）</td></tr>
+          <tr><td>JR 黑潮號</td><td>約 <span class="nb">¥5,000／人</span> 單程</td></tr>
+          <tr><td>包車 ×2 日</td><td>約 <span class="nb">¥100,000–160,000</span>（全車）</td></tr>
+          <tr><td>午餐・計程車・雜費</td><td>約 <span class="nb">¥4,000–6,000／人</span>／日</td></tr>
         </table>
         <p class="warn">川久是最大支出，房型價差大；秋季屬中價季節，越早訂越好。</p>
       </div></details>
