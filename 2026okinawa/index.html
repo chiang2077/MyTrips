@@ -217,9 +217,17 @@
     .dsec{min-height:auto;padding:9svh 0 7svh;}
     .dhead .lbl,.sec>.lbl{letter-spacing:.15em;}
   }
+
+  @media(prefers-reduced-motion:no-preference){
+    .scene img{animation:kb 9s ease-out both;}
+    @keyframes kb{from{transform:scale(1.06);}to{transform:scale(1);}}
+  }
+
+  #pbar{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:99;}
 </style>
 </head>
 <body>
+<div id="pbar"></div>
 
 <div class="sky" aria-hidden="true">
   <div class="skyl sky-hero on" data-sky="hero"></div>
@@ -529,6 +537,12 @@
 
 <script>
 (function(){
+  var pbar=document.getElementById('pbar');
+  addEventListener('scroll',function(){
+    var h=document.documentElement;
+    pbar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+  },{passive:true});
+
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* reveal on scroll */
