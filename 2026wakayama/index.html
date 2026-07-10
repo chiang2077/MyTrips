@@ -182,8 +182,13 @@
   
 
   /* ===== agency + footer ===== */
-  .agency{text-align:center;margin:36px 0 10px;padding:24px 18px;background:rgba(255,255,255,.08);border-top:1px solid rgba(255,255,255,.15);border-bottom:1px solid rgba(255,255,255,.15);border-radius:0;}
-  .agency p{margin:0;color:rgba(255,255,255,.92);font-size:1.1rem;font-weight:700;letter-spacing:.1em;text-shadow:0 1px 6px rgba(40,12,4,.4);}
+  .agency{text-align:center;margin:52px 0 14px;padding:0 18px;}
+  .agency .ag-rule{display:flex;align-items:center;justify-content:center;gap:14px;color:var(--gold);font-size:.85rem;margin-bottom:16px;text-shadow:0 1px 6px rgba(40,12,4,.5);}
+  .agency .ag-rule i{font-style:normal;line-height:1;}
+  .agency .ag-rule span{width:min(110px,24vw);height:1px;background:linear-gradient(to right,transparent,rgba(230,168,23,.8));}
+  .agency .ag-rule span:last-child{background:linear-gradient(to left,transparent,rgba(230,168,23,.8));}
+  .agency .ag-name{margin:0;color:#fff;font-size:1.4rem;font-weight:800;letter-spacing:.5em;text-indent:.5em;text-shadow:0 2px 14px rgba(40,12,4,.55);}
+  .agency .ag-sub{margin:8px 0 0;color:rgba(255,255,255,.82);font-family:var(--mono);font-size:.9rem;letter-spacing:.32em;text-indent:.32em;text-shadow:0 1px 6px rgba(40,12,4,.45);}
 
   footer.foot{text-align:center;color:rgba(255,255,255,.85);font-family:var(--mono);font-size:1rem;letter-spacing:.05em;padding:20px 0 10px;text-shadow:0 1px 6px rgba(40,12,4,.4);}
 
@@ -245,6 +250,7 @@
     .stop .time{width:38px;font-size:.78rem;}
     .scene img{height:190px;}
     .hero .glass{padding:26px 20px 24px;}
+    .seg span{white-space:nowrap;font-size:.88rem;padding:7px 11px;}
   }
 </style>
 </head>
@@ -635,7 +641,11 @@
     <div class="glass draft reveal"><b>草稿 v3。</b>結構定案：機場 1 晚 → 川久 3 晚 → 臨空城 1 晚。日期未鎖定（建議 11/18–22 前後平日出發）；黑潮號班次、包車業者、川久房型訂妥後我再把時刻對齊。</div>
   </section>
 
-  <div class="agency"><p>長肜旅行社，給您最優質的旅行</p></div>
+  <div class="agency reveal">
+    <div class="ag-rule"><span></span><i>✦</i><span></span></div>
+    <p class="ag-name">長肜旅行社</p>
+    <p class="ag-sub">給您最優質的旅行</p>
+  </div>
   <footer class="foot">和歌山 白濱川久 6D5N · 秋楓長卷版</footer>
   </div>
 </main>
