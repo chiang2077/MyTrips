@@ -80,7 +80,7 @@
   /* ===== day sections ===== */
   .dsec{min-height:100svh;padding:14svh 0 10svh;scroll-margin-top:0;position:relative;}
   .dhead{position:relative;margin-bottom:28px;padding-left:4px;}
-  .dhead .big{font-family:var(--mono);font-weight:800;font-size:clamp(4.8rem,22vw,8.5rem);line-height:.88;color:rgba(255,255,255,.18);letter-spacing:-.04em;text-shadow:0 2px 24px rgba(4,28,48,.15);user-select:none;}
+  .dhead .big{font-family:var(--mono);font-weight:800;font-size:clamp(4.8rem,22vw,8.5rem);line-height:.88;color:rgba(255,255,255,.3);letter-spacing:-.04em;text-shadow:0 2px 24px rgba(4,28,48,.35);user-select:none;}
   .dhead .ttl{position:relative;margin-top:-1.1em;}
   .dhead .lbl{font-family:var(--mono);font-size:1rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.92);margin:0 0 6px;text-shadow:0 1px 8px rgba(4,28,48,.5);}
   .dhead h2{font-size:clamp(1.5rem,6vw,2.2rem);font-weight:800;margin:0;color:#fff;letter-spacing:-.01em;text-shadow:0 2px 16px rgba(4,28,48,.45);text-wrap:balance;}
@@ -203,7 +203,6 @@
 
   .dhead .big .emo{font-size:.42em;letter-spacing:0;vertical-align:baseline;margin-left:.08em;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
 
-  .scene .scap{margin:6px 4px 0;font-size:.9rem;color:rgba(255,255,255,.85);text-align:right;text-shadow:0 1px 6px rgba(4,28,48,.5);}
 
   @media(max-width:600px){
     .rail{right:auto;left:50%;top:auto;bottom:12px;transform:translateX(-50%);
@@ -219,7 +218,7 @@
   }
 
   @media(prefers-reduced-motion:no-preference){
-    .scene img{animation:kb 9s ease-out both;}
+    .reveal.in .scene img,.scene.reveal.in img{animation:kb 9s ease-out both;}
     @keyframes kb{from{transform:scale(1.06);}to{transform:scale(1);}}
   }
 
@@ -272,7 +271,7 @@
     <!-- Scene: resort sunset silhouette -->
     <div class="scene reveal">
       <img src="images/day1.jpg" alt="恩納西海岸黃昏夕陽海景">
-      <p class="scap">恩納西海岸黃昏夕陽海景</p>
+      <span class="cap">恩納西海岸黃昏夕陽海景</span>
     </div>
 
     <div class="glass day reveal">
@@ -283,8 +282,8 @@
         <div class="stop key"><span class="time">14:00</span><span class="node"></span><h4>抵達恩納・辦理入住</h4><p>寄放行李或直接進房。先在飯店內用午餐，也可以到附近覓食。</p>
           <div class="meal"><p class="mh">午餐備案</p><ul><li><b>牛排88 恩納店</b>　60 年老字號牛排，不接受訂位、常需排隊<span class="t">現場候位</span></li><li><b>飯店內餐廳</b>　輕鬆用餐，把胃留給晚上</li></ul></div>
         </div>
-        <div class="stop"><span class="time">14:30</span><span class="node"></span><h4>萬座毛</h4><p>象鼻形海崖，從飯店搭計程車約 <span class="nb">10 分鐘</span>。展望步道來回輕鬆走完，斷崖下是透明的珊瑚海。<span class="transit">計程車 ≈ 10 分</span></p></div>
-        <div class="stop"><span class="time">15:30</span><span class="node"></span><h4>回飯店・泳池與海灘放空</h4><p>11 月氣溫舒適但海水偏涼，溫水泳池更實用。把節奏放到最慢。</p></div>
+        <div class="stop"><span class="time">15:30</span><span class="node"></span><h4>萬座毛</h4><p>象鼻形海崖，從飯店搭計程車約 <span class="nb">10 分鐘</span>。展望步道來回輕鬆走完，斷崖下是透明的珊瑚海。<span class="transit">計程車 ≈ 10 分</span></p></div>
+        <div class="stop"><span class="time">16:30</span><span class="node"></span><h4>回飯店・泳池與海灘放空</h4><p>11 月氣溫舒適但海水偏涼，溫水泳池更實用。把節奏放到最慢。</p></div>
         <div class="stop"><span class="time">17:40</span><span class="node"></span><h4>海邊夕陽</h4><p>西海岸正對落日，11 月底日落約 17:40。拿杯飲料坐在沙灘上就好。</p></div>
         <div class="stop"><span class="time">18:45</span><span class="node"></span><h4>晚餐</h4>
           <div class="meal"><p class="mh">晚餐備案 · 恩納</p><ul><li><b>度假鐵板燒 OCEAN</b>　海邊鐵板燒、活龍蝦，氣氛絕佳</li><li><b>豚匠 碧</b>　阿古豬涮涮鍋，想吃清爽選這家</li></ul></div>
@@ -307,7 +306,7 @@
     <!-- Scene: aquarium whale shark -->
     <div class="scene reveal">
       <img src="images/day2.jpg" alt="美麗海水族館黑潮之海鯨鯊" loading="lazy" decoding="async">
-      <p class="scap">美麗海水族館黑潮之海鯨鯊</p>
+      <span class="cap">美麗海水族館黑潮之海鯨鯊</span>
     </div>
 
     <div class="glass day reveal">
@@ -330,7 +329,7 @@
   <!-- ============ DAY 3 ============ -->
   <section class="dsec" data-day="d3" id="d3"><div class="wrap">
     <div class="dhead reveal">
-      <div class="big">03<span class="emo">🎡</span></div>
+      <div class="big">03<span class="emo">🏖&#xFE0F;</span></div>
       <div class="ttl">
         <p class="lbl">Day 3 · 美國村海岸</p>
         <h2>從容的度假村早晨，午後漫步美國村</h2>
@@ -338,10 +337,10 @@
       </div>
     </div>
 
-    <!-- Scene: Naha cityscape -->
+    <!-- Scene: Cape Zanpa lighthouse -->
     <div class="scene reveal">
       <img src="images/day3.jpg" alt="殘波岬白色燈塔海岸" loading="lazy" decoding="async">
-      <p class="scap">殘波岬白色燈塔海岸</p>
+      <span class="cap">殘波岬白色燈塔海岸</span>
     </div>
 
     <div class="glass day reveal">
@@ -349,10 +348,12 @@
       <div class="tl">
         <div class="stop"><span class="time">09:00</span><span class="node"></span><h4>悠閒早餐</h4><p>悠閒享受度假村的早晨，不趕。泡個泳池或散步海灘。</p></div>
         <div class="stop"><span class="time">10:30</span><span class="node"></span><h4>飯店設施放空</h4><p>泳池、沙灘散步、SPA，把度假飯店的價值發揮到極致。</p></div>
-        <div class="stop key"><span class="time">13:00</span><span class="node"></span><h4>搭計程車前往殘波岬</h4><p>白色燈塔佇立在斷崖之上，展望台可以眺望東海。<span class="transit">恩納→殘波岬 ≈ 計程車 20 分</span></p></div>
+        <div class="stop key"><span class="time">13:00</span><span class="node"></span><h4>搭計程車前往殘波岬</h4><p>白色燈塔佇立在斷崖之上，展望台可以眺望東海。<span class="transit">恩納→殘波岬 ≈ 計程車 20 分</span></p>
+          <div class="planb"><b>半日包車建議：</b>今天恩納→殘波岬→美國村→恩納共四段車程，計程車合計約 <span class="nb">¥12,000</span>。改訂 <span class="nb">4 小時</span>觀光包車（約 <span class="nb">¥4,000–5,000</span>／小時）價差不大，還不必擔心郊區叫不到車。</div>
+        </div>
         <div class="stop"><span class="time">14:00</span><span class="node"></span><h4>美國村</h4><p>從殘波岬順路過來只要 <span class="nb">15 分鐘</span>。色彩繽紛的美式商圈，隨意逛逛拍拍照。<span class="transit">殘波岬→美國村 ≈ 15 分</span></p></div>
         <div class="stop"><span class="time">15:30</span><span class="node"></span><h4>海邊咖啡廳</h4><p>找間面海的咖啡廳坐下來，看北谷的海與夕陽。</p></div>
-        <div class="stop"><span class="time">17:30</span><span class="node"></span><h4>回恩納度假飯店</h4><p>搭計程車約 <span class="nb">20 分鐘</span>回飯店，休息泡湯。<span class="transit">美國村→恩納 ≈ 計程車 20 分</span></p></div>
+        <div class="stop"><span class="time">18:00</span><span class="node"></span><h4>回恩納度假飯店</h4><p>搭計程車約 <span class="nb">20 分鐘</span>回飯店，休息泡湯。<span class="transit">美國村→恩納 ≈ 計程車 20 分</span></p></div>
         <div class="stop"><span class="time">19:00</span><span class="node"></span><h4>晚餐</h4>
           <div class="meal"><p class="mh">晚餐備案 · 恩納</p><ul><li><b>鐵板燒 OCEAN</b>　海邊鐵板燒、活龍蝦，氣氛絕佳</li><li><b>豚匠 碧</b>　阿古豬涮涮鍋，想吃清爽選這家</li><li><b>飯店內餐廳</b>　最輕鬆的選擇</li></ul></div>
         </div>
@@ -374,7 +375,7 @@
     <!-- Scene: Shuri Castle sunset -->
     <div class="scene reveal">
       <img src="images/day4.jpg" alt="首里城黃昏景色" loading="lazy" decoding="async">
-      <p class="scap">首里城黃昏景色</p>
+      <span class="cap">首里城黃昏景色</span>
     </div>
 
     <div class="glass day reveal">
@@ -398,7 +399,7 @@
   <!-- ============ DAY 5 ============ -->
   <section class="dsec" data-day="d5" id="d5"><div class="wrap">
     <div class="dhead reveal">
-      <div class="big">05<span class="emo">🛍</span></div>
+      <div class="big">05<span class="emo">🛍&#xFE0F;</span></div>
       <div class="ttl">
         <p class="lbl">Day 5 · 歸途</p>
         <h2>最後掃貨，下午從容回家</h2>
@@ -409,16 +410,16 @@
     <!-- Scene: airplane departure -->
     <div class="scene reveal">
       <img src="images/day5.jpg" alt="那霸機場飛機起飛藍天白雲" loading="lazy" decoding="async">
-      <p class="scap">那霸機場飛機起飛藍天白雲</p>
+      <span class="cap">那霸機場飛機起飛藍天白雲</span>
     </div>
 
     <div class="glass day reveal">
       <div class="day-stay"><span class="tag">飛</span><b>OKA → TPE</b>　下午回家</div>
       <div class="tl">
         <div class="stop"><span class="time">09:00</span><span class="node"></span><h4>退房・飯店早餐</h4><p>近機場的飯店通常有不錯的早餐。吃完不急，還有一整個上午。</p></div>
-        <div class="stop"><span class="time">10:00</span><span class="node"></span><h4>沖繩 Outlet Mall Ashibinaa 或瀨長島</h4><p>機場旁的暢貨中心，最後掃貨的好機會。搭計程車約 <span class="nb">10 分鐘</span>。<span class="transit">計程車 ≈ 10 分</span></p></div>
-        <div class="stop"><span class="time">13:00</span><span class="node"></span><h4>前往那霸機場</h4><p>提前約 <span class="nb">2.5–3 小時</span>辦理國際線手續。辦完還能逛機場免稅店做最後採買。</p></div>
-        <div class="stop"><span class="time">14:00</span><span class="node"></span><h4>機場最後補貨</h4><p>紅芋塔、機場限定甜點、忘了買的伴手禮，一次買齊。</p></div>
+        <div class="stop"><span class="time">10:00</span><span class="node"></span><h4>沖繩 Outlet Mall Ashibinaa 或瀨長島</h4><p>機場旁的暢貨中心，最後掃貨的好機會。搭計程車約 <span class="nb">10 分鐘</span>，午餐就在 Outlet 美食街解決。<span class="transit">計程車 ≈ 10 分</span></p></div>
+        <div class="stop"><span class="time">14:30</span><span class="node"></span><h4>前往那霸機場</h4><p>提前約 <span class="nb">2.5–3 小時</span>辦理國際線手續。辦完還能逛機場免稅店做最後採買。</p></div>
+        <div class="stop"><span class="time">15:00</span><span class="node"></span><h4>機場最後補貨</h4><p>紅芋塔、機場限定甜點、忘了買的伴手禮，一次買齊。</p></div>
         <div class="stop key"><span class="time">17:30</span><span class="node"></span><h4>那霸起飛 → 桃園</h4><p>約 18:00 落地桃園，回家。</p></div>
       </div>
     </div>
@@ -463,7 +464,7 @@
         <div class="shop"><span class="when">DAY 4</span><div><h4>國際通＋平和通商店街</h4><p>那霸最熱鬧的購物街與拱廊商店街，傍晚人潮最旺。</p><span class="buy">買：紅芋塔（御菓子御殿）· 金楚糕 · 黑糖 · 泡盛 · 沖繩鹽 · T 恤</span></div></div>
         <div class="shop"><span class="when">DAY 4</span><div><h4>第一牧志公設市場</h4><p>在地人的廚房，乾貨、鮮食與沖繩食材齊聚。一樓買、二樓代煮。</p><span class="buy">買：海葡萄 · 柴魚 · 沖繩限定食材</span></div></div>
         <div class="shop"><span class="when">DAY 4</span><div><h4>新都心・DFS 免稅店</h4><p>免稅品牌＋那霸 Main Place 購物中心，美妝藥妝一次解決。</p><span class="buy">買：免稅品牌 · 美妝藥妝 · 名產整箱</span></div></div>
-        <div class="shop"><span class="when opt">DAY 4 夜</span><div><h4>驚安殿堂 國際通店</h4><p><span class="nb">24 小時</span>營業，零食藥妝最便宜，晚上回飯店前掃貨。</p><span class="buy">買：零食 · 藥妝 · 沖繩限定泡麵</span></div></div>
+        <div class="shop"><span class="when">DAY 4</span><div><h4>驚安殿堂 國際通店</h4><p><span class="nb">24 小時</span>營業，零食藥妝最便宜，下午逛國際通時順路掃貨。</p><span class="buy">買：零食 · 藥妝 · 沖繩限定泡麵</span></div></div>
         <div class="shop"><span class="when">DAY 5</span><div><h4>Outlet Mall Ashibinaa</h4><p>機場旁暢貨中心，最後的品牌掃貨機會。</p><span class="buy">買：品牌折扣 · 運動用品</span></div></div>
         <div class="shop"><span class="when">DAY 5</span><div><h4>那霸機場</h4><p>登機前最後補貨，紅芋塔、機場限定甜點一次買齊。</p><span class="buy">買：漏買的伴手禮 · 機場限定</span></div></div>
       </div>
