@@ -93,10 +93,10 @@
   .stop::before{content:"";position:absolute;left:66px;top:0;bottom:0;width:2px;background:linear-gradient(rgba(181,53,30,.25),rgba(181,53,30,.55));}
   .stop:first-child::before{top:20px;}
   .stop:last-child::before{height:20px;bottom:auto;}
-  .stop .node{position:absolute;left:62px;top:18px;width:13px;height:13px;border-radius:50%;background:#fff;border:2px solid var(--accent);z-index:2;box-shadow:0 1px 4px rgba(40,12,4,.2);}
+  .stop .node{position:absolute;left:62px;top:14px;width:13px;height:13px;border-radius:50%;background:#fff;border:2px solid var(--accent);z-index:2;box-shadow:0 1px 4px rgba(40,12,4,.2);}
   .stop.key .node{background:var(--coral);border-color:var(--coral);box-shadow:0 0 0 5px rgba(211,84,0,.18);}
   .stop.maple .node{background:var(--accent);border-color:var(--accent-deep);box-shadow:0 0 0 5px rgba(139,26,26,.2);}
-  .stop .time{position:absolute;left:0;top:15px;width:48px;text-align:right;font-family:var(--mono);font-size:1.16rem;font-weight:700;color:var(--ink);}
+  .stop .time{position:absolute;left:0;top:14px;width:48px;text-align:right;font-family:var(--mono);font-size:0.98rem;font-weight:700;color:var(--ink);}
   .stop h4{margin:0 0 2px;font-size:1.2rem;font-weight:700;}
   .stop p{margin:0;color:var(--ink-soft);font-size:1.16rem;}
   .drive{display:inline-block;margin-top:4px;font-family:var(--mono);font-size:0.98rem;color:var(--accent-deep);border:1px dashed rgba(181,53,30,.45);border-radius:7px;padding:1px 8px;}
@@ -162,9 +162,9 @@
   .supp .panel{background:var(--glass-dark);-webkit-backdrop-filter:blur(22px) saturate(160%);backdrop-filter:blur(22px) saturate(160%);border:1px solid rgba(255,255,255,.18);border-radius:var(--radius);box-shadow:0 8px 30px rgba(40,12,4,.25);overflow:hidden;color:#ffecd2;}
   .supp details{border-bottom:1px solid rgba(255,255,255,.12);}
   .supp details:last-child{border-bottom:none;}
-  .supp summary{cursor:pointer;list-style:none;padding:17px 18px;font-weight:700;font-size:1.16rem;color:#fff;display:flex;align-items:center;gap:12px;}
+  .supp summary{cursor:pointer;list-style:none;padding:17px 18px;font-weight:700;font-size:1.35rem;color:#fff;display:flex;align-items:center;gap:12px;}
   .supp summary::-webkit-details-marker{display:none;}
-  .supp summary .ix{font-family:var(--mono);font-size:1rem;color:#f0c060;}
+  .supp summary .ix{font-family:var(--mono);font-size:1.16rem;color:#f0c060;}
   .supp summary .pl{margin-left:auto;font-size:1.25rem;color:#f0c060;transition:transform .25s;line-height:1;}
   .supp details[open] summary .pl{transform:rotate(45deg);}
   .supp .body{padding:0 18px 18px 44px;color:#e8cdb0;font-size:1.16rem;line-height:1.8;}
@@ -208,7 +208,7 @@
   }
   @media(max-width:520px){
     .stop{padding-left:62px;}.stop::before{left:48px;}.stop .node{left:42px;}
-    .stop .time{width:40px;font-size:1.16rem;}
+    .stop .time{width:40px;font-size:0.9rem;}
   }
 </style>
 </head>
@@ -255,14 +255,14 @@
       </div>
     </div>
     <div class="glass day reveal">
-      <div class="day-stay"><span class="tag">宿</span><b>Hotel Nikko 關西空港</b>　航廈直結・走路 3 分鐘</div>
+      <div class="day-stay"><span class="tag">宿</span><b>Hotel Nikko 關西空港</b>　航廈直通・走路 3 分鐘</div>
       <div class="tl">
         <div class="stop"><span class="time">11:00</span><span class="node"></span><h4>桃園機場集合</h4><p>下午班機，早上在家吃完午餐再出門也來得及。</p></div>
         <div class="stop key"><span class="time">13:35</span><span class="node"></span><h4>長榮 BR130 起飛</h4><p>Boeing 787-10，飛行約 2 小時 40 分鐘。</p>
           <div class="scene" style="background:url('images/day1.jpg') center/cover no-repeat"><span class="cap">關西機場黃昏降落</span></div>
         </div>
         <div class="stop"><span class="time">17:15</span><span class="node"></span><h4>關西機場落地</h4><p>日本快 1 小時。通關、領行李約 40 分鐘。</p></div>
-        <div class="stop key"><span class="time">18:15</span><span class="node"></span><h4>入住 Hotel Nikko 關西空港</h4><p>航廈天橋直結，拖著行李走 3 分鐘就到，不用搭任何車。</p></div>
+        <div class="stop key"><span class="time">18:15</span><span class="node"></span><h4>入住 Hotel Nikko 關西空港</h4><p>航廈天橋直通，拖著行李走 3 分鐘就到，不用搭任何車。</p></div>
         <div class="stop"><span class="time">19:00</span><span class="node"></span><h4>晚餐・早點休息</h4><p>飯店內或 Aeroplaza 餐廳簡單吃，養精蓄銳。</p>
           <div class="meal"><p class="mh">晚餐備案</p><ul><li><b>飯店內日式／西式餐廳</b>　最省力</li><li><b>機場航廈餐廳街</b>　選擇多，步行 3 分鐘</li></ul></div>
         </div>
@@ -294,7 +294,7 @@
         <div class="stop key"><span class="time">11:45</span><span class="node"></span><h4>黑潮號特急列車南下</h4><p>指定席約 ¥5,000／人。右側靠海座位風景最好，沿線是太平洋與蜜柑山。<span class="drive">日根野 → 白濱 ≈ 1h40m</span></p>
           
         </div>
-        <div class="stop"><span class="time">13:30</span><span class="node"></span><h4>白濱站到著</h4><p>搭計程車約 10 分鐘到川久。</p></div>
+        <div class="stop"><span class="time">13:30</span><span class="node"></span><h4>抵達白濱站</h4><p>搭計程車約 10 分鐘到川久。</p></div>
         <div class="stop key"><span class="time">14:00</span><span class="node"></span><h4>川久旅館・寄行李逛大廳</h4><p>15:00 前先寄行李。金色穹頂、羅馬柱、名家美術品——「可以住的美術館」大廳本身就是景點。</p>
           
         </div>
@@ -392,7 +392,7 @@
         <div class="stop maple"><span class="time">14:00</span><span class="node"></span><h4>和歌山城・紅葉溪庭園</h4><p>紀州德川家的名園，池面倒映楓紅正是 11 月下旬名景。茶室「紅松庵」點一份抹茶＋和菓子，坐著賞楓（入園免費、抹茶 ¥460）。</p>
           <div class="scene" style="background:url('images/day5.jpg') center/cover no-repeat"><span class="cap">和歌山城秋楓</span></div>
         </div>
-        <div class="stop"><span class="time">15:20</span><span class="node"></span><h4>和歌山城天守閣</h4><p>德川御三家居城，登天守望紀之川與市街。登頂需爬陡木梯，膝蓋不便的長輩可在紅葉溪庭園茶室休息等候。</p></div>
+        <div class="stop"><span class="time">15:20</span><span class="node"></span><h4>和歌山城天守閣</h4><p>德川御三家居城，登天守望紀之川與市街。登頂需爬陡峭木梯，若不想爬樓梯，可以在紅葉溪庭園的茶室「紅松庵」喝抹茶賞楓，一樣很享受。</p></div>
         <div class="stop"><span class="time">16:10</span><span class="node"></span><h4>出發往臨空城</h4><p><span class="drive">和歌山市 → 臨空城 ≈ 45m</span></p></div>
         <div class="stop key"><span class="time">17:00</span><span class="node"></span><h4>入住 OMO 關西空港 by 星野集團</h4><p>星野集團旗下旅店，臨空城站步行 1 分鐘。大浴場泡碳酸泉、22 樓屋頂酒吧看摩天輪夜景。Outlet 走路就到。</p></div>
         <div class="stop"><span class="time">18:30</span><span class="node"></span><h4>晚餐・臨空城</h4>
@@ -475,7 +475,7 @@
           <li><b>地址</b>　和歌山縣西牟婁郡白浜町 3745</li>
         </ul>
       </div>
-      <p class="pxbar">連住三晚不搬行李，每天回來就是泡湯＋大餐——帶長輩的最佳節奏。</p>
+      <p class="pxbar">連住三晚不搬行李，每天回來就是泡湯＋大餐——全家一起旅行最舒服的節奏。</p>
     </div>
 
     <div class="glass card reveal">
@@ -483,7 +483,7 @@
       <p class="note">落地晚上直接睡機場旁，隔天從容搭黑潮號。</p>
       <div class="tier"><div class="th"><span class="name">重點</span><span class="px">約 ¥15,000–25,000/房</span></div>
         <ul>
-          <li><b>航廈直結</b>　天橋走 3 分鐘，落地不用再搭車</li>
+          <li><b>航廈直通</b>　天橋走 3 分鐘，落地不用再搭車</li>
           <li><b>JR 就在樓下</b>　隔天搭關空快速轉黑潮號無縫接軌</li>
         </ul>
       </div>
@@ -537,13 +537,13 @@
           <tr><td>票價</td><td>指定席約 ¥5,000／人（關西機場出發合計）</td></tr>
           <tr><td>訂票</td><td>JR 西日本 e5489 網上預訂，有早鳥折扣</td></tr>
         </table>
-        <p><b>熊貓黑潮號</b>：全車熊貓彩繪的特別編成，每天固定班次運行，時刻公布在 JR 西日本官網——訂得到的話長輩會很開心。</p>
+        <p><b>熊貓黑潮號</b>：全車熊貓彩繪的特別編成，每天固定班次運行，時刻公布在 JR 西日本官網——訂得到的話大家一定很開心。</p>
         <p>座位選<b>海側（往白濱方向右側為海）</b>，記得劃右側。</p>
-        <p class="warn"><b>帶長輩提醒：</b>務必提前在 e5489 劃位，確保全家座位相鄰且都在海側。現場購票可能被打散。</p>
+        <p class="warn"><b>貼心提醒：</b>務必提前在 e5489 劃位，確保全家座位相鄰且都在海側。現場購票可能被打散。</p>
       </div></details>
 
       <details><summary><span class="ix">A4</span>包車安排（Day 3・Day 5）<span class="pl">+</span></summary><div class="body">
-        <p><b>Day 3 那智來回</b>：全日 8–9 小時、約 300km。行程：橋杭岩→大門坂→那智大社／瀑布→勝浦午餐→潮岬→回白濱。</p>
+        <p><b>Day 3 那智來回</b>：全日 7–8 小時、約 220km。行程：橋杭岩→那智大社／瀑布→勝浦午餐→沿海回白濱。</p>
         <p><b>Day 5 北上轉場</b>：約 7 小時、160km。行程：湯淺→和歌山城→臨空城放人。</p>
         <p>業者可洽：<b>明光計程車行</b>（白浜 0739-42-2727）、<b>白浜第一交通</b>、<b>串本計程車行</b>；或 VELTRA、KKday 平台預訂含中文服務車款。</p>
         <p class="warn">9 人座全日包車粗估 ¥50,000–80,000／日，依車型與時數報價，建議兩個月前詢價預約。</p>
@@ -556,7 +556,7 @@
           <tr><td>難度</td><td>石階上坡為主，部分路段較陡</td></tr>
         </table>
         <p class="warn"><b>石階有苔蘚會滑</b>，務必穿防滑好走的鞋。</p>
-        <p><b>Plan B（免爬坡）</b>：包車直上那智大社停車場，參拜後只走大社→瀑布的下坡段約 15 分鐘，包車在瀑布口接人。當天視體力臨場決定即可，兩案路線司機都熟。</p>
+        <p><b>預設方案（免爬坡）</b>：包車直上那智大社停車場，走平緩步道 10 分鐘即達。想挑戰古道的人可從大門坂入口步行上山，或從大社往下走一小段再折返。當天視體力臨場決定即可，兩案路線司機都熟。</p>
       </div></details>
 
       <details><summary><span class="ix">A6</span>王樣自助餐 三晚吃什麼<span class="pl">+</span></summary><div class="body">
