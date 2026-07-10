@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>港都行 KAOHSIUNG 6/18–6/21</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700;900&family=Noto+Sans+TC:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1B2B33; --paper:#FFF8EC; --card:#FFFFFF;
+  --orange:#FF5A2D; --teal:#00A6B8; --mango:#FFC53D; --coral:#F4527E; --leaf:#3FA66A;
+  --soft:#6A7C84; --rule:#F0E3CC;
+  --shadow:0 10px 26px rgba(27,43,51,.10);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans TC',sans-serif;background:var(--paper);color:var(--ink);line-height:1.75;font-size:15px;
+  background-image:radial-gradient(circle at 14px 14px,#F4E7CE 2px,transparent 2.6px);background-size:48px 48px}
+.mono{font-family:'IBM Plex Mono',monospace}
+
+/* ============ 進場動畫：車票打孔 ============ */
+#splash{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(150deg,#00A6B8,#0E7A9B 55%,#FF5A2D 145%);transition:transform .65s cubic-bezier(.6,-.05,.3,1),opacity .65s ease;cursor:pointer}
+#splash.gone{transform:translateY(-104%);opacity:.4;pointer-events:none}
+.ticket{position:relative;width:min(86vw,420px);background:#FFF8EC;border-radius:16px;padding:26px 26px 20px;
+  box-shadow:0 24px 60px rgba(10,30,40,.45);animation:tIn .7s cubic-bezier(.2,1.4,.4,1) both}
+@keyframes tIn{from{transform:translateY(40px) rotate(-4deg);opacity:0}to{transform:none;opacity:1}}
+.ticket::before,.ticket::after{content:"";position:absolute;top:50%;width:26px;height:26px;border-radius:50%;
+  background:#0d8ba0;transform:translateY(-50%)}
+.ticket::before{left:-13px}.ticket::after{right:-13px}
+.t-route{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px dashed var(--rule);padding-bottom:12px}
+.t-route .big{font-family:'Noto Serif TC',serif;font-weight:900;font-size:30px}
+.t-route .arrow{color:var(--orange);font-size:20px}
+.t-meta{display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7d6f55;margin-top:12px;letter-spacing:.12em}
+.t-name{font-family:'Noto Serif TC',serif;font-weight:900;font-size:18px;margin-top:6px;color:var(--teal)}
+.t-bar{margin-top:14px;height:34px;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 5px,var(--ink) 5px 6px,transparent 6px 11px)}
+.punch{position:absolute;right:34px;top:18px;width:54px;height:54px;border-radius:50%;
+  border:3px solid var(--coral);color:var(--coral);display:flex;align-items:center;justify-content:center;
+  font-family:'Noto Serif TC',serif;font-weight:900;font-size:13px;letter-spacing:.1em;transform:rotate(14deg) scale(0);
+  animation:stampIn .45s cubic-bezier(.2,2.2,.4,1) .9s both}
+@keyframes stampIn{from{transform:rotate(40deg) scale(2.4);opacity:0}to{transform:rotate(14deg) scale(1);opacity:1}}
+.t-hole{position:absolute;left:30px;bottom:54px;width:18px;height:18px;border-radius:50%;background:#0d8ba0;
+  transform:scale(0);animation:hole .3s ease 1.35s both}
+@keyframes hole{to{transform:scale(1)}}
+.t-skip{position:absolute;bottom:-44px;left:0;right:0;text-align:center;color:#CFEFF4;font-size:12px;letter-spacing:.2em}
+
+/* ============ 封面 ============ */
+header{position:relative;overflow:hidden;padding:34px 20px 30px;
+  background:linear-gradient(160deg,#FFE8B8 0%,#FFF8EC 46%,#CFF0F3 100%)}
+.sun{position:absolute;right:-70px;top:-70px;width:230px;height:230px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#FFD976,#FF5A2D 78%);opacity:.9;animation:float 7s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(12px)}}
+.masthead{display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:11px;
+  letter-spacing:.2em;border-bottom:2px solid var(--ink);padding-bottom:8px;position:relative;z-index:2}
+.masthead .vol{color:var(--orange);font-weight:700}
+h1{position:relative;z-index:2;font-family:'Noto Serif TC',serif;font-weight:900;font-size:clamp(46px,11vw,76px);
+  line-height:1.12;margin-top:18px;letter-spacing:.06em}
+h1 .stroke{color:transparent;-webkit-text-stroke:2px var(--ink)}
+h1 .fill{color:var(--orange);text-shadow:4px 4px 0 #FFC53D}
+.cover-sub{position:relative;z-index:2;margin-top:10px;font-size:13.5px;color:var(--soft)}
+.cover-sub b{color:var(--ink)}
+.chips{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+.chip{font-size:12px;font-weight:900;padding:5px 14px;border-radius:99px;border:2px solid var(--ink);
+  background:#fff;box-shadow:3px 3px 0 var(--ink);transform:rotate(-1.5deg)}
+.chip:nth-child(2n){transform:rotate(1.6deg);background:var(--mango)}
+.chip:nth-child(3n){background:#D6F3F6}
+
+/* ============ 票根分頁 ============ */
+nav{position:sticky;top:0;z-index:1000;display:flex;gap:10px;overflow-x:auto;padding:12px 14px;
+  background:rgba(255,248,236,.94);backdrop-filter:blur(10px);border-bottom:2px solid var(--ink)}
+nav button{flex:1 0 auto;min-width:104px;position:relative;border:2px solid var(--ink);background:#fff;border-radius:12px;
+  padding:9px 12px 8px 20px;cursor:pointer;font-family:'Noto Sans TC',sans-serif;color:var(--ink);
+  box-shadow:3px 3px 0 var(--ink);transition:transform .15s ease,box-shadow .15s ease}
+nav button::before{content:"";position:absolute;left:8px;top:8px;bottom:8px;border-left:2px dashed #C9BFA8}
+nav button .d{font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:15px;display:block}
+nav button .w{font-size:11px;font-weight:700;letter-spacing:.08em}
+nav button:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+nav button.active{color:#fff;transform:translate(2px,2px);box-shadow:0 0 0 var(--ink)}
+nav button[data-day="0"].active{background:var(--ink)}
+nav button[data-day="1"].active{background:var(--teal)}
+nav button[data-day="2"].active{background:var(--orange)}
+nav button[data-day="3"].active{background:var(--coral)}
+nav button.active::after{content:"";position:absolute;right:10px;top:6px;width:10px;height:10px;border-radius:50%;
+  background:var(--paper);box-shadow:inset 1px 1px 2px rgba(0,0,0,.3)}
+
+/* ============ 主版面：桌機跨頁 ============ */
+.layout{max-width:1180px;margin:0 auto;padding:20px 16px 70px}
+@media(min-width:980px){
+  .layout{display:grid;grid-template-columns:430px 1fr;gap:30px;align-items:start}
+  .map-side{position:sticky;top:76px}
+}
+.map-frame{border:2px solid var(--ink);border-radius:18px;overflow:hidden;box-shadow:6px 6px 0 var(--mango)}
+#map{height:300px}
+@media(min-width:980px){#map{height:56vh}}
+.map-hint{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;color:var(--soft);
+  text-align:center;padding:8px;background:#fff;border-top:2px dashed var(--rule)}
+.pin{display:flex;align-items:center;justify-content:center;width:27px;height:27px;border-radius:50% 50% 50% 4px;
+  color:#fff;font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:13px;border:2.5px solid #fff;
+  box-shadow:0 3px 8px rgba(27,43,51,.4);transform:rotate(-8deg)}
+
+/* ============ 日內容 ============ */
+section{display:none}
+section.show{display:block;animation:pageIn .45s cubic-bezier(.2,1.2,.4,1)}
+section.leave{animation:pageOut .3s ease both}
+@keyframes pageIn{from{opacity:0;transform:translateX(36px) rotate(.6deg)}to{opacity:1;transform:none}}
+@keyframes pageOut{to{opacity:0;transform:translateX(-46px) rotate(-1.6deg)}}
+.day-head{display:flex;align-items:flex-end;gap:14px;margin:8px 2px 18px}
+.day-no{font-family:'Noto Serif TC',serif;font-weight:900;font-size:64px;line-height:.9;
+  color:transparent;-webkit-text-stroke:2px var(--ink);text-shadow:5px 5px 0 var(--mango)}
+.day-head .t h2{font-family:'Noto Serif TC',serif;font-weight:900;font-size:clamp(19px,4.6vw,24px)}
+.day-head .t .meta{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--soft)}
+.lede{font-size:13.5px;color:var(--soft);border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:18px}
+.lede b{color:var(--ink)}
+
+.row{position:relative;display:flex;gap:13px;background:var(--card);border:2px solid var(--ink);border-radius:16px;
+  padding:16px 56px 14px 16px;margin-bottom:14px;box-shadow:var(--shadow);
+  opacity:0;transform:translateY(22px);transition:opacity .45s ease,transform .45s ease}
+.row.seen{opacity:1;transform:none}
+.row:hover{box-shadow:5px 5px 0 var(--ink)}
+.row .time{font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:13.5px;flex:0 0 52px;padding-top:3px;color:var(--orange)}
+.row .txt{flex:1;min-width:0}
+.row h3{font-size:16px;font-weight:900}
+.row p{font-size:13px;color:var(--soft);margin-top:4px}
+.row p b{color:var(--ink);font-weight:700}
+.stamp{position:absolute;right:12px;top:12px;width:38px;height:38px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;color:#fff;
+  transform:rotate(12deg) scale(0);box-shadow:2px 2px 0 rgba(27,43,51,.25)}
+.row.seen .stamp{animation:thunk .4s cubic-bezier(.2,2.4,.4,1) .15s both}
+@keyframes thunk{from{transform:rotate(45deg) scale(2.2);opacity:0}to{transform:rotate(12deg) scale(1);opacity:1}}
+.st-jiao{background:var(--orange)} .st-shi{background:var(--mango);color:var(--ink)}
+.st-jing{background:var(--teal)} .st-su{background:var(--ink)} .st-gou{background:var(--coral)}
+
+.alert{position:relative;border:2px solid var(--ink);border-radius:14px;background:#FFF1D6;
+  padding:14px 16px 12px;margin:0 0 16px;box-shadow:4px 4px 0 var(--orange)}
+.alert::before{content:"端午連假注意";position:absolute;top:-12px;left:14px;background:var(--orange);color:#fff;
+  font-size:11px;font-weight:900;letter-spacing:.16em;padding:2px 10px;border-radius:6px;transform:rotate(-1.5deg)}
+.alert p{font-size:12.5px;color:#6B5320}
+.alert p b{color:var(--ink)}
+
+.pull{margin:18px 0 8px;padding:12px 16px;border-radius:12px;background:linear-gradient(120deg,#D6F3F6,#FFF8EC);
+  border:2px dashed var(--teal)}
+.pull .pq-k{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.22em;color:var(--teal);font-weight:700}
+.pull p{font-family:'Noto Serif TC',serif;font-weight:700;font-size:13.5px;margin-top:2px}
+
+.info{margin-top:24px;border:2px solid var(--ink);border-radius:16px;background:#fff;overflow:hidden;box-shadow:5px 5px 0 var(--teal)}
+.info h4{font-family:'Noto Serif TC',serif;font-size:15px;letter-spacing:.14em;background:var(--ink);color:var(--paper);padding:9px 16px}
+.info ul{list-style:none;padding:6px 16px 10px}
+.info li{font-size:12.5px;color:var(--soft);padding:7px 0;border-bottom:2px dotted var(--rule)}
+.info li:last-child{border-bottom:0}
+.info li b{color:var(--ink);font-weight:700}
+
+footer{text-align:center;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;
+  color:var(--soft);padding:24px 12px 44px;border-top:2px solid var(--ink)}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  #splash{display:none}
+  section.show,section.leave{animation:none}
+  .row{opacity:1;transform:none;transition:none}
+  .row.seen .stamp{animation:none;transform:rotate(12deg) scale(1);opacity:1}
+  .sun{animation:none}
+}
+</style>
+</head>
+<body>
+
+<!-- 進場：車票 -->
+<div id="splash">
+  <div class="ticket">
+    <div class="t-route"><span class="big">台北</span><span class="arrow">✈︎→</span><span class="big">高雄</span></div>
+    <div class="t-name">港都行・KAOHSIUNG ISSUE</div>
+    <div class="t-meta"><span>2026.06.18—06.21</span><span>SEAT 8D/8E</span></div>
+    <div class="t-bar"></div>
+    <div class="punch">已驗票</div>
+    <div class="t-hole"></div>
+    <div class="t-skip">點擊任意處進入 ▸</div>
+  </div>
+</div>
+
+<header>
+  <div class="sun"></div>
+  <div class="masthead"><span>TRAVEL MOOK · 2026.06</span><span class="vol">VOL. 0618–0621</span></div>
+  <h1><span class="stroke">港都</span><span class="fill">行</span></h1>
+  <p class="cover-sub">宿 <b>水木商旅 高鐵左營館</b>｜高鐵進出，捷運・輕軌・渡輪・客運串起四日。</p>
+  <div class="chips">
+    <span class="chip">海生館</span><span class="chip">黑鮪魚季</span><span class="chip">王船文化館</span>
+    <span class="chip">鹽一市場</span><span class="chip">老新台菜</span>
+  </div>
+</header>
+
+<nav id="tabs">
+  <button data-day="0" class="active"><span class="d mono">6/18</span><span class="w">四・抵達</span></button>
+  <button data-day="1"><span class="d mono">6/19</span><span class="w">五・海生館</span></button>
+  <button data-day="2"><span class="d mono">6/20</span><span class="w">六・東港</span></button>
+  <button data-day="3"><span class="d mono">6/21</span><span class="w">日・收尾</span></button>
+</nav>
+
+<div class="layout">
+  <div class="map-side">
+    <div class="map-frame"><div id="map"></div>
+    <div class="map-hint">MAP・標記隨日期切換，數字為當日順序</div></div>
+  </div>
+
+  <div class="copy-side">
+
+<!-- D0 -->
+<section id="day0" class="show">
+  <div class="day-head"><div class="day-no">0</div>
+    <div class="t"><div class="meta">THU · JUN 18 · ARRIVAL</div><h2>深夜進站，把體力留給明天</h2></div></div>
+  <p class="lede">高鐵 <b>0295 車次</b>，台北 <b>22:16</b> 發車，近午夜抵左營（7 車 3D、4D，訂位代號 04777042）。</p>
+
+  <div class="row"><span class="time">22:16</span>
+    <div class="txt"><h3>高鐵 0295　台北 → 左營</h3>
+    <p>約 23:55 抵達。出站往 2 號出口方向，步行約 8–10 分鐘到飯店。</p></div>
+    <span class="stamp st-jiao">交</span></div>
+  <div class="row"><span class="time">24:00</span>
+    <div class="txt"><h3>水木商旅 高鐵左營館</h3>
+    <p>左營區崇惠街111號 · 07-350-1080。轉角 7-ELEVEN 可補給，直接休息。</p></div>
+    <span class="stamp st-su">宿</span></div>
+
+  <div class="pull"><span class="pq-k">TONIGHT</span>
+    <p>明早墾丁快線採<b>當日櫃台劃位</b>，建議 08:00 前抵達左營站 2 號出口櫃台（07:45 開櫃）。</p></div>
+</section>
+
+<!-- D1 -->
+<section id="day1">
+  <div class="day-head"><div class="day-no">1</div>
+    <div class="t"><div class="meta">FRI · JUN 19 · 端午節 · AQUARIUM</div><h2>先吃飽，再一路看到閉館</h2></div></div>
+  <p class="lede">車城農會下車吃在地午餐，計程車進館，午後場次連發到 <b>17:30 閉館</b>。</p>
+
+  <div class="alert"><p><b>6/19 是端午節、連假首日</b>，往墾丁方向為車潮高峰。持票須<b>當日至 2 號出口櫃台劃位</b>（07:45 開櫃），建議 08:00 前抵達；車程心理準備抓 2.5 小時。</p></div>
+
+  <div class="row"><span class="time">09:00</span>
+    <div class="txt"><h3>墾丁快線 9189　左營 → 車城（農會）</h3>
+    <p>左營站客運平台發車，約 30 分鐘一班、每日約 21 班次（08:30–19:00），可刷悠遊卡／一卡通。</p></div>
+    <span class="stamp st-jiao">交</span></div>
+  <div class="row"><span class="time">11:00</span>
+    <div class="txt"><h3>車城福安宮商圈・午餐</h3>
+    <p>主餐：<b>阿品芋粿老店</b>（11:00 開賣）或<b>圓味肉骨茶</b>（保力村，建議先電話確認）。甜點吃車城名物<b>綠豆蒜</b>，順拜全台最大土地公廟<b>福安宮</b>。</p></div>
+    <span class="stamp st-shi">食</span></div>
+  <div class="row"><span class="time">12:15</span>
+    <div class="txt"><h3>計程車 → 海生館</h3>
+    <p>車城農會周邊搭計程車進館，約 6 公里、10 分鐘內，<b>不必配合街車班距</b>，車資約二百餘元。</p></div>
+    <span class="stamp st-jiao">交</span></div>
+  <div class="row"><span class="time">12:30</span>
+    <div class="txt"><h3>國立海洋生物博物館・至 17:30 閉館</h3>
+    <p>午後場次（每場約 15 分鐘，以官網當日節目表為準）：<b>13:00 大洋池餵食</b> → 13:30 觸摸池 → 14:00 海藻森林餵食 → <b>14:30 與魚共舞（海底隧道）／海豹餵食</b> → <b>15:00 企鵝餵食</b> → 15:30 觸摸池 → <b>16:30 大洋池壓軸</b>。進館先衝台灣水域館卡位。</p></div>
+    <span class="stamp st-jing">景</span></div>
+  <div class="row"><span class="time">17:45</span>
+    <div class="txt"><h3>回程：海生館轉乘站 → 9189 北返</h3>
+    <p>回程於海生館轉乘站候車、<b>無劃位保障</b>，建議提早到站排隊；連假傍晚北返人多，回左營約 19:45–20:00，先回飯店放東西。</p></div>
+    <span class="stamp st-jiao">交</span></div>
+  <div class="row"><span class="time">20:15</span>
+    <div class="txt"><h3>瑞豐夜市・晚餐</h3>
+    <p>捷運巨蛋站 1 號出口步行 5 分鐘，營業至 24:00。人氣攤：<b>天使雞排、萬國牛排、蒙古烤肉、木瓜牛奶</b>。</p></div>
+    <span class="stamp st-shi">食</span></div>
+
+  <div class="pull"><span class="pq-k">HOTLINE</span>
+    <p>墾丁快線共營中心 0800-777-767；班次動態用「iBus 公路客運」App 查詢。</p></div>
+</section>
+
+<!-- D2 -->
+<section id="day2">
+  <div class="day-head"><div class="day-no">2</div>
+    <div class="t"><div class="meta">SAT · JUN 20 · BLUEFIN TUNA</div><h2>東港黑鮪魚，傍晚愛河灣</h2></div></div>
+  <p class="lede">黑鮪魚季（5/2–7/5）正當時。午餐華僑市場現切生魚片，下午王爺信仰雙景點，回程直插鹽埕看 <b>18:46</b> 日落。</p>
+
+  <div class="row"><span class="time">10:30</span>
+    <div class="txt"><h3>9127D 大鵬灣琉球線　左營 → 屏客東港站</h3>
+    <p>2 號出口櫃台劃位（同墾丁快線），車程約 70 分鐘；班距約 30–60 分，當天先用 iBus 確認班次。</p></div>
+    <span class="stamp st-jiao">交</span></div>
+  <div class="row"><span class="time">11:45</span>
+    <div class="txt"><h3>華僑市場・黑鮪魚午餐</h3>
+    <p>週六 09:00–18:30。坐下吃選<b>佳珍海產店</b>（今年第一鮪得標單位，務必先訂位）；攤位路線選<b>王匠生魚片</b>（228 攤），加碼<b>瑞字號旗魚黑輪</b>、雙糕潤。週六人潮多，12:00 前進場為佳。</p></div>
+    <span class="stamp st-shi">食</span></div>
+  <div class="row"><span class="time">13:30</span>
+    <div class="txt"><h3>東隆宮</h3>
+    <p>市場步行約 10 分鐘。黃金牌樓金碧輝煌，東港迎王平安祭典的信仰中心。</p></div>
+    <span class="stamp st-jing">景</span></div>
+  <div class="row"><span class="time">14:15</span>
+    <div class="txt"><h3>王船文化館</h3>
+    <p>東隆宮步行約 12 分鐘（船頭路 9 號，週六至 18:00）。國寶級匠師打造的 <b>1:1 典藏王船</b>懸於館內，彩繪把八仙坐騎改成黑鮪魚、旗魚——與午餐呼應。門票可先於 Klook 購買較優惠；五樓<b>角頭酒吧</b>可眺望大鵬灣（彈性）。</p></div>
+    <span class="stamp st-jing">景</span></div>
+  <div class="row"><span class="time">15:45</span>
+    <div class="txt"><h3>9127　東港 → 自立站（高雄火車站）</h3>
+    <p>走台 88 快速道路約 50–60 分鐘，終點就在高雄火車站旁——比繞回左營更順。<b>注意：9127 採預約班次制度</b>，班距較疏，出發前務必以 iBus 查詢並可線上預約（taiwanbus.tw）。<b>備案：</b>若班次接不上，改搭 9127D 回左營轉捷運，約多 15–20 分鐘，行程不受影響。</p></div>
+    <span class="stamp st-jiao">交</span></div>
+  <div class="row"><span class="time">17:15</span>
+    <div class="txt"><h3>鹽埕埔散步・樺達奶茶創始店</h3>
+    <p>自立站轉捷運：高雄車站 → 美麗島 → 鹽埕埔。<b>樺達奶茶創始店</b>（新樂街 101 號，至 22:00）喝一杯，順逛新樂街金仔街、堀江商場老街區。</p></div>
+    <span class="stamp st-shi">食</span></div>
+  <div class="row"><span class="time">18:20</span>
+    <div class="txt"><h3>愛河灣・高雄流行音樂中心 看日落</h3>
+    <p>步行至愛河灣水岸，日落 <b>18:46</b>——出海口視野開闊，高流珊瑚礁群建築入夜點燈。西子灣的夕陽，搬到市區看、零繞路。</p></div>
+    <span class="stamp st-jing">景</span></div>
+  <div class="row"><span class="time">19:00</span>
+    <div class="txt"><h3>鹽埕第一公有市場・晚餐</h3>
+    <p>沿愛河灣步行回鹽埕約 15 分鐘。青年攤商晚上最熱鬧：<b>空腹虫大酒家</b>（17:00–20:30，吧台候位不訂位）、<b>塔魯塔魯南蠻雞</b>（至 21:00），加碼<b>鴨肉珍</b>等老店。飯後捷運回左營。</p></div>
+    <span class="stamp st-shi">食</span></div>
+
+  <div class="pull"><span class="pq-k">NOTE</span>
+    <p>去程 9127D、回程 9127，去回不同線各取所長；連假公路易誤點，回程班次請提前查妥並預約。</p></div>
+</section>
+
+<!-- D3 -->
+<section id="day3">
+  <div class="day-head"><div class="day-no">3</div>
+    <div class="t"><div class="meta">SUN · JUN 21 · FINALE</div><h2>湖畔、商場、咖啡，老新台菜收尾</h2></div></div>
+  <p class="lede">回程高鐵 <b>22:35</b> 發車，晚餐 19:30 老新台菜九如創始店，整天不趕。</p>
+
+  <div class="row"><span class="time">08:00</span>
+    <div class="txt"><h3>飯店早餐</h3><p>悠閒吃，退房後行李寄放櫃台。</p></div>
+    <span class="stamp st-shi">食</span></div>
+  <div class="row"><span class="time">09:30</span>
+    <div class="txt"><h3>蓮池潭・龍虎塔・春秋閣</h3>
+    <p>龍口進、虎口出。外觀整修已於 2025 年初完工，<b>塔內尚未開放登塔</b>，以外觀拍照為主；環潭步道走到春秋閣、騎龍觀音像。遮蔭少，帶水帶帽。</p></div>
+    <span class="stamp st-jing">景</span></div>
+  <div class="row"><span class="time">12:30</span>
+    <div class="txt"><h3>漢神巨蛋・逛街＋午餐</h3>
+    <p>捷運巨蛋站旁，B1 美食街與餐廳樓層解決午餐，假日 11:00 開門。</p></div>
+    <span class="stamp st-gou">購</span></div>
+  <div class="row"><span class="time">16:30</span>
+    <div class="txt"><h3>後驛・自家烘焙咖啡（擇一）</h3>
+    <p><b>双木林 Futagi Coffee Roaster</b>（三民區孝順街 71 號，週日至 18:00）：高雄知名烘豆所，單品多、有輕食，距晚餐餐廳約 600 公尺。<b>KEEP Coffee Roastery</b>（懷安街 113 號，週日至 17:30）：4.9 分手沖小店，司康出色，僅收現金與行動支付。咖啡後可順走<b>三鳳中街、三鳳宮</b>消磨到開飯。</p></div>
+    <span class="stamp st-shi">食</span></div>
+  <div class="row"><span class="time">19:30</span>
+    <div class="txt"><h3>老新台菜 九如創始店・晚餐</h3>
+    <p>三民區九如二路 227 號，<b>務必先訂位 07-313-3077</b>。無菜單台菜套餐 1000／1200／1500 元等級＋10%，經典宴席手路菜。<b>週日營業至 21:30</b>，近捷運後驛站；餐後搭計程車回左營取行李約 15 分鐘。</p></div>
+    <span class="stamp st-shi">食</span></div>
+  <div class="row"><span class="time">21:30</span>
+    <div class="txt"><h3>取行李 → 高鐵左營站</h3>
+    <p>高鐵 <b>1296 車次，22:35 → 台北 00:14</b>（10 車 8E、8D，訂位代號 04826098），發車前記得取票。</p></div>
+    <span class="stamp st-jiao">交</span></div>
+
+  <div class="info">
+    <h4>票券與費用備忘</h4>
+    <ul>
+      <li><b>高鐵去程</b>　6/18 車次 0295，台北 22:16 發（7 車 3D、4D，訂位 04777042）</li>
+      <li><b>高鐵回程</b>　6/21 車次 1296，左營 22:35 發（10 車 8E、8D，訂位 04826098）</li>
+      <li><b>墾丁快線 9189</b>　左營—車城 單程約 300 元；持票當日於左營站 2 號出口櫃台劃位（07:45 開櫃）</li>
+      <li><b>車城⇄海生館計程車</b>　約 10 分鐘，車資約二百餘元</li>
+      <li><b>海生館門票</b>　全票 450 元（以官網現場公告為準）</li>
+      <li><b>9127D 去程</b>　左營—東港約 70 分，2 號出口櫃台劃位</li>
+          <li><b>9127 回程</b>　東港—自立站走台 88 約 1 小時，採預約班次制（taiwanbus.tw），備案改搭 9127D 回左營</li>
+          <li><b>王船文化館</b>　週六至 18:00、週一休，門票可於 Klook 先購</li>
+      <li><b>打狗英國領事館</b>　需門票，以現場公告為準</li>
+      <li><b>老新台菜 九如創始店</b>　訂位 07-313-3077，週日至 21:30</li>
+    </ul>
+  </div>
+</section>
+
+  </div><!-- /copy-side -->
+</div><!-- /layout -->
+
+<footer>KAOHSIUNG ISSUE · 6/18–6/21 · 班次與票價以現場及官方公告為準</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+/* ---- 進場動畫 ---- */
+const splash = document.getElementById('splash');
+function dismiss(){ splash.classList.add('gone'); setTimeout(()=>map.invalidateSize(), 700); }
+splash.addEventListener('click', dismiss);
+setTimeout(dismiss, 2400);
+
+/* ---- 地圖 ---- */
+const DAYS = [
+  { center:[22.6855,120.3080], zoom:15,
+    pts:[
+      {n:"高鐵左營站（22:16 自台北發車）", c:[22.6873,120.3071], k:"jiao"},
+      {n:"水木商旅 高鐵左營館", c:[22.6834,120.3090], k:"su"}
+    ]},
+  { center:[22.40,120.50], zoom:9,
+    pts:[
+      {n:"左營站客運平台（9189）", c:[22.6873,120.3071], k:"jiao"},
+      {n:"車城福安宮商圈（午餐）", c:[22.0723,120.7104], k:"shi"},
+      {n:"國立海洋生物博物館（至閉館）", c:[22.0460,120.6989], k:"jing"},
+      {n:"瑞豐夜市（晚餐）", c:[22.6661,120.2996], k:"shi"}
+    ]},
+  { center:[22.55,120.37], zoom:10,
+    pts:[
+      {n:"左營站客運平台（9127D）", c:[22.6873,120.3071], k:"jiao"},
+      {n:"華僑市場（黑鮪魚午餐）", c:[22.4681,120.4433], k:"shi"},
+      {n:"東隆宮", c:[22.4631,120.4487], k:"jing"},
+      {n:"王船文化館", c:[22.4637,120.4599], k:"jing"},
+      {n:"自立站・高雄火車站（9127 回程）", c:[22.6394,120.3023], k:"jiao"},
+      {n:"樺達奶茶創始店", c:[22.6236,120.2858], k:"shi"},
+      {n:"高雄流行音樂中心（日落）", c:[22.6180,120.2889], k:"jing"},
+      {n:"鹽埕第一公有市場（晚餐）", c:[22.6249,120.2823], k:"shi"}
+    ]},
+  { center:[22.6560,120.3000], zoom:13,
+    pts:[
+      {n:"水木商旅（早餐・寄行李）", c:[22.6834,120.3090], k:"su"},
+      {n:"龍虎塔・蓮池潭", c:[22.6805,120.2925], k:"jing"},
+      {n:"漢神巨蛋（逛街＋午餐）", c:[22.6699,120.3029], k:"gou"},
+      {n:"双木林 Futagi（咖啡）", c:[22.6429,120.3126], k:"shi"},
+      {n:"KEEP Coffee Roastery（咖啡）", c:[22.6407,120.3175], k:"shi"},
+      {n:"老新台菜 九如創始店（晚餐）", c:[22.6407,120.3075], k:"shi"},
+      {n:"高鐵左營站（22:35 北返）", c:[22.6873,120.3071], k:"jiao"}
+    ]}
+];
+const COLOR = {jing:"#00A6B8", jiao:"#FF5A2D", shi:"#E8A019", su:"#1B2B33", gou:"#F4527E"};
+
+const map = L.map('map',{scrollWheelZoom:false});
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenStreetMap'}).addTo(map);
+map.setView(DAYS[0].center, DAYS[0].zoom);   // 必須先設定初始視角，flyTo 才能運作
+let layer = L.layerGroup().addTo(map);
+
+/* ---- 印章滾入 ---- */
+const obs = new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('seen'); obs.unobserve(e.target);} });
+},{threshold:0.25});
+function watchRows(sec){ sec.querySelectorAll('.row').forEach(r=>{ r.classList.remove('seen'); obs.observe(r); }); }
+
+/* ---- 切頁（撕票效果） ---- */
+let cur = 0, busy = false;
+function renderMap(i){
+  layer.clearLayers();
+  const d = DAYS[i]; const latlngs=[];
+  d.pts.forEach((p,idx)=>{
+    latlngs.push(p.c);
+    const icon = L.divIcon({className:"", html:'<div class="pin" style="background:'+(COLOR[p.k]||"#00A6B8")+'">'+(idx+1)+'</div>',
+      iconSize:[27,27], iconAnchor:[13,13], popupAnchor:[0,-13]});
+    L.marker(p.c,{icon}).bindPopup("<b>"+(idx+1)+". "+p.n+"</b>").addTo(layer);
+  });
+  if(i>=2){ L.polyline(latlngs,{color:"#FF5A2D",weight:2.5,dashArray:"6 7",opacity:.8}).addTo(layer); }
+  map.flyTo(d.center, d.zoom, {duration:.9});
+}
+function showDay(i){
+  if(busy || i===cur) return; busy = true;
+  const secs = document.querySelectorAll('.copy-side section');
+  const old = secs[cur], next = secs[i];
+  document.querySelectorAll('#tabs button').forEach((b,k)=>b.classList.toggle('active',k===i));
+  old.classList.add('leave');
+  setTimeout(()=>{
+    try{
+      old.classList.remove('show','leave');
+      next.classList.add('show');
+      watchRows(next);
+      renderMap(i);
+      map.invalidateSize();
+      cur = i;
+      window.scrollTo({top: document.getElementById('tabs').offsetTop, behavior:'smooth'});
+    } finally {
+      busy = false;   // 不論成功失敗都釋放鎖，避免分頁卡死
+    }
+  }, 290);
+}
+document.querySelectorAll('#tabs button').forEach(b=>b.addEventListener('click',()=>showDay(+b.dataset.day)));
+
+/* ---- 初始 ---- */
+renderMap(0);
+watchRows(document.getElementById('day0'));
+</script>
+</body>
+</html>
