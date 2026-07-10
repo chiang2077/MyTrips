@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>新潟東京春之櫻紀行</title>
+  
+  <!-- 載入 Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- 載入字體 -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- 載入 React 與 ReactDOM -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  
+  <!-- 載入 Babel 以便在瀏覽器中編譯 JSX -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body { background-color: #FDFBF7; font-family: 'Noto Sans TC', 'Helvetica Neue', ui-sans-serif, system-ui, sans-serif; }
+    .font-serif-tc { font-family: 'Noto Serif TC', serif; }
+    html { scroll-behavior: smooth; }
+    .img-unified { filter: sepia(8%) saturate(90%) brightness(98%); }
+
+    /* 頁面載入動畫 */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(1.05); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .hero-img-anim {
+      animation: scaleIn 1.2s ease-out both;
+    }
+    .hero-text-anim > * {
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out both;
+    }
+    .hero-text-anim > *:nth-child(1) { animation-delay: 0.3s; }
+    .hero-text-anim > *:nth-child(2) { animation-delay: 0.5s; }
+    .hero-text-anim > *:nth-child(3) { animation-delay: 0.7s; }
+    .hero-text-anim > *:nth-child(4) { animation-delay: 0.9s; }
+    .hero-text-anim > *:nth-child(5) { animation-delay: 1.1s; }
+    .nav-anim {
+      animation: fadeIn 0.6s ease-out 1.2s both;
+    }
+
+    /* 捲動進場動畫 */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .scroll-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    // --- 圖示組件 ---
+    const MapPin = ({ size = 24, className = "" }) => (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+    );
+    const Calendar = ({ size = 24, className = "" }) => (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+    );
+    const Utensils = ({ size = 24, className = "" }) => (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+    );
+    const Info = ({ size = 24, className = "" }) => (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+    );
+    const Coffee = ({ size = 24, className = "" }) => (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" x2="6" y1="2" y2="4"/><line x1="10" x2="10" y1="2" y2="4"/><line x1="14" x2="14" y1="2" y2="4"/></svg>
+    );
+    const ArrowLeft = ({ size = 24, className = "" }) => (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+    );
+
+    // 氣象專用圖示
+    const Sun = ({ size = 24, className = "" }) => (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+    );
+    const Cloud = ({ size = 24, className = "" }) => (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+    );
+    const CloudRain = ({ size = 24, className = "" }) => (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M16 14v6"/><path d="M8 14v6"/><path d="M12 16v6"/></svg>
+    );
+    const Snowflake = ({ size = 24, className = "" }) => (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m10 20-2.5-2.5L10 15"/><path d="M14 20l2.5-2.5L14 15"/><path d="m20 14-2.5-2.5L15 14"/><path d="M20 10l-2.5 2.5L15 10"/><path d="m14 4 2.5 2.5L14 9"/><path d="m10 4-2.5 2.5L10 9"/><path d="M4 10l2.5 2.5L9 10"/><path d="M4 14l2.5-2.5L9 14"/><path d="M12 2v20"/><path d="M2.5 7.5 21.5 18.5"/><path d="m2.5 16.5 19-11"/></svg>
+    );
+
+    const ExtLink = ({ href, children }) => (
+      <a href={href} target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:text-pink-800 underline underline-offset-2 mx-1 inline-flex items-center">
+        {children}
+      </a>
+    );
+
+    // --- Weather Component ---
+    const WeatherWidget = ({ targetDateStr, lat, lon, city, variant = "default" }) => {
+      const [weather, setWeather] = useState(null);
+
+      useEffect(() => {
+        const fetchWeather = async () => {
+          try {
+            const today = new Date();
+            const targetDate = new Date(targetDateStr);
+            const diffTime = targetDate - today;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            if (diffDays > 14 || diffDays < 0) {
+              const isNiigata = city === 'Niigata';
+              setWeather({
+                isForecast: false,
+                max: isNiigata ? 15 : 19,
+                min: isNiigata ? 7 : 10,
+                code: isNiigata ? 2 : 1
+              });
+              return;
+            }
+
+            const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&start_date=${targetDateStr}&end_date=${targetDateStr}`;
+            const res = await fetch(url);
+            const data = await res.json();
+
+            if (data.daily) {
+              setWeather({
+                isForecast: true,
+                max: Math.round(data.daily.temperature_2m_max[0]),
+                min: Math.round(data.daily.temperature_2m_min[0]),
+                code: data.daily.weathercode[0]
+              });
+            }
+          } catch (err) {
+            console.error("Weather fetch failed", err);
+          }
+        };
+        fetchWeather();
+      }, [targetDateStr, lat, lon, city]);
+
+      if (!weather) return null;
+
+      const getWeatherDisplay = (code) => {
+        const iconSize = variant === 'compact' ? 16 : 20;
+        if (code === 0 || code === 1) return { icon: <Sun className="text-yellow-600" size={iconSize} />, label: '晴' };
+        if (code === 2 || code === 3) return { icon: <Cloud className="text-stone-500" size={iconSize} />, label: '多雲' };
+        if (code >= 50 && code <= 69) return { icon: <CloudRain className="text-blue-600" size={iconSize} />, label: '雨' };
+        if (code >= 70 && code <= 79) return { icon: <Snowflake className="text-blue-400" size={iconSize} />, label: '雪' };
+        return { icon: <Cloud className="text-stone-500" size={iconSize} />, label: '多雲' };
+      };
+
+      const display = getWeatherDisplay(weather.code);
+
+      if (variant === 'compact') {
+        return (
+          <div className="flex items-center gap-1.5 bg-stone-100/80 px-2 py-1 rounded-md border border-stone-200 shrink-0">
+            {display.icon}
+            <span className="text-sm font-bold text-stone-700">{weather.max}°<span className="text-xs text-stone-400 font-medium">/{weather.min}°</span></span>
+          </div>
+        );
+      }
+
+      return (
+        <div className="flex items-center gap-3 bg-white/80 px-4 py-2 rounded-xl border border-stone-200 shadow-sm">
+          {display.icon}
+          <div className="flex flex-col">
+            <div className="flex items-baseline gap-2">
+              <span className="text-base md:text-lg font-bold text-stone-800">{weather.max}°</span>
+              <span className="text-sm text-stone-500">/ {weather.min}°C</span>
+            </div>
+            <span className="text-xs text-stone-500 font-bold tracking-wider uppercase leading-none mt-0.5">
+              {weather.isForecast ? '即時預報' : '4月均溫'}
+            </span>
+          </div>
+        </div>
+      );
+    };
+
+    // --- Data Preparation ---
+    const itineraryData = [
+      {
+        day: 1, date: "4/12", weekday: "日", fullDate: "2026-04-12", weatherParam: { lat: 37.9022, lon: 139.0236, city: "Niigata" },
+        title: "啟程：雪國與海的初相會",
+        location: "羽田機場 ➔ 新潟",
+        image: "https://images.unsplash.com/photo-1634714434441-078536768250?q=80&w=1329&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        accommodation: <><ExtLink href="https://www.google.com/maps/search/?api=1&query=ANA+Crowne+Plaza+Niigata">新潟全日空皇冠假日酒店</ExtLink> (4晚)</>,
+        meals: { 
+          lunch: <ExtLink href="https://maps.app.goo.gl/PprxqRGgvKxq3HSt6">豆狸 エキュート (東京駅店)</ExtLink>, 
+          dinner: <ExtLink href="https://www.google.com/maps/place/%E7%99%BB%E5%96%9C%E5%92%8C+%E5%A3%BD%E5%8F%B8/data=!4m2!3m1!19sChIJA5AUFnAxi18RKT2jz480sU4">登喜和壽司 新發田店</ExtLink> 
+        },
+        note: "觀察羽田機場包車，若放行李空間侷促，回程包車需升級成九人座。",
+        events: [
+          { time: "05:00", desc: "出發前往松山機場T1" },
+          { time: "07:20", desc: "搭乘 BR192 班機起飛 ✈️" },
+          { time: "11:30", desc: "抵達羽田機場 T3，辦理入境" },
+          { time: "12:30", desc: <>專車接送至東京車站 (<ExtLink href="https://drive.google.com/file/d/1AGbl7XIK3aFvpKS4bhyBptSs4_vxeBtt/view?usp=drive_link">1F動線圖</ExtLink>、<ExtLink href="https://drive.google.com/file/d/1nf_GbrrmLWasNor7EtVXOjRQqC_gfX6k/view?usp=drive_link">B1F動線圖</ExtLink>)</> },
+          { time: "13:40", desc: "北側閘門進站，10號車廂第2、3排座位DE席前往新潟" },
+          { time: "15:42", desc: "抵達新潟站，搭計程車前往飯店 Check-in" },
+          { time: "18:00", desc: <>晚餐：<ExtLink href="https://www.google.com/maps/place/%E7%99%BB%E5%96%9C%E5%92%8C+%E5%A3%BD%E5%8F%B8/data=!4m2!3m1!19sChIJA5AUFnAxi18RKT2jz480sU4">登喜和壽司</ExtLink></> }
+        ]
+      },
+      {
+        day: 2, date: "4/13", weekday: "一", fullDate: "2026-04-13", weatherParam: { lat: 37.9022, lon: 139.0236, city: "Niigata" },
+        title: "越後風情：彌彥地區賞櫻",
+        location: "彌彥",
+        image: "https://images.unsplash.com/photo-1641385511718-d736d65e6d04?q=80&w=1087&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        accommodation: <ExtLink href="https://www.google.com/maps/search/?api=1&query=ANA+Crowne+Plaza+Niigata">新潟全日空皇冠假日酒店</ExtLink>,
+        meals: { 
+          breakfast: "參考新潟早餐清單", 
+          lunch: <ExtLink href="https://www.google.com/maps/search/?api=1&query=%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%B3+%E3%81%93%E3%81%BE%E3%81%A9%E3%82%8A">ラーメン こまどり 拉麵店</ExtLink>, 
+          dinner: <ExtLink href="https://www.google.com/maps/place/%E7%82%AD%E7%81%AB%E7%84%BC%E8%82%89+%E5%B1%85%E9%85%92%E5%B1%8B+%E3%82%B8%E3%83%B3%E3%82%AE%E3%82%B9%E3%82%AB%E3%83%B3+%E3%81%84%E3%81%97%E7%94%B0+%E6%96%B0%E6%BD%9F%E9%A7%85%E5%89%8D%E5%BA%97/data=!4m2!3m1!19sChIJwUWmlI_J9F8RcoJMUAaLlI0">成吉思汗羊肉烤肉 (いし田)</ExtLink> 
+        },
+        note: "彌彥公園櫻花谷為賞櫻首選 (預估滿開: 4/10)。",
+        events: [
+          { time: "10:00", desc: "飯店大廳集合，搭乘包車出發" },
+          { time: "10:30", desc: <><ExtLink href="https://www.google.com/maps/place/%E7%AC%B9%E7%A5%9D%E9%85%92%E9%80%A0(%E6%A0%AA)/data=!4m2!3m1!19sChIJnRKXRuXB9F8RNp_uvZy-mJE">笹祝酒造(株)</ExtLink>試飲</> },
+          { time: "11:30", desc: <>午餐：<ExtLink href="https://www.google.com/maps/search/?api=1&query=%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%B3+%E3%81%93%E3%81%BE%E3%81%A9%E3%82%8A">ラーメン こまどり拉麵店</ExtLink></> },
+          { time: "12:30", desc: <><ExtLink href="https://www.google.com/maps/place/%E5%BD%8C%E5%BD%A5%E7%A5%9E%E7%A4%BE/data=!4m2!3m1!19sChIJ1YP45W7v9F8RPZRfuqYNkmU">彌彥神社</ExtLink>參拜 ➔ 搭乘纜車上彌彥山 ➔ <ExtLink href="https://www.google.com/maps/place/%E5%BC%A5%E5%BD%A6%E5%85%AC%E5%9C%92/data=!4m2!3m1!19sChIJD325-Xzv9F8RufCZfL0eYJc">彌彥公園</ExtLink>賞櫻 ➔ 農產物直賣所</> },
+          { time: "17:30", desc: "本日行程結束，乘車回程" },
+          { time: "19:00", desc: <>晚餐：<ExtLink href="https://www.google.com/maps/place/%E7%82%AD%E7%81%AB%E7%84%BC%E8%82%89+%E5%B1%85%E9%85%92%E5%B1%8B+%E3%82%B8%E3%83%B3%E3%82%AE%E3%82%B9%E3%82%AB%E3%83%B3+%E3%81%84%E3%81%97%E7%94%B0+%E6%96%B0%E6%BD%9F%E9%A7%85%E5%89%8D%E5%BA%97/data=!4m2!3m1!19sChIJwUWmlI_J9F8RcoJMUAaLlI0">炭火焼肉 居酒屋 ジンギスカン いし田 新潟駅前店</ExtLink></> }
+        ]
+      },
+      {
+        day: 3, date: "4/14", weekday: "二", fullDate: "2026-04-14", weatherParam: { lat: 37.9022, lon: 139.0236, city: "Niigata" },
+        title: "城市散步：新潟市區觀光",
+        location: "新潟市區",
+        image: "https://images.unsplash.com/photo-1658848560043-9eb185dcd249?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        accommodation: <ExtLink href="https://www.google.com/maps/search/?api=1&query=ANA+Crowne+Plaza+Niigata">新潟全日空皇冠假日酒店</ExtLink>,
+        meals: { 
+          breakfast: <ExtLink href="https://www.google.com/maps/place/%E6%9C%AC%E7%94%BA%E9%88%B4%E6%9C%A8%E9%AE%AE%E9%AD%9A/data=!4m2!3m1!19sChIJCSrxzu3J9F8RXAqxQ7ZRvUw">本町鈴木鮮魚</ExtLink>, 
+          lunch: <ExtLink href="https://maps.app.goo.gl/tpkjHzFAoKtSHZu96">炸豬排太郎</ExtLink>, 
+          dinner: <ExtLink href="https://www.google.com/maps/place/%E7%B7%B4%E9%A6%AC%E9%B3%A5%E9%95%B7%E3%83%BB%E6%96%B0%E6%BD%9F/data=!4m2!3m1!19sChIJk03G3iPJ9F8Ra2jqWgh4EZk">練馬鳥長・新潟</ExtLink> 
+        },
+        note: "今日行程以市區逛街與在地美食為主，並啟動賞櫻備案。",
+        events: [
+          { time: "09:00", desc: <>早餐：<ExtLink href="https://www.google.com/maps/place/%E6%9C%AC%E7%94%BA%E9%88%B4%E6%9C%A8%E9%AE%AE%E9%AD%9A/data=!4m2!3m1!19sChIJCSrxzu3J9F8RXAqxQ7ZRvUw">本町鈴木鮮魚</ExtLink></> },
+          { time: "10:00", desc: <><ExtLink href="https://www.google.com/maps/place/%E4%BA%BA%E6%83%85%E6%A8%AA%E4%B8%81+%E6%9C%AC%E7%94%BA%E4%B8%AD%E5%A4%AE%E5%B8%82%E5%A0%B4%E5%95%86%E5%BA%97%E8%A1%97/data=!4m2!3m1!19sChIJ_wu9o-3J9F8RlvEl01cKZp4">人情横丁 本町中央市場商店街</ExtLink>、古町通地區逛街</> },
+          { time: "11:30", desc: <>午餐：<ExtLink href="https://maps.app.goo.gl/tpkjHzFAoKtSHZu96">炸豬排太郎</ExtLink> / 點心：<ExtLink href="https://www.google.com/maps/search/?api=1&query=%E7%AC%B9%E5%B7%9D%E9%A4%85%E5%B1%8B">笹川餅屋</ExtLink></> },
+          { time: "13:30", desc: <>賞櫻備案：中午後前往<ExtLink href="https://hoppou-bunka.com/">北方文化博物館</ExtLink> (16:30關閉)</> },
+          { time: "15:45", desc: <><ExtLink href="https://www.google.com/maps/place/Montbell+Niigata/data=!4m2!3m1!19sChIJWapJPS_J9F8RktcVOv851vU">Montbell Niigata</ExtLink>購物 ➔ 前往<ExtLink href="https://maps.app.goo.gl/2gqDiEUqHDCp3hWH7">新潟車站</ExtLink>逛街</> },
+          { time: "19:00", desc: <>晚餐：<ExtLink href="https://www.google.com/maps/place/%E7%B7%B4%E9%A6%AC%E9%B3%A5%E9%95%B7%E3%83%BB%E6%96%B0%E6%BD%9F/data=!4m2!3m1!19sChIJk03G3iPJ9F8Ra2jqWgh4EZk">練馬鳥長・新潟</ExtLink></> }
+        ]
+      },
+      {
+        day: 4, date: "4/15", weekday: "三", fullDate: "2026-04-15", weatherParam: { lat: 37.6616, lon: 138.9333, city: "Niigata" },
+        title: "職人藝境：燕三条參觀購物",
+        location: "燕三条",
+        image: "https://images.unsplash.com/photo-1681269301590-8177b5d0d4b7?q=80&w=1262&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        accommodation: <ExtLink href="https://www.google.com/maps/search/?api=1&query=ANA+Crowne+Plaza+Niigata">新潟全日空皇冠假日酒店</ExtLink>,
+        meals: { 
+          breakfast: "參考新潟早餐清單", 
+          lunch: "義式餐廳或拉麵", 
+          dinner: <ExtLink href="https://www.google.com/maps/place/restaurant+uozen/data=!4m2!3m1!19sChIJO3ZT-RHi9F8RwnQlzxaIY3o">Restaurant UOZEN</ExtLink> 
+        },
+        note: "上午自行搭新幹線前往燕三条",
+        events: [
+          { time: "09:40", desc: "飯店搭計程車至新潟站" },
+          { time: "10:28", desc: "搭乘上越新幹線至燕三条站 (車程12分)(前一班車09:30發車)" },
+          { time: "10:40", desc: <>參觀：<ExtLink href="https://www.google.com/maps/place/%E7%87%95%E4%B8%89%E6%9D%A1%E5%9C%B0%E5%A0%B4%E7%94%A2%E6%A5%AD%E6%8C%AF%E8%88%88%E4%B8%AD%E5%BF%83/data=!4m2!3m1!19sChIJBbic8Tfj9F8RFgeVtqMomlI">燕三条地場產業振興中心</ExtLink></> },
+          { time: "12:30", desc: "午餐：義大利餐廳或當地特色拉麵" },
+          { time: "14:00", desc: <>工廠參觀：<ExtLink href="https://www.google.com/maps/place/(%E6%A0%AA)%E5%B1%B1%E8%B0%B7%E7%94%A3%E6%A5%AD+%E6%9D%91%E3%81%AE%E9%8D%9B%E5%86%B6%E5%B1%8B%E3%82%B7%E3%83%A7%E3%83%83%E3%83%97/data=!4m2!3m1!19sChIJt8XG1jzi9F8Rfti686w5K2Y">(株)山谷産業 村の鍛冶屋</ExtLink>、<ExtLink href="https://www.google.com/maps/place/%E8%AB%8F%E8%A8%AA%E7%94%B0%E8%A3%BD%E4%BD%9C%E6%89%80/data=!4m2!3m1!19sChIJGxx3suUC9V8RGhPlKML65bk">諏訪田製作所</ExtLink>、<ExtLink href="https://www.google.com/maps/search/?api=1&query=%E8%97%A4%E6%AC%A1%E9%83%8E%E3%82%AA%E3%83%BC%E3%83%97%E3%83%B3%E3%83%95%E3%82%A1%E3%82%AF%E3%83%88%E3%83%AA%E3%83%BC">藤次郎オープンファクトリー</ExtLink></> },
+          { time: "18:00", desc: <>晚餐：<ExtLink href="https://www.google.com/maps/place/restaurant+uozen/data=!4m2!3m1!19sChIJO3ZT-RHi9F8RwnQlzxaIY3o">Restaurant UOZEN</ExtLink></> },
+          { time: "20:30", desc: "結束晚餐，搭乘計程車回新潟" }
+        ]
+      },
+      {
+        day: 5, date: "4/16", weekday: "四", fullDate: "2026-04-16", weatherParam: { lat: 37.9477, lon: 139.3267, city: "Niigata" },
+        title: "春之花海與溫泉旅宿",
+        location: "新潟 ➔ 月岡溫泉",
+        image: "https://images.unsplash.com/photo-1621862194864-9363167fc586?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        accommodation: <><ExtLink href="https://www.google.com/maps/place/%E7%99%BD%E7%8E%89%E4%B9%8B%E6%B9%AF+%E8%8F%AF%E9%B3%B3/data=!4m2!3m1!19sChIJyxpgnj8ti18R-skj2eQkiVo">白玉の湯 華鳳</ExtLink> (1晚)</>,
+        meals: { 
+          breakfast: "參考新潟早餐清單", 
+          lunch: <ExtLink href="https://www.google.com/maps/place/ANA+Crowne+Plaza+Niigata+all-day+dining+season+cafe/data=!4m2!3m1!19sChIJ9bSbOIzJ9F8RqK9_3gsDODs">ANA Season Cafe</ExtLink>, 
+          dinner: <ExtLink href="https://www.google.com/maps/place/%E7%99%BD%E7%8E%89%E4%B9%8B%E6%B9%AF+%E8%8F%AF%E9%B3%B3/data=!4m2!3m1!19sChIJyxpgnj8ti18R-skj2eQkiVo">白玉の湯 華鳳 會席料理</ExtLink> 
+        },
+        note: "今日將轉換住宿至溫泉旅館，享受放鬆時光。",
+        events: [
+          { time: "09:00", desc: <>飯店退房，搭計程車前往<ExtLink href="https://www.google.com/maps/place/%E6%96%B0%E6%BD%9F%E5%B8%82%E6%AD%B7%E5%8F%B2%E5%8D%9A%E7%89%A9%E9%A4%A8%E3%81%BF%E3%81%AA%E3%81%A8%E3%81%B4%E3%81%82/data=!4m2!3m1!19sChIJDRU8qxzK9F8Rx491i2ifFwU">新潟市歷史博物館 (みなとぴあ)</ExtLink></> },
+          { time: "11:30", desc: <>午餐：<ExtLink href="https://www.google.com/maps/place/ANA+Crowne+Plaza+Niigata+all-day+dining+season+cafe/data=!4m2!3m1!19sChIJ9bSbOIzJ9F8RqK9_3gsDODs">ANA Crowne Plaza Niigata Season Cafe</ExtLink></> },
+          { time: "13:30", desc: <>包車前往<ExtLink href="https://www.google.com/maps/place/%E7%A6%8F%E5%B3%B6%E6%BD%9F/data=!4m2!3m1!19sChIJRxazFj0zi18Rys31mBtzHEg">「福島潟」</ExtLink>欣賞油菜花海與雪山景色</> },
+          { time: "15:30", desc: <>抵達月岡溫泉，入住<ExtLink href="https://www.google.com/maps/place/%E7%99%BD%E7%8E%89%E4%B9%8B%E6%B9%AF+%E8%8F%AF%E9%B3%B3/data=!4m2!3m1!19sChIJyxpgnj8ti18R-skj2eQkiVo">「白玉の湯 華鳳」</ExtLink></> },
+          { time: "16:00", desc: "溫泉街周邊散步、享受館內設施" },
+          { time: "18:45", desc: "晚餐：旅館內享用精緻晚餐" }
+        ]
+      },
+      {
+        day: 6, date: "4/17", weekday: "五", fullDate: "2026-04-17", weatherParam: { lat: 35.6895, lon: 139.6917, city: "Tokyo" },
+        title: "重返都心：移動與東京之夜",
+        location: "新潟 ➔ 東京",
+        image: "https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?auto=format&fit=crop&w=600&q=80",
+        accommodation: <><ExtLink href="https://www.google.com/maps/search/?api=1&query=Hotel+New+Otani+Tokyo+Garden+Tower">東京新大谷飯店 花園塔</ExtLink> (2晚)</>,
+        meals: { 
+          breakfast: <ExtLink href="https://www.google.com/maps/place/%E7%99%BD%E7%8E%89%E4%B9%8B%E6%B9%AF+%E8%8F%AF%E9%B3%B3/data=!4m2!3m1!19sChIJyxpgnj8ti18R-skj2eQkiVo">白玉の湯 華鳳</ExtLink>, 
+          lunch: "車站便當", 
+          dinner: <ExtLink href="https://www.google.com/maps/place/Burger+POLICE/data=!4m2!3m1!19sChIJK-8U8z31GGARjeZP1U2AMA4">Burger POLICE</ExtLink> 
+        },
+        note: "可先至東京站旁的郵局將戰利品寄回台灣。",
+        events: [
+          { time: "08:30", desc: "早餐：白玉の湯 華鳳" },
+          { time: "10:00", desc: "搭乘預約計程車前往新潟站" },
+          { time: "11:25", desc: "購買午餐便當，搭乘新幹線6號車2、3排座位DE席返回東京" },
+          { time: "13:28", desc: "抵達東京站，搭計程車前往飯店" },
+          { time: "14:30", desc: "東京市區逛街 (建議：銀座、原宿、澀谷、麻布台之丘)" },
+          { time: "19:30", desc: <>晚餐：<ExtLink href="https://www.google.com/maps/place/Burger+POLICE/data=!4m2!3m1!19sChIJK-8U8z31GGARjeZP1U2AMA4">Burger POLICE</ExtLink></> }
+        ]
+      },
+      {
+        day: 7, date: "4/18", weekday: "六", fullDate: "2026-04-18", weatherParam: { lat: 35.6895, lon: 139.6917, city: "Tokyo" },
+        title: "繁華街頭：東京全日購物",
+        location: "東京",
+        image: "https://images.unsplash.com/photo-1706596416486-8d400cc14a8a?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        accommodation: <ExtLink href="https://www.google.com/maps/search/?api=1&query=Hotel+New+Otani+Tokyo+Garden+Tower">東京新大谷飯店 花園塔</ExtLink>,
+        meals: { 
+          breakfast: <ExtLink href="https://www.google.com/maps/search/?api=1&query=Hotel+New+Otani+Tokyo+Garden+Tower">新大谷飯店</ExtLink>, 
+          lunch: "逛街時自由解決", 
+          dinner: <ExtLink href="https://www.google.com/maps/place/%E6%9D%B1%E4%BA%AC%E8%82%89%E3%81%97%E3%82%83%E3%81%B6%E5%AE%B6/data=!4m2!3m1!19sChIJg3wcmSeNGGARi9qJAXFxq1k">東京肉しゃぶ家</ExtLink> 
+        },
+        note: "全日自由活動，採購伴手禮與精品。晚餐為東京 No.1 涮涮鍋。",
+        events: [
+          { time: "08:30", desc: "早餐：新大谷飯店" },
+          { time: "10:00", desc: "全日東京逛街購物 (建議：銀座、原宿、澀谷、麻布台之丘)" },
+          { time: "18:30", desc: <>晚餐：<ExtLink href="https://www.google.com/maps/place/%E6%9D%B1%E4%BA%AC%E8%82%89%E3%81%97%E3%82%83%E3%81%B6%E5%AE%B6/data=!4m2!3m1!19sChIJg3wcmSeNGGARi9qJAXFxq1k">東京肉しゃぶ家</ExtLink></> },
+          { time: "21:30", desc: <>喝酒：<ExtLink href="https://www.google.com/maps/search/?api=1&query=EUREKA!+Tokyo">EUREKA!</ExtLink></> }
+        ]
+      },
+      {
+        day: 8, date: "4/19", weekday: "日", fullDate: "2026-04-19", weatherParam: { lat: 35.6895, lon: 139.6917, city: "Tokyo" },
+        title: "賦歸：滿載回憶的返程",
+        location: "成田機場 ➔ 台灣",
+        image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=600&q=80",
+        accommodation: "溫暖的家",
+        meals: { 
+          breakfast: <><ExtLink href="https://www.google.com/maps/search/?api=1&query=SATSUKI+Hotel+New+Otani+Tokyo">新大谷飯店</ExtLink> (建議升級 Satsuki 早餐)</>, 
+          lunch: "機場解決", 
+          dinner: "-" 
+        },
+        note: "新大谷飯店招牌 Satsuki 早餐可考慮加價升級 (¥2,530/人)。",
+        events: [
+          { time: "08:00", desc: "早餐：新大谷飯店" },
+          { time: "09:40", desc: "飯店退房，搭乘送機專車前往成田機場 T1(車程約70分)" },
+          { time: "11:00", desc: "抵達機場，最後採買與午餐" },
+          { time: "13:25", desc: "搭乘 BR183 班機起飛 ✈️" },
+          { time: "16:05", desc: "抵達桃園機場 T2，旅途平安結束" }
+        ]
+      }
+    ];
+
+    const breakfastOptions = [
+      { name: "農家の息子がつくる食堂 さんかくともつ", desc: "和食、飯糰", url: "https://www.google.com/maps/place/%E8%BE%B2%E5%AE%B6%E3%81%AE%E6%81%AF%E5%AD%90%E3%81%8C%E3%81%A4%E3%81%8F%E3%82%8B%E9%A3%9F%E5%A0%82+%E3%81%95%E3%82%93%E3%81%8B%E3%81%8F%E3%81%A8%E3%82%82%E3%81%A4/data=!4m2!3m1!19sChIJ7_iYeADJ9F8RhReyEnj5EMY" },
+      { name: "にぎり米", desc: "手捏飯糰", url: "https://www.google.com/maps/place/%E3%81%AB%E3%81%8E%E3%82%8A%E7%B1%B3/data=!4m2!3m1!19sChIJ6Tz3YI7J9F8RW_WgbIjSTJA" },
+      { name: "本町鈴木鮮魚", desc: "烤魚、鮮魚丼", url: "https://www.google.com/maps/place/%E6%9C%AC%E7%94%BA%E9%88%B4%E6%9C%A8%E9%AE%AE%E9%AD%9A/data=!4m2!3m1!19sChIJCSrxzu3J9F8RXAqxQ7ZRvUw" },
+      { name: "自家焙煎珈琲 シャモニー 古町店", desc: "咖啡廳", url: "https://www.google.com/maps/place/%E8%87%AA%E5%AE%B6%E7%84%99%E7%85%8E%E7%8F%88%E7%90%B2%E3%81%AE%E5%BA%97+%E3%82%B7%E3%83%A3%E3%83%A2%E3%83%8B%E3%83%BC+%E5%8F%A4%E7%94%BA%E5%BA%97/data=!4m2!3m1!19sChIJox7dEOzJ9F8Rtcb2-z9-u1I" },
+      { name: "Je suis OWL the Bakery", desc: "精緻麵包店", url: "https://www.google.com/maps/place/Je+suis+OWL+the+Bakery/data=!4m2!3m1!19sChIJtUjucCjJ9F8RTFd5U42lUUw" }
+    ];
+
+    function App() {
+      const [activeTab, setActiveTab] = useState('overview');
+      const tripRange = `${itineraryData[0].date} - ${itineraryData[itineraryData.length - 1].date}`;
+      const staySummary = ["新潟 4晚", "月岡溫泉 1晚", "東京 2晚"];
+      const quickLinks = [
+        { label: "看 Day 1", day: 1 },
+        { label: "看 月岡溫泉", day: 5 },
+        { label: "看 東京行程", day: 7 }
+      ];
+
+      // 捲動進場動畫
+      useEffect(() => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+              }
+            });
+          },
+          { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+        );
+        const els = document.querySelectorAll('.scroll-reveal');
+        els.forEach((el) => observer.observe(el));
+        return () => observer.disconnect();
+      }, [activeTab]);
+
+      return (
+        <div className="min-h-screen pb-24 text-[17px] md:text-base">
+          {/* Hero Section */}
+          <header className="relative w-full h-[42vh] md:h-[60vh] min-h-[300px] md:min-h-[400px] overflow-hidden flex items-center justify-center">
+            <div className="absolute inset-0 hero-img-anim">
+              <img 
+                src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=2000&q=80" 
+                alt="Sakura in Japan" 
+                className="w-full h-full object-cover opacity-90 img-unified"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/35 to-[#FDFBF7]"></div>
+            </div>
+            
+            <div className="relative z-10 text-center px-4 mt-10 md:mt-16 hero-text-anim">
+              <p className="text-sm md:text-base text-white/80 tracking-[0.3em] font-bold mb-4 drop-shadow-sm font-serif-tc">長肜旅行社年度鉅獻</p>
+              <div className="inline-block px-4 py-2 mb-6 border border-white/60 text-white tracking-widest text-base font-bold backdrop-blur-sm bg-black/10 rounded-full shadow-sm font-serif-tc">
+                2026.春
+              </div>
+              <h1 className="text-4xl md:text-6xl font-serif-tc font-bold text-white tracking-widest mb-4 drop-shadow-md">
+                春之櫻紀行
+              </h1>
+              <p className="text-2xl md:text-3xl text-white font-serif-tc tracking-widest drop-shadow-md font-bold">
+                新潟 ‧ 東京 8天7夜
+              </p>
+              <div className="mt-6 flex items-center justify-center gap-2 text-white font-bold text-base md:text-lg tracking-widest drop-shadow-md">
+                <Calendar size={20} />
+                <span>2026/4/12 (日) - 4/19 (日)</span>
+              </div>
+            </div>
+          </header>
+
+          {/* Navigation */}
+          <nav className="sticky top-0 z-50 bg-[#FDFBF7]/95 backdrop-blur-md border-b border-stone-200 shadow-sm nav-anim">
+            <div className="max-w-4xl mx-auto px-2 flex justify-center gap-2 md:gap-8 py-2 relative overflow-x-auto">
+              <div className="flex justify-center w-full min-w-max">
+                <button 
+                  onClick={() => setActiveTab('overview')}
+                  className={`tracking-widest text-[17px] md:text-lg font-medium transition-colors px-5 py-3.5 rounded-xl min-h-[48px] ${activeTab === 'overview' ? 'text-pink-700 bg-pink-50' : 'text-stone-600 hover:text-stone-900 hover:bg-stone-100'}`}
+                >
+                  總覽
+                </button>
+                <button 
+                  onClick={() => setActiveTab('itinerary')}
+                  className={`tracking-widest text-[17px] md:text-lg font-medium transition-colors px-5 py-3.5 rounded-xl min-h-[48px] ${activeTab === 'itinerary' ? 'text-pink-700 bg-pink-50' : 'text-stone-600 hover:text-stone-900 hover:bg-stone-100'}`}
+                >
+                  詳細行程
+                </button>
+                <button 
+                  onClick={() => setActiveTab('info')}
+                  className={`tracking-widest text-[17px] md:text-lg font-medium transition-colors px-5 py-3.5 rounded-xl min-h-[48px] ${activeTab === 'info' ? 'text-pink-700 bg-pink-50' : 'text-stone-600 hover:text-stone-900 hover:bg-stone-100'}`}
+                >
+                  資訊 & 備忘
+                </button>
+              </div>
+            </div>
+          </nav>
+
+          <main id="tab-content-start" className="max-w-4xl mx-auto px-4 py-6 md:py-12 scroll-mt-24">
+            
+            {/* --- TAB: OVERVIEW --- */}
+            <div className={`space-y-6 md:space-y-8 ${activeTab === 'overview' ? 'block animate-in fade-in duration-500' : 'hidden'}`}>
+              <div className="text-center mb-2 md:mb-4">
+                <h2 className="text-3xl font-serif-tc text-stone-800 tracking-wider">行程總覽</h2>
+                <div className="w-16 h-1 bg-pink-300 mx-auto mt-4 rounded-full"></div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 scroll-reveal">
+                <div className="bg-white rounded-2xl border border-stone-200 shadow-sm p-5 md:p-6">
+                  <div className="text-sm text-stone-500 font-bold mb-2">旅行日期</div>
+                  <div className="text-xl md:text-2xl font-bold text-stone-900">{tripRange}</div>
+                  <div className="text-stone-500 mt-2">共 8 天 7 夜，起始頁先看總覽，較方便家人快速掌握。</div>
+                </div>
+                <div className="bg-white rounded-2xl border border-stone-200 shadow-sm p-5 md:p-6">
+                  <div className="text-sm text-stone-500 font-bold mb-2">住宿節奏</div>
+                  <div className="flex flex-wrap gap-2">
+                    {staySummary.map((item, idx) => (
+                      <span key={idx} className="px-3 py-2 rounded-full bg-stone-100 text-stone-700 font-bold text-sm md:text-base">{item}</span>
+                    ))}
+                  </div>
+                  <div className="text-stone-500 mt-3">先住新潟，再到月岡溫泉，最後回東京。</div>
+                </div>
+                <div className="bg-white rounded-2xl border border-stone-200 shadow-sm p-5 md:p-6">
+                  <div className="text-sm text-stone-500 font-bold mb-2">快速查看</div>
+                  <div className="flex flex-wrap gap-2">
+                    {quickLinks.map((item) => (
+                      <button
+                        key={item.day}
+                        onClick={() => {
+                          setActiveTab('itinerary');
+                          setTimeout(() => document.getElementById(`day-${item.day}`)?.scrollIntoView({ behavior: 'smooth' }), 120);
+                        }}
+                        className="px-3 py-2 rounded-full bg-pink-50 text-pink-700 font-bold text-sm md:text-base border border-pink-100"
+                      >
+                        {item.label}
+                      </button>
+                    ))}
+                  </div>
+                  <div className="text-stone-500 mt-3">直接跳到重點日期，不用逐段往下找。</div>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-2xl shadow-md border border-stone-200 p-4 md:p-5 scroll-reveal">
+                <div className="flex items-center justify-between gap-3 mb-4">
+                  <h3 className="text-lg md:text-xl font-bold text-stone-900">每日重點</h3>
+                  <span className="text-sm text-stone-500">點一下可進入當天詳細行程</span>
+                </div>
+
+                <div className="md:hidden flex gap-3 overflow-x-auto pb-2 hide-scrollbar snap-x snap-mandatory">
+                  {itineraryData.map((day) => (
+                    <button
+                      key={day.day}
+                      className="snap-start shrink-0 w-[88%] text-left bg-stone-50 hover:bg-pink-50 active:bg-pink-50 rounded-2xl border border-stone-200 p-4 transition-colors"
+                      onClick={() => { setActiveTab('itinerary'); setTimeout(() => document.getElementById(`day-${day.day}`)?.scrollIntoView({ behavior: 'smooth' }), 120); }}
+                    >
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <div className="text-pink-700 font-extrabold text-lg">Day {day.day}</div>
+                          <div className="text-stone-500 text-sm font-medium mt-0.5">{day.date}（{day.weekday}）</div>
+                        </div>
+                        <WeatherWidget
+                          targetDateStr={day.fullDate}
+                          lat={day.weatherParam.lat}
+                          lon={day.weatherParam.lon}
+                          city={day.weatherParam.city}
+                          variant="compact"
+                        />
+                      </div>
+                      <h3 className="font-serif-tc text-stone-900 font-bold text-xl mt-4 leading-snug">{day.title}</h3>
+                      <div className="flex items-start gap-2 text-stone-600 text-base font-medium mt-3">
+                        <MapPin size={18} className="mt-0.5 shrink-0 text-stone-400" />
+                        <span>{day.location}</span>
+                      </div>
+                      <div className="mt-4 pt-4 border-t border-stone-200 text-stone-700 text-[15px] leading-relaxed">
+                        {day.note || "查看當日移動、餐食與重點安排。"}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+
+                <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {itineraryData.map((day) => (
+                    <button
+                      key={day.day}
+                      className="text-left bg-white hover:bg-stone-50 rounded-2xl border border-stone-200 p-5 transition-colors shadow-sm"
+                      onClick={() => { setActiveTab('itinerary'); setTimeout(() => document.getElementById(`day-${day.day}`)?.scrollIntoView({ behavior: 'smooth' }), 120); }}
+                    >
+                      <div className="flex items-start justify-between mb-4">
+                        <div>
+                          <span className="text-pink-700 font-bold text-xl block mb-0.5">Day {day.day}</span>
+                          <span className="text-stone-500 text-sm font-medium">{day.date} ({day.weekday})</span>
+                        </div>
+                        <WeatherWidget
+                          targetDateStr={day.fullDate}
+                          lat={day.weatherParam.lat}
+                          lon={day.weatherParam.lon}
+                          city={day.weatherParam.city}
+                          variant="compact"
+                        />
+                      </div>
+                      <h3 className="font-serif-tc text-stone-800 font-bold text-lg mb-4 leading-snug min-h-[3.5rem]">
+                        {day.title}
+                      </h3>
+                      <div className="flex items-start gap-2 text-stone-600 text-base font-medium pt-2 border-t border-stone-100">
+                        <MapPin size={18} className="mt-0.5 shrink-0 text-stone-400" />
+                        <span>{day.location}</span>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* --- TAB: DETAILED ITINERARY --- */}
+            <div className={`space-y-8 md:space-y-16 ${activeTab === 'itinerary' ? 'block animate-in fade-in duration-500' : 'hidden'}`}>
+              <div className="bg-white rounded-2xl border border-stone-200 shadow-sm p-4 md:p-5 scroll-reveal">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                  <div>
+                    <h2 className="text-2xl md:text-3xl font-serif-tc text-stone-900">詳細行程</h2>
+                    <p className="text-stone-500 mt-1">每一天都整理成「住宿、餐食、提醒、時間軸」四個層次，長輩比較好閱讀。</p>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {itineraryData.map((day) => (
+                      <button
+                        key={`chip-${day.day}`}
+                        onClick={() => document.getElementById(`day-${day.day}`)?.scrollIntoView({ behavior: 'smooth' })}
+                        className="px-3 py-2 rounded-full bg-stone-100 hover:bg-pink-50 text-stone-700 hover:text-pink-700 font-bold text-sm md:text-base"
+                      >
+                        Day {day.day}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              {itineraryData.map((day, idx) => (
+                <section key={day.day} id={`day-${day.day}`} className="relative scroll-mt-28 scroll-reveal">
+                  
+                  {/* Connecting Line */}
+                  {idx !== itineraryData.length - 1 && (
+                    <div className="hidden md:block absolute left-[2.75rem] top-28 bottom-[-4rem] w-1 bg-stone-200 z-0 rounded-full"></div>
+                  )}
+
+                  <div className="relative z-10 rounded-3xl shadow-md border border-stone-200 overflow-hidden">
+                    
+                    {/* Header - 柔和漸層 */}
+                    <div className="bg-gradient-to-r from-stone-100 to-pink-50 px-4 md:px-10 pt-5 md:pt-8 pb-5 md:pb-6 border-b-2 border-stone-200">
+                      <div className="flex flex-col lg:flex-row lg:items-end gap-4 md:gap-6">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-3 mb-3">
+                            <span className="bg-stone-800 text-white text-sm md:text-base font-bold px-4 py-1.5 rounded-full tracking-widest shadow-sm">
+                              DAY {day.day}
+                            </span>
+                            <span className="text-pink-600 font-serif-tc text-lg tracking-widest font-bold">
+                              {day.date} ({day.weekday})
+                            </span>
+                          </div>
+                          <h2 className="text-3xl md:text-4xl font-serif-tc font-bold text-stone-900 leading-tight">
+                            {day.title}
+                          </h2>
+                        </div>
+                        <div className="shrink-0 pt-2 lg:pt-0">
+                          {/* 氣象 Widget */}
+                          <WeatherWidget 
+                            targetDateStr={day.fullDate} 
+                            lat={day.weatherParam.lat} 
+                            lon={day.weatherParam.lon} 
+                            city={day.weatherParam.city}
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-white p-4 md:p-10">
+
+                    {/* Highlights/Badges row */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 mb-5 md:mb-8 bg-stone-50/80 rounded-2xl p-4 md:p-6 border border-stone-200">
+                      <div className="flex items-start gap-4">
+                        <div className="p-3 bg-white rounded-xl shadow-sm text-stone-600 border border-stone-100"><MapPin size={22} /></div>
+                        <div>
+                          <div className="text-sm text-stone-500 font-bold tracking-wider mb-1">住宿地點</div>
+                          <div className="text-stone-800 text-lg font-bold">{day.accommodation}</div>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-4">
+                        <div className="p-3 bg-white rounded-xl shadow-sm text-stone-600 border border-stone-100"><Utensils size={22} /></div>
+                        <div className="w-full">
+                          <div className="text-sm text-stone-500 font-bold tracking-wider mb-2">重點餐飲</div>
+                          <ul className="text-base text-stone-800 space-y-2 font-medium">
+                            {day.meals.breakfast && (
+                              <li className="flex items-start">
+                                <span className="text-stone-400 mr-3 font-bold">早</span>
+                                {day.meals.breakfast === "參考新潟早餐清單" ? (
+                                  <button 
+                                    onClick={() => {
+                                      setActiveTab('info');
+                                      setTimeout(() => {
+                                        const el = document.getElementById('breakfast-list');
+                                        if (el) el.scrollIntoView({ behavior: 'smooth' });
+                                      }, 100);
+                                    }}
+                                    className="text-pink-700 underline underline-offset-4 decoration-2 hover:text-pink-900 transition-colors text-left"
+                                  >
+                                    {day.meals.breakfast}
+                                  </button>
+                                ) : (
+                                  <span>{day.meals.breakfast}</span>
+                                )}
+                              </li>
+                            )}
+                            {day.meals.lunch && <li className="flex items-start"><span className="text-stone-400 mr-3 font-bold">午</span><span>{day.meals.lunch}</span></li>}
+                            {day.meals.dinner && <li className="flex items-start"><span className="text-stone-400 mr-3 font-bold">晚</span><span>{day.meals.dinner}</span></li>}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Note block */}
+                    {day.note && (
+                      <div className="mb-6 md:mb-10 p-4 md:p-5 bg-pink-50/80 border-l-8 border-pink-400 rounded-r-xl text-base md:text-lg text-stone-800 font-medium flex items-start gap-3 md:gap-4 shadow-sm">
+                        <Info size={24} className="text-pink-500 shrink-0 mt-0.5" />
+                        <p className="leading-relaxed">{day.note}</p>
+                      </div>
+                    )}
+
+                    {/* Content Area (Timeline + Side Image) */}
+                    <div className="flex flex-col md:flex-row gap-6 md:gap-10 mt-5 md:mt-8">
+                      {/* Side Image - 手機端排前面 */}
+                      {day.image && (
+                        <div className="w-full md:w-72 lg:w-80 shrink-0 order-first md:order-last">
+                          <div className="md:sticky md:top-28 rounded-2xl overflow-hidden border border-stone-200 shadow-md aspect-[16/9] md:aspect-[3/4]">
+                            <img src={day.image} alt="相關插圖" className="w-full h-full object-cover img-unified" />
+                          </div>
+                        </div>
+                      )}
+                      {/* Timeline */}
+                      <div className="flex-1 space-y-5 md:space-y-8 order-last md:order-first">
+                        {day.events.map((event, i) => (
+                          <div key={i} className="flex gap-4 md:gap-6 group">
+                            <div className="flex flex-col items-center">
+                              <div className="text-[15px] md:text-lg font-extrabold text-stone-500 w-16 md:w-16 text-right pt-1">
+                                {event.time}
+                              </div>
+                            </div>
+                            <div className="flex flex-col items-center relative">
+                              <div className={`w-3.5 h-3.5 rounded-full mt-2 z-10 ring-4 ring-white ${i === 0 || i === day.events.length - 1 ? 'bg-pink-500' : 'bg-stone-300'}`}></div>
+                              {i !== day.events.length - 1 && (
+                                <div className="absolute top-5 bottom-[-2rem] w-1 bg-stone-200 rounded-full"></div>
+                              )}
+                            </div>
+                            <div className="pb-3 pt-0.5 flex-1">
+                              <p className="text-stone-800 font-medium leading-relaxed text-[17px] md:text-lg">{event.desc}</p>
+                            </div>
+                          </div>
+                        ))}
+                        
+                      </div>
+                    </div>
+
+                    {/* 返回行程總覽按鈕 */}
+                    <div className="pt-4 pb-2 flex justify-center">
+                      <button
+                        onClick={() => {
+                          setActiveTab('overview');
+                          setTimeout(() => {
+                            const el = document.getElementById('tab-content-start');
+                            if (el) el.scrollIntoView({ behavior: 'smooth' });
+                          }, 100);
+                        }}
+                        className="flex items-center gap-2 text-stone-600 hover:text-pink-700 font-bold text-base transition-all px-6 py-3 bg-stone-100 hover:bg-pink-50 rounded-full border border-stone-200 hover:border-pink-200 shadow-sm hover:shadow"
+                      >
+                        <ArrowLeft size={18} />
+                        返回行程總覽
+                      </button>
+                    </div>
+
+                    </div>{/* end bg-white body */}
+                  </div>
+                </section>
+              ))}
+            </div>
+
+            {/* --- TAB: INFO & RESOURCES --- */}
+            <div className={`space-y-6 md:space-y-10 ${activeTab === 'info' ? 'block animate-in fade-in duration-500' : 'hidden'}`}>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 scroll-reveal">
+                {/* Breakfast List */}
+                <div id="breakfast-list" className="bg-white rounded-3xl p-6 md:p-10 border border-stone-200 shadow-md scroll-mt-28">
+                  <div className="flex items-center gap-3 md:gap-4 mb-5 md:mb-8">
+                    <Coffee className="text-pink-600" size={28} />
+                    <h3 className="text-2xl font-serif-tc font-bold text-stone-900">新潟市區早餐備案</h3>
+                  </div>
+                  <ul className="space-y-4 md:space-y-5">
+                    {breakfastOptions.map((opt, i) => (
+                      <li key={i} className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-stone-100 pb-4 last:border-0 gap-2">
+                        <a 
+                          href={opt.url} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="text-stone-800 font-bold text-lg hover:text-pink-700 transition-colors underline-offset-4 decoration-2 hover:underline flex items-start gap-2"
+                        >
+                          <MapPin size={18} className="shrink-0 mt-1 text-stone-400" />
+                          <span>{opt.name}</span>
+                        </a>
+                        <span className="text-sm font-bold text-stone-500 bg-stone-100 px-3 py-1.5 rounded-lg w-fit ml-6 sm:ml-0">{opt.desc}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Todo List */}
+                <div className="bg-white rounded-3xl p-6 md:p-10 border border-stone-200 shadow-md">
+                  <div className="flex items-center gap-3 md:gap-4 mb-5 md:mb-8">
+                    <Info className="text-pink-600" size={28} />
+                    <h3 className="text-2xl font-serif-tc font-bold text-stone-900">行前須知與提醒</h3>
+                  </div>
+                  <ul className="space-y-4 md:space-y-5 text-lg text-stone-800 font-medium">
+                    <li className="flex items-start gap-4">
+                      <div className="mt-2 w-2.5 h-2.5 rounded-full bg-pink-500 shrink-0 shadow-sm"></div>
+                      <span className="font-bold text-pink-700">日本購物限制攜帶白米4公斤以內(4人總額)，旅行社已洽國貿署申請許可，可攜回國重量大幅提升至12公斤。</span>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <div className="mt-2 w-2.5 h-2.5 rounded-full bg-pink-500 shrink-0 shadow-sm"></div>
+                      <span>確認手機eSIM或是網路漫遊已辦好</span>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <div className="mt-2 w-2.5 h-2.5 rounded-full bg-pink-500 shrink-0 shadow-sm"></div>
+                      <span>確認櫻花開花時間並微調行程</span>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <div className="mt-2 w-2.5 h-2.5 rounded-full bg-pink-500 shrink-0 shadow-sm"></div>
+                      <span>Visit Japan建檔</span>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <div className="mt-2 w-2.5 h-2.5 rounded-full bg-pink-500 shrink-0 shadow-sm"></div>
+                      <span>打包行李</span>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <div className="mt-2 w-2.5 h-2.5 rounded-full bg-pink-500 shrink-0 shadow-sm"></div>
+                      <span>天氣確認</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Extras */}
+              <div className="bg-white rounded-3xl p-6 md:p-10 mt-6 md:mt-10 shadow-md border border-stone-200 scroll-reveal">
+                <h3 className="text-xl md:text-2xl font-serif-tc font-bold mb-4 md:mb-5 text-stone-900 flex items-center gap-3">
+                  <MapPin size={24} className="text-pink-600" />
+                  行程遺珠：Cave d'Occi Winery 卡夫多奇酒莊
+                </h3>
+                <p className="text-base md:text-lg leading-relaxed text-stone-600 font-medium">
+                  位於新潟市區南方海濱、角田山腳下的美麗酒莊。擁有歐風庭園、溫泉與咖啡廳，適合品飲葡萄酒與享受下午茶時光。若行程有空檔可考慮前往（導覽需事先預約）。
+                </p>
+              </div>
+
+            </div>
+
+          </main>
+
+          {/* 全域浮動回到頂部按鈕 */}
+          <button
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-12 h-12 text-white bg-stone-800/80 hover:bg-pink-700 backdrop-blur-sm rounded-full shadow-lg transition-all hover:scale-105"
+            title="回到頂部"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+          </button>
+          
+          <footer className="py-6 md:py-10 text-center text-stone-500 tracking-widest mt-8 md:mt-16 border-t-2 border-stone-200 space-y-4">
+            <p className="text-sm font-medium">NIIGATA & TOKYO FAMILY ITINERARY © 2026</p>
+          </footer>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
