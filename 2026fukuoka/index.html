@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>把秋天的最後一場派對留給你們 ｜ 福岡・豪斯登堡 2026.10.29–11.03</title>
-<meta name="description" content="2026年10月29日至11月3日，福岡進出、豪斯登堡住三晚的萬聖節六天五夜行程，含班機、住宿、預算試算與地圖。">
+<title>把秋天的最後一場派對留給你們 ｜ 福岡・豪斯登堡 2026.10.27–11.01</title>
+<meta name="description" content="2026年10月27日至11月1日，福岡進出、豪斯登堡住三晚，收尾在中洲祭與購物日的六天五夜行程。含班機、住宿、預算試算與地圖。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;900&family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -19,6 +19,7 @@
   --pumpkin:#ff7a2f;
   --forest:#7ecda1;
   --bruna:#f5842b;
+  --neon:#ff5fa2;
   --paper:#eef4fa;
   --mute:#9db2cb;
   --serif:'Noto Serif TC',serif;
@@ -46,11 +47,11 @@ header.hero{min-height:100svh;display:flex;flex-direction:column;justify-content
   -webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 40%,#000 0%,transparent 78%)}
 .eyebrow{font-family:var(--mono);font-size:.86rem;letter-spacing:.3em;text-transform:uppercase;color:var(--sky);margin-bottom:30px}
 .eyebrow span{color:var(--pumpkin)}
-h1{font-family:var(--serif);font-weight:900;line-height:1.1;font-size:clamp(2.9rem,8.2vw,5.6rem);letter-spacing:-.02em}
-h1 .lit{background:linear-gradient(100deg,var(--pumpkin) 0%,var(--lumen) 52%,var(--ember) 100%);
+h1{font-family:var(--serif);font-weight:900;line-height:1.1;font-size:clamp(2.8rem,7.8vw,5.4rem);letter-spacing:-.02em}
+h1 .lit{background:linear-gradient(100deg,var(--pumpkin) 0%,var(--lumen) 52%,var(--neon) 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .kicker{font-family:var(--serif);font-size:clamp(1.15rem,2.5vw,1.5rem);font-weight:400;color:var(--sky);
-  margin-top:32px;max-width:34ch;line-height:2}
+  margin-top:32px;max-width:35ch;line-height:2}
 .factbar{display:flex;flex-wrap:wrap;margin-top:56px;border-top:1px solid rgba(127,178,229,.28);border-bottom:1px solid rgba(127,178,229,.28)}
 .fact{flex:1 1 160px;padding:22px 24px 20px;border-right:1px solid rgba(127,178,229,.18)}
 .fact:last-child{border-right:none}
@@ -68,36 +69,13 @@ h2{font-family:var(--serif);font-weight:900;font-size:clamp(2.1rem,4.8vw,3.2rem)
 
 .note{margin-top:30px;border-left:2px solid var(--lumen);padding:16px 0 16px 22px;font-size:1.02rem;color:#cfe0f2;max-width:58ch}
 .note b{color:var(--lumen);font-weight:500}
-
-.windows{display:grid;gap:20px;margin-top:48px;grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
-.win{border:1px solid rgba(127,178,229,.22);padding:30px 26px 32px;
-  background:linear-gradient(180deg,rgba(18,52,92,.5),rgba(7,26,51,.2));transition:border-color .4s,transform .4s}
-.win:hover{border-color:rgba(255,122,47,.5);transform:translateY(-4px)}
-.win.pick{border-color:var(--pumpkin);box-shadow:0 0 60px -22px var(--pumpkin)}
-.win .tag{font-family:var(--mono);font-size:.76rem;letter-spacing:.18em;color:var(--mute);text-transform:uppercase}
-.win.pick .tag{color:var(--pumpkin)}
-.win h3{font-family:var(--serif);font-size:1.62rem;font-weight:600;margin:12px 0 16px}
-.win ul{list-style:none;font-size:1rem}
-.win li{padding-left:20px;position:relative;margin-bottom:9px;color:#cfe0f2;line-height:1.75}
-.win li::before{content:'';position:absolute;left:0;top:.85em;width:8px;height:1px;background:var(--sky)}
-.win li.no::before{background:var(--ember)}
-.win li.no{color:var(--mute)}
-
-.rail{margin-top:52px;border-left:1px solid rgba(127,178,229,.25)}
-.ev{display:grid;grid-template-columns:170px 1fr;gap:26px;padding:24px 0 24px 28px;position:relative;border-bottom:1px solid rgba(127,178,229,.12)}
-.ev::before{content:'';position:absolute;left:-4px;top:34px;width:7px;height:7px;border-radius:50%;background:var(--line)}
-.ev.hot::before{background:var(--pumpkin);box-shadow:0 0 0 5px rgba(255,122,47,.16)}
-.ev.past::before{background:#2c4a6b}
-.ev .when{font-family:var(--mono);font-size:.92rem;color:var(--pumpkin);padding-top:3px}
-.ev.past .when{color:var(--mute)}
-.ev h4{font-family:var(--serif);font-size:1.3rem;font-weight:600;margin-bottom:6px}
-.ev.past h4{color:var(--mute);text-decoration:line-through;text-decoration-color:rgba(157,178,203,.5)}
-.ev p{font-size:1rem;color:#c4d8ee}
+.note.warn{border-left-color:var(--ember)}
+.note.warn b{color:var(--ember)}
 
 .spine{position:relative;margin-top:56px;padding-left:42px}
 .spine::before{content:'';position:absolute;left:8px;top:10px;bottom:64px;width:2px;background:rgba(127,178,229,.18)}
 .spine::after{content:'';position:absolute;left:8px;top:10px;width:2px;height:var(--fill,0%);
-  background:linear-gradient(180deg,var(--pumpkin),var(--ember));box-shadow:0 0 16px var(--pumpkin);transition:height .2s linear}
+  background:linear-gradient(180deg,var(--pumpkin),var(--neon));box-shadow:0 0 16px var(--pumpkin);transition:height .2s linear}
 .day{position:relative;padding:0 0 50px}
 .lamp{position:absolute;left:-42px;top:8px;width:18px;height:18px;border-radius:50%;border:2px solid var(--line);background:var(--ink);transition:.5s}
 .day.on .lamp{background:var(--pumpkin);border-color:var(--pumpkin);box-shadow:0 0 22px var(--pumpkin)}
@@ -110,6 +88,10 @@ h2{font-family:var(--serif);font-weight:900;font-size:clamp(2.1rem,4.8vw,3.2rem)
   font-size:.86rem;border:1px solid rgba(127,178,229,.3);padding:8px 14px;color:var(--sky)}
 .day .stay.forest{border-color:rgba(126,205,161,.45);color:var(--forest)}
 .day .stay.miffy{border-color:rgba(245,132,43,.45);color:var(--bruna)}
+
+.clock{margin-top:22px;border-left:1px solid rgba(255,122,47,.35);padding-left:20px;max-width:56ch}
+.clock div{display:grid;grid-template-columns:82px 1fr;gap:16px;padding:7px 0;font-size:1rem;color:#cadeef}
+.clock b{font-family:var(--mono);font-size:.92rem;color:var(--pumpkin);font-weight:400}
 
 #map{height:460px;margin-top:48px;border:1px solid rgba(127,178,229,.25);background:#061224}
 .leaflet-container{background:#061224;font-family:var(--sans)}
@@ -127,24 +109,25 @@ h2{font-family:var(--serif);font-weight:900;font-size:clamp(2.1rem,4.8vw,3.2rem)
   box-shadow:0 0 14px rgba(255,122,47,.5)}
 .maplegend{margin-top:16px;font-family:var(--mono);font-size:.86rem;color:var(--mute)}
 
-.hotels{display:grid;gap:22px;margin-top:48px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
-.hot{border:1px solid rgba(127,178,229,.2);padding:32px 26px 30px;position:relative;overflow:hidden;
+.cards{display:grid;gap:22px;margin-top:48px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{border:1px solid rgba(127,178,229,.2);padding:32px 26px 30px;position:relative;overflow:hidden;
   background:rgba(9,28,54,.55);transition:transform .4s,border-color .4s}
-.hot:hover{transform:translateY(-5px)}
-.hot::after{content:'';position:absolute;left:0;top:0;width:100%;height:3px;background:var(--line)}
-.hot.forest::after{background:var(--forest)}
-.hot.forest:hover{border-color:rgba(126,205,161,.5)}
-.hot.forest .role{color:var(--forest)}
-.hot.miffy::after{background:var(--bruna)}
-.hot.miffy:hover{border-color:rgba(245,132,43,.5)}
-.hot.miffy .role{color:var(--bruna)}
-.hot .role{font-family:var(--mono);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
-.hot h3{font-family:var(--serif);font-size:1.55rem;font-weight:600;margin:10px 0 5px}
-.hot .jp{font-family:var(--mono);font-size:.84rem;color:var(--mute);margin-bottom:18px}
-.hot .price{font-family:var(--mono);font-size:1.3rem;color:var(--lumen);margin-bottom:16px}
-.hot .price small{font-size:.82rem;color:var(--mute);display:block;margin-top:6px;line-height:1.7}
-.hot p{font-size:1.02rem;color:#c4d8ee;line-height:1.9}
-.hot .con{font-size:.96rem;color:var(--ember);margin-top:12px}
+.card:hover{transform:translateY(-5px)}
+.card::after{content:'';position:absolute;left:0;top:0;width:100%;height:3px;background:var(--line)}
+.card.forest::after{background:var(--forest)}
+.card.forest .role{color:var(--forest)}
+.card.miffy::after{background:var(--bruna)}
+.card.miffy .role{color:var(--bruna)}
+.card.pickup::after{background:var(--pumpkin)}
+.card.pickup{border-color:rgba(255,122,47,.45)}
+.card.pickup .role{color:var(--pumpkin)}
+.card .role{font-family:var(--mono);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+.card h3{font-family:var(--serif);font-size:1.55rem;font-weight:600;margin:10px 0 5px}
+.card .jp{font-family:var(--mono);font-size:.84rem;color:var(--mute);margin-bottom:18px}
+.card .price{font-family:var(--mono);font-size:1.3rem;color:var(--lumen);margin-bottom:16px}
+.card .price small{font-size:.82rem;color:var(--mute);display:block;margin-top:6px;line-height:1.7}
+.card p{font-size:1.02rem;color:#c4d8ee;line-height:1.9}
+.card .con{font-size:.96rem;color:var(--ember);margin-top:12px}
 
 .flights{display:grid;gap:20px;margin-top:44px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
 .fl{border:1px solid rgba(127,178,229,.22);padding:30px 26px;background:rgba(9,28,54,.5)}
@@ -160,7 +143,7 @@ h2{font-family:var(--serif);font-weight:900;font-size:clamp(2.1rem,4.8vw,3.2rem)
 
 .calc{margin-top:48px;border:1px solid rgba(127,178,229,.25);background:rgba(9,28,54,.5)}
 .calc .ctrl{display:flex;flex-wrap:wrap;gap:30px;padding:30px 28px 28px;border-bottom:1px solid rgba(127,178,229,.2)}
-.ctrl .grp{flex:1 1 230px}
+.ctrl .grp{flex:1 1 240px}
 .ctrl label{display:block;font-family:var(--mono);font-size:.8rem;letter-spacing:.16em;color:var(--mute);text-transform:uppercase;margin-bottom:14px}
 .seg{display:flex;border:1px solid rgba(127,178,229,.3)}
 .seg button{flex:1;background:transparent;border:none;border-right:1px solid rgba(127,178,229,.2);
@@ -184,6 +167,18 @@ tbody tr:hover td{background:rgba(127,178,229,.06)}
 .out .lbl{font-family:var(--mono);font-size:.8rem;letter-spacing:.16em;color:var(--mute);text-transform:uppercase;margin-bottom:10px}
 .out .per{font-family:var(--mono);font-size:1.5rem;color:var(--lumen)}
 
+.alt{margin-top:48px;border:1px solid rgba(255,95,162,.35);background:linear-gradient(180deg,rgba(60,18,45,.4),rgba(9,28,54,.4));padding:36px 30px 34px}
+.alt .tag{font-family:var(--mono);font-size:.8rem;letter-spacing:.2em;color:var(--neon);text-transform:uppercase}
+.alt h3{font-family:var(--serif);font-size:1.9rem;font-weight:900;margin:12px 0 18px;line-height:1.35}
+.alt p{font-size:1.04rem;color:#cfe0f2;max-width:58ch;line-height:1.95}
+.altgrid{display:grid;gap:24px;margin-top:28px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.altgrid h4{font-family:var(--serif);font-size:1.18rem;font-weight:600;margin-bottom:10px}
+.altgrid ul{list-style:none;font-size:1rem}
+.altgrid li{padding-left:20px;position:relative;margin-bottom:8px;color:#cfe0f2;line-height:1.8}
+.altgrid li::before{content:'';position:absolute;left:0;top:.88em;width:8px;height:1px;background:var(--forest)}
+.altgrid li.no::before{background:var(--ember)}
+.altgrid li.no{color:var(--mute)}
+
 .risks{margin-top:44px;display:grid;gap:2px;background:rgba(127,178,229,.16)}
 .risk{background:var(--ink);padding:28px;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start}
 .risk .n{font-family:var(--mono);font-size:.82rem;color:var(--ember);letter-spacing:.1em;padding-top:6px;white-space:nowrap}
@@ -203,8 +198,8 @@ footer .fm{font-family:var(--mono);letter-spacing:.1em;color:var(--sky);font-siz
 @media (max-width:640px){
   html{font-size:16px}
   .fact{flex:1 1 50%;border-right:none;border-bottom:1px solid rgba(127,178,229,.15)}
-  .ev{grid-template-columns:1fr;gap:8px}
   .risk,.gloss .gr{grid-template-columns:1fr;gap:10px}
+  .clock div{grid-template-columns:70px 1fr;gap:12px}
   section{padding:84px 0 12px}
   #map{height:360px}
 }
@@ -221,132 +216,167 @@ footer .fm{font-family:var(--mono);letter-spacing:.1em;color:var(--sky);font-siz
 <header class="hero">
   <div class="tile" aria-hidden="true"></div>
   <div class="wrap">
-    <p class="eyebrow">2026.10.29 <span>—</span> 11.03　／　六天五夜　／　福岡進出</p>
-    <h1>把秋天的最後一場派對<br><span class="lit">留給你們兩個</span></h1>
-    <p class="kicker">十月底的長崎，海風已經涼了。運河兩岸的南瓜燈一路點到宮殿前庭，森林裡的小木屋亮著暖黃的燈等你們回去。這六天，就是為了這樣的夜晚安排的。</p>
+    <p class="eyebrow">2026.10.27 <span>—</span> 11.01　／　六天五夜　／　福岡進出</p>
+    <h1>南瓜燈亮完，<br><span class="lit">換霓虹接手</span></h1>
+    <p class="kicker">前半段在豪斯登堡的森林與運河裡放慢，後半段回到九州最大的歡樂街，撞上一年一度的中洲祭。同一趟旅程，兩種完全不同的夜晚。</p>
     <dl class="factbar">
       <div class="fact"><dt>豪斯登堡</dt><dd><em>3</em> 晚</dd></div>
-      <div class="fact"><dt>萬聖夜</dt><dd><em>10.31</em></dd></div>
+      <div class="fact"><dt>中洲祭</dt><dd><em>10.31</em></dd></div>
       <div class="fact"><dt>去程</dt><dd>08:10 <em>→</em> 11:15</dd></div>
       <div class="fact"><dt>回程</dt><dd>20:55 <em>→</em> 22:35</dd></div>
-      <div class="fact"><dt>兩人預算</dt><dd><em>10.2</em> 萬台幣起</dd></div>
+      <div class="fact"><dt>兩人預算</dt><dd><em>10.5</em> 萬台幣起</dd></div>
     </dl>
   </div>
 </header>
 
-<section id="why">
-  <div class="wrap">
-    <p class="snum rv">01 ／ 時機</p>
-    <h2 class="rv">全年只有這幾天，<br>南瓜燈和森林一起亮著</h2>
-    <p class="lede rv">豪斯登堡的萬聖節在十一月三日熄燈。宮殿前庭的恐怖企劃每週二、三休息，扣掉這些，真正能玩得完整的日子屈指可數——這六天，就是踩在那個縫隙上排的。</p>
-    <div class="note rv"><b>有件事要先說清楚。</b>走這個檔期，就會錯過十一月十四日的九州最大花火祭，也趕不上聖誕燈飾——去年是十一月七日才點燈。但那一晚的房，是全年最搶不到的一晚。換來的是南瓜燈、米菲兔變裝遊行、葡萄酒祭，還有十月三十一日那場花火加量的夜間秀。一樣是滿天的光，而且訂得到房。</div>
-    <div class="windows">
-      <article class="win rv">
-        <p class="tag">另一種選擇 ／ 11.14</p>
-        <h3>九州最大花火祭</h3>
-        <ul>
-          <li>兩萬兩千發，西日本最大級</li>
-          <li>壓軸五分鐘五千發連發</li>
-          <li class="no">園區內飯店提早數月售罄</li>
-          <li class="no">特別觀覽席要另外搶票</li>
-          <li class="no">萬聖節那時已經結束</li>
-        </ul>
-      </article>
-      <article class="win pick rv">
-        <p class="tag">這一趟 ／ 10.29 – 11.03</p>
-        <h3>萬聖節最終週</h3>
-        <ul>
-          <li>宮殿前庭的恐怖企劃「死亡之王」</li>
-          <li>米菲兔們首度變裝的日間遊行</li>
-          <li>葡萄酒祭，約五十款可以慢慢喝</li>
-          <li>十月三十一日花火加量的夜間秀</li>
-          <li class="no">聖誕燈飾還沒點亮</li>
-        </ul>
-      </article>
-      <article class="win rv">
-        <p class="tag">留給下次 ／ 12.24 – 12.31</p>
-        <h3>聖誕與跨年</h3>
-        <ul>
-          <li>燈飾規模全年最盛</li>
-          <li>連日花火與跨年八千發</li>
-          <li class="no">機票房價全年最高</li>
-          <li class="no">緊接著冬季休園期</li>
-          <li class="no">同樣一房難求</li>
-        </ul>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section id="calendar">
-  <div class="wrap">
-    <p class="snum rv">02 ／ 這趟看得到什麼</p>
-    <h2 class="rv">有些燈已經熄了，<br>有些正好為你們亮著</h2>
-    <p class="lede rv">劃掉的是趕不上的。最需要先知道的一件事：EVA 的聯名企劃在九月十三日整批下檔，只留下那座八K 騎乘劇院。</p>
-    <div class="rail">
-      <div class="ev past rv"><p class="when">～ 09.13</p><div><h4>EVA 聯名企劃</h4><p>夜間秀、集章解謎、聯名餐點與商品都已收攤。官方目前沒有公告延長或第二波。</p></div></div>
-      <div class="ev hot rv"><p class="when">09.18 – 11.03</p><div><h4>萬聖節 2026</h4><p>官方說是史上最大規模。宮殿前庭有新登場的反派「死亡之王」，白天則是米菲兔們第一次穿上變裝走遊行。同期還有葡萄酒祭，約五十款來自世界各地與九州的酒，配著餐慢慢喝。</p></div></div>
-      <div class="ev rv"><p class="when">每週二、三</p><div><h4>恐怖企劃休息</h4><p>宮殿前庭的恐怖企劃這兩天不開。所以豪斯登堡的三天特意排在週四、五、六。</p></div></div>
-      <div class="ev hot rv"><p class="when">10.31 ・ 11.01</p><div><h4>花火加量的夜間秀</h4><p>光雕、噴泉配上小提琴、大提琴與鋼琴的現場演奏，這兩天花火量大幅增加。這是這趟旅程最盛大的一晚。</p></div></div>
-      <div class="ev past rv"><p class="when">11月上旬起</p><div><h4>聖誕活動與光之王國燈飾</h4><p>去年十一月七日開跑，今年日期官方還沒公告。照往例推估，你們出發時應該還沒點燈。</p></div></div>
-      <div class="ev rv"><p class="when">全年常設</p><div><h4>EVA 八K 騎乘劇院・米菲兔園區</h4><p>這兩處全年開放，萬聖節期間照常運作，不用擔心撲空。</p></div></div>
-    </div>
-  </div>
-</section>
-
 <section id="days">
   <div class="wrap">
-    <p class="snum rv">03 ／ 行程</p>
-    <h2 class="rv">從森林裡醒來，<br>在燈火中睡去</h2>
-    <p class="lede rv">前兩晚住在園區最安靜的林間，把腳步放慢；萬聖夜才搬到小鎮正中央，散場後幾分鐘就能走回房間。</p>
+    <p class="snum rv">01 ／ 行程</p>
+    <h2 class="rv">從森林裡醒來，<br>在霓虹下收尾</h2>
+    <p class="lede rv">豪斯登堡的三天落在週三到週六上午，避開恐怖企劃週二、週三的休演日。最後兩天回博多，一晚給祭典、一天給購物。</p>
     <div class="spine" id="spine">
 
       <article class="day"><span class="lamp"></span>
-        <div class="dh"><span class="dn">第 1 天</span><span class="dd">10.29　週四</span></div>
-        <h3>先把行李放下，再慢慢走進去</h3>
-        <p class="body">早上八點十分從桃園起飛，十一點十五分落地福岡。國際線航廈搭上高速巴士，兩小時後窗外開始出現風車和紅磚屋頂。下午三點左右進小木屋，這裡是園區最安靜的一角，森林和湖圍著，先在露台上坐一會兒。傍晚買午後入場護照散步進園，第一晚不排行程，就在運河邊吃飯、看燈一盞一盞亮起來。</p>
+        <div class="dh"><span class="dn">第 1 天</span><span class="dd">10.27　週二</span></div>
+        <h3>先走一圈博多舊市街，晚上吃壽司</h3>
+        <p class="body">上午八點十分從桃園起飛，十一點十五分落地。進市區放好行李，用一個下午把博多舊市街走完——這一帶從博多站步行可達，密度高、不用趕車。晚上十八點準時開席，第一餐就吃壽司。</p>
+        <div class="clock">
+          <div><b>13:30</b><span>櫛田神社，境內常設一台裝飾山笠</span></div>
+          <div><b>14:00</b><span>川端商店街，順道吃一碗紅豆湯</span></div>
+          <div><b>14:40</b><span>東長寺，看十公尺高的福岡大佛</span></div>
+          <div><b>15:20</b><span>承天寺通，烏龍麵與蕎麥麵的發祥碑</span></div>
+          <div><b>18:00</b><span>壽司晚餐（見下一節）</span></div>
+        </div>
+        <span class="stay">住　博多站周邊</span>
+      </article>
+
+      <article class="day"><span class="lamp"></span>
+        <div class="dh"><span class="dn">第 2 天</span><span class="dd">10.28　週三</span></div>
+        <h3>上午移動，下午就進園</h3>
+        <p class="body">早上搭特急前往豪斯登堡，約一小時五十分，中午前後抵達。先進小木屋放行李，這裡是園區最安靜的一角，森林和湖圍著，露台上可以坐很久。下午買一日護照入園，晚上看夜間秀。今天是週三，宮殿前庭的恐怖企劃休演，就當作暖身日。</p>
         <span class="stay forest">住　森林小木屋・湖畔別墅</span>
       </article>
 
       <article class="day"><span class="lamp"></span>
-        <div class="dh"><span class="dn">第 2 天</span><span class="dd">10.30　週五</span></div>
+        <div class="dh"><span class="dn">第 3 天</span><span class="dd">10.29　週四</span></div>
         <h3>白天屬於米菲兔，晚上屬於別人</h3>
         <p class="body">用飯店的提早入園特典趕在開園前進去，人最少的那一小時是你們的。上午逛米菲兔園區、搭運河遊船，中午看變裝遊行，下午進 EVA 八K 騎乘劇院。天黑之後氣氛整個翻面——到宮殿前庭去被嚇一輪，出來剛好順路逛葡萄酒祭，帶著一點微醺穿過湖區走回小木屋。</p>
         <span class="stay forest">住　森林小木屋・湖畔別墅</span>
       </article>
 
       <article class="day"><span class="lamp"></span>
-        <div class="dh"><span class="dn">第 3 天</span><span class="dd">10.31　週六　萬聖夜</span></div>
-        <h3>今晚不出園，也不必趕路</h3>
-        <p class="body">上午把行李搬到小鎮正中央的阿姆斯特丹飯店，住進米菲兔房。白天把前兩天沒走完的街區和店逛完，傍晚提早去佔位子。入夜的夜間秀花火加量，是這趟最壯觀的一場。散場時園外的接駁和停車場會塞成一團，而你們只要沿著運河走幾分鐘就到房門口——這就是今晚住在這裡的理由。</p>
+        <div class="dh"><span class="dn">第 4 天</span><span class="dd">10.30　週五</span></div>
+        <h3>搬到小鎮正中央</h3>
+        <p class="body">上午把行李搬到阿姆斯特丹飯店，住進米菲兔房。這是三晚裡唯一位在園區正中央的一晚，白天把前兩天沒走完的街區和店逛完，傍晚不必趕路就能看夜間秀，散場沿著運河走幾分鐘就到房門口。想再被嚇一次的話，恐怖企劃今天照常演出。</p>
         <span class="stay miffy">住　阿姆斯特丹飯店・米菲兔房</span>
       </article>
 
       <article class="day"><span class="lamp"></span>
-        <div class="dh"><span class="dn">第 4 天</span><span class="dd">11.01　週日</span></div>
-        <h3>換一座城，換一種光</h3>
-        <p class="body">上午在園內做最後採買，搭快速列車一個半小時到長崎。下午走出島、眼鏡橋、大浦天主堂與哥拉巴園，坡道走累了就找間老咖啡店坐。傍晚上稻佐山——連續三晚看人造的光之後，這一晚看的是整座城市的燈。</p>
-        <span class="stay">住　長崎市區</span>
-      </article>
-
-      <article class="day"><span class="lamp"></span>
-        <div class="dh"><span class="dn">第 5 天</span><span class="dd">11.02　週一</span></div>
-        <h3>回到熱鬧的地方</h3>
-        <p class="body">搭西九州新幹線接力列車，不到兩小時回博多。上午逛柳橋連合市場、拜櫛田神社，下午在天神一帶把伴手禮補齊。晚上到中洲的屋台坐下來，一碗豚骨拉麵配啤酒，這趟就算圓滿了。</p>
+        <div class="dh"><span class="dn">第 5 天</span><span class="dd">10.31　週六　祭典夜</span></div>
+        <h3>下午離開森林，晚上走進霓虹</h3>
+        <p class="body">上午退房，園內最後採買，午後搭特急回博多。先回飯店放行李——祭典人潮很密，拖著行李會很痛苦。十八點過後中洲大通變成步行者天國，兩側排開約六十攤，整條街的燈和味道一起亮起來。</p>
+        <div class="clock">
+          <div><b>14:00</b><span>豪斯登堡出發，特急約一小時五十分</span></div>
+          <div><b>16:30</b><span>抵博多，飯店放行李</span></div>
+          <div><b>18:00</b><span>中洲大通飲食攤車開始</span></div>
+          <div><b>19:00</b><span>中洲國廣稻荷神社，手一本與人力車</span></div>
+          <div><b>19:00</b><span>女神輿出發</span></div>
+          <div><b>20:00</b><span>花魁道中沿中洲大通遊行</span></div>
+          <div><b>21:00</b><span>五丁目舞台和太鼓</span></div>
+        </div>
         <span class="stay">住　博多站周邊</span>
       </article>
 
       <article class="day"><span class="lamp"></span>
-        <div class="dh"><span class="dn">第 6 天</span><span class="dd">11.03　週二</span></div>
-        <h3>最後一天不用趕飛機</h3>
-        <p class="body">回程晚上八點五十五分才起飛，這一整天都還是你們的。可以搭電車去太宰府天滿宮走走，或哪裡都不去，就在博多站和天神慢慢逛。傍晚從博多巴士總站搭直達巴士，三十分鐘到國際航廈。深夜十點半，回到桃園。</p>
+        <div class="dh"><span class="dn">第 6 天</span><span class="dd">11.01　週日</span></div>
+        <h3>整天拿來買東西</h3>
+        <p class="body">回程晚上八點五十五分才起飛，白天完全可用。週日百貨十點開門，時間抓得剛好：上午在博多站把伴手禮一次解決，中午運河城，下午主攻天神。免稅櫃檯四點半以後會排長龍，同一家店的採買盡量一次結清。</p>
+        <div class="clock">
+          <div><b>09:30</b><span>退房，行李寄放櫃檯</span></div>
+          <div><b>10:00</b><span>博多站 Ming 伴手禮街、阪急地下食品街</span></div>
+          <div><b>12:00</b><span>運河城博多，午餐在拉麵競技場</span></div>
+          <div><b>14:00</b><span>天神地下街、大丸、岩田屋、三越、PARCO</span></div>
+          <div><b>16:30</b><span>回飯店取行李</span></div>
+          <div><b>17:30</b><span>博多巴士總站直達國際線航廈，約二十分鐘</span></div>
+        </div>
         <span class="stay">桃園 22:35 抵達</span>
       </article>
 
     </div>
 
-    <div id="map" class="rv" role="img" aria-label="行程路線地圖，依序為福岡機場、豪斯登堡、長崎、博多、太宰府"></div>
+    <div id="map" class="rv" role="img" aria-label="行程路線地圖，依序為福岡機場、西中洲、豪斯登堡、中洲、天神、博多站"></div>
     <p class="maplegend">點選地圖上的標記，可以看到那一天的安排</p>
+  </div>
+</section>
+
+<section id="sushi">
+  <div class="wrap">
+    <p class="snum rv">02 ／ 第一晚的壽司</p>
+    <h2 class="rv">十八點開席，<br>三種價位的選法</h2>
+    <p class="lede rv">10/27 是週二，以下都是當天有營業、且十八點就能開動的店。全部需要預約，越前面的越難訂。</p>
+    <div class="cards">
+      <article class="card pickup rv">
+        <p class="role">頂規 ／ 西中洲</p>
+        <h3>鮨さかい</h3>
+        <p class="jp">Sushi Sakai　092-726-6289</p>
+        <p class="price">預估 2 萬日圓以上／人<small>週二晚間 18:00–20:00 一輪<br>週一、週日公休</small></p>
+        <p>福岡壽司的天花板，曾在米其林福岡版拿下三星。江戶前風格，酸度明顯的醋飯是招牌，佐餐酒的搭配也是常被提起的一環。時段剛好從十八點整開始，不用等。</p>
+        <p class="con">位子極難訂，建議兩個月前就開始嘗試。</p>
+      </article>
+      <article class="card rv">
+        <p class="role">中階 ／ 中洲</p>
+        <h3>中洲 鮨割烹 流</h3>
+        <p class="jp">092-409-3857</p>
+        <p class="price">7,000–13,000 日圓／人<small>每晚 18:00–20:00 一輪<br>週日公休</small></p>
+        <p>那珂川邊的小店，主廚發辦形式，套餐分幾個價位。附無限暢飲，適合想放鬆喝一點的第一晚。店內安靜、氣氛親近，但英文菜單有限，點餐可能要靠翻譯軟體。</p>
+        <p class="con">座位少，同樣要預約。</p>
+      </article>
+      <article class="card rv">
+        <p class="role">輕鬆 ／ 博多站前</p>
+        <h3>博多寿司処 尾之上</h3>
+        <p class="jp">092-414-3385</p>
+        <p class="price">中價位<small>週二晚間 17:30–20:30<br>週日公休</small></p>
+        <p>家庭經營的小店，走路就到博多站。份量與價格的平衡是它最受稱讚的地方，自製紅豆糕的收尾常被提起。落地第一天不想太正式、又想吃到好東西時，這家最省事。</p>
+        <p class="con">晚餐時段只到八點半，十八點入座剛好。</p>
+      </article>
+    </div>
+    <div class="note warn rv"><b>訂位提醒。</b>營業時間為查詢當下的公開資訊，日本餐廳的臨時公休不會事先公告。行前請直接致電確認，或透過訂位平台留下紀錄。頂級壽司店多半只接受電話預約，且常有取消規定。</div>
+  </div>
+</section>
+
+<section id="matsuri">
+  <div class="wrap">
+    <p class="snum rv">03 ／ 中洲祭</p>
+    <h2 class="rv">五百個女人，<br>兩座神輿，一條街</h2>
+    <p class="lede rv">中洲祭是這條歡樂街一年一度的謝恩祭，全區免預約、免費入場。以下是 2025 年第五十回的實際節目，可以拿來抓時間感。</p>
+
+    <div class="cards">
+      <article class="card pickup rv">
+        <p class="role">看點一</p>
+        <h3>中洲國廣女神輿</h3>
+        <p class="jp">中洲五丁目・中洲國廣稻荷神社</p>
+        <p class="price">最終日 19:00 出發<small>前一日場次為 19:30</small></p>
+        <p>全部由女性擔抬的傳統神輿，約五百人分擔兩座，在中洲大通上奔走。抬轎者有三分之二是上班族、學生與家庭主婦，這是整場祭典的高潮。</p>
+      </article>
+      <article class="card rv">
+        <p class="role">看點二</p>
+        <h3>花魁道中</h3>
+        <p class="jp">同上，沿中洲大通遊行</p>
+        <p class="price">最終日 20:00 出發<small>19:00 手一本、19:15 人力車下り</small></p>
+        <p>身著花魁裝束的女子搭人力車緩緩巡遊。前一日的場次會先在十八點舉行鏡開儀式並發放清酒。</p>
+      </article>
+      <article class="card rv">
+        <p class="role">看點三</p>
+        <h3>飲食攤車與步行者天國</h3>
+        <p class="jp">中洲大通</p>
+        <p class="price">18:00 開始<small>另有一丁目舞台飲食帳篷、春吉橋橋上廣場餐車</small></p>
+        <p>中洲大通封街，兩側排開約六十攤，炒麵、烤雞串這類祭典食物。往年還會有鮪魚解體秀。二十一點過後五丁目舞台有和太鼓。</p>
+      </article>
+    </div>
+
+    <div class="note rv"><b>卡位怎麼站。</b>稻荷神社起點是人最密但氣氛最好的地方，想拍照要提早二十分鐘到。只想輕鬆看的話，站在中洲大通中段的第二排就夠——神輿和人力車都會經過。春吉橋一帶還能拍到那珂川的霓虹倒影。官網每年會分別公布兩天的女神輿路線圖，出發前查一次，可以挑離飯店近的路段等。</div>
+
+    <div class="note warn rv"><b>日期還沒定案。</b>中洲觀光協會的說法是「十月第四週的週四、週五、週六」，但 2025 年實際辦在 10/30 至 11/1。2026 年 10/31 是十月最後一個週六，落在最終日的機率高，但務必等官方公告。另外 2025 年是五十週年特別版三天，2026 年可能回到常規規模。洽詢電話 092-272-1440。</div>
   </div>
 </section>
 
@@ -355,31 +385,31 @@ footer .fm{font-family:var(--mono);letter-spacing:.1em;color:var(--sky);font-siz
     <p class="snum rv">04 ／ 住宿</p>
     <h2 class="rv">兩晚在森林裡，<br>一晚在小鎮中央</h2>
     <p class="lede rv">把最貴的一晚留給最需要位置的那一天，其餘兩晚換到林子裡，睡得更安靜也更省。以下都已換算成兩人一室的整房價——官方標價寫的是每人金額，這點要特別留意。</p>
-    <div class="note rv"><b>早一點訂，差很多。</b>小木屋在部分通路有早鳥價：六十天前訂每人每晚折兩千日圓，四十五天前折一千日圓。以十月二十九日出發回推，八月三十日前下訂就吃得到最好的那一檔，兩人兩晚省八千日圓。</div>
-    <div class="hotels">
-      <article class="hot forest rv">
-        <p class="role">第 1、2 晚</p>
+    <div class="note rv"><b>早一點訂，差很多。</b>小木屋在部分通路有早鳥價：六十天前訂每人每晚折兩千日圓，四十五天前折一千日圓。以十月二十七日出發回推，八月二十八日前下訂就吃得到最好的那一檔。</div>
+    <div class="cards">
+      <article class="card forest rv">
+        <p class="role">第 2、3 晚</p>
         <h3>森林小木屋</h3>
         <p class="jp">フォレストヴィラ　Forest Villa</p>
         <p class="price">約 4.0 萬日圓<small>兩人一室・每晚・含早餐<br>官方通路每人 1.36 萬～6.1 萬日圓浮動<br>湖畔別墅四床型每人 1.88 萬～3.28 萬</small></p>
         <p>園區裡最安靜的一區，獨棟小屋散落在森林與湖之間，像走進歐洲鄉下的小村子。四床型七十七平方公尺，空間很寬。早餐是野餐形式，可以端到自家露台上，配著晨霧慢慢吃完。</p>
         <p class="con">離主要活動區最遠，有免費接駁巴士往返園內行李寄放處。花火或特別活動日可能需要當日入場券。</p>
       </article>
-      <article class="hot miffy rv">
-        <p class="role">第 3 晚　萬聖夜</p>
+      <article class="card miffy rv">
+        <p class="role">第 4 晚</p>
         <h3>米菲兔房</h3>
         <p class="jp">ホテルアムステルダム　Hotel Amsterdam</p>
         <p class="price">6.76 萬日圓<small>兩人一室・每晚・含早餐<br>飛行探險型 7.06 萬日圓</small></p>
-        <p>園區裡唯一坐落在正中央的飯店。四十五平方公尺起，基本型最多住四人。房內備品有可以帶回家的米菲兔束口袋、原創手冊和房卡。看完那場加量的夜間秀，人潮還堵在門口的時候，你們已經在房裡了。</p>
+        <p>園區裡唯一坐落在正中央的飯店。四十五平方公尺起，基本型最多住四人。房內備品有可以帶回家的米菲兔束口袋、原創手冊和房卡。夜間秀散場時人潮還堵在門口，你們已經在房裡了。</p>
         <p class="con">三晚裡最貴的一晚，所以只訂一晚；也是最難訂的一晚，要最先下手。</p>
       </article>
-      <article class="hot rv">
-        <p class="role">共通特典</p>
-        <h3>住直營飯店才有的四件事</h3>
-        <p class="jp">豪斯登堡直營五家飯店</p>
-        <p class="price">值得算進去<small>這是直營飯店貴得有道理的部分</small></p>
-        <p>提早入園、入住日買了護照隔天再送一張、行李直接送到房間、伴手禮宅配。以三晚來算，光是護照這一項就可能省下好幾千日圓，等於房價先打了一小折。</p>
-        <p class="con">中途換飯店可能中斷護照特典的連續性，訂房後請向飯店確認。</p>
+      <article class="card rv">
+        <p class="role">第 1、5 晚</p>
+        <h3>博多站周邊</h3>
+        <p class="jp">Hakata Station Area</p>
+        <p class="price">約 1.6 萬日圓<small>兩人一室・每晚・推估值</small></p>
+        <p>頭尾兩晚都住同一區最省事：離機場地鐵五分鐘、離中洲兩站、離特急月台走路可達。10/31 是祭典夜，中洲一帶的房會漲，住博多站反而安靜又便宜。</p>
+        <p class="con">祭典期間整個市中心房價都會浮動，這兩晚也要提早訂。</p>
       </article>
     </div>
   </div>
@@ -397,7 +427,7 @@ footer .fm{font-family:var(--mono);letter-spacing:.1em;color:var(--sky);font-siz
         <p class="no">BR106　桃園 → 福岡</p>
         <div class="leg"><span class="t">20:55</span><span class="line"></span><span class="t">22:35</span></div>
         <p class="no">BR107　福岡 → 桃園</p>
-        <p class="verdict">八點十分的班機，不必半夜爬起來；回程近九點才走，最後一天整天都能用。這趟的最佳解。</p>
+        <p class="verdict">八點十分的班機，不必半夜爬起來；回程近九點才走，購物日整天都能用。這趟的最佳解。</p>
       </article>
       <article class="fl rv">
         <p class="air">中華航空</p>
@@ -405,7 +435,7 @@ footer .fm{font-family:var(--mono);letter-spacing:.1em;color:var(--sky);font-siz
         <p class="no">CI110　桃園 → 福岡</p>
         <div class="leg"><span class="t">20:35</span><span class="line"></span><span class="t">22:20</span></div>
         <p class="no">CI117　福岡 → 桃園（時刻依季節微調）</p>
-        <p class="verdict">回程時段一樣好，但去程六點五十分意味著清晨五點半就得站在機場。除非價差夠大，否則第一天會累。</p>
+        <p class="verdict">回程時段一樣好，但去程六點五十分意味著清晨五點半就得站在機場。除非價差夠大，否則第一天會累，晚上的壽司也吃不安穩。</p>
       </article>
     </div>
     <p style="margin-top:28px;font-size:.96rem;color:var(--mute)">十月二十五日起換冬季班表，時刻可能微調，訂票前請以航空公司官網為準。</p>
@@ -416,7 +446,7 @@ footer .fm{font-family:var(--mono);letter-spacing:.1em;color:var(--sky);font-siz
   <div class="wrap">
     <p class="snum rv">06 ／ 預算</p>
     <h2 class="rv">這趟大概要花多少</h2>
-    <p class="lede rv">預設兩位成人。住宿與門票是官方公告價，標了「推估值」的是依市場行情抓的，實際訂房時會有出入。</p>
+    <p class="lede rv">預設兩位成人。米菲兔房與門票是官方公告價，標了「推估值」的是依市場行情抓的，實際訂房時會有出入。</p>
 
     <div class="calc rv">
       <div class="ctrl">
@@ -426,6 +456,14 @@ footer .fm{font-family:var(--mono);letter-spacing:.1em;color:var(--sky);font-siz
             <button type="button" data-people="2" aria-pressed="true">2 人</button>
             <button type="button" data-people="3" aria-pressed="false">3 人</button>
             <button type="button" data-people="4" aria-pressed="false">4 人</button>
+          </div>
+        </div>
+        <div class="grp">
+          <label for="seg-sushi">第一晚壽司</label>
+          <div class="seg" id="seg-sushi" role="group" aria-label="選擇壽司價位">
+            <button type="button" data-sushi="8000" aria-pressed="false">輕鬆</button>
+            <button type="button" data-sushi="13000" aria-pressed="true">中階</button>
+            <button type="button" data-sushi="25000" aria-pressed="false">頂規</button>
           </div>
         </div>
         <div class="grp">
@@ -476,28 +514,64 @@ footer .fm{font-family:var(--mono);letter-spacing:.1em;color:var(--sky);font-siz
       </div>
     </div>
 
-    <div class="note rv"><b>門票不必買三天份。</b>直營飯店的特典是「入住日買了護照，隔天再送一張」，而且適用到退房日。第一天只買午後入場護照，後面幾天就可能由特典涵蓋。不過這條規則在連住多晚又中途換飯店時怎麼算，公開資料查不到明確答案——上面的「保守估算」就是假設特典只給一次、得再買一張一日護照。訂房時打電話問一聲最保險。</div>
+    <div class="note rv"><b>門票不必買三天份。</b>直營飯店的特典是「入住日買了護照，隔天再送一張」，而且適用到退房日。10/28 中午進園買一張一日護照，後面幾天就可能由特典涵蓋。不過這條規則在連住多晚又中途換飯店時怎麼算，公開資料查不到明確答案——「保守估算」就是假設特典只給一次、得再買一張。訂房時打電話問一聲最保險。</div>
+  </div>
+</section>
+
+<section id="alt">
+  <div class="wrap">
+    <p class="snum rv">07 ／ 備選方案</p>
+    <h2 class="rv">如果想留下來<br>過萬聖夜</h2>
+    <p class="lede rv">10/31 是萬聖節當天，也是豪斯登堡夜間秀花火加量的日子。主方案選擇離開，換中洲祭。如果你們想反過來，行程這樣改。</p>
+
+    <div class="alt rv">
+      <p class="tag">Plan B ／ 萬聖夜留在園內</p>
+      <h3>把 10/31 整晚留給豪斯登堡</h3>
+      <p>10/31 不退房，續住阿姆斯特丹飯店，白天在園內，晚上看花火加量的夜間秀，那是整個萬聖節檔期花火量最大的一場。11/1 上午再搭特急回博多，下午購物，傍晚直接進機場。</p>
+      <div class="altgrid">
+        <div>
+          <h4>換到什麼</h4>
+          <ul>
+            <li>萬聖節當晚的園區氣氛，一年只有一次</li>
+            <li>花火加量的夜間秀</li>
+            <li>不必在退房日趕車，行程更鬆</li>
+            <li>米菲兔房住兩晚，不必中途搬行李</li>
+          </ul>
+        </div>
+        <div>
+          <h4>要放棄什麼</h4>
+          <ul>
+            <li class="no">整個中洲祭</li>
+            <li class="no">購物時間從一整天壓縮成半天</li>
+            <li class="no">米菲兔房多住一晚，多約 6.8 萬日圓</li>
+            <li class="no">最後一天要拖行李移動，較累</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:24px">怎麼選：<strong style="font-weight:500;color:var(--paper)">購物是重點就走主方案</strong>，中洲祭剛好在回程的城市，不必為它多花任何移動成本。<strong style="font-weight:500;color:var(--paper)">如果花火與燈光才是這趟的核心</strong>，那就選 Plan B——但要接受最後一天只剩半天能買東西，而且伴手禮得在博多站一次解決。</p>
+    </div>
   </div>
 </section>
 
 <section id="risk">
   <div class="wrap">
-    <p class="snum rv">07 ／ 行前</p>
+    <p class="snum rv">08 ／ 行前</p>
     <h2 class="rv">出發前，<br>還有幾件事要確認</h2>
     <div class="risks">
-      <div class="risk rv"><span class="n">01</span><div><h4>十月三十一日仍然是旺日</h4><p>雖然比花火祭好訂，但萬聖夜遇上週六，園區內飯店一樣會早早滿房。三晚之中，這一晚要最先下訂。</p></div></div>
-      <div class="risk rv"><span class="n">02</span><div><h4>恐怖企劃的實際開演日</h4><p>週二、週三休息是已知條件，但個別日期仍可能因天候或活動調整。出發前一週再確認一次官方公告。</p></div></div>
-      <div class="risk rv"><span class="n">03</span><div><h4>房價會隨訂房時間浮動</h4><p>官方訂房系統採動態定價，查詢當下已有部分日期顯示售完。這一頁的金額是查得的最低值，不是保證價。</p></div></div>
-      <div class="risk rv"><span class="n">04</span><div><h4>EVA 只剩騎乘劇院</h4><p>夜間秀、集章解謎和聯名餐點在九月十三日就結束了。不過 EVA 主題房開放到二○二七年三月三十一日，海牙飯店兩人一室每人 3.24 萬日圓、含早晚餐與無限暢飲交誼廳，只在官方訂房系統販售——之後想補上這一晚，還來得及。</p></div></div>
+      <div class="risk rv"><span class="n">01</span><div><h4>中洲祭的 2026 年日期尚未公告</h4><p>這是整份行程唯一可能被推翻的環節。若最終日不是 10/31，最後兩天的安排要重排。官方公告通常在九月至十月初出現。</p></div></div>
+      <div class="risk rv"><span class="n">02</span><div><h4>10/28 是週三，恐怖企劃休演</h4><p>抵達豪斯登堡的第一晚看不到，要留到 10/29 或 10/30。個別日期仍可能因天候調整，出發前一週再確認。</p></div></div>
+      <div class="risk rv"><span class="n">03</span><div><h4>會錯過 10/31 的加量版夜間秀</h4><p>那是萬聖節檔期花火最多的一晚，主方案在那天下午就離開了。10/28 到 10/30 看到的是一般場次。不想錯過就走 Plan B。</p></div></div>
+      <div class="risk rv"><span class="n">04</span><div><h4>壽司店的公休與房價浮動</h4><p>日本餐廳的臨時公休不會事先公告，訂位時一併確認。飯店方面，官方訂房系統採動態定價，頁面上的金額是查得的最低值，不是保證價。</p></div></div>
+      <div class="risk rv"><span class="n">05</span><div><h4>EVA 只剩騎乘劇院</h4><p>夜間秀、集章解謎和聯名餐點在九月十三日就結束了。EVA 主題房仍開放到二○二七年三月三十一日，海牙飯店兩人一室每人 3.24 萬日圓、含早晚餐與無限暢飲交誼廳，只在官方訂房系統販售。</p></div></div>
     </div>
   </div>
 </section>
 
 <section id="gloss">
   <div class="wrap">
-    <p class="snum rv">08 ／ 名稱對照</p>
+    <p class="snum rv">09 ／ 名稱對照</p>
     <h2 class="rv">到了現場<br>會用到的名字</h2>
-    <p class="lede rv">這一頁的內文都用中文寫。下面這些是訂房、問路或在園內找設施時，實際會派上用場的日文原名。</p>
+    <p class="lede rv">這一頁的內文都用中文寫。下面這些是訂房、訂位、問路時實際會派上用場的日文原名。</p>
     <div class="gloss rv">
       <div class="gr"><span>豪斯登堡</span><span class="o">ハウステンボス</span></div>
       <div class="gr"><span>森林小木屋（湖畔別墅）</span><span class="o">フォレストヴィラ（レイクサイドヴィラ）</span></div>
@@ -508,16 +582,21 @@ footer .fm{font-family:var(--mono);letter-spacing:.1em;color:var(--sky);font-siz
       <div class="gr"><span>恐怖企劃</span><span class="o">ホーンテッド・ハロウィン</span></div>
       <div class="gr"><span>夜間秀・花火加量場</span><span class="o">シャワー・オブ・ライツ：スペシャルエディション</span></div>
       <div class="gr"><span>提早入園特典</span><span class="o">アーリーパークイン</span></div>
-      <div class="gr"><span>快速列車（豪斯登堡－長崎）</span><span class="o">快速シーサイドライナー</span></div>
+      <div class="gr"><span>特急列車（博多－豪斯登堡）</span><span class="o">特急ハウステンボス</span></div>
+      <div class="gr"><span>中洲祭</span><span class="o">中洲まつり</span></div>
+      <div class="gr"><span>女神輿</span><span class="o">中洲國廣女みこし</span></div>
+      <div class="gr"><span>花魁道中</span><span class="o">花魁道中</span></div>
+      <div class="gr"><span>中洲國廣稻荷神社</span><span class="o">中洲國廣稲荷神社（中洲5丁目）</span></div>
+      <div class="gr"><span>伴手禮街（博多站內）</span><span class="o">マイング</span></div>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <p class="sign">六天之後，你們會帶著一身南瓜燈的顏色回家。<br>剩下的，就交給那天的天氣。</p>
-    <p class="fm">FUKUOKA ／ HUIS TEN BOSCH ／ 2026.10.29 – 11.03</p>
-    <p style="margin-top:14px">價格與檔期為規劃當下（二○二六年八月）查得之公開資訊，實際請以豪斯登堡官網、官方訂房系統與航空公司公告為準。<br>豪斯登堡總合案內：0570-064-110</p>
+    <p class="sign">六天之後，你們會帶著一身南瓜燈和霓虹的顏色回家。<br>剩下的，就交給那天的天氣。</p>
+    <p class="fm">FUKUOKA ／ HUIS TEN BOSCH ／ NAKASU ／ 2026.10.27 – 11.01</p>
+    <p style="margin-top:14px">價格與檔期為規劃當下（二○二六年八月）查得之公開資訊，實際請以豪斯登堡官網、官方訂房系統、中洲祭官網與航空公司公告為準。<br>豪斯登堡總合案內 0570-064-110　／　中洲祭實行委員會 092-272-1440</p>
   </div>
 </footer>
 
@@ -546,18 +625,20 @@ footer .fm{font-family:var(--mono);letter-spacing:.1em;color:var(--sky);font-siz
   river();
 
   var stops = [
-    {n:'福岡機場',      d:'第 1 天　上午 11:15 落地',            c:[33.5859,130.4508], k:'1'},
-    {n:'豪斯登堡',      d:'第 1–4 天　萬聖節的三個晚上',          c:[33.0855,129.7900], k:'2'},
-    {n:'長崎市區',      d:'第 4 天　出島、眼鏡橋、稻佐山夜景',     c:[32.7523,129.8710], k:'3'},
-    {n:'博多站',        d:'第 5 天　柳橋市場、櫛田神社、中洲屋台',  c:[33.5897,130.4207], k:'4'},
-    {n:'太宰府天滿宮',  d:'第 6 天　上午的散步選項',              c:[33.5215,130.5350], k:'5'}
+    {n:'福岡機場',    d:'第 1 天　上午 11:15 落地',           c:[33.5859,130.4508], k:'1'},
+    {n:'博多舊市街',  d:'第 1 天　櫛田神社、川端商店街、東長寺', c:[33.5935,130.4110], k:'2'},
+    {n:'西中洲',      d:'第 1 天　18:00 壽司晚餐',            c:[33.5911,130.4055], k:'3'},
+    {n:'豪斯登堡',    d:'第 2–5 天　森林小木屋與米菲兔房',      c:[33.0855,129.7900], k:'4'},
+    {n:'中洲大通',    d:'第 5 天　中洲祭，女神輿與花魁道中',    c:[33.5932,130.4058], k:'5'},
+    {n:'天神',        d:'第 6 天　購物日下午場',              c:[33.5904,130.3985], k:'6'},
+    {n:'博多站',      d:'第 1、5 晚住宿／第 6 天上午採買',     c:[33.5897,130.4207], k:'7'}
   ];
   if(window.L){
     var map = L.map('map',{scrollWheelZoom:false,zoomControl:true}).setView([33.15,130.15],8);
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
       attribution:'地圖資料 © OpenStreetMap contributors ／ 圖磚 © CARTO', maxZoom:18
     }).addTo(map);
-    L.polyline(stops.map(function(s){return s.c;}),{color:'#ff7a2f',weight:1.6,opacity:.65,dashArray:'6 8'}).addTo(map);
+    L.polyline(stops.map(function(s){return s.c;}),{color:'#ff7a2f',weight:1.6,opacity:.6,dashArray:'6 8'}).addTo(map);
     stops.forEach(function(s){
       var ic = L.divIcon({className:'',html:'<div class="pin">'+s.k+'</div>',iconSize:[30,30],iconAnchor:[15,15]});
       L.marker(s.c,{icon:ic,title:s.n}).addTo(map).bindPopup('<b>'+s.n+'</b><span>'+s.d+'</span>');
@@ -565,12 +646,11 @@ footer .fm{font-family:var(--mono);letter-spacing:.1em;color:var(--sky);font-siz
     map.fitBounds(L.latLngBounds(stops.map(function(s){return s.c;})).pad(0.22));
   }
 
-  var state = {people:2, ticket:'opt', rate:0.21, early:'y60'};
+  var state = {people:2, sushi:13000, ticket:'opt', rate:0.21, early:'y60'};
 
-  var FOREST=20000, MIFFY=33800;
-  var TICKET_AFTER3=5900, TICKET_1DAY=7600;
-  var PP_TRANSPORT=15000, PP_FOOD=40000, PP_SHOP=15000;
-  var ROOM_NAGASAKI=18000, ROOM_HAKATA=16000;
+  var FOREST=20000, MIFFY=33800, ROOM_HAKATA=16000;
+  var TICKET_1DAY=7600;
+  var PP_TRANSPORT=15000, PP_FOOD=36000, PP_SHOP=20000;
   var AIR_LOW=16000, AIR_HIGH=22000;
   var EARLY={y60:2000, y45:1000, no:0};
 
@@ -582,23 +662,24 @@ footer .fm{font-family:var(--mono);letter-spacing:.1em;color:var(--sky);font-siz
     var rooms = Math.ceil(n/2);
     var forest = (FOREST-disc)*n*2;
     var miffy = MIFFY*n;
-    var ticket = state.ticket==='opt' ? TICKET_AFTER3*n : (TICKET_AFTER3+TICKET_1DAY)*n;
-
-    var forestNote = '每人 '+(FOREST-disc).toLocaleString('en-US')+' 圓 × '+n+' 人 × 2 晚'
-      + (disc ? '（已扣早鳥 '+disc.toLocaleString('en-US')+' 圓）' : '')
-      + (n>2 ? '　三人以上單價官方未公開，以兩人一室單價估算' : '');
+    var hakata = ROOM_HAKATA*rooms*2;
+    var ticket = state.ticket==='opt' ? TICKET_1DAY*n : TICKET_1DAY*2*n;
+    var sushi = state.sushi*n;
+    var over2 = n>2 ? '　三人以上單價官方未公開，以兩人一室單價估算' : '';
 
     var items = [
-      {k:'住宿・第 1、2 晚　森林小木屋', d:forestNote+'（含早餐）', y:forest, est:true},
-      {k:'住宿・第 3 晚　米菲兔房', d:'每人 33,800 圓 × '+n+' 人'+(n>2?'　三人以上單價官方未公開':'')+'（含早餐）', y:miffy, est:false},
-      {k:'住宿・第 4 晚　長崎', d:'每房 18,000 圓 × '+rooms+' 間', y:ROOM_NAGASAKI*rooms, est:true},
-      {k:'住宿・第 5 晚　博多', d:'每房 16,000 圓 × '+rooms+' 間', y:ROOM_HAKATA*rooms, est:true},
+      {k:'住宿・第 1、5 晚　博多站周邊', d:'每房 16,000 圓 × '+rooms+' 間 × 2 晚', y:hakata, est:true},
+      {k:'住宿・第 2、3 晚　森林小木屋',
+       d:'每人 '+(FOREST-disc).toLocaleString('en-US')+' 圓 × '+n+' 人 × 2 晚'
+         +(disc?'（已扣早鳥 '+disc.toLocaleString('en-US')+' 圓）':'')+over2+'（含早餐）', y:forest, est:true},
+      {k:'住宿・第 4 晚　米菲兔房', d:'每人 33,800 圓 × '+n+' 人'+over2+'（含早餐）', y:miffy, est:false},
       {k:'豪斯登堡門票', d: state.ticket==='opt'
-          ? '午後入場護照 5,900 圓 × '+n+' 人，其餘天數由特典涵蓋'
-          : '午後入場護照＋一日護照 13,500 圓 × '+n+' 人', y:ticket, est:false},
-      {k:'交通', d:'高速巴士、快速列車、新幹線接力、市內', y:PP_TRANSPORT*n, est:true},
-      {k:'餐飲', d:'六天全部自理，僅早餐已含在房價內', y:PP_FOOD*n, est:true},
-      {k:'購物雜支', d:'米菲兔與 EVA 周邊', y:PP_SHOP*n, est:true}
+          ? '一日護照 7,600 圓 × '+n+' 人，其餘天數由特典涵蓋'
+          : '一日護照 7,600 圓 × 2 張 × '+n+' 人', y:ticket, est:false},
+      {k:'第 1 晚壽司晚餐', d:'每人 '+state.sushi.toLocaleString('en-US')+' 圓 × '+n+' 人', y:sushi, est:true},
+      {k:'交通', d:'高速巴士、特急、地鐵、市內', y:PP_TRANSPORT*n, est:true},
+      {k:'其餘餐飲', d:'扣除已含早餐與壽司那一餐', y:PP_FOOD*n, est:true},
+      {k:'購物雜支', d:'米菲兔周邊、伴手禮、藥妝', y:PP_SHOP*n, est:true}
     ];
 
     var sum = items.reduce(function(a,b){return a+b.y;},0);
@@ -631,6 +712,7 @@ footer .fm{font-family:var(--mono);letter-spacing:.1em;color:var(--sky);font-siz
     });
   }
   bind('seg-people','people',Number);
+  bind('seg-sushi','sushi',Number);
   bind('seg-ticket','ticket',String);
   bind('seg-rate','rate',Number);
   bind('seg-early','early',String);
