@@ -268,6 +268,14 @@ section{border-left:4px solid var(--chap,rgba(27,26,23,.2))}
   section::after,header.hero::after{right:20px;top:20px}
   .stays{gap:10px}
 }
+
+/* 插圖：當成書裡的「圖版」處理——四周留白、細框、圖說用等寬字 */
+.plate{margin:44px 0 0;padding:14px;border:1px solid rgba(27,26,23,.22);background:rgba(255,255,255,.55)}
+.plate img{display:block;width:100%;height:auto}
+.plate figcaption{font-family:var(--mono);font-size:.8rem;letter-spacing:.08em;color:var(--mute);margin-top:12px}
+.plate.frontis{margin:0}
+.day .plate{margin-top:26px}
+@media (max-width:640px){.plate{padding:9px}.plate figcaption{font-size:.74rem}}
 </style>
 </head>
 <body>
@@ -289,6 +297,11 @@ section{border-left:4px solid var(--chap,rgba(27,26,23,.2))}
     </dl>
   </div>
 </header>
+
+<div class="wrap">
+  <figure class="plate frontis rv rv"><img src="img/hero.jpg" width="1280" height="720" loading="lazy" decoding="async" alt="扉繪｜十月的九州，海與燈（示意插畫）"><figcaption>扉繪｜十月的九州，海與燈（示意插畫）</figcaption></figure>
+</div>
+
 
 <section id="days">
   <div class="wrap">
@@ -421,6 +434,7 @@ section{border-left:4px solid var(--chap,rgba(27,26,23,.2))}
         <p class="body"><b style="color:var(--lumen);font-weight:500">上午｜天神</b><br>福岡百貨最密的地方。岩田屋本店是在地老牌、質感最好，大丸福岡天神店、福岡 PARCO、Solaria Plaza 都在同一個路口周邊，走路五分鐘內走得完。下雨就走天神地下街——南北長約五百九十公尺、十二個街區，歐風石板路配古典燈飾，本身就值得走一趟。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">下午｜大名・今泉</b><br>從天神走過去五到十分鐘，是福岡小店密度最高的一區：選物店、古著、獨立咖啡，跟百貨完全不同的節奏。昨晚住西鐵 Grand 的話，這裡就在飯店門口。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">傍晚｜博多站</b><br>回程順路收尾。JR 博多城（阪急、AMU PLAZA、Hands）、KITTE 博多，還有地下的博多 DEITOS——明太子、通りもん這類伴手禮一次買齊，離飯店最近，提回去也不累。想換口味可以把下午改成運河城博多，在天神與博多之間。</p>
+        <figure class="plate rv"><img src="img/tenjin.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="銀杏轉黃的天神街頭（示意插畫）"><figcaption>銀杏轉黃的天神街頭（示意插畫）</figcaption></figure>
         <div class="note warn"><b>今天買的東西，稅是先付後退。</b>日本的免稅制度<span class="circ">十一月一日凌晨零點</span>整個換掉，沒有過渡期。今天結帳要付含稅全額，明天在機場確認過才退你——詳見下面「退稅」那一章。想省麻煩的話，大筆採購其實該放在昨天（10/31，舊制當場折抵、機場什麼都不用做）。</div>
         <div class="stays">
           <span class="stay">住　博多新大谷飯店</span>
@@ -514,6 +528,7 @@ section{border-left:4px solid var(--chap,rgba(27,26,23,.2))}
   <div class="wrap">
     <p class="snum rv">03 ／ 園區導覽</p>
     <h2 class="rv">八個區域，<br>八種不同的走法</h2>
+    <figure class="plate rv"><img src="img/huistenbosch.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="運河、風車，與剛開始開的秋玫瑰（示意插畫）"><figcaption>運河、風車，與剛開始開的秋玫瑰（示意插畫）</figcaption></figure>
     <p class="lede rv">豪斯登堡分成海側的海港區與內側的主題公園區，各區性格差很多。以下按你們的三天排序——不必照走，知道大概在哪就好。</p>
     <div class="cards">
       <article class="card pickup rv">
@@ -582,6 +597,7 @@ section{border-left:4px solid var(--chap,rgba(27,26,23,.2))}
   <div class="wrap">
     <p class="snum rv">04 ／ 不看秀的晚上</p>
     <h2 class="rv">週三的夜晚，<br>小鎮並不會安靜下來</h2>
+    <figure class="plate rv"><img src="img/nagasaki.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="稻佐山上看下去的長崎港（示意插畫）"><figcaption>稻佐山上看下去的長崎港（示意插畫）</figcaption></figure>
     <p class="lede rv">恐怖企劃週三休演。就算夜間秀也不看，這座園子入夜之後仍有四種去處，依體力由高到低排列。</p>
     <div class="cards">
       <article class="card rv">
@@ -620,6 +636,7 @@ section{border-left:4px solid var(--chap,rgba(27,26,23,.2))}
   <div class="wrap">
     <p class="snum rv">05 ／ 軍艦島</p>
     <h2 class="rv">能不能上岸，<br>要等當天船長決定</h2>
+    <figure class="plate rv"><img src="img/gunkanjima.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="從船上看端島（示意插畫）"><figcaption>從船上看端島（示意插畫）</figcaption></figure>
     <p class="lede rv">這是整趟最不可控的一段。船會開，但能不能真的踏上端島，是出航當日由船長判斷的。</p>
     <div class="cards">
       <article class="card pickup rv">
@@ -654,6 +671,7 @@ section{border-left:4px solid var(--chap,rgba(27,26,23,.2))}
   <div class="wrap">
     <p class="snum rv">06 ／ 中洲祭</p>
     <h2 class="rv">五百個女人，<br>兩座神輿，一條街</h2>
+    <figure class="plate rv"><img src="img/nakasu.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="那珂川畔的屋台與神輿（示意插畫）"><figcaption>那珂川畔的屋台與神輿（示意插畫）</figcaption></figure>
     <p class="lede rv">全區免預約、免費入場。以下是 2025 年第五十回的實際節目，可以拿來抓時間感。</p>
     <div class="cards">
       <article class="card pickup rv">
