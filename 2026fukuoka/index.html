@@ -180,6 +180,7 @@ tbody tr:hover td{background:rgba(27,26,23,.06)}
 
 footer{padding:100px 0 80px;margin-top:88px;border-top:1px solid rgba(27,26,23,.2);color:var(--mute);font-size:.95rem}
 footer .sign{font-family:var(--serif);font-size:1.35rem;color:var(--paper);margin-bottom:26px;line-height:1.9}
+footer .agency{font-family:var(--serif);font-size:1.5rem;font-weight:900;color:var(--pumpkin);letter-spacing:.14em;margin-bottom:20px}
 footer .fm{font-family:var(--mono);letter-spacing:.1em;color:var(--sky);font-size:1rem}
 
 @media (max-width:640px){
@@ -273,7 +274,9 @@ section{border-left:4px solid var(--chap,rgba(27,26,23,.2))}
 .plate img{display:block;width:100%;height:auto}
 .plate figcaption{font-family:var(--mono);font-size:.8rem;letter-spacing:.08em;color:var(--mute);margin-top:12px}
 .plate.frontis{margin:0}
-.day .plate{margin-top:26px}
+.day .plate{margin-top:22px;margin-bottom:6px;max-width:620px}
+.day .plate figcaption{text-align:left;font-size:.76rem}
+@media (max-width:640px){.day .plate{max-width:100%}}
 @media (max-width:640px){.plate{padding:9px}.plate figcaption{font-size:.74rem}}
 
 /* ══ 版面：滿版封面、破邊、左右交錯（參考旅遊網站模板的版面語言）══ */
@@ -330,6 +333,60 @@ section{padding:150px 0 24px}
   section{padding:96px 0 12px}
   .tear{height:56px}
 }
+
+/* ══ 封面改為暗底白字（照片是中洲的霓虹夜，對得上標題那三行）══ */
+header.hero{color:#f4efe6}
+.hero-media img{object-position:50% 52%}
+.hero-media::after{background:linear-gradient(180deg,
+  rgba(8,10,16,.66) 0%,rgba(8,10,16,.34) 32%,rgba(8,10,16,.52) 62%,
+  rgba(10,11,15,.82) 88%,var(--ink) 100%)}
+header.hero h1,header.hero .kicker,header.hero .eyebrow{text-shadow:0 2px 22px rgba(0,0,0,.6)}
+header.hero h1{color:#fdfaf5}
+header.hero h1 .lit{color:#ffab5e}
+header.hero .eyebrow{color:#d3dae4}
+header.hero .eyebrow span{color:#ff9a5e}
+header.hero .kicker{color:#e7e2d7}
+header.hero .factbar{border-color:rgba(255,255,255,.3);background:rgba(10,12,18,.32);backdrop-filter:blur(3px)}
+header.hero .fact{border-right-color:rgba(255,255,255,.2)}
+header.hero .fact dt{color:#c6cdd8;text-shadow:none}
+header.hero .fact dd{color:#fdfaf5;text-shadow:none}
+header.hero .fact dd em{color:#ffab5e}
+
+/* 封面的章節入口：不是一顆沒作用的按鈕，是十一章的門 */
+.herolinks{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:46px}
+.herolinks a{padding:11px 22px;border:1px solid rgba(255,255,255,.42);border-radius:999px;
+  color:#f4efe6;text-decoration:none;font-family:var(--mono);font-size:.82rem;letter-spacing:.14em;
+  background:rgba(10,12,18,.3);transition:background .25s,color .25s,border-color .25s}
+.herolinks a:hover,.herolinks a:focus-visible{background:#f4efe6;color:#12131a;border-color:#f4efe6}
+
+/* 右下懸浮目次 */
+.fab{position:fixed;right:24px;bottom:24px;z-index:60}
+.fab-btn{display:grid;place-items:center;width:60px;height:60px;border-radius:50%;
+  border:1px solid rgba(27,26,23,.25);background:var(--pumpkin);color:#fdf8ee;
+  font-family:var(--serif);font-weight:900;font-size:1rem;letter-spacing:.08em;cursor:pointer;
+  box-shadow:0 8px 24px rgba(27,26,23,.3);transition:transform .25s,background .25s}
+.fab-btn:hover{transform:translateY(-2px)}
+.fab-btn[aria-expanded="true"]{background:var(--paper)}
+.fab-menu{position:absolute;right:0;bottom:74px;min-width:210px;padding:8px;
+  background:rgba(248,243,234,.98);border:1px solid rgba(27,26,23,.25);
+  box-shadow:0 14px 38px rgba(27,26,23,.22)}
+.fab-menu a{display:flex;align-items:baseline;gap:12px;padding:11px 16px;
+  color:var(--paper);text-decoration:none;font-size:1rem;border-bottom:1px dotted rgba(27,26,23,.14)}
+.fab-menu a:last-child{border-bottom:none}
+.fab-menu a:hover,.fab-menu a:focus-visible{background:rgba(178,58,46,.1);color:var(--pumpkin)}
+.fab-menu .n{font-family:var(--mono);font-size:.74rem;color:var(--mute)}
+
+/* 窄螢幕：表格不再固定 560px，讓文字自己折行，不會跑出框外 */
+@media (max-width:640px){
+  table{min-width:0;font-size:.92rem}
+  th,td{padding:10px 11px;word-break:break-word}
+  td .sub{font-size:.8rem}
+  .fab{right:16px;bottom:16px}
+  .fab-btn{width:54px;height:54px;font-size:.92rem}
+  .fab-menu{bottom:66px;min-width:180px;max-height:62vh;overflow-y:auto}
+  .herolinks{gap:8px;margin-top:34px}
+  .herolinks a{padding:9px 16px;font-size:.76rem;letter-spacing:.1em}
+}
 </style>
 </head>
 <body>
@@ -350,12 +407,21 @@ section{padding:150px 0 24px}
       <div class="fact"><dt>去程　BR104</dt><dd>06:35 <em>→</em> 09:55</dd></div>
       <div class="fact"><dt>回程　BR105</dt><dd>12:15 <em>→</em> 13:50</dd></div>
     </dl>
-    <a class="pill" href="#days">看這十天</a>
+    <nav class="herolinks" aria-label="章節">
+      <a href="#days">行程</a>
+      <a href="#transit">交通時刻</a>
+      <a href="#gunkanjima">軍艦島</a>
+      <a href="#park">園區導覽</a>
+      <a href="#night">夜的節目</a>
+      <a href="#matsuri">中洲祭</a>
+      <a href="#budget">預算</a>
+      <a href="#air">機票</a>
+      <a href="#taxfree">退稅</a>
+      <a href="#risk">行前</a>
+    </nav>
   </div>
   <svg class="tear" viewBox="0 0 1440 92" preserveAspectRatio="none" aria-hidden="true"><path d="M0,92 L0,33.9 L61.4,21.6 L90.3,31.1 L153.6,40.7 L207.3,22.9 L258.9,48.9 L310.0,48.1 L356.3,15.0 L392.3,27.1 L442.7,49.4 L483.0,24.2 L524.2,44.6 L590.9,45.6 L625.4,21.7 L676.5,13.8 L747.1,11.8 L786.1,33.5 L852.3,21.7 L894.9,10.5 L963.8,25.7 L995.5,29.6 L1059.1,13.1 L1089.3,29.8 L1125.8,38.8 L1199.1,18.8 L1227.7,31.1 L1274.6,20.7 L1342.7,31.0 L1378.6,28.6 L1430.6,35.3 L1440.0,32.7 L1440,92 Z" fill="var(--ink)"></path></svg>
 </header>
-
-
 
 <section id="days">
   <div class="wrap">
@@ -367,6 +433,7 @@ section{padding:150px 0 24px}
       <article class="day"><span class="lamp"></span>
         <div class="dh"><span class="dn">第 1 天</span><span class="dd">10.24　週六</span></div>
         <h3>湖畔的午後，海邊的黃昏</h3>
+        <figure class="plate soft rv"><img src="img/momochi.jpg" width="1280" height="720" loading="lazy" decoding="async" alt="百道海濱的黃昏，福岡塔就在沙灘旁"><figcaption>百道海濱的黃昏，福岡塔就在沙灘旁</figcaption></figure>
         <p class="body">九點五十五分落地，進市區安頓好，第一個下午我們帶兩位往西走，避開最後兩天要逛的中洲與天神。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">上午｜抵達</b><br>機場入境後搭地鐵五分鐘進博多，飯店寄放行李。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">下午｜大濠公園</b><br>湖繞一圈剛好兩公里，走完不累。園內的日本庭園要另外購票，秋天的楓與松值得那幾百圓。北側緊鄰福岡城跡與舞鶴公園，天守台上看得到整片城區；城跡旁的鴻臚館跡展示館是遣唐使時代的迎賓館遺構，免費，二十分鐘走得完。想坐下來的話，湖畔那間玻璃屋的咖啡店幾乎每張桌子都看得到水。</p>
@@ -381,6 +448,7 @@ section{padding:150px 0 24px}
       <article class="day"><span class="lamp"></span>
         <div class="dh"><span class="dn">第 2 天</span><span class="dd">10.25　週日</span></div>
         <h3>參道的煙火氣，與一頓為兩位準備的晚餐</h3>
+        <figure class="plate soft rv"><img src="img/dazaifu.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="太宰府天滿宮的參道與紅橋"><figcaption>太宰府天滿宮的參道與紅橋</figcaption></figure>
         <p class="body">今天是紀念日，白天輕鬆走，晚上留給那頓正式的餐。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">上午｜太宰府天滿宮</b><br>從天神搭西鐵約二十五分鐘。參道兩側十幾家梅枝餅，現烤的皮脆內軟，站著吃最好。本殿後方的樹林裡有天開稻荷社，紅鳥居一路往上，人比正殿少得多。參道口那間隈研吾設計的咖啡店，用兩千根木條交錯撐起整個店面，值得繞進去看一眼——順帶一提，兩位第三晚要住的長崎飯店，是同一位建築師的作品。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">下午｜九州國立博物館</b><br>就在天滿宮旁邊，一條長長的手扶梯隧道連過去。這是日本第四座國立博物館，建築本身是一片波浪狀的玻璃帷幕，常設展從舊石器時代講到江戶，兩小時足夠。看不動的話，博物館外圈的林子也很好走。</p>
@@ -398,6 +466,7 @@ section{padding:150px 0 24px}
       <article class="day"><span class="lamp"></span>
         <div class="dh"><span class="dn">第 3 天</span><span class="dd">10.26　週一</span></div>
         <h3>午後啟程，住進世界新三大夜景裡</h3>
+        <figure class="plate soft rv"><img src="img/nagasaki.jpg" width="1280" height="720" loading="lazy" decoding="async" alt="稻佐山上看下去的長崎港"><figcaption>稻佐山上看下去的長崎港</figcaption></figure>
         <p class="body">今天不用早起。中午過後才移動，下午在長崎市區補一個景點，天黑前上山。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">上午｜自由</b><br>睡飽再退房。博多站樓上的阪急與地下食品街可以先探路，最後一天要在這裡收伴手禮。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">下午｜出島</b><br>兩點半抵達長崎，從車站搭路面電車三站就到。這是江戶鎖國時期唯一對外的窗口，扇形的人工島現在復原了十幾棟建築，商館長宅邸裡的西式家具與和室並置，看得出當年兩種生活如何擠在同一座島上。整區走完約一個半小時。出來後往海邊走幾分鐘是水邊之森公園，草坡直接接到港灣，是長崎少數平坦而開闊的地方。</p>
@@ -413,6 +482,7 @@ section{padding:150px 0 24px}
       <article class="day"><span class="lamp"></span>
         <div class="dh"><span class="dn">第 4 天</span><span class="dd">10.27　週二</span></div>
         <h3>上午駛向無人島，午後走進異國坡道</h3>
+        <figure class="plate soft rv"><img src="img/nagasakislope.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="長崎的異國坡道與洋館"><figcaption>長崎的異國坡道與洋館</figcaption></figure>
         <p class="body">長崎唯一的整天，上午出海，下午留在南山手的坡道上。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">上午｜軍艦島</b><br>接駁車下山到長崎港，早班船出航。航程單趟約四十分鐘，途中會經過高島；靠上端島之後有專屬導覽帶隊，能走的範圍是島的南端一小塊，看得到當年的小學校舍、幹部宿舍與三十號棟——日本最早的鋼筋混凝土集合住宅。連導覽來回約三小時。島上沒有廁所也沒有販賣，上船前先解決。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">下午｜哥拉巴園</b><br>回港後先到新地中華街吃午餐，什錦麵與皿烏龍麵都是這裡發明的。往南走上坡就是哥拉巴園，蘇格蘭商人哥拉巴的宅邸是日本現存最古老的木造西式建築，園區依山而建，有幾段手扶梯代步，居高處看得到整個長崎港。出園順路經過大浦天主堂，日本現存最古老的教堂，木造哥德式；再往回一點是荷蘭坡，石板路兩側都是明治時期的洋館。</p>
@@ -463,6 +533,7 @@ section{padding:150px 0 24px}
       <article class="day"><span class="lamp"></span>
         <div class="dh"><span class="dn">第 8 天</span><span class="dd">10.31　週六</span></div>
         <h3>白天告別森林，夜裡遇上五百人的神輿</h3>
+        <figure class="plate soft rv"><img src="img/nakasu.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="那珂川畔的屋台，祭典夜的另一半"><figcaption>那珂川畔的屋台，祭典夜的另一半</figcaption></figure>
         <p class="body">上午退房，午後回福岡，晚上是這趟的最後一個高潮。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">上午｜園內最後採買</b><br>米菲兔周邊與園內限定商品集中在阿姆斯特丹城。直營飯店有伴手禮宅配服務，買多了可以直接寄回機場或家裡，不必扛著上車。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">下午｜移動</b><br>特急約一小時五十分回博多，轉往大名的飯店。先放行李——祭典人潮很密，拖著行李會很痛苦。</p>
@@ -578,9 +649,46 @@ section{padding:150px 0 24px}
   </div>
 </section>
 
+<section id="gunkanjima">
+  <div class="wrap">
+    <p class="snum rv">03 ／ 軍艦島</p>
+    <div class="split rv">
+      <div class="split-text"><h2 class="rv">能不能上岸，<br>要等當天船長決定</h2>
+<p class="lede rv">這是整趟最不可控的一段。船會開，但能不能真的踏上端島，是出航當日由船長判斷的。</p></div>
+      <figure class="split-img"><img src="img/gunkanjima.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="從船上看端島"><figcaption>從船上看端島</figcaption></figure>
+    </div>
+    <div class="cards">
+      <article class="card pickup rv">
+        <p class="role">怎麼訂</p>
+        <h3>五家業者，先比空位</h3>
+        <p class="jp">軍艦島Concierge／高島海上交通／やまさ海運／Seaman商會／第七Ebisu丸</p>
+        <p class="price">全部需要事前預約<small>やまさ海運預約專線 0800-200-8180</small></p>
+        <p>長崎有五家業者經營上陸巡航，各家出航時刻與碼頭不同。長崎Tours 有一個橫跨五家的空位日曆，可以一次比完再決定。</p>
+        <p class="con">高島海上交通的方案僅收現金、最低成行十五人。</p>
+      </article>
+      <article class="card steel rv">
+        <p class="role">費用</p>
+        <h3>船資之外還有入島料</h3>
+        <p class="jp">端島見學設施使用料</p>
+        <p class="price">大人 650 圓<small>2026 年 4 月起調漲，原為 310 圓<br>船資另計，例如高島海上交通大人 3,600 圓</small></p>
+        <p>上陸需要另外支付入島料，這筆不含在船票裡。建議連同入島料一起抓每人五千圓。</p>
+      </article>
+      <article class="card steel rv">
+        <p class="role">上陸條件</p>
+        <h3>誓約書與天候</h3>
+        <p class="jp">安全運航基準</p>
+        <p class="price">當日船長判斷<small>發布波浪注意報或警報時直接停航</small></p>
+        <p>上陸見學需要簽署安全注意事項與上陸誓約書。若船長判斷無法安全下船，就不靠棧橋，行程自動改為海上周遊，船票通常不退。</p>
+        <p class="con">島上沒有廁所、沒有販賣、沒有垃圾桶，也禁帶酒類。上船前先解決。</p>
+      </article>
+    </div>
+    <div class="note rv"><b>為什麼排在上午。</b>早班船若因天候取消，下午還有補救空間；而且長崎只有這一個整天，上午出海、下午走坡道，動線最順。就算上陸失敗，下午的行程照樣成立，不會整天落空。</div>
+  </div>
+</section>
+
 <section id="park">
   <div class="wrap">
-    <p class="snum rv">03 ／ 園區導覽</p>
+    <p class="snum rv">04 ／ 園區導覽</p>
     <div class="split rv">
       <div class="split-text"><h2 class="rv">八個區域，<br>八種不同的走法</h2>
 <p class="lede rv">豪斯登堡分成海側的海港區與內側的主題公園區，各區性格差很多。以下按你們的三天排序——不必照走，知道大概在哪就好。</p></div>
@@ -651,11 +759,11 @@ section{padding:150px 0 24px}
 
 <section id="night">
   <div class="wrap">
-    <p class="snum rv">04 ／ 不看秀的晚上</p>
+    <p class="snum rv">05 ／ 不看秀的晚上</p>
     <div class="split rv rev">
       <div class="split-text"><h2 class="rv">週三的夜晚，<br>小鎮並不會安靜下來</h2>
 <p class="lede rv">恐怖企劃週三休演。就算夜間秀也不看，這座園子入夜之後仍有四種去處，依體力由高到低排列。</p></div>
-      <figure class="split-img"><img src="img/nagasaki.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="稻佐山上看下去的長崎港"><figcaption>稻佐山上看下去的長崎港</figcaption></figure>
+      <figure class="split-img"><img src="img/htbnight.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="入夜後的豪斯登堡，運河與風車都點起燈"><figcaption>稻佐山上看下去的長崎港</figcaption></figure>
     </div>
     <div class="cards">
       <article class="card rv">
@@ -690,50 +798,13 @@ section{padding:150px 0 24px}
   </div>
 </section>
 
-<section id="gunkanjima">
-  <div class="wrap">
-    <p class="snum rv">05 ／ 軍艦島</p>
-    <div class="split rv">
-      <div class="split-text"><h2 class="rv">能不能上岸，<br>要等當天船長決定</h2>
-<p class="lede rv">這是整趟最不可控的一段。船會開，但能不能真的踏上端島，是出航當日由船長判斷的。</p></div>
-      <figure class="split-img"><img src="img/gunkanjima.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="從船上看端島"><figcaption>從船上看端島</figcaption></figure>
-    </div>
-    <div class="cards">
-      <article class="card pickup rv">
-        <p class="role">怎麼訂</p>
-        <h3>五家業者，先比空位</h3>
-        <p class="jp">軍艦島Concierge／高島海上交通／やまさ海運／Seaman商會／第七Ebisu丸</p>
-        <p class="price">全部需要事前預約<small>やまさ海運預約專線 0800-200-8180</small></p>
-        <p>長崎有五家業者經營上陸巡航，各家出航時刻與碼頭不同。長崎Tours 有一個橫跨五家的空位日曆，可以一次比完再決定。</p>
-        <p class="con">高島海上交通的方案僅收現金、最低成行十五人。</p>
-      </article>
-      <article class="card steel rv">
-        <p class="role">費用</p>
-        <h3>船資之外還有入島料</h3>
-        <p class="jp">端島見學設施使用料</p>
-        <p class="price">大人 650 圓<small>2026 年 4 月起調漲，原為 310 圓<br>船資另計，例如高島海上交通大人 3,600 圓</small></p>
-        <p>上陸需要另外支付入島料，這筆不含在船票裡。建議連同入島料一起抓每人五千圓。</p>
-      </article>
-      <article class="card steel rv">
-        <p class="role">上陸條件</p>
-        <h3>誓約書與天候</h3>
-        <p class="jp">安全運航基準</p>
-        <p class="price">當日船長判斷<small>發布波浪注意報或警報時直接停航</small></p>
-        <p>上陸見學需要簽署安全注意事項與上陸誓約書。若船長判斷無法安全下船，就不靠棧橋，行程自動改為海上周遊，船票通常不退。</p>
-        <p class="con">島上沒有廁所、沒有販賣、沒有垃圾桶，也禁帶酒類。上船前先解決。</p>
-      </article>
-    </div>
-    <div class="note rv"><b>為什麼排在上午。</b>早班船若因天候取消，下午還有補救空間；而且長崎只有這一個整天，上午出海、下午走坡道，動線最順。就算上陸失敗，下午的行程照樣成立，不會整天落空。</div>
-  </div>
-</section>
-
 <section id="matsuri">
   <div class="wrap">
     <p class="snum rv">06 ／ 中洲祭</p>
     <div class="split rv rev">
       <div class="split-text"><h2 class="rv">五百個女人，<br>兩座神輿，一條街</h2>
 <p class="lede rv">全區免預約、免費入場。以下是 2025 年第五十回的實際節目，可以拿來抓時間感。</p></div>
-      <figure class="split-img"><img src="img/nakasu.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="那珂川畔的屋台與神輿"><figcaption>那珂川畔的屋台與神輿</figcaption></figure>
+      <figure class="split-img"><img src="img/matsuri.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="中洲國廣女神輿，五百人分擔兩座"><figcaption>那珂川畔的屋台與神輿</figcaption></figure>
     </div>
     <div class="cards">
       <article class="card pickup rv">
@@ -915,6 +986,7 @@ section{padding:150px 0 24px}
 <footer>
   <div class="wrap">
     <p class="sign">十天之後，你們會帶著海風、南瓜燈和霓虹的顏色回家。<br>剩下的，就交給那天的天氣與船長。</p>
+    <p class="agency">長肜旅行社年度鉅獻</p>
     <p class="fm">FUKUOKA ／ NAGASAKI ／ HUIS TEN BOSCH ／ NAKASU ／ 2026.10.24 – 11.02</p>
     <p style="margin-top:14px">價格與檔期為規劃當下（二○二六年八月）查得之公開資訊，實際請以各官方網站公告為準。<br>豪斯登堡總合案內 0570-064-110　／　西肥高速巴士預約中心 0956-25-8900　／　中洲祭實行委員會 092-272-1440</p>
   </div>
@@ -1030,6 +1102,35 @@ section{padding:150px 0 24px}
   bind('seg-ticket','ticket',String);
   bind('seg-rate','rate',Number);
   render();
+})();
+</script>
+
+<div class="fab">
+  <button class="fab-btn" id="fabBtn" aria-expanded="false" aria-controls="fabMenu" aria-label="開啟目次">目次</button>
+  <nav class="fab-menu" id="fabMenu" aria-label="章節目次" hidden>
+    <a href="#days"><span class="n">01</span>行程</a>
+    <a href="#transit"><span class="n">02</span>交通時刻</a>
+    <a href="#gunkanjima"><span class="n">03</span>軍艦島</a>
+    <a href="#park"><span class="n">04</span>園區導覽</a>
+    <a href="#night"><span class="n">05</span>夜的節目</a>
+    <a href="#matsuri"><span class="n">06</span>中洲祭</a>
+    <a href="#budget"><span class="n">07</span>預算</a>
+    <a href="#air"><span class="n">08</span>機票</a>
+    <a href="#taxfree"><span class="n">09</span>退稅</a>
+    <a href="#risk"><span class="n">10</span>行前</a>
+    <a href="#gloss"><span class="n">11</span>名稱對照</a>
+  </nav>
+</div>
+
+<script>
+(function(){
+  var b=document.getElementById('fabBtn'), m=document.getElementById('fabMenu');
+  if(!b||!m) return;
+  function set(open){ b.setAttribute('aria-expanded', open?'true':'false'); m.hidden=!open; }
+  b.addEventListener('click', function(e){ e.stopPropagation(); set(m.hidden); });
+  m.addEventListener('click', function(e){ if(e.target.tagName==='A') set(false); });
+  document.addEventListener('click', function(e){ if(!m.hidden && !m.contains(e.target) && e.target!==b) set(false); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') set(false); });
 })();
 </script>
 </body>
