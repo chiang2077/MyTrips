@@ -35,7 +35,7 @@ body{background:var(--ink);color:var(--paper);font-family:var(--sans);font-weigh
 .wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 26px}
 
 header.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;position:relative;padding:100px 0 70px}
-.tile{position:absolute;inset:0;z-index:-1;opacity:.09;
+.tile{display:none;
   background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
   background-size:64px 64px;
   mask-image:radial-gradient(ellipse 90% 60% at 50% 40%,#000 0%,transparent 78%);
@@ -43,15 +43,14 @@ header.hero{min-height:100svh;display:flex;flex-direction:column;justify-content
 .eyebrow{font-family:var(--mono);font-size:.86rem;letter-spacing:.3em;text-transform:uppercase;color:var(--sky);margin-bottom:30px}
 .eyebrow span{color:var(--pumpkin)}
 h1{font-family:var(--serif);font-weight:900;line-height:1.1;font-size:clamp(2.8rem,7.8vw,5.4rem);letter-spacing:-.02em}
-h1 .lit{background:linear-gradient(100deg,var(--pumpkin) 0%,var(--lumen) 52%,var(--neon) 100%);
-  -webkit-background-clip:text;background-clip:text;color:transparent}
+h1 .lit{color:var(--pumpkin)}
 .kicker{font-family:var(--serif);font-size:clamp(1.15rem,2.5vw,1.5rem);font-weight:400;color:var(--sky);
   margin-top:32px;max-width:36ch;line-height:2}
-.factbar{display:flex;flex-wrap:wrap;margin-top:56px;border-top:1px solid rgba(27,26,23,.28);border-bottom:1px solid rgba(27,26,23,.28)}
-.fact{flex:1 1 150px;padding:22px 24px 20px;border-right:1px solid rgba(27,26,23,.18)}
+.factbar{display:flex;flex-wrap:nowrap;margin-top:56px;border-top:1px solid rgba(27,26,23,.28);border-bottom:1px solid rgba(27,26,23,.28)}
+.fact{flex:1 1 0;min-width:0;padding:22px 14px 20px;border-right:1px solid rgba(27,26,23,.18)}
 .fact:last-child{border-right:none}
 .fact dt{font-family:var(--mono);font-size:.78rem;letter-spacing:.18em;color:var(--mute);text-transform:uppercase}
-.fact dd{font-family:var(--mono);font-size:1.38rem;font-weight:700;margin-top:8px}
+.fact dd{font-family:var(--mono);font-size:1.16rem;font-weight:700;margin-top:8px;white-space:nowrap}
 .fact dd em{font-style:normal;color:var(--pumpkin)}
 
 section{padding:118px 0 24px;position:relative}
@@ -223,8 +222,8 @@ section{border-left:4px solid var(--chap,rgba(27,26,23,.2))}
 
 /* 直排章名：只在夠寬的螢幕、且只給章名，正文一律橫排。 */
 @media (min-width:1200px){
-  .snum{position:absolute;left:14px;top:118px;margin:0;
-    writing-mode:vertical-rl;letter-spacing:.34em;font-size:.8rem}
+  .snum{position:absolute;left:-54px;top:0;margin:0;
+    writing-mode:vertical-rl;letter-spacing:.34em;font-size:.8rem;white-space:nowrap}
   section{padding-top:118px}
 }
 
@@ -278,17 +277,22 @@ section{border-left:4px solid var(--chap,rgba(27,26,23,.2))}
 @media (max-width:640px){.plate{padding:9px}.plate figcaption{font-size:.74rem}}
 
 /* ══ 版面：滿版封面、破邊、左右交錯（參考旅遊網站模板的版面語言）══ */
-:root{--feather:radial-gradient(ellipse 86% 82% at 50% 50%,#000 55%,rgba(0,0,0,.55) 78%,transparent 100%)}
+:root{--feather:radial-gradient(ellipse 78% 74% at 50% 50%,#000 42%,rgba(0,0,0,.62) 70%,rgba(0,0,0,.12) 90%,transparent 100%)}
 
 header.hero{position:relative;isolation:isolate;padding:132px 0 156px;overflow:hidden}
 .hero-media{position:absolute;inset:0;z-index:-2}
 .hero-media img{width:100%;height:100%;object-fit:cover;object-position:50% 58%}
 .hero-media::after{content:'';position:absolute;inset:0;background:
-  linear-gradient(180deg,rgba(242,236,224,.80) 0%,rgba(242,236,224,.46) 42%,rgba(242,236,224,.78) 78%,var(--ink) 100%)}
+  linear-gradient(180deg,rgba(242,236,224,.58) 0%,rgba(242,236,224,.24) 38%,rgba(242,236,224,.42) 68%,rgba(242,236,224,.93) 92%,var(--ink) 100%)}
 .tear{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:92px;z-index:-1;display:block}
 header.hero .wrap{text-align:center}
+header.hero h1,header.hero .kicker,header.hero .eyebrow{text-shadow:0 1px 14px rgba(242,236,224,.85),0 0 3px rgba(242,236,224,.9)}
 header.hero .kicker{margin-left:auto;margin-right:auto;max-width:44ch}
-header.hero .factbar{margin-top:64px}
+header.hero .factbar{margin-top:64px;background:rgba(242,236,224,.42);backdrop-filter:blur(2px)}
+header.hero .fact dt{color:#4a453c}
+header.hero .fact dt,header.hero .fact dd{text-shadow:0 1px 10px rgba(242,236,224,.9)}
+.factbar .fact:nth-child(4),.factbar .fact:nth-child(5){flex:1.7 1 0}
+@media (max-width:900px){.factbar{flex-wrap:wrap}.factbar .fact{flex:1 1 45%}}
 
 /* 膠囊按鈕：封面的入口，以及試算器的切換 */
 .pill{display:inline-block;margin-top:44px;padding:15px 40px;border:1px solid rgba(27,26,23,.5);
@@ -484,7 +488,7 @@ section{padding:150px 0 24px}
         <p class="body"><b style="color:var(--lumen);font-weight:500">上午｜天神</b><br>福岡百貨最密的地方。岩田屋本店是在地老牌、質感最好，大丸福岡天神店、福岡 PARCO、Solaria Plaza 都在同一個路口周邊，走路五分鐘內走得完。下雨就走天神地下街——南北長約五百九十公尺、十二個街區，歐風石板路配古典燈飾，本身就值得走一趟。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">下午｜大名・今泉</b><br>從天神走過去五到十分鐘，是福岡小店密度最高的一區：選物店、古著、獨立咖啡，跟百貨完全不同的節奏。昨晚住西鐵 Grand 的話，這裡就在飯店門口。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">傍晚｜博多站</b><br>回程順路收尾。JR 博多城（阪急、AMU PLAZA、Hands）、KITTE 博多，還有地下的博多 DEITOS——明太子、通りもん這類伴手禮一次買齊，離飯店最近，提回去也不累。想換口味可以把下午改成運河城博多，在天神與博多之間。</p>
-        <figure class="plate soft rv"><img src="img/tenjin.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="銀杏轉黃的天神街頭（示意圖・AI 生成，非實景照片）"><figcaption>銀杏轉黃的天神街頭（示意圖・AI 生成，非實景照片）</figcaption></figure>
+        <figure class="plate soft rv"><img src="img/tenjin.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="銀杏轉黃的天神街頭"><figcaption>銀杏轉黃的天神街頭</figcaption></figure>
         <div class="note warn"><b>今天買的東西，稅是先付後退。</b>日本的免稅制度<span class="circ">十一月一日凌晨零點</span>整個換掉，沒有過渡期。今天結帳要付含稅全額，明天在機場確認過才退你——詳見下面「退稅」那一章。想省麻煩的話，大筆採購其實該放在昨天（10/31，舊制當場折抵、機場什麼都不用做）。</div>
         <div class="stays">
           <span class="stay">住　博多新大谷飯店</span>
@@ -580,7 +584,7 @@ section{padding:150px 0 24px}
     <div class="split rv">
       <div class="split-text"><h2 class="rv">八個區域，<br>八種不同的走法</h2>
 <p class="lede rv">豪斯登堡分成海側的海港區與內側的主題公園區，各區性格差很多。以下按你們的三天排序——不必照走，知道大概在哪就好。</p></div>
-      <figure class="split-img"><img src="img/huistenbosch.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="運河、風車，與剛開始開的秋玫瑰（示意圖・AI 生成，非實景照片）"><figcaption>運河、風車，與剛開始開的秋玫瑰（示意圖・AI 生成，非實景照片）</figcaption></figure>
+      <figure class="split-img"><img src="img/huistenbosch.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="運河、風車，與剛開始開的秋玫瑰"><figcaption>運河、風車，與剛開始開的秋玫瑰</figcaption></figure>
     </div>
     <div class="cards">
       <article class="card pickup rv">
@@ -651,7 +655,7 @@ section{padding:150px 0 24px}
     <div class="split rv rev">
       <div class="split-text"><h2 class="rv">週三的夜晚，<br>小鎮並不會安靜下來</h2>
 <p class="lede rv">恐怖企劃週三休演。就算夜間秀也不看，這座園子入夜之後仍有四種去處，依體力由高到低排列。</p></div>
-      <figure class="split-img"><img src="img/nagasaki.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="稻佐山上看下去的長崎港（示意圖・AI 生成，非實景照片）"><figcaption>稻佐山上看下去的長崎港（示意圖・AI 生成，非實景照片）</figcaption></figure>
+      <figure class="split-img"><img src="img/nagasaki.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="稻佐山上看下去的長崎港"><figcaption>稻佐山上看下去的長崎港</figcaption></figure>
     </div>
     <div class="cards">
       <article class="card rv">
@@ -692,7 +696,7 @@ section{padding:150px 0 24px}
     <div class="split rv">
       <div class="split-text"><h2 class="rv">能不能上岸，<br>要等當天船長決定</h2>
 <p class="lede rv">這是整趟最不可控的一段。船會開，但能不能真的踏上端島，是出航當日由船長判斷的。</p></div>
-      <figure class="split-img"><img src="img/gunkanjima.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="從船上看端島（示意圖・AI 生成，非實景照片）"><figcaption>從船上看端島（示意圖・AI 生成，非實景照片）</figcaption></figure>
+      <figure class="split-img"><img src="img/gunkanjima.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="從船上看端島"><figcaption>從船上看端島</figcaption></figure>
     </div>
     <div class="cards">
       <article class="card pickup rv">
@@ -729,7 +733,7 @@ section{padding:150px 0 24px}
     <div class="split rv rev">
       <div class="split-text"><h2 class="rv">五百個女人，<br>兩座神輿，一條街</h2>
 <p class="lede rv">全區免預約、免費入場。以下是 2025 年第五十回的實際節目，可以拿來抓時間感。</p></div>
-      <figure class="split-img"><img src="img/nakasu.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="那珂川畔的屋台與神輿（示意圖・AI 生成，非實景照片）"><figcaption>那珂川畔的屋台與神輿（示意圖・AI 生成，非實景照片）</figcaption></figure>
+      <figure class="split-img"><img src="img/nakasu.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="那珂川畔的屋台與神輿"><figcaption>那珂川畔的屋台與神輿</figcaption></figure>
     </div>
     <div class="cards">
       <article class="card pickup rv">
