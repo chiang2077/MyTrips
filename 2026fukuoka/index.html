@@ -280,7 +280,7 @@ section{border-left:4px solid var(--chap,rgba(27,26,23,.2))}
 @media (max-width:640px){.plate{padding:9px}.plate figcaption{font-size:.74rem}}
 
 /* ══ 版面：滿版封面、破邊、左右交錯（參考旅遊網站模板的版面語言）══ */
-:root{--feather:radial-gradient(ellipse 78% 74% at 50% 50%,#000 42%,rgba(0,0,0,.62) 70%,rgba(0,0,0,.12) 90%,transparent 100%)}
+:root{--feather:radial-gradient(ellipse 124% 118% at 50% 50%,#000 76%,rgba(0,0,0,.72) 90%,transparent 100%)}
 
 header.hero{position:relative;isolation:isolate;padding:132px 0 156px;overflow:hidden}
 .hero-media{position:absolute;inset:0;z-index:-2}
@@ -334,30 +334,35 @@ section{padding:150px 0 24px}
   .tear{height:56px}
 }
 
-/* ══ 封面改為暗底白字（照片是中洲的霓虹夜，對得上標題那三行）══ */
-header.hero{color:#f4efe6}
-.hero-media img{object-position:50% 52%}
+/* ══ 封面：豪斯登堡白天的宮殿與花園。照片亮，文字用深墨色 ══ */
+header.hero{color:var(--paper)}
+.hero-media img{object-position:50% 62%}
 .hero-media::after{background:linear-gradient(180deg,
-  rgba(8,10,16,.66) 0%,rgba(8,10,16,.34) 32%,rgba(8,10,16,.52) 62%,
-  rgba(10,11,15,.82) 88%,var(--ink) 100%)}
-header.hero h1,header.hero .kicker,header.hero .eyebrow{text-shadow:0 2px 22px rgba(0,0,0,.6)}
-header.hero h1{color:#fdfaf5}
-header.hero h1 .lit{color:#ffab5e}
-header.hero .eyebrow{color:#d3dae4}
-header.hero .eyebrow span{color:#ff9a5e}
-header.hero .kicker{color:#e7e2d7}
-header.hero .factbar{border-color:rgba(255,255,255,.3);background:rgba(10,12,18,.32);backdrop-filter:blur(3px)}
-header.hero .fact{border-right-color:rgba(255,255,255,.2)}
-header.hero .fact dt{color:#c6cdd8;text-shadow:none}
-header.hero .fact dd{color:#fdfaf5;text-shadow:none}
-header.hero .fact dd em{color:#ffab5e}
+  rgba(242,236,224,.58) 0%,rgba(242,236,224,.20) 26%,rgba(242,236,224,.06) 50%,
+  rgba(242,236,224,.24) 74%,rgba(242,236,224,.82) 93%,var(--ink) 100%)}
+/* 只在文字底下放一圈柔和的紙色光暈，照片本身保持鮮豔 */
+header.hero .wrap{position:relative;z-index:1}
+header.hero .wrap::before{content:'';position:absolute;left:-8%;right:-8%;top:-8%;height:82%;z-index:-1;
+  pointer-events:none;background:radial-gradient(ellipse 60% 58% at 50% 40%,
+  rgba(242,236,224,.94) 0%,rgba(242,236,224,.78) 42%,rgba(242,236,224,.44) 70%,transparent 88%)}
+header.hero h1,header.hero .kicker,header.hero .eyebrow{
+  text-shadow:0 1px 16px rgba(242,236,224,.92),0 0 4px rgba(242,236,224,.95)}
+header.hero h1{color:var(--paper)}
+header.hero h1 .lit{color:var(--pumpkin)}
+header.hero .eyebrow{color:#4a453c}
+header.hero .kicker{color:#2a2721;font-weight:400}
+header.hero .factbar{border-color:rgba(27,26,23,.32);background:rgba(248,243,234,.62);backdrop-filter:blur(3px)}
+header.hero .fact{border-right-color:rgba(27,26,23,.16)}
+header.hero .fact dt{color:#4a453c;text-shadow:none}
+header.hero .fact dd{color:var(--paper);text-shadow:none}
+header.hero .fact dd em{color:var(--pumpkin)}
 
 /* 封面的章節入口：不是一顆沒作用的按鈕，是十一章的門 */
 .herolinks{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:46px}
-.herolinks a{padding:11px 22px;border:1px solid rgba(255,255,255,.42);border-radius:999px;
-  color:#f4efe6;text-decoration:none;font-family:var(--mono);font-size:.82rem;letter-spacing:.14em;
-  background:rgba(10,12,18,.3);transition:background .25s,color .25s,border-color .25s}
-.herolinks a:hover,.herolinks a:focus-visible{background:#f4efe6;color:#12131a;border-color:#f4efe6}
+.herolinks a{padding:11px 22px;border:1px solid rgba(27,26,23,.42);border-radius:999px;
+  color:var(--paper);text-decoration:none;font-family:var(--mono);font-size:.82rem;letter-spacing:.14em;
+  background:rgba(248,243,234,.72);transition:background .25s,color .25s,border-color .25s}
+.herolinks a:hover,.herolinks a:focus-visible{background:var(--paper);color:var(--ink);border-color:var(--paper)}
 
 /* 右下懸浮目次 */
 .fab{position:fixed;right:24px;bottom:24px;z-index:60}
@@ -463,7 +468,6 @@ header.hero .fact dd em{color:#ffab5e}
         <p class="body"><b style="color:var(--lumen);font-weight:500">傍晚｜百道海濱</b><br>搭地鐵到西新，走十五分鐘就是海。福岡塔是日本最高的海濱塔，展望室在一百二十三公尺處；不上塔的話，沙灘旁的 Marizon 那組白色建築也很好拍。夕陽落進玄界灘的時間大約五點半。晚餐就在百道或西新一帶解決，離飯店二十分鐘。</p>
         <div class="stays">
           <span class="stay">住　Quintessa 天神南</span>
-          <span class="stay dup">住　Via Inn 博多口站前<b class="tag">要退</b></span>
         </div></div>
         <figure class="plate soft day-img rv"><img src="img/momochi.jpg" width="1280" height="720" loading="lazy" decoding="async" alt="百道海濱的黃昏，福岡塔就在沙灘旁"><figcaption>百道海濱的黃昏，福岡塔就在沙灘旁</figcaption></figure>
       </article>
@@ -481,7 +485,6 @@ header.hero .fact dd em{color:#ffab5e}
         </div>
         <div class="stays">
           <span class="stay">住　Quintessa 天神南</span>
-          <span class="stay dup">住　Via Inn 博多口站前<b class="tag">要退</b></span>
         </div></div>
         <figure class="plate soft day-img rv"><img src="img/dazaifu.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="太宰府天滿宮的參道與紅橋"><figcaption>太宰府天滿宮的參道與紅橋</figcaption></figure>
       </article>
@@ -629,21 +632,21 @@ header.hero .fact dd em{color:#ffab5e}
     <p class="snum rv">02 ／ 交通時刻</p>
     <h2 class="rv">移動這件事，<br>我們替兩位查好了</h2>
 
-    <h3 style="font-family:var(--serif);font-size:1.45rem;font-weight:600;margin-top:44px" class="rv">博多 → 長崎（10/26，十二點後出發）</h3>
-    <p class="lede rv" style="margin-top:10px">接力特急かもめ在武雄溫泉站同月台轉乘西九州新幹線，全程約一小時三十五分。十二點後大致每小時一班。</p>
+    <h3 style="font-family:var(--serif);font-size:1.45rem;font-weight:600;margin-top:44px" class="rv">博多 → 長崎（10/26，十點到十五點之間出發）</h3>
+    <p class="lede rv" style="margin-top:10px">接力特急かもめ在武雄溫泉站同月台轉乘西九州新幹線，全程約一小時三十四分。這個時段大致每小時一班。</p>
     <div class="tw rv">
       <table>
         <thead><tr><th>博多發</th><th>班次</th><th>長崎到</th><th>備註</th></tr></thead>
         <tbody>
+          <tr><td class="num">10:03</td><td>接力かもめ 17 號</td><td class="num">約 11:37</td><td>最早的一班，長崎的下午整個空出來</td></tr>
+          <tr><td class="num">11:53</td><td>接力かもめ 25 號</td><td class="num">約 13:27</td><td>中午出發，午餐在車上或博多站解決</td></tr>
           <tr class="pick"><td class="num">12:54</td><td>接力かもめ 29 號</td><td class="num">14:28</td><td>建議這班，入住前有餘裕</td></tr>
           <tr><td class="num">13:54</td><td>接力かもめ 33 號</td><td class="num">約 15:28</td><td>想睡晚一點就這班</td></tr>
           <tr><td class="num">14:54</td><td>接力かもめ 37 號</td><td class="num">約 16:28</td><td>會晚於飯店入住時間</td></tr>
-          <tr><td class="num">15:55</td><td>接力かもめ 41 號</td><td class="num">約 17:29</td><td>—</td></tr>
-          <tr><td class="num">16:16</td><td>接力かもめ 43 號</td><td class="num">約 17:50</td><td>—</td></tr>
-          <tr><td class="num">17:00</td><td>接力かもめ 47 號</td><td class="num">約 18:34</td><td>—</td></tr>
         </tbody>
       </table>
     </div>
+    <p class="free">發車時刻取自 JR 九州官方站別時刻表；<b>10:03 與 11:53 這兩班的長崎抵達時刻是依全程一小時三十四分推算的</b>，訂票前請以官網為準。這個時段另有 11:18、12:04、14:19 三班加班車（90 號台），轉乘接續我沒查證，暫不列入。</p>
     <p style="margin-top:16px;font-size:.94rem;color:var(--mute)">時刻取自 JR 九州官方站別時刻表（平日）。10/26 為週一，班表應相同，但出發前請再確認一次。標「約」者為依所需時間推算。</p>
 
     <h3 style="font-family:var(--serif);font-size:1.45rem;font-weight:600;margin-top:56px" class="rv">長崎 → 豪斯登堡（10/28）</h3>
@@ -979,11 +982,10 @@ header.hero .fact dd em{color:#ffab5e}
       <div class="risk rv"><span class="n">01</span><div><h4>長崎往豪斯登堡別依賴巴士</h4><p>高速巴士一天只有兩班，退房後能搭的只有 15:00 那一班，且是預約制。直達的快速海濱線班次多得多、不用預約，是這一段的正解。時刻表為平日班表，10/28 是週三應相同，出發前再確認一次。</p></div></div>
       <div class="risk rv"><span class="n">02</span><div><h4>軍艦島可能上不了岸</h4><p>上陸與否是當天船長判斷，發布波浪注意報或警報時直接停航。船票通常不因改為海上周遊而退款。</p></div></div>
       <div class="risk rv"><span class="n">03</span><div><h4>10/31 那晚訂了兩間飯店</h4><p>西鐵 Grand（大名，走路到祭典）與博多新大谷（10/31–11/02，隔天不用搬行李）重疊，要退掉一間。留西鐵 Grand 的話，記得把新大谷改成 11/01 才入住——<b>11/01 那一晚不能沒有房間</b>。</p></div></div>
-      <div class="risk rv"><span class="n">04</span><div><h4>10/24 與 10/25 住 Quintessa 天神南，Via Inn 要退</h4><p>兩間原本重疊，已決定留 Quintessa 天神南。<b>Via Inn 博多口站前記得趁免費取消期限前退掉</b>，並確認退款條件。飯店位置從博多換到天神，第一天與最後幾天的動線都以天神為起點。</p></div></div>
-      <div class="risk rv"><span class="n">05</span><div><h4>11/01 起免稅改制，退稅要在機場辦</h4><p>十一月一日凌晨零點起全面改成「先付稅、出境退」。11/01 買的東西結帳要付含稅全額，11/02 得在福岡機場刷護照過海關確認才退得到。10/31 以前買的仍是舊制、當場折抵、機場免手續。詳見「退稅」那一章。</p></div></div>
-      <div class="risk rv"><span class="n">06</span><div><h4>中洲祭的 2026 年日期尚未公告</h4><p>若最終日不是 10/31，最後兩天要重排。官方公告通常在九月至十月初出現。西鐵 Grand 已訂好，若日期有變動要一併確認可否更改。</p></div></div>
-      <div class="risk rv"><span class="n">07</span><div><h4>秋玫瑰還沒到最盛期</h4><p>豪斯登堡的秋玫瑰十月下旬開始開花，往年是十一月上旬才進入盛開。你們去的時候會是開始開的階段。</p></div></div>
-      <div class="risk rv"><span class="n">08</span><div><h4>EVA 只剩騎乘劇院</h4><p>夜間秀、集章解謎和聯名餐點在九月十三日就結束了。EVA 主題房仍開放到二○二七年三月三十一日，只在官方訂房系統販售。</p></div></div>
+      <div class="risk rv"><span class="n">04</span><div><h4>11/01 起免稅改制，退稅要在機場辦</h4><p>十一月一日凌晨零點起全面改成「先付稅、出境退」。11/01 買的東西結帳要付含稅全額，11/02 得在福岡機場刷護照過海關確認才退得到。10/31 以前買的仍是舊制、當場折抵、機場免手續。詳見「退稅」那一章。</p></div></div>
+      <div class="risk rv"><span class="n">05</span><div><h4>中洲祭的 2026 年日期尚未公告</h4><p>若最終日不是 10/31，最後兩天要重排。官方公告通常在九月至十月初出現。西鐵 Grand 已訂好，若日期有變動要一併確認可否更改。</p></div></div>
+      <div class="risk rv"><span class="n">06</span><div><h4>秋玫瑰還沒到最盛期</h4><p>豪斯登堡的秋玫瑰十月下旬開始開花，往年是十一月上旬才進入盛開。你們去的時候會是開始開的階段。</p></div></div>
+      <div class="risk rv"><span class="n">07</span><div><h4>EVA 只剩騎乘劇院</h4><p>夜間秀、集章解謎和聯名餐點在九月十三日就結束了。EVA 主題房仍開放到二○二七年三月三十一日，只在官方訂房系統販售。</p></div></div>
     </div>
   </div>
 </section>
@@ -1088,7 +1090,7 @@ header.hero .fact dd em{color:#ffab5e}
     var n = state.people, r = state.rate, rooms = Math.ceil(n/2);
     var over2 = n>2 ? '　三人以上單價官方未公開，以兩人一室單價估算' : '';
     var items = [
-      {k:'住宿　Quintessa 天神南 ×2 晚', d:'每房估 14,000 圓 × '+rooms+' 間 × 2 晚（Via Inn 已決定退掉）', y:VIA*rooms*2, s:'est'},
+      {k:'住宿　Quintessa 天神南 ×2 晚', d:'每房估 14,000 圓 × '+rooms+' 間 × 2 晚', y:VIA*rooms*2, s:'est'},
       {k:'住宿　Garden Terrace 長崎 ×2 晚', d:'離棟海景套房，含早餐，每房每晚估 70,000 圓 × '+rooms+' 間', y:GARDEN*rooms*2, s:'ok'},
       {k:'住宿　森林小木屋 ×2 晚', d:'每人估 18,000 圓 × '+n+' 人 × 2 晚'+over2, y:FOREST*n*2, s:'ok'},
       {k:'住宿　米菲兔房 ×1 晚', d:'每人 33,800 圓 × '+n+' 人'+over2, y:MIFFY*n, s:'ok'},
