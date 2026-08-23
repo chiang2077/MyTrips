@@ -377,6 +377,8 @@ header.hero .fact dd em{color:var(--pumpkin)}
   background:rgba(248,243,234,.98);border:1px solid rgba(27,26,23,.25);
   box-shadow:0 14px 38px rgba(27,26,23,.22);
   max-height:calc(100svh - 150px);overflow-y:auto;overscroll-behavior:contain}
+/* hidden 屬性靠瀏覽器預設的 display:none 生效，任何作者寫的 display（例如兩欄用的 grid）都會蓋掉它，必須明確擋回來 */
+.fab-menu[hidden]{display:none!important}
 .fab-menu a{display:flex;align-items:baseline;gap:12px;padding:11px 16px;
   color:var(--paper);text-decoration:none;font-size:1rem;border-bottom:1px dotted rgba(27,26,23,.14)}
 .fab-menu a:last-child{border-bottom:none}
