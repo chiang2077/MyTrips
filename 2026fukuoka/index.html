@@ -46,11 +46,11 @@ h1{font-family:var(--serif);font-weight:900;line-height:1.1;font-size:clamp(2.8r
 h1 .lit{color:var(--pumpkin)}
 .kicker{font-family:var(--serif);font-size:clamp(1.15rem,2.5vw,1.5rem);font-weight:400;color:var(--sky);
   margin-top:32px;max-width:36ch;line-height:2}
-.factbar{display:flex;flex-wrap:nowrap;margin-top:56px;border-top:1px solid rgba(27,26,23,.28);border-bottom:1px solid rgba(27,26,23,.28)}
-.fact{flex:1 1 0;min-width:0;padding:22px 14px 20px;border-right:1px solid rgba(27,26,23,.18)}
+.factbar{display:flex;flex-wrap:wrap;justify-content:center;margin-top:56px;border-top:1px solid rgba(27,26,23,.28);border-bottom:1px solid rgba(27,26,23,.28)}
+.fact{flex:0 1 auto;min-width:0;padding:20px 22px 18px;border-right:1px solid rgba(27,26,23,.18)}
 .fact:last-child{border-right:none}
 .fact dt{font-family:var(--mono);font-size:.78rem;letter-spacing:.18em;color:var(--mute);text-transform:uppercase}
-.fact dd{font-family:var(--mono);font-size:1.16rem;font-weight:700;margin-top:8px;white-space:nowrap}
+.fact dd{font-family:var(--mono);font-size:1.12rem;font-weight:700;margin-top:8px;white-space:nowrap}
 .fact dd em{font-style:normal;color:var(--pumpkin)}
 
 section{padding:118px 0 24px;position:relative}
@@ -294,8 +294,7 @@ header.hero .kicker{margin-left:auto;margin-right:auto;max-width:44ch;color:#3d3
 header.hero .factbar{margin-top:64px;background:rgba(242,236,224,.42);backdrop-filter:blur(2px)}
 header.hero .fact dt{color:#4a453c}
 header.hero .fact dt,header.hero .fact dd{text-shadow:0 1px 10px rgba(242,236,224,.9)}
-.factbar .fact:nth-child(4),.factbar .fact:nth-child(5){flex:1.7 1 0}
-@media (max-width:900px){.factbar{flex-wrap:wrap}.factbar .fact{flex:1 1 45%}}
+
 
 /* 膠囊按鈕：封面的入口，以及試算器的切換 */
 .pill{display:inline-block;margin-top:44px;padding:15px 40px;border:1px solid rgba(27,26,23,.5);
@@ -347,12 +346,13 @@ header.hero .wrap::before{content:'';position:absolute;left:-8%;right:-8%;top:-8
   rgba(242,236,224,.94) 0%,rgba(242,236,224,.78) 42%,rgba(242,236,224,.44) 70%,transparent 88%)}
 header.hero h1,header.hero .eyebrow{
   text-shadow:0 1px 16px rgba(242,236,224,.92),0 0 4px rgba(242,236,224,.95)}
-header.hero .kicker{text-shadow:0 0 3px rgba(242,236,224,1),0 0 10px rgba(242,236,224,1),
-  0 0 20px rgba(242,236,224,.95),0 1px 26px rgba(242,236,224,.85)}
+header.hero .kicker{text-shadow:none}
 header.hero h1{color:var(--paper)}
 header.hero h1 .lit{color:var(--pumpkin)}
 header.hero .eyebrow{color:#4a453c}
-header.hero .kicker{color:#2a2721;font-weight:400}
+header.hero .kicker{color:#2a2721;font-weight:400;max-width:38ch;padding:18px 30px;
+  background:rgba(247,242,232,.82);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);
+  border-top:1px solid rgba(27,26,23,.16);border-bottom:1px solid rgba(27,26,23,.16)}
 header.hero .factbar{border-color:rgba(27,26,23,.32);background:rgba(248,243,234,.62);backdrop-filter:blur(3px)}
 header.hero .fact{border-right-color:rgba(27,26,23,.16)}
 header.hero .fact dt{color:#4a453c;text-shadow:none}
