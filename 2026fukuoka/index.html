@@ -387,6 +387,29 @@ header.hero .fact dd em{color:#ffab5e}
   .herolinks{gap:8px;margin-top:34px}
   .herolinks a{padding:9px 16px;font-size:.76rem;letter-spacing:.1em}
 }
+
+/* ══ 逐日行程：文字一側、照片一側，左右交錯（同章節開場的做法）══ */
+.day-img{margin:20px 0 0}
+@media (min-width:960px){
+  .day.has-img{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    gap:54px;align-items:start}
+  .day.has-img .day-text{grid-column:1;grid-row:1}
+  .day.has-img .day-img{grid-column:2;grid-row:1;margin:34px 0 0;max-width:none}
+  .day.has-img.rev .day-text{grid-column:2}
+  .day.has-img.rev .day-img{grid-column:1}
+  .day.has-img .body,.day.has-img .anchor,.day.has-img .note,.day.has-img .free{max-width:none}
+  .day.has-img .day-img figcaption{text-align:center}
+}
+@media (max-width:959px){
+  .day.has-img .day-img{max-width:620px}
+}
+
+.stay .tag{display:inline-block;margin-left:10px;padding:2px 9px;border:1.5px solid currentColor;
+  border-radius:3px;font-family:var(--serif);font-weight:900;font-size:.72rem;letter-spacing:.06em;
+  transform:rotate(-5deg);vertical-align:middle}
+@media (min-width:960px){
+  .day.has-img{align-items:center}
+}
 </style>
 </head>
 <body>
@@ -430,25 +453,25 @@ header.hero .fact dd em{color:#ffab5e}
     <p class="lede rv">十天裡我們替兩位安排了十個主景點，一天最多兩個——上午一個、下午一個。之間的路是給你們的：哪條坡道多走幾步、哪間店的咖啡值得坐下來，行程表不會替你們決定。</p>
     <div class="spine" id="spine">
 
-      <article class="day"><span class="lamp"></span>
-        <div class="dh"><span class="dn">第 1 天</span><span class="dd">10.24　週六</span></div>
+      <article class="day has-img"><span class="lamp"></span>
+        <div class="day-text"><div class="dh"><span class="dn">第 1 天</span><span class="dd">10.24　週六</span></div>
         <h3>湖畔的午後，海邊的黃昏</h3>
-        <figure class="plate soft rv"><img src="img/momochi.jpg" width="1280" height="720" loading="lazy" decoding="async" alt="百道海濱的黃昏，福岡塔就在沙灘旁"><figcaption>百道海濱的黃昏，福岡塔就在沙灘旁</figcaption></figure>
-        <p class="body">九點五十五分落地，進市區安頓好，第一個下午我們帶兩位往西走，避開最後兩天要逛的中洲與天神。</p>
-        <p class="body"><b style="color:var(--lumen);font-weight:500">上午｜抵達</b><br>機場入境後搭地鐵五分鐘進博多，飯店寄放行李。</p>
+        
+        <p class="body">九點五十五分落地，進天神安頓好，第一個下午我們帶兩位往西走，避開最後兩天要逛的中洲與天神。</p>
+        <p class="body"><b style="color:var(--lumen);font-weight:500">上午｜抵達</b><br>機場入境後搭地鐵空港線到天神約十一分鐘，飯店在相連的天神南一帶，先寄放行李。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">下午｜大濠公園</b><br>湖繞一圈剛好兩公里，走完不累。園內的日本庭園要另外購票，秋天的楓與松值得那幾百圓。北側緊鄰福岡城跡與舞鶴公園，天守台上看得到整片城區；城跡旁的鴻臚館跡展示館是遣唐使時代的迎賓館遺構，免費，二十分鐘走得完。想坐下來的話，湖畔那間玻璃屋的咖啡店幾乎每張桌子都看得到水。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">傍晚｜百道海濱</b><br>搭地鐵到西新，走十五分鐘就是海。福岡塔是日本最高的海濱塔，展望室在一百二十三公尺處；不上塔的話，沙灘旁的 Marizon 那組白色建築也很好拍。夕陽落進玄界灘的時間大約五點半。晚餐就在百道或西新一帶解決，離飯店二十分鐘。</p>
         <div class="stays">
-          <span class="stay">住　Via Inn 博多口站前</span>
-          <span class="stay dup">住　Quintessa 天神南</span>
-          <span class="hanko warn">同晚<br>重複</span>
-        </div>
+          <span class="stay">住　Quintessa 天神南</span>
+          <span class="stay dup">住　Via Inn 博多口站前<b class="tag">要退</b></span>
+        </div></div>
+        <figure class="plate soft day-img rv"><img src="img/momochi.jpg" width="1280" height="720" loading="lazy" decoding="async" alt="百道海濱的黃昏，福岡塔就在沙灘旁"><figcaption>百道海濱的黃昏，福岡塔就在沙灘旁</figcaption></figure>
       </article>
 
-      <article class="day"><span class="lamp"></span>
-        <div class="dh"><span class="dn">第 2 天</span><span class="dd">10.25　週日</span></div>
+      <article class="day has-img rev"><span class="lamp"></span>
+        <div class="day-text"><div class="dh"><span class="dn">第 2 天</span><span class="dd">10.25　週日</span></div>
         <h3>參道的煙火氣，與一頓為兩位準備的晚餐</h3>
-        <figure class="plate soft rv"><img src="img/dazaifu.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="太宰府天滿宮的參道與紅橋"><figcaption>太宰府天滿宮的參道與紅橋</figcaption></figure>
+        
         <p class="body">今天是紀念日，白天輕鬆走，晚上留給那頓正式的餐。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">上午｜太宰府天滿宮</b><br>從天神搭西鐵約二十五分鐘。參道兩側十幾家梅枝餅，現烤的皮脆內軟，站著吃最好。本殿後方的樹林裡有天開稻荷社，紅鳥居一路往上，人比正殿少得多。參道口那間隈研吾設計的咖啡店，用兩千根木條交錯撐起整個店面，值得繞進去看一眼——順帶一提，兩位第三晚要住的長崎飯店，是同一位建築師的作品。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">下午｜九州國立博物館</b><br>就在天滿宮旁邊，一條長長的手扶梯隧道連過去。這是日本第四座國立博物館，建築本身是一片波浪狀的玻璃帷幕，常設展從舊石器時代講到江戶，兩小時足夠。看不動的話，博物館外圈的林子也很好走。</p>
@@ -457,16 +480,16 @@ header.hero .fact dd em{color:#ffab5e}
           <div class="a"><b>17:30</b><span>博多 かげん（渡邊通）・三小時席次，二十點半結束</span></div>
         </div>
         <div class="stays">
-          <span class="stay">住　Via Inn 博多口站前</span>
-          <span class="stay dup">住　Quintessa 天神南</span>
-          <span class="hanko warn">同晚<br>重複</span>
-        </div>
+          <span class="stay">住　Quintessa 天神南</span>
+          <span class="stay dup">住　Via Inn 博多口站前<b class="tag">要退</b></span>
+        </div></div>
+        <figure class="plate soft day-img rv"><img src="img/dazaifu.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="太宰府天滿宮的參道與紅橋"><figcaption>太宰府天滿宮的參道與紅橋</figcaption></figure>
       </article>
 
-      <article class="day"><span class="lamp"></span>
-        <div class="dh"><span class="dn">第 3 天</span><span class="dd">10.26　週一</span></div>
+      <article class="day has-img"><span class="lamp"></span>
+        <div class="day-text"><div class="dh"><span class="dn">第 3 天</span><span class="dd">10.26　週一</span></div>
         <h3>午後啟程，住進世界新三大夜景裡</h3>
-        <figure class="plate soft rv"><img src="img/nagasaki.jpg" width="1280" height="720" loading="lazy" decoding="async" alt="稻佐山上看下去的長崎港"><figcaption>稻佐山上看下去的長崎港</figcaption></figure>
+        
         <p class="body">今天不用早起。中午過後才移動，下午在長崎市區補一個景點，天黑前上山。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">上午｜自由</b><br>睡飽再退房。博多站樓上的阪急與地下食品街可以先探路，最後一天要在這裡收伴手禮。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">下午｜出島</b><br>兩點半抵達長崎，從車站搭路面電車三站就到。這是江戶鎖國時期唯一對外的窗口，扇形的人工島現在復原了十幾棟建築，商館長宅邸裡的西式家具與和室並置，看得出當年兩種生活如何擠在同一座島上。整區走完約一個半小時。出來後往海邊走幾分鐘是水邊之森公園，草坡直接接到港灣，是長崎少數平坦而開闊的地方。</p>
@@ -476,13 +499,14 @@ header.hero .fact dd em{color:#ffab5e}
           <div class="a"><b>14:28</b><span>長崎到</span></div>
           <div class="a"><b>16:00</b><span>入住，長崎站西口有免費接駁車</span></div>
         </div>
-        <div class="stays"><span class="stay">住　Garden Terrace 長崎</span></div>
+        <div class="stays"><span class="stay">住　Garden Terrace 長崎</span></div></div>
+        <figure class="plate soft day-img rv"><img src="img/nagasaki.jpg" width="1280" height="720" loading="lazy" decoding="async" alt="稻佐山上看下去的長崎港"><figcaption>稻佐山上看下去的長崎港</figcaption></figure>
       </article>
 
-      <article class="day"><span class="lamp"></span>
-        <div class="dh"><span class="dn">第 4 天</span><span class="dd">10.27　週二</span></div>
+      <article class="day has-img rev"><span class="lamp"></span>
+        <div class="day-text"><div class="dh"><span class="dn">第 4 天</span><span class="dd">10.27　週二</span></div>
         <h3>上午駛向無人島，午後走進異國坡道</h3>
-        <figure class="plate soft rv"><img src="img/nagasakislope.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="長崎的異國坡道與洋館"><figcaption>長崎的異國坡道與洋館</figcaption></figure>
+        
         <p class="body">長崎唯一的整天，上午出海，下午留在南山手的坡道上。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">上午｜軍艦島</b><br>接駁車下山到長崎港，早班船出航。航程單趟約四十分鐘，途中會經過高島；靠上端島之後有專屬導覽帶隊，能走的範圍是島的南端一小塊，看得到當年的小學校舍、幹部宿舍與三十號棟——日本最早的鋼筋混凝土集合住宅。連導覽來回約三小時。島上沒有廁所也沒有販賣，上船前先解決。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">下午｜哥拉巴園</b><br>回港後先到新地中華街吃午餐，什錦麵與皿烏龍麵都是這裡發明的。往南走上坡就是哥拉巴園，蘇格蘭商人哥拉巴的宅邸是日本現存最古老的木造西式建築，園區依山而建，有幾段手扶梯代步，居高處看得到整個長崎港。出園順路經過大浦天主堂，日本現存最古老的教堂，木造哥德式；再往回一點是荷蘭坡，石板路兩側都是明治時期的洋館。</p>
@@ -492,12 +516,14 @@ header.hero .fact dd em{color:#ffab5e}
           <div class="a"><b>09:00</b><span>軍艦島上陸巡航出航（早班，時刻依業者）</span></div>
           <div class="a"><b>18:00</b><span>大阪屋 浜町店・已預約，二十點半結束</span></div>
         </div>
-        <div class="stays"><span class="stay">住　Garden Terrace 長崎</span></div>
+        <div class="stays"><span class="stay">住　Garden Terrace 長崎</span></div></div>
+        <figure class="plate soft day-img rv"><img src="img/nagasakislope.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="長崎的異國坡道與洋館"><figcaption>長崎的異國坡道與洋館</figcaption></figure>
       </article>
 
-      <article class="day"><span class="lamp"></span>
-        <div class="dh"><span class="dn">第 5 天</span><span class="dd">10.28　週三</span></div>
+      <article class="day has-img"><span class="lamp"></span>
+        <div class="day-text"><div class="dh"><span class="dn">第 5 天</span><span class="dd">10.28　週三</span></div>
         <h3>離開山海，走進一座荷蘭小鎮</h3>
+        
         <p class="body">中午移動，下午進園。今天是週三，宮殿前庭的恐怖企劃休演，剛好當作暖身日。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">上午｜長崎最後半天</b><br>十二點退房，行李可以先寄放。中華街或長崎站樓上吃午餐，順手把長崎蛋糕買齊——這是離開前最後的機會。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">下午｜豪斯登堡入園</b><br>兩點半抵達，車站到入口走五分鐘。先進小木屋放行李，這一區在園子最安靜的角落，森林與湖圍著，露台上可以坐很久。入園後第一段路是花之路，四季換不同的花，是拍風車的經典位置。沿運河往裡走就是阿姆斯特丹城，商店與餐廳最密的一區，晚餐在這裡解決。</p>
@@ -507,33 +533,38 @@ header.hero .fact dd em{color:#ffab5e}
           <div class="a"><b>13:03</b><span>長崎發，快速海濱線直達</span></div>
           <div class="a"><b>14:31</b><span>豪斯登堡到</span></div>
         </div>
-        <div class="stays"><span class="stay forest">住　森林小木屋</span></div>
+        <div class="stays"><span class="stay forest">住　森林小木屋</span></div></div>
+        <figure class="plate soft day-img rv"><img src="img/forestvilla.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="園區裡的森林小木屋，走路就到湖畔"><figcaption>園區裡的森林小木屋，走路就到湖畔</figcaption></figure>
       </article>
 
-      <article class="day"><span class="lamp"></span>
-        <div class="dh"><span class="dn">第 6 天</span><span class="dd">10.29　週四</span></div>
+      <article class="day has-img rev"><span class="lamp"></span>
+        <div class="day-text"><div class="dh"><span class="dn">第 6 天</span><span class="dd">10.29　週四</span></div>
         <h3>秋玫瑰的早晨，被嚇一跳的夜晚</h3>
+        
         <p class="body">園內最完整的一天。用飯店的提早入園特典搶在開園前進去，人最少的那一小時是兩位的。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">上午｜藝術花園</b><br>初夏百萬朵玫瑰祭的主場，秋天輪到秋玫瑰。秋玫瑰的顏色比初夏深、香氣更濃，十月下旬開始開花。把相機放低一點，可以把花、摩天輪與多姆托倫塔一起入鏡。同一區還有音樂噴泉秀「水之魔法」，場次表當天在入口拿。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">下午｜設施城</b><br>遊樂設施最集中的一區。EVA 八K 騎乘劇院在這裡，是全園唯一留下來的 EVA 內容，常設不會撲空；雙層的天空旋轉木馬也在同一帶。走累的話，運河遊船可以當交通工具用，各區都有碼頭，坐一段是這座園子最舒服的偷懶方式。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">晚上｜恐怖企劃</b><br>天黑之後氣氛整個翻面。宮殿前庭今天有演出，新反派「死亡之王」登場的正統恐怖企劃。出來順路逛葡萄酒祭，約五十款世界與九州的酒，帶著一點微醺穿過湖區走回小木屋。</p>
-        <div class="stays"><span class="stay forest">住　森林小木屋</span></div>
+        <div class="stays"><span class="stay forest">住　森林小木屋</span></div></div>
+        <figure class="plate soft day-img rv"><img src="img/roses.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="秋玫瑰的清晨，顏色比初夏深"><figcaption>秋玫瑰的清晨，顏色比初夏深</figcaption></figure>
       </article>
 
-      <article class="day"><span class="lamp"></span>
-        <div class="dh"><span class="dn">第 7 天</span><span class="dd">10.30　週五</span></div>
+      <article class="day has-img"><span class="lamp"></span>
+        <div class="day-text"><div class="dh"><span class="dn">第 7 天</span><span class="dd">10.30　週五</span></div>
         <h3>搬進小鎮中央，把光留到最後</h3>
+        
         <p class="body">今天換到園區正中央的飯店，也是三晚裡唯一不必趕路看夜間秀的一晚。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">上午｜光之幻想城</b><br>先把行李搬到阿姆斯特丹飯店。這一區是體驗型數位設施的集合，全在室內，走進去就會被光包住，互動式的裝置適合慢慢玩。因為不受天氣影響，安排在上午最保險。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">下午｜海港城</b><br>面大村灣的一區，綠地多、風大、人少。這是園內少數不靠燈光取勝的風景，夕陽落進海灣的樣子和昨天的森林完全不同。宮殿的後方庭園也在這半天的路線上，白天進去看得到規整的荷蘭式花壇。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">晚上｜夜間秀</b><br>光雕、噴泉配上小提琴、大提琴與鋼琴的現場演奏。住在正中央的好處是散場不必擠——沿著運河走幾分鐘就到房門口。</p>
-        <div class="stays"><span class="stay miffy">住　阿姆斯特丹飯店・米菲兔房</span></div>
+        <div class="stays"><span class="stay miffy">住　阿姆斯特丹飯店・米菲兔房</span></div></div>
+        <figure class="plate soft day-img rv"><img src="img/amsterdamhotel.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="阿姆斯特丹飯店前的廣場，入夜點燈"><figcaption>阿姆斯特丹飯店前的廣場，入夜點燈</figcaption></figure>
       </article>
 
-      <article class="day"><span class="lamp"></span>
-        <div class="dh"><span class="dn">第 8 天</span><span class="dd">10.31　週六</span></div>
+      <article class="day has-img rev"><span class="lamp"></span>
+        <div class="day-text"><div class="dh"><span class="dn">第 8 天</span><span class="dd">10.31　週六</span></div>
         <h3>白天告別森林，夜裡遇上五百人的神輿</h3>
-        <figure class="plate soft rv"><img src="img/nakasu.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="那珂川畔的屋台，祭典夜的另一半"><figcaption>那珂川畔的屋台，祭典夜的另一半</figcaption></figure>
+        
         <p class="body">上午退房，午後回福岡，晚上是這趟的最後一個高潮。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">上午｜園內最後採買</b><br>米菲兔周邊與園內限定商品集中在阿姆斯特丹城。直營飯店有伴手禮宅配服務，買多了可以直接寄回機場或家裡，不必扛著上車。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">下午｜移動</b><br>特急約一小時五十分回博多，轉往大名的飯店。先放行李——祭典人潮很密，拖著行李會很痛苦。</p>
@@ -546,29 +577,31 @@ header.hero .fact dd em{color:#ffab5e}
         </div>
         <div class="stays">
           <span class="stay dup">住　西鐵 Grand（大名，走路到祭典）</span>
-          <span class="stay dup">住　博多新大谷（10/31–11/02，不用搬）</span>
-          <span class="hanko warn">擇一</span>
+          <span class="stay dup">住　博多新大谷（10/31–11/02，不用搬）<b class="tag">擇一</b></span>
         </div>
-        <div class="note warn"><b>這一晚訂了兩間，要退掉一間。</b>兩間各有道理：西鐵 Grand 就在大名，看完女神輿走回去十分鐘；新大谷在博多，好處是隔天不用再搬一次行李。留西鐵 Grand 的話，新大谷要改成 11/01 才入住。</div>
+        <div class="note warn"><b>這一晚訂了兩間，要退掉一間。</b>兩間各有道理：西鐵 Grand 就在大名，看完女神輿走回去十分鐘；新大谷在博多，好處是隔天不用再搬一次行李。留西鐵 Grand 的話，新大谷要改成 11/01 才入住。</div></div>
+        <figure class="plate soft day-img rv"><img src="img/nakasunight.jpg" width="1280" height="720" loading="lazy" decoding="async" alt="祭典夜的中洲，霓虹映在那珂川上"><figcaption>祭典夜的中洲，霓虹映在那珂川上</figcaption></figure>
       </article>
 
-      <article class="day"><span class="lamp"></span>
-        <div class="dh"><span class="dn">第 9 天</span><span class="dd">11.01　週日</span></div>
+      <article class="day has-img"><span class="lamp"></span>
+        <div class="day-text"><div class="dh"><span class="dn">第 9 天</span><span class="dd">11.01　週日</span></div>
         <h3>最後一整天，拿來買</h3>
         <p class="body">回程是隔天中午，這一天完全可用。飯店在博多，搭地鐵到天神五分鐘。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">上午｜天神</b><br>福岡百貨最密的地方。岩田屋本店是在地老牌、質感最好，大丸福岡天神店、福岡 PARCO、Solaria Plaza 都在同一個路口周邊，走路五分鐘內走得完。下雨就走天神地下街——南北長約五百九十公尺、十二個街區，歐風石板路配古典燈飾，本身就值得走一趟。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">下午｜大名・今泉</b><br>從天神走過去五到十分鐘，是福岡小店密度最高的一區：選物店、古著、獨立咖啡，跟百貨完全不同的節奏。昨晚住西鐵 Grand 的話，這裡就在飯店門口。</p>
         <p class="body"><b style="color:var(--lumen);font-weight:500">傍晚｜博多站</b><br>回程順路收尾。JR 博多城（阪急、AMU PLAZA、Hands）、KITTE 博多，還有地下的博多 DEITOS——明太子、通りもん這類伴手禮一次買齊，離飯店最近，提回去也不累。想換口味可以把下午改成運河城博多，在天神與博多之間。</p>
-        <figure class="plate soft rv"><img src="img/tenjin.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="銀杏轉黃的天神街頭"><figcaption>銀杏轉黃的天神街頭</figcaption></figure>
+        
         <div class="note warn"><b>今天買的東西，稅是先付後退。</b>日本的免稅制度<span class="circ">十一月一日凌晨零點</span>整個換掉，沒有過渡期。今天結帳要付含稅全額，明天在機場確認過才退你——詳見下面「退稅」那一章。想省麻煩的話，大筆採購其實該放在昨天（10/31，舊制當場折抵、機場什麼都不用做）。</div>
         <div class="stays">
           <span class="stay">住　博多新大谷飯店</span>
-        </div>
+        </div></div>
+        <figure class="plate soft day-img rv"><img src="img/tenjin.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="銀杏轉黃的天神街頭"><figcaption>銀杏轉黃的天神街頭</figcaption></figure>
       </article>
 
-      <article class="day"><span class="lamp"></span>
-        <div class="dh"><span class="dn">第 10 天</span><span class="dd">11.02　週一</span></div>
+      <article class="day has-img rev"><span class="lamp"></span>
+        <div class="day-text"><div class="dh"><span class="dn">第 10 天</span><span class="dd">11.02　週一</span></div>
         <h3>好好吃一頓早餐，然後去辦退稅</h3>
+        
         <p class="body">不排景點。十二點十五分的飛機，扣掉退稅手續，能用的時間只有早餐那一段。</p>
         <div class="anchor">
           <div class="a"><b>07:30</b><span>飯店早餐，慢慢吃</span></div>
@@ -580,7 +613,8 @@ header.hero .fact dd em{color:#ffab5e}
           <div class="a"><b>12:15</b><span>BR105 起飛</span></div>
         </div>
         <p class="free">地鐵只到國內線航廈，國際線要再轉一趟免費接駁巴士——這段最容易被漏算，出發前再確認一次是否仍是這個動線。</p>
-        <div class="stays"><span class="stay">桃園 13:50 抵達</span></div>
+        <div class="stays"><span class="stay">桃園 13:50 抵達</span></div></div>
+        <figure class="plate soft day-img rv"><img src="img/airport.jpg" width="1248" height="832" loading="lazy" decoding="async" alt="福岡機場國際線出境大廳"><figcaption>福岡機場國際線出境大廳</figcaption></figure>
       </article>
 
     </div>
@@ -945,7 +979,7 @@ header.hero .fact dd em{color:#ffab5e}
       <div class="risk rv"><span class="n">01</span><div><h4>長崎往豪斯登堡別依賴巴士</h4><p>高速巴士一天只有兩班，退房後能搭的只有 15:00 那一班，且是預約制。直達的快速海濱線班次多得多、不用預約，是這一段的正解。時刻表為平日班表，10/28 是週三應相同，出發前再確認一次。</p></div></div>
       <div class="risk rv"><span class="n">02</span><div><h4>軍艦島可能上不了岸</h4><p>上陸與否是當天船長判斷，發布波浪注意報或警報時直接停航。船票通常不因改為海上周遊而退款。</p></div></div>
       <div class="risk rv"><span class="n">03</span><div><h4>10/31 那晚訂了兩間飯店</h4><p>西鐵 Grand（大名，走路到祭典）與博多新大谷（10/31–11/02，隔天不用搬行李）重疊，要退掉一間。留西鐵 Grand 的話，記得把新大谷改成 11/01 才入住——<b>11/01 那一晚不能沒有房間</b>。</p></div></div>
-      <div class="risk rv"><span class="n">04</span><div><h4>10/24 與 10/25 也各多訂了一間</h4><p>Via Inn 博多口站前與 Quintessa 天神南同期重疊，確認哪一間才是要住的，另一間趁免費取消期限前退掉。</p></div></div>
+      <div class="risk rv"><span class="n">04</span><div><h4>10/24 與 10/25 住 Quintessa 天神南，Via Inn 要退</h4><p>兩間原本重疊，已決定留 Quintessa 天神南。<b>Via Inn 博多口站前記得趁免費取消期限前退掉</b>，並確認退款條件。飯店位置從博多換到天神，第一天與最後幾天的動線都以天神為起點。</p></div></div>
       <div class="risk rv"><span class="n">05</span><div><h4>11/01 起免稅改制，退稅要在機場辦</h4><p>十一月一日凌晨零點起全面改成「先付稅、出境退」。11/01 買的東西結帳要付含稅全額，11/02 得在福岡機場刷護照過海關確認才退得到。10/31 以前買的仍是舊制、當場折抵、機場免手續。詳見「退稅」那一章。</p></div></div>
       <div class="risk rv"><span class="n">06</span><div><h4>中洲祭的 2026 年日期尚未公告</h4><p>若最終日不是 10/31，最後兩天要重排。官方公告通常在九月至十月初出現。西鐵 Grand 已訂好，若日期有變動要一併確認可否更改。</p></div></div>
       <div class="risk rv"><span class="n">07</span><div><h4>秋玫瑰還沒到最盛期</h4><p>豪斯登堡的秋玫瑰十月下旬開始開花，往年是十一月上旬才進入盛開。你們去的時候會是開始開的階段。</p></div></div>
@@ -1054,7 +1088,7 @@ header.hero .fact dd em{color:#ffab5e}
     var n = state.people, r = state.rate, rooms = Math.ceil(n/2);
     var over2 = n>2 ? '　三人以上單價官方未公開，以兩人一室單價估算' : '';
     var items = [
-      {k:'住宿　Via Inn 博多 ×2 晚', d:'每房 14,000 圓 × '+rooms+' 間 × 2 晚', y:VIA*rooms*2, s:'ok'},
+      {k:'住宿　Quintessa 天神南 ×2 晚', d:'每房估 14,000 圓 × '+rooms+' 間 × 2 晚（Via Inn 已決定退掉）', y:VIA*rooms*2, s:'est'},
       {k:'住宿　Garden Terrace 長崎 ×2 晚', d:'離棟海景套房，含早餐，每房每晚估 70,000 圓 × '+rooms+' 間', y:GARDEN*rooms*2, s:'ok'},
       {k:'住宿　森林小木屋 ×2 晚', d:'每人估 18,000 圓 × '+n+' 人 × 2 晚'+over2, y:FOREST*n*2, s:'ok'},
       {k:'住宿　米菲兔房 ×1 晚', d:'每人 33,800 圓 × '+n+' 人'+over2, y:MIFFY*n, s:'ok'},
