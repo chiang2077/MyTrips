@@ -342,11 +342,13 @@ header.hero{color:var(--paper)}
   rgba(242,236,224,.24) 74%,rgba(242,236,224,.82) 93%,var(--ink) 100%)}
 /* 只在文字底下放一圈柔和的紙色光暈，照片本身保持鮮豔 */
 header.hero .wrap{position:relative;z-index:1}
-header.hero .wrap::before{content:'';position:absolute;left:-8%;right:-8%;top:-8%;height:82%;z-index:-1;
+header.hero .wrap::before{content:'';position:absolute;left:-8%;right:-8%;top:-8%;height:64%;z-index:-1;
   pointer-events:none;background:radial-gradient(ellipse 60% 58% at 50% 40%,
   rgba(242,236,224,.94) 0%,rgba(242,236,224,.78) 42%,rgba(242,236,224,.44) 70%,transparent 88%)}
-header.hero h1,header.hero .kicker,header.hero .eyebrow{
+header.hero h1,header.hero .eyebrow{
   text-shadow:0 1px 16px rgba(242,236,224,.92),0 0 4px rgba(242,236,224,.95)}
+header.hero .kicker{text-shadow:0 0 3px rgba(242,236,224,1),0 0 10px rgba(242,236,224,1),
+  0 0 20px rgba(242,236,224,.95),0 1px 26px rgba(242,236,224,.85)}
 header.hero h1{color:var(--paper)}
 header.hero h1 .lit{color:var(--pumpkin)}
 header.hero .eyebrow{color:#4a453c}
@@ -357,12 +359,11 @@ header.hero .fact dt{color:#4a453c;text-shadow:none}
 header.hero .fact dd{color:var(--paper);text-shadow:none}
 header.hero .fact dd em{color:var(--pumpkin)}
 
-/* 封面的章節入口：不是一顆沒作用的按鈕，是十一章的門 */
-.herolinks{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:46px}
-.herolinks a{padding:11px 22px;border:1px solid rgba(27,26,23,.42);border-radius:999px;
-  color:var(--paper);text-decoration:none;font-family:var(--mono);font-size:.82rem;letter-spacing:.14em;
-  background:rgba(248,243,234,.72);transition:background .25s,color .25s,border-color .25s}
-.herolinks a:hover,.herolinks a:focus-visible{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+  color:var(--paper);text-decoration:none;font-family:var(--mono);font-size:.79rem;letter-spacing:.1em;
+  background:#f7f2e8;box-shadow:0 2px 12px rgba(27,26,23,.22);
+  transition:background .25s,color .25s,border-color .25s,transform .2s}
+.herolinks a:hover,.herolinks a:focus-visible{background:var(--pumpkin);color:#fdf8ee;
+  border-color:var(--pumpkin);transform:translateY(-2px)}
 
 /* 右下懸浮目次 */
 .fab{position:fixed;right:24px;bottom:24px;z-index:60}
@@ -415,13 +416,63 @@ header.hero .fact dd em{color:var(--pumpkin)}
 @media (min-width:960px){
   .day.has-img{align-items:center}
 }
+
+/* ══ 頂端固定導覽列 ══ */
+.topbar{position:sticky;top:0;z-index:70;background:rgba(247,242,232,.94);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(27,26,23,.2)}
+.topbar .inner{max-width:1080px;margin:0 auto;padding:0 26px;display:flex;align-items:center;
+  gap:20px;height:58px}
+.topbar .brand{flex:none;font-family:var(--serif);font-weight:900;font-size:1rem;
+  letter-spacing:.12em;color:var(--pumpkin);text-decoration:none}
+.topbar nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.topbar nav::-webkit-scrollbar{display:none}
+.topbar a:not(.brand){flex:none;padding:9px 13px;border-radius:999px;text-decoration:none;
+  font-family:var(--mono);font-size:.77rem;letter-spacing:.08em;color:var(--paper);
+  transition:background .2s,color .2s;white-space:nowrap}
+.topbar a:not(.brand):hover,.topbar a:not(.brand):focus-visible{background:var(--pumpkin);color:#fdf8ee}
+
+header.hero{min-height:calc(100svh - 58px)}
+section,header.hero{scroll-margin-top:66px}
+
+@media (max-width:640px){
+  .topbar .inner{gap:12px;height:52px;padding:0 14px}
+  .topbar .brand{font-size:.88rem;letter-spacing:.08em}
+  .topbar a:not(.brand){padding:8px 11px;font-size:.72rem}
+  header.hero{min-height:calc(100svh - 52px)}
+  section,header.hero{scroll-margin-top:58px}
+}
+
+/* 矮視窗（筆電常見 900px 以下）把封面壓緊，資訊列才不會被切掉 */
+@media (max-height:940px){
+  header.hero{padding:56px 0 64px}
+  header.hero h1{font-size:clamp(2.3rem,5.4vw,3.9rem)}
+  header.hero .eyebrow{margin-bottom:20px}
+  header.hero .kicker{margin-top:22px;font-size:clamp(1rem,1.5vw,1.16rem);line-height:1.9}
+  header.hero .factbar{margin-top:34px}
+  header.hero .fact{padding:14px 12px 12px}
+  header.hero .fact dd{font-size:1.02rem;margin-top:5px}
+  header.hero .wrap::before{height:72%}
+}
+@media (max-height:760px){
+  header.hero{padding:40px 0 48px}
+  header.hero h1{font-size:clamp(2rem,4.6vw,3.1rem)}
+  header.hero .kicker{margin-top:16px}
+  header.hero .factbar{margin-top:26px}
+}
 </style>
 </head>
 <body>
+<div class="topbar">
+  <div class="inner">
+    <a class="brand" href="#top">福岡・十天</a>
+    <nav aria-label="章節導覽"><a href="#days">行程</a><a href="#transit">交通</a><a href="#gunkanjima">軍艦島</a><a href="#park">園區</a><a href="#night">夜的節目</a><a href="#matsuri">中洲祭</a><a href="#budget">預算</a><a href="#air">機票</a><a href="#taxfree">退稅</a><a href="#risk">行前</a><a href="#gloss">名稱</a></nav>
+  </div>
+</div>
 <div class="glow" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 
-<header class="hero">
+<header class="hero" id="top">
   <div class="hero-media" aria-hidden="true"><img src="img/hero.jpg" width="1280" height="720" alt="" fetchpriority="high"></div>
   <div class="tile" aria-hidden="true"></div>
   <div class="wrap">
@@ -435,18 +486,6 @@ header.hero .fact dd em{color:var(--pumpkin)}
       <div class="fact"><dt>去程　BR104</dt><dd>06:35 <em>→</em> 09:55</dd></div>
       <div class="fact"><dt>回程　BR105</dt><dd>12:15 <em>→</em> 13:50</dd></div>
     </dl>
-    <nav class="herolinks" aria-label="章節">
-      <a href="#days">行程</a>
-      <a href="#transit">交通時刻</a>
-      <a href="#gunkanjima">軍艦島</a>
-      <a href="#park">園區導覽</a>
-      <a href="#night">夜的節目</a>
-      <a href="#matsuri">中洲祭</a>
-      <a href="#budget">預算</a>
-      <a href="#air">機票</a>
-      <a href="#taxfree">退稅</a>
-      <a href="#risk">行前</a>
-    </nav>
   </div>
   <svg class="tear" viewBox="0 0 1440 92" preserveAspectRatio="none" aria-hidden="true"><path d="M0,92 L0,33.9 L61.4,21.6 L90.3,31.1 L153.6,40.7 L207.3,22.9 L258.9,48.9 L310.0,48.1 L356.3,15.0 L392.3,27.1 L442.7,49.4 L483.0,24.2 L524.2,44.6 L590.9,45.6 L625.4,21.7 L676.5,13.8 L747.1,11.8 L786.1,33.5 L852.3,21.7 L894.9,10.5 L963.8,25.7 L995.5,29.6 L1059.1,13.1 L1089.3,29.8 L1125.8,38.8 L1199.1,18.8 L1227.7,31.1 L1274.6,20.7 L1342.7,31.0 L1378.6,28.6 L1430.6,35.3 L1440.0,32.7 L1440,92 Z" fill="var(--ink)"></path></svg>
 </header>
