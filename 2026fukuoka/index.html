@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>十天，四座城 ｜ 福岡・長崎・豪斯登堡 2026.10.24–11.02</title>
+<title>九州・十天 ｜ 福岡・長崎・豪斯登堡 2026.10.24–11.02</title>
 <meta name="description" content="2026年10月24日至11月2日，福岡進出，走長崎、軍艦島、豪斯登堡與中洲祭的十天九夜行程。含列車與巴士時刻、園區導覽、退稅新制、預算試算與地圖。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -200,14 +200,8 @@ footer .fm{font-family:var(--mono);letter-spacing:.1em;color:var(--sky);font-siz
 /* ══ 雜誌版面層（2026-08 淺色紙本改版）═══════════════════════════════
    科技感留給正文可讀性、試算器、地圖；雜誌語彙只用在識別與分區。 */
 
-/* 版口線與頁碼（folio）。hero 自己是 P.01，section 從 P.02 起算。 */
-body{counter-reset:folio 1}
-section{counter-increment:folio}
+/* 版口線（folio）。頁碼已依需求移除，只留分區線。 */
 section::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;background:rgba(27,26,23,.16)}
-section::after,header.hero::after{content:'P.' counter(folio,decimal-leading-zero);
-  position:absolute;right:26px;top:26px;font-family:var(--mono);font-size:.74rem;
-  letter-spacing:.2em;color:var(--mute)}
-header.hero::after{content:'P.01'}
 
 /* 章節色帶：每章一個顏色，用余光就能判斷讀到哪一段。 */
 section{border-left:4px solid var(--chap,rgba(27,26,23,.2))}
@@ -220,6 +214,7 @@ section{border-left:4px solid var(--chap,rgba(27,26,23,.2))}
 #shopping{--chap:var(--bruna)}
 #risk{--chap:var(--ember)}
 #niche{--chap:var(--forest)}
+#alt{--chap:var(--sky)}
 #gloss{--chap:var(--mute)}
 .snum{color:var(--chap,var(--pumpkin))}
 
@@ -431,7 +426,7 @@ header.hero .fact dd em{color:var(--pumpkin)}
   gap:20px;height:58px}
 .topbar .brand{flex:none;font-family:var(--serif);font-weight:900;font-size:1rem;
   letter-spacing:.12em;color:var(--pumpkin);text-decoration:none}
-.topbar nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.topbar nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;min-width:0}
 .topbar nav::-webkit-scrollbar{display:none}
 .topbar a:not(.brand){flex:none;padding:9px 13px;border-radius:999px;text-decoration:none;
   font-family:var(--mono);font-size:.77rem;letter-spacing:.08em;color:var(--paper);
@@ -485,8 +480,8 @@ section,header.hero{scroll-margin-top:66px}
 <body>
 <div class="topbar">
   <div class="inner">
-    <a class="brand" href="#top">福岡・十天</a>
-    <nav aria-label="章節導覽"><a href="#days">行程</a><a href="#transit">交通</a><a href="#gunkanjima">軍艦島</a><a href="#park">豪斯登堡</a><a href="#matsuri">中洲祭</a><a href="#budget">預算</a><a href="#air">機票</a><a href="#shopping">買什麼</a><a href="#events">期間限定</a><a href="#niche">小眾行程</a><a href="#taxfree">退稅</a><a href="#risk">行前</a><a href="#gloss">名稱</a></nav>
+    <a class="brand" href="#top">九州・十天</a>
+    <nav aria-label="章節導覽"><a href="#days">行程</a><a href="#transit">交通</a><a href="#gunkanjima">軍艦島</a><a href="#park">豪斯登堡</a><a href="#matsuri">中洲祭</a><a href="#budget">預算</a><a href="#air">機票</a><a href="#shopping">買什麼</a><a href="#events">期間限定</a><a href="#niche">小眾行程</a><a href="#taxfree">退稅</a><a href="#risk">行前</a><a href="#gloss">名稱</a><a href="#alt">替代行程</a></nav>
   </div>
 </div>
 <div class="glow" aria-hidden="true"></div>
@@ -1315,6 +1310,125 @@ section,header.hero{scroll-margin-top:66px}
   </div>
 </section>
 
+<section id="alt">
+  <div class="wrap">
+    <p class="snum rv">15 ／ 替代行程</p>
+    <h2 class="rv">如果第一晚，<br>不留在福岡市</h2>
+    <p class="lede rv">這是平行方案，<b>不是目前已經訂好的行程</b>——現在訂的是 10/24–26 兩晚住博多天神南的
+    Quintessa，10/25 晚上在渡邊通也已經有紀念日晚餐的訂位。要走這個方案，這兩筆都要先取消或改期。
+    這裡整理的是：如果落地後不進福岡市，改往佐賀縣的溫泉鄉或福岡縣南邊的水鄉移動，
+    10/26 中午後再接續原訂的長崎行程，可以怎麼安排。標準跟「小眾行程」那一章一樣——
+    查得到在地口碑的才收，遇到像宣傳詞的說法，另外查證過才寫上來。</p>
+
+    <div class="note warn"><b>柳川方向相反，武雄／嬉野在路上。</b>
+    武雄溫泉、嬉野溫泉剛好就在福岡到長崎的西九州新幹線這條線上——你們原訂行程本來就會經過武雄溫泉站轉車，
+    改成在那裡過夜等於「順路住」，10/26 續往長崎完全不繞路。柳川在福岡市南邊，方向跟長崎相反，
+    10/26 要去長崎得先繞回博多，比從武雄／嬉野出發多花將近一小時車程。三個地方各有值得去的理由，
+    取捨看你們比較想要溫泉還是水鄉。</div>
+
+    <h3 style="font-family:var(--serif);font-size:1.45rem;font-weight:600;margin-top:52px" class="rv">武雄溫泉｜古湯、樓門與話題圖書館</h3>
+    <p class="lede rv">佐賀縣兩大古湯之一，開湯超過一千三百年。溫泉街的地標樓門與神社的巨木都是查證過、不是自吹自擂的等級。</p>
+    <div class="anchor">
+      <div class="a"><b>落地→武雄</b><span>福岡機場搭地鐵轉 JR，約 1 小時 22 分</span></div>
+      <div class="a"><b>武雄→長崎</b><span>西九州新幹線約 30–40 分，自由席 3,070 圓</span></div>
+    </div>
+    <div class="cards rv">
+      <article class="card pickup">
+        <p class="role">地標</p>
+        <h3>武雄溫泉樓門</h3>
+        <p class="jp">武雄温泉楼門</p>
+        <p class="price">國家指定重要文化財<small>1915 年建成，辰野金吾設計</small></p>
+        <p>紅白兩色的木造樓門，一根釘子都沒用的「天平式樓門」，設計者辰野金吾就是東京車站的設計師，2007 年被指定為國家重要文化財。二樓天花板四個角落刻了子、卯、午、酉四個生肖，對應東西南北四個方位。</p>
+      </article>
+      <article class="card pickup">
+        <p class="role">武雄神社</p>
+        <h3>武雄大楠</h3>
+        <p class="jp">武雄の大楠</p>
+        <p class="price">武雄神社境內<small>環境省巨樹調查全國第 7 位</small></p>
+        <p>樹圍 20 公尺、樹高 30 公尺，中空處約 12 疊塌塌米大，是環境省「巨樹・巨木林調查」認證的全國第七大巨木——這個排名是政府調查的結果，不是自封的。</p>
+        <p class="con">但「樹齡三千年」這個數字要看清楚：連武雄市公所自己的文化財網頁都只寫「樹齡3000年といわれています」（據說），沒有考證依據，當成傳說聽聽就好，別當成確切年份轉述。</p>
+      </article>
+      <article class="card">
+        <p class="role">話題景點</p>
+        <h3>武雄市圖書館</h3>
+        <p class="jp">武雄市図書館</p>
+        <p class="price">09:00–21:00，全年無休<small>武雄神社走路約 5 分鐘</small></p>
+        <p>2013 年由蔦屋書店的營運公司接手改造，書店、星巴克與公立圖書館合體，可以喝咖啡看書。就在武雄神社走路範圍內，順路很划算。</p>
+      </article>
+    </div>
+    <p class="free">住宿分三個級距：<b>御宿 竹林亭</b>——2014 年《米其林指南福岡佐賀特別版》九州唯一「五紅亭」評等，11 間客房全附露天風呂，屬高端；
+    <b>東洋館</b>——創業四百年，江戶時代是大名參勤交代的御用旅籠，走老字號路線；
+    <b>大正浪漫の宿 京都屋</b>——大正時期古董家具佈置、免費迎賓咖啡，價格較親民，走氛圍路線。</p>
+
+    <h3 style="font-family:var(--serif);font-size:1.45rem;font-weight:600;margin-top:52px" class="rv">嬉野溫泉｜美肌之湯與免費足湯</h3>
+    <p class="lede rv">與武雄並列佐賀兩大古湯，泉質滑順，號稱「化妝水般的溫泉」。2022 年新幹線嬉野溫泉站通車後，交通比從前方便很多。</p>
+    <div class="anchor">
+      <div class="a"><b>落地→嬉野</b><span>福岡機場經博多轉新幹線，約 1 小時 10–15 分</span></div>
+      <div class="a"><b>嬉野→長崎</b><span>西九州新幹線約 25 分，車站到溫泉街約 5 分鐘車程</span></div>
+    </div>
+    <div class="cards rv">
+      <article class="card pickup">
+        <p class="role">免費</p>
+        <h3>西博爾德足湯</h3>
+        <p class="jp">シーボルトの足湯</p>
+        <p class="price">溫泉街中心，24 小時開放<small>以曾造訪此地的德國醫師西博爾德命名</small></p>
+        <p>溫泉街正中央的免費足湯，走累了隨時可以坐下來泡腳，不用另外買門票。</p>
+      </article>
+      <article class="card">
+        <p class="role">在地吃法</p>
+        <h3>溫泉湯豆腐</h3>
+        <p class="jp">温泉湯豆腐</p>
+        <p class="price">發祥店「宗庵よこ長」<small>豆腐煮到入口即化，湯色隨煮的時間變白濁</small></p>
+        <p>用嬉野的溫泉水煮豆腐，豆腐裡的甘味會慢慢融進湯裡，是嬉野獨有的吃法，溫泉街上多家店都有賣。</p>
+      </article>
+      <article class="card">
+        <p class="role">小眾</p>
+        <h3>豐玉姬神社</h3>
+        <p class="jp">豊玉姫神社</p>
+        <p class="price">美肌之神<small>白色瓷製「白鯰」像是信使</small></p>
+        <p>祭拜美肌之神豐玉姬，境內的繪馬九成以上都寫著皮膚相關的願望，是嬉野溫泉「美肌之湯」名聲的信仰源頭。不是熱門觀光團會排的點，喜歡小神社的話值得繞過去。</p>
+      </article>
+    </div>
+    <p class="free">住宿兩個方向：<b>大正屋椎葉山荘</b>——縣內最大級露天風呂「しいばの湯」，五種湯巡禮，走純泡湯路線；
+    <b>和多屋別荘</b>——兩萬坪腹地，源自薩摩藩主島津家的休憩所，館內有書道、製香等日本文化體驗，走文化體驗路線。</p>
+
+    <h3 style="font-family:var(--serif);font-size:1.45rem;font-weight:600;margin-top:52px" class="rv">柳川｜水鄉泛舟與鰻魚飯</h3>
+    <p class="lede rv">福岡縣南邊的水鄉，掘割（水道）縱橫全城，泛舟與鰻魚飯是兩大招牌。方向與長崎相反，取捨要先想清楚。</p>
+    <div class="anchor">
+      <div class="a"><b>落地→柳川</b><span>福岡機場經天神轉西鐵特急，約 1 小時</span></div>
+      <div class="a"><b>柳川→長崎</b><span>得先繞回博多再接原本的路線，總計約 2.5 小時</span></div>
+    </div>
+    <div class="cards rv">
+      <article class="card pickup">
+        <p class="role">招牌</p>
+        <h3>水鄉泛舟</h3>
+        <p class="jp">川下り</p>
+        <p class="price">全程 60–70 分鐘<small>另有 30–40 分鐘的短程路線</small></p>
+        <p>船夫撐篙帶著遊船穿過掘割，兩側是老屋與柳樹，是柳川最招牌的體驗。</p>
+      </article>
+      <article class="card">
+        <p class="role">招牌美食</p>
+        <h3>鰻魚飯蒸籠</h3>
+        <p class="jp">うなぎのせいろ蒸し</p>
+        <p class="price">發祥店「若松屋」等多家老鋪</p>
+        <p>飯上鋪蒲燒鰻與錦絲蛋，整份放進蒸籠再蒸過，是柳川特有的鰻魚飯吃法，跟一般鰻魚飯口感不同。</p>
+      </article>
+      <article class="card">
+        <p class="role">小眾</p>
+        <h3>北原白秋生家紀念館</h3>
+        <p class="jp">北原白秋生家・記念館</p>
+        <p class="price">泛舟下船處走路約 3 分鐘<small>門票 600 圓，福岡縣指定文化財</small></p>
+        <p>日本近代詩人北原白秋的出生地，江戶末期到明治初期的町屋建築，福岡縣認證的老屋，是柳川舊港町沖端現存最古老的町屋。就在泛舟下船點旁邊，順路不費事。</p>
+      </article>
+    </div>
+    <p class="free">住宿首選<b>柳川藩主立花邸 御花</b>——由藩主直系第十八代傳人經營，七千坪腹地含國家指定名勝庭園「松濤園」，
+    是全日本唯一由藩主後代親自經營的旅宿，歷史份量在三個地方裡最重，雙人一室約 41,740 圓起（含稅）。</p>
+
+    <p style="margin-top:28px;font-size:.96rem;color:var(--mute)">資料查自各官方網站、環境省與地方政府公開資料、在地評論網站（2026 年 8 月查閱）。
+    武雄大楠的樹齡標示方式，已對照武雄市公所文化財網頁原文核實。</p>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <p class="sign">十天之後，你們會帶著海風、南瓜燈和霓虹的顏色回家。<br>剩下的，就交給那天的天氣與船長。</p>
@@ -1465,6 +1579,7 @@ section,header.hero{scroll-margin-top:66px}
     <a href="#taxfree"><span class="n">12</span>退稅</a>
     <a href="#risk"><span class="n">13</span>行前</a>
     <a href="#gloss"><span class="n">14</span>名稱對照</a>
+    <a href="#alt"><span class="n">15</span>替代行程</a>
   </nav>
 </div>
 
