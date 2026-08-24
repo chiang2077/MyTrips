@@ -936,7 +936,7 @@ section,header.hero{scroll-margin-top:66px}
     <p class="snum rv">07 ／ 預算</p>
     <h2 class="rv">這趟大概要花多少</h2>
     <p class="lede rv">預設兩位成人。<b>橘底那幾列是實際訂單金額</b>，取自訂房與訂位確認信，不是推估；其餘是估值。</p>
-    <div class="note warn"><b>還有兩項用估值。</b>豪斯登堡的森林小木屋與米菲兔房——訂房資料在太太那邊，之後會補上實際金額；豪斯登堡門票——規劃現場買，本來就不會有事先的確認信。表中仍用估值並標記出來。博多新大谷已經找到訂房確認信，下面已改成實際金額。</div>
+    <div class="note warn"><b>只剩門票是估值。</b>豪斯登堡門票規劃現場買，本來就不會有事先的確認信，表中仍用估值標記；其餘住宿與活動都已經是訂單上的實際金額。</div>
     <p class="free">已訂的部分不隨「成人人數」變動——訂單已經開出去了，人數改了金額也不會變。調整人數只會影響尚未確認與估值的項目。</p>
     <div class="calc rv">
       <div class="ctrl">
@@ -1339,9 +1339,11 @@ section,header.hero{scroll-margin-top:66px}
     {k:'軍艦島上陸行程', d:'10/27 標準方案，大人 2 人（含入島料）。預約號 140139', y:12300},
     {k:'博多 かげん 晚餐', d:'10/25 18:30，12,100 圓套餐＋チャージ 770 圓，各 2 份', y:(12100+770)*2},
     {k:'大阪屋 浜町店 晚餐', d:'10/27 19:00，11,000 圓套餐 × 2 份', y:11000*2},
-    {k:'住宿　博多新大谷 ×2 晚', d:'10/31–11/02，行政雙人房禁菸（上層階），不含早餐。到店付款，小計 68,760 −優惠 2,784（住宿稅每晚 200 圓另計）', y:55008, s:'booked'}
+    {k:'住宿　博多新大谷 ×2 晚', d:'10/31–11/02，行政雙人房禁菸（上層階），不含早餐。到店付款，小計 68,760 −優惠 2,784（住宿稅每晚 200 圓另計）', y:55008, s:'booked'},
+    {k:'住宿　森林小木屋 ×2 晚', d:'10/28–30，フォレストヴィラ 湖畔villa（2–5人用），含早餐。已刷卡付訖', y:58800},
+    {k:'住宿　米菲兔房 ×1 晚', d:'10/30–31，アムステルダムホテル ミッフィールーム，含早餐。已刷卡付訖', y:69200}
   ];
-  var FOREST=18000, MIFFY=33800, TICKET_1DAY=7600, TRAIN_HTB=1920;
+  var TICKET_1DAY=7600, TRAIN_HTB=1920;
   var PP_TRANSPORT=20000, PP_FOOD=44000, PP_SHOP=22000;
   var AIR_TAX_TWD=4625;
 
@@ -1350,12 +1352,9 @@ section,header.hero{scroll-margin-top:66px}
 
   function render(){
     var n = state.people, r = state.rate;
-    var over2 = n>2 ? '　三人以上單價官方未公開，以兩人一室單價估算' : '';
     var items = [];
     PAID.forEach(function(it){ items.push({k:it.k, d:it.d, y:it.y, s:it.s||'paid'}); });
     items = items.concat([
-      {k:'住宿　森林小木屋 ×2 晚', d:'訂房資訊確認中（太太那邊），先用每人估 18,000 圓 × '+n+' 人 × 2 晚'+over2, y:FOREST*n*2, s:'pending'},
-      {k:'住宿　米菲兔房 ×1 晚', d:'訂房資訊確認中（太太那邊），先用每人 33,800 圓 × '+n+' 人'+over2, y:MIFFY*n, s:'pending'},
       {k:'豪斯登堡門票', d: (state.ticket==='opt'
           ? '規劃現場買，先用一日護照 7,600 圓 × '+n+' 人估算，其餘天數由特典涵蓋'
           : '規劃現場買，先用一日護照 7,600 圓 × 2 張 × '+n+' 人估算'), y:(state.ticket==='opt'?TICKET_1DAY:TICKET_1DAY*2)*n, s:'onsite'},
@@ -1367,7 +1366,6 @@ section,header.hero{scroll-margin-top:66px}
     var tagmap = {
       paid:'<span class="sub ok">已付・實際金額</span>',
       booked:'<span class="sub ok">已訂・到店付款</span>',
-      pending:'<span class="sub todo">資訊確認中</span>',
       onsite:'<span class="sub">現場購買・估值</span>',
       est:'<span class="sub">推估值</span>'
     };
