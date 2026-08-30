@@ -1,0 +1,24 @@
+# 換行符號規則（2026-08-31 建立）
+#
+# 為什麼要有這個檔：
+# 專案放在 C:\Users\<使用者>\ 底下，Windows 的 git 和 WSL 的 git 讀的是
+# 同一個資料夾。兩邊對換行符號的設定只要不同，其中一邊就會看到
+# 「每個檔案的每一行都被改過」的假差異——PR 被雜訊淹沒，
+# 「git status 乾淨＝沒人在動」這個判斷也會失效（2026-08-31 六個 repo 全中）。
+#
+# 規則寫在專案裡（而不是各人的 git 設定裡），才能跨機器、跨 AI 一致生效：
+# 新機器 clone 下來就正確，不必先記得改設定。
+# 完整說明見 collab repo 的 COLLAB.md §2「換行符號」。
+
+# 預設：repo 內一律存 LF，工作區也用 LF
+* text=auto eol=lf
+
+# Windows 批次檔必須是 CRLF。
+# cmd.exe 對 LF 的 .bat 有已知的解析問題（goto／label 尤其容易出錯）。
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# 二進位檔：text=auto 本來就會自動偵測，這裡明寫是為了不留僥倖空間
+*.jpg binary
+*.jpeg binary
+*.png binary
