@@ -1,0 +1,137 @@
+{
+  "flyer": {
+    "file": "img/flyer.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Singapore_(SG),_Singapore_Flyer_--_2019_--_4753.jpg",
+    "title": "File:Singapore (SG), Singapore Flyer -- 2019 -- 4753.jpg",
+    "author": "Dietmar Rabich",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "縮圖、JPEG 壓縮；頁面依卡片比例裁切顯示。"
+  },
+  "merlion": {
+    "file": "img/merlion.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Singapore_(SG),_Merlion_--_2019_--_4496.jpg",
+    "title": "File:Singapore (SG), Merlion -- 2019 -- 4496.jpg",
+    "author": "Dietmar Rabich",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "縮圖、JPEG 壓縮；頁面依卡片比例裁切顯示。"
+  },
+  "helix": {
+    "file": "img/helix.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Puente_Helix,_Marina_Bay,_Singapur,_2023-08-16,_DD_144-146_HDR.jpg",
+    "title": "File:Puente Helix, Marina Bay, Singapur, 2023-08-16, DD 144-146 HDR.jpg",
+    "author": "Diego Delso",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "縮圖、JPEG 壓縮；頁面依卡片比例裁切顯示。"
+  },
+  "fullerton": {
+    "file": "img/fullerton.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Singapore_(SG),_The_Fullerton_Hotel_--_2019_--_4708.jpg",
+    "title": "File:Singapore (SG), The Fullerton Hotel -- 2019 -- 4708.jpg",
+    "author": "Dietmar Rabich",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "縮圖、JPEG 壓縮；頁面依卡片比例裁切顯示。"
+  },
+  "boat": {
+    "file": "img/boat.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:View_of_Boat_Quay,_Singapore_(2023)-L1003669.jpg",
+    "title": "File:View of Boat Quay, Singapore (2023)-L1003669.jpg",
+    "author": "Frank Schulenburg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "縮圖、JPEG 壓縮；頁面依卡片比例裁切顯示。"
+  },
+  "arts": {
+    "file": "img/arts.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:ArtScience_Museum,_Marina_Bay_Sands,_Singapore.jpg",
+    "title": "File:ArtScience Museum, Marina Bay Sands, Singapore.jpg",
+    "author": "Basile Morin",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "縮圖、JPEG 壓縮；頁面依卡片比例裁切顯示。"
+  },
+  "ion": {
+    "file": "img/ion.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:ION_Orchard,_Singapur,_2023-08-18,_DD_02.jpg",
+    "title": "File:ION Orchard, Singapur, 2023-08-18, DD 02.jpg",
+    "author": "Diego Delso",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "縮圖、JPEG 壓縮；頁面依卡片比例裁切顯示。"
+  },
+  "paragon": {
+    "file": "img/paragon.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:The_Paragon,_Singapore_-_20100316.jpg",
+    "title": "File:The Paragon, Singapore - 20100316.jpg",
+    "author": "Andy Mitchell from Glasgow, UK",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "changes": "縮圖、JPEG 壓縮；頁面依卡片比例裁切顯示。"
+  },
+  "takashimaya": {
+    "file": "img/takashimaya.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Ngee_Ann_City_(2023-06-05)_IMG_05.jpg",
+    "title": "File:Ngee Ann City (2023-06-05) IMG 05.jpg",
+    "author": "Chainwit.",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "縮圖、JPEG 壓縮；頁面依卡片比例裁切顯示。"
+  },
+  "sands": {
+    "file": "img/sands.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Interior_of_The_Shoppes_at_Marina_Bay_Sands,_Singapore.jpg",
+    "title": "File:Interior of The Shoppes at Marina Bay Sands, Singapore.jpg",
+    "author": "Basile Morin",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "縮圖、JPEG 壓縮；頁面依卡片比例裁切顯示。"
+  },
+  "lau": {
+    "file": "img/lau.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Singapore_Telok-Ayer-Market-01.jpg",
+    "title": "File:Singapore Telok-Ayer-Market-01.jpg",
+    "author": "CEphoto, Uwe Aranas",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "changes": "縮圖、JPEG 壓縮；頁面依卡片比例裁切顯示。"
+  },
+  "maxwell": {
+    "file": "img/maxwell.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Maxwell_Food_Centre,_2025.jpg",
+    "title": "File:Maxwell Food Centre, 2025.jpg",
+    "author": "Actuall7",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "changes": "縮圖、JPEG 壓縮；頁面依卡片比例裁切顯示。"
+  },
+  "zoo": {
+    "file": "img/zoo.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:White_tiger_at_Singapore_Zoo,_20240206_0831_6134.jpg",
+    "title": "File:White tiger at Singapore Zoo, 20240206 0831 6134.jpg",
+    "author": "Jakub Hałun",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0",
+    "changes": "縮圖、JPEG 壓縮；頁面依卡片比例裁切顯示。"
+  },
+  "botanic": {
+    "file": "img/botanic.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Bandstand_and_green_trees_a_sunny_afternoon_with_blue_sky_at_Singapore_Botanic_Gardens.jpg",
+    "title": "File:Bandstand and green trees a sunny afternoon with blue sky at Singapore Botanic Gardens.jpg",
+    "author": "Basile Morin",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "縮圖、JPEG 壓縮；頁面依卡片比例裁切顯示。"
+  },
+  "oceanarium": {
+    "file": "img/oceanarium.png",
+    "source": "https://www.benoy.com/news/2025/07/benoy-celebrates-launch-of-singapore-oceanarium-and-research-and-learning-centre-at-resorts-world-sentosa/",
+    "title": "Singapore Oceanarium entrance",
+    "author": "Benoy 公開建築介紹",
+    "license": "圖片權利屬原權利人",
+    "license_url": "",
+    "changes": "頁面依卡片比例裁切顯示。"
+  }
+}
