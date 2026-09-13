@@ -1,0 +1,17 @@
+{
+  "name": "新加坡城市慢行誌",
+  "short_name": "新加坡慢行誌",
+  "description": "2026 年 9 月 14–18 日新加坡五天四夜城市旅遊手冊：飯店、濱海灣地圖、景點、購物與小吃。",
+  "lang": "zh-Hant",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f4f1e9",
+  "theme_color": "#172f2a",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
