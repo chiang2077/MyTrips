@@ -1,0 +1,68 @@
+[
+  {
+    "name": "文華東方酒店",
+    "query": "Mandarin Oriental Singapore",
+    "lat": 1.2913368,
+    "lng": 103.8574746
+  },
+  {
+    "name": "摩天觀景輪",
+    "query": "Singapore Flyer",
+    "lat": 1.2893,
+    "lng": 103.8632
+  },
+  {
+    "name": "螺旋橋",
+    "query": "Helix Bridge Singapore",
+    "lat": 1.2876,
+    "lng": 103.861
+  },
+  {
+    "name": "藝術科學博物館",
+    "query": "ArtScience Museum Singapore",
+    "lat": 1.2863,
+    "lng": 103.8593
+  },
+  {
+    "name": "金沙購物廊",
+    "query": "The Shoppes at Marina Bay Sands",
+    "lat": 1.2839,
+    "lng": 103.8591
+  },
+  {
+    "name": "濱海灣花園",
+    "query": "Gardens by the Bay",
+    "lat": 1.2816,
+    "lng": 103.8636
+  },
+  {
+    "name": "魚尾獅公園",
+    "query": "Merlion Park",
+    "lat": 1.2868,
+    "lng": 103.8545
+  },
+  {
+    "name": "富麗敦酒店",
+    "query": "The Fullerton Hotel Singapore",
+    "lat": 1.2863,
+    "lng": 103.8529
+  },
+  {
+    "name": "紅燈碼頭",
+    "query": "The Clifford Pier Singapore",
+    "lat": 1.2834,
+    "lng": 103.8534
+  },
+  {
+    "name": "駁船碼頭",
+    "query": "Boat Quay Singapore",
+    "lat": 1.2872,
+    "lng": 103.8498
+  },
+  {
+    "name": "老巴剎",
+    "query": "Lau Pa Sat Singapore",
+    "lat": 1.2806,
+    "lng": 103.8504
+  }
+]
