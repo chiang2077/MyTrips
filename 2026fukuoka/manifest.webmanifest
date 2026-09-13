@@ -1,0 +1,17 @@
+{
+  "name": "九州慢行誌",
+  "short_name": "九州慢行誌",
+  "description": "2026 秋季十天九夜：武雄溫泉、長崎、豪斯登堡與福岡。專屬行程、旅宿與退訂提醒。",
+  "lang": "zh-Hant",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f4f1e9",
+  "theme_color": "#172b28",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

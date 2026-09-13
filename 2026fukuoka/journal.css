@@ -16,8 +16,8 @@
 @media(max-width:360px){.cover h1{font-size:39px}.cover-meta{gap:12px;font-size:7px}.topbar{padding-inline:16px}.brand{font-size:14px}.brand small{font-size:5px}.cover-copy{padding-inline:20px}.day-copy h3{font-size:26px}.hotel-price{align-items:start;flex-direction:column}.day-bottom{align-items:start;flex-direction:column}.budget-card{padding:24px}.budget-card>strong{font-size:36px}.task-item h3{font-size:18px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
 @media print{body{background:white;padding:0;font-size:11px}.topbar,.cover,.route-ribbon,.day-rail,.day-stage,.journey-controls,#all-days-panel,.mobile-nav,.toast,.calendar-button,.task-actions,.skip-link,.guide-section,.budget-controls,footer{display:none!important}.journal-section,.stays-section,.task-section,.budget-section{padding:20px 0;display:block}.print-summary{display:block}.print-summary article{break-inside:avoid;border-bottom:1px solid #aaa;padding:12px 0}.print-summary h3{font-size:14px}.print-summary p{font-size:10px}.section-heading h2,h2{font-size:24px}.hotel-grid{grid-template-columns:repeat(2,1fr)}.hotel-card{break-inside:avoid;border:1px solid #ccc}.hotel-card figure{height:100px}.task-intro{position:static}.task-item{break-inside:avoid}.budget-card{color:black;background:white;border:1px solid #ccc}.budget-card *{color:black!important}}
-/* Comfortable desktop reading, including supporting labels and booking notes. */
-@media screen and (min-width:851px){
+/* Comfortable reading on tablet (portrait included) and desktop. Layout stays at 851px. */
+@media screen and (min-width:700px){
  body{font-size:20px}
  .topbar nav a,.todo-trigger,.round-link,.route-ribbon small,.day-rail a span,.day-rail small,.day-label,.timeline time,.sleep-link small,.journey-controls button span,.journey-controls>span,.journey-controls .text-button,.text-button,.hotel-top small,.hotel-top span,.hotel-price span,.task-meta,.task-meta small,.task-actions a,.task-actions button,.calendar-button,.task-progress>span,.essential-body a,.essential-body small,.guide-detail>summary>span,.budget-controls label,.budget-card dl>div{font-size:16px}
  .cover-intro,.section-heading>p,.day-intro,.timeline p,.hotel-info>p:not(.hotel-en),.task-intro>p:not(.eyebrow),.task-item p,.essential-body,.guide-body,.budget-section>div>p:not(.eyebrow){font-size:20px;line-height:1.9}
@@ -26,17 +26,20 @@
  .eyebrow,.cover-meta,.cover-photo figcaption,.day-photo figcaption,.hotel-en,.hotel-card figure>span,.badge,footer p,.footer-brand span{font-size:14px}
  .brand{font-size:24px}.brand small{font-size:10px}.todo-trigger b{font-size:14px;width:30px;height:30px}
  .route-ribbon a,.timeline h4,.essentials summary,.guide-detail>summary{font-size:22px}
- .day-rail b{font-size:18px}.journey-shell{grid-template-columns:140px minmax(0,1fr)}
- .day-rail a{grid-template-columns:26px 1fr;padding:18px 10px;gap:0 8px}
- .day-page{grid-template-columns:33% 67%}.day-copy{padding:32px}.day-copy h3{font-size:38px}
- .timeline li{grid-template-columns:88px minmax(0,1fr);gap:14px;padding-bottom:26px}
- .day-bottom,.hotel-price,.task-actions,.cover-meta{flex-wrap:wrap}
+ .day-rail b{font-size:18px}.day-copy h3{font-size:38px}
  .hotel-info h3,.task-item h3{font-size:26px}.hotel-price strong{font-size:30px}
- .hotel-info{padding:26px}.hotel-top{flex-wrap:wrap}
- #all-days-panel{grid-template-columns:repeat(3,minmax(0,1fr))}
  #all-days-panel b,#all-days-panel p{font-size:20px}#all-days-panel span,#all-days-panel small{font-size:16px}
  .guide-body p,.guide-body li,.guide-body table,.guide-body .gloss .gr{font-size:18px}
  .budget-controls input,.budget-controls select{font-size:20px;max-width:100%}
+}
+@media screen and (min-width:851px){
+ .journey-shell{grid-template-columns:140px minmax(0,1fr)}
+ .day-rail a{grid-template-columns:26px 1fr;padding:18px 10px;gap:0 8px}
+ .day-page{grid-template-columns:33% 67%}.day-copy{padding:32px}
+ .timeline li{grid-template-columns:88px minmax(0,1fr);gap:14px;padding-bottom:26px}
+ .day-bottom,.hotel-price,.task-actions,.cover-meta{flex-wrap:wrap}
+ .hotel-info{padding:26px}.hotel-top{flex-wrap:wrap}
+ #all-days-panel{grid-template-columns:repeat(3,minmax(0,1fr))}
  .task-section{grid-template-columns:minmax(0,36%) minmax(0,1fr);gap:6%}
  .task-intro{position:static}.section-heading>p{max-width:42%}
  .topbar nav{gap:22px}.cover-meta{gap:16px}
