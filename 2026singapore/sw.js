@@ -1,6 +1,6 @@
 // 新加坡城市慢行誌：離線瀏覽（由產生器建立，內容變動時版本號會跟著換）
 const PREFIX='mytrips-2026singapore-';
-const CACHE=PREFIX+'f2e30fced695';
+const CACHE=PREFIX+'17769e832d86';
 const FILES=[
   './',
   'icons/apple-touch-icon.png',
