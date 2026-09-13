@@ -76,7 +76,7 @@ if(mapBox&&lb){
 // 底部操作列：捲到哪一段就亮哪一顆
 const dock=$('.dock');
 if(dock&&'IntersectionObserver' in window){
-  const group={home:'',stay:'stay',map:'map',arrival:'map',walks:'walks',bay:'walks',shops:'walks',outings:'walks',more:'walks',food:'food',pocket:'pocket'};
+  const group={home:'',stay:'stay',map:'map',arrival:'map',walks:'walks',bay:'bay',shops:'shops',outings:'outings',food:'food',more:'outings',pocket:'pocket'};
   const links=$$('a',dock);
   const mark=k=>links.forEach(a=>{if(a.dataset.k===k)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current');});
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)mark(group[e.target.id]);}),{rootMargin:'-40% 0px -55% 0px'});
