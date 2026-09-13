@@ -1,0 +1,1 @@
+document.querySelectorAll('details').forEach(el=>el.addEventListener('toggle',()=>{el.querySelector('summary').setAttribute('aria-expanded',String(el.open));}));
