@@ -38,7 +38,11 @@ function renderDay(index){
  $('#day-stage').innerHTML=`<article class="day-page"><figure class="day-photo"><img src="img/${d.image}" alt="${d.alt}" width="1000" height="1200"><figcaption><span>${d.en}</span><span>${d.city}</span></figcaption><span class="day-big">${String(activeDay+1).padStart(2,'0')}</span></figure><div class="day-copy"><div class="day-label"><span>DAY ${String(activeDay+1).padStart(2,'0')}</span><span>${d.date} / 星期${d.week}</span></div><h3>${d.title}</h3><p class="day-intro">${d.intro}</p><div class="route-note"><span>↗</span>${d.route}</div><ol class="timeline">${d.steps.map(s=>`<li><time>${s[0]}</time><div><h4>${s[1]}<small class="badge ${s[3]==='已訂'||s[3]==='已開票'?'confirmed':''}">${s[3]}</small></h4><p>${s[2]}</p></div></li>`).join('')}</ol><div class="day-note ${d.task?'attention':''}">${d.note}${d.task?' <a href="#tasks">處理待辦 ↗</a>':''}</div><div class="day-bottom">${h?`<a href="#hotel-${d.hotel}" class="sleep-link"><small>今晚住這裡</small><strong>${h.name}</strong></a>`:'<div class="sleep-link"><small>下一站</small><strong>回到溫暖的家</strong></div>'}<a class="map-link" href="${mapLink(d.map)}" target="_blank" rel="noopener noreferrer">開啟地圖 ↗</a></div></div></article>`;
  document.querySelectorAll('.day-rail a').forEach((a,i)=>{if(i===activeDay)a.setAttribute('aria-current','date');else a.removeAttribute('aria-current');});
  $('#prev-day').disabled=activeDay===0;$('#next-day').disabled=activeDay===9;$('#day-position').textContent=String(activeDay+1).padStart(2,'0')+' / 10';
+ $('#mobile-day-select').value=String(activeDay);
+ $('#mobile-prev-day').disabled=activeDay===0;$('#mobile-next-day').disabled=activeDay===days.length-1;
+ $('#mobile-day-position').textContent=(activeDay+1)+' / '+days.length+' 天';
 }
+$('#mobile-day-select').innerHTML=days.map((d,i)=>`<option value="${i}">第 ${i+1} 天　${d.date}（${d.week}）${d.city}</option>`).join('');
 $('#day-rail').innerHTML=days.map((d,i)=>`<a href="#day-${i+1}" data-day="${i}" aria-label="第 ${i+1} 天 ${d.date} ${d.city}"><span>${String(i+1).padStart(2,'0')}</span><b>${d.city}</b><small>${d.date}</small></a>`).join('');
 $('#hotel-grid').innerHTML=hotels.map((h,i)=>`<article class="hotel-card" id="hotel-${i}"><figure><img src="img/${h.img}" alt="${h.alt}" loading="lazy" width="1000" height="700"><span>${h.nights} NIGHTS</span></figure><div class="hotel-info"><div class="hotel-top"><small>${h.dates}</small><span>保留 ✓</span></div><p class="hotel-en">${h.en}</p><h3>${h.name}</h3><p>${h.room}<br>${h.meals}</p><div class="hotel-price"><strong>${yen(h.price)}</strong><span>${h.payment}</span></div><details><summary>入住資訊與地圖 <span>＋</span></summary><p>${h.check}<br>${h.note}</p><a href="${mapLink(h.query)}" target="_blank" rel="noopener noreferrer">地圖導航 ↗</a> <a href="${h.url}" target="_blank" rel="noopener noreferrer">飯店官網 ↗</a></details></div></article>`).join('');
 $('#task-list').innerHTML=tasks.map((t,i)=>`<article class="task-item" data-task="${t.id}"><label class="check-wrap"><input type="checkbox" data-check="${t.id}" ${checked[t.id]===true?'checked':''} aria-label="${t.title}：已收到取消確認或已完成協調"><span aria-hidden="true">✓</span></label><div><div class="task-meta"><span>${t.type}</span><small>${t.date}</small></div><h3>${t.title}</h3><p>${t.note}</p><div class="task-actions"><a href="${t.url}" target="_blank" rel="noopener noreferrer">前往 ${t.platform} ↗</a><button data-copy="${i}">複製郵件搜尋詞</button></div></div></article>`).join('');
@@ -47,7 +51,18 @@ let toastTimer;
 function toast(message){$('#toast').textContent=message;$('#toast').classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').classList.remove('visible'),3000);}
 $('#task-list').addEventListener('change',e=>{if(!e.target.dataset.check)return;checked[e.target.dataset.check]=e.target.checked;try{localStorage.setItem(stateKey,JSON.stringify(checked));}catch{storageOK=false;}updateTasks();toast(e.target.checked?'已記錄處理完成；訂單狀態請以平台確認為準。':'已恢復為待處理。');});
 $('#task-list').addEventListener('click',async e=>{const b=e.target.closest('[data-copy]');if(!b)return;const term=tasks[Number(b.dataset.copy)].search;try{await navigator.clipboard.writeText(term);toast('已複製：'+term);}catch{toast('搜尋原信：'+term);}});
-function dayFromHash(){const m=location.hash.match(/^#day-(\d+)$/);if(m&&Number(m[1])>=1&&Number(m[1])<=10){renderDay(Number(m[1])-1);$('#journey').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});return true;}return false;}
+function scrollToDay(){
+ const behavior=matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth';
+ if(matchMedia('(max-width:699px)').matches){
+  const top=$('.journey-shell').getBoundingClientRect().top+window.scrollY-$('.topbar').getBoundingClientRect().height;
+  window.scrollTo({top:Math.max(0,top),behavior});
+ }else $('#journey').scrollIntoView({behavior});
+}
+function dayFromHash(){const m=location.hash.match(/^#day-(\d+)$/);if(m&&Number(m[1])>=1&&Number(m[1])<=10){renderDay(Number(m[1])-1);scrollToDay();return true;}return false;}
+function selectDay(index){if(index<0||index>=days.length)return;const hash='#day-'+(index+1);if(location.hash===hash){renderDay(index);scrollToDay();}else location.hash=hash;}
+$('#mobile-day-select').addEventListener('change',e=>selectDay(Number(e.target.value)));
+$('#mobile-prev-day').addEventListener('click',()=>selectDay(activeDay-1));
+$('#mobile-next-day').addEventListener('click',()=>selectDay(activeDay+1));
 window.addEventListener('hashchange',dayFromHash);
 $('#prev-day').addEventListener('click',()=>{location.hash='day-'+activeDay;});$('#next-day').addEventListener('click',()=>{location.hash='day-'+(activeDay+2);});
 $('#day-rail').addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();const next=Math.max(0,Math.min(9,activeDay+(e.key==='ArrowRight'?1:-1)));location.hash='day-'+(next+1);document.querySelectorAll('.day-rail a')[next].focus();}});
