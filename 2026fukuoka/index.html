@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#172b28">
 <title>九州慢行誌｜武雄・長崎・豪斯登堡・福岡</title>
 <meta name="description" content="2026 秋季十天九夜。從東洋館的溫泉，到長崎夜景、森林小屋與米菲兔房，最後住進博多新大谷。專屬行程、旅宿與退訂提醒。">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="icons/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="九州慢行誌">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;900&family=Noto+Sans+TC:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="journal.css">
@@ -22,7 +29,13 @@
 </section>
 <div class="route-ribbon" aria-label="住宿路線"><span>OUR ROUTE</span><a href="#day-1">武雄 <small>2 晚</small></a><i>↗</i><a href="#day-3">長崎 <small>2 晚</small></a><i>↗</i><a href="#day-5">豪斯登堡 <small>3 晚</small></a><i>↗</i><a href="#day-8">福岡 <small>2 晚</small></a></div>
 <section class="journal-section" id="journey" aria-labelledby="journey-title"><div class="section-heading"><div><p class="eyebrow">01 / THE DAYS</p><h2 id="journey-title">每天，只裝剛好的風景。</h2></div><p>選一天，翻一頁。<br>車次與散步時間為規劃；已訂時刻另有標記。</p></div>
-<div class="journey-shell"><nav class="day-rail" id="day-rail" aria-label="選擇行程日期"></nav><div id="day-stage" class="day-stage" aria-live="polite"></div></div>
+<div class="journey-shell">
+<nav class="mobile-day-nav" id="mobile-day-nav" aria-label="每日行程切換">
+<label for="mobile-day-select">選擇日期</label>
+<select id="mobile-day-select" aria-controls="day-stage"></select>
+<div class="mobile-day-actions"><button id="mobile-prev-day" aria-label="前一天" aria-controls="day-stage">← 前一天</button><span id="mobile-day-position" aria-live="polite"></span><button id="mobile-next-day" aria-label="後一天" aria-controls="day-stage">後一天 →</button></div>
+</nav>
+<nav class="day-rail" id="day-rail" aria-label="選擇行程日期"></nav><div id="day-stage" class="day-stage" aria-live="polite"></div></div>
 <div class="journey-controls"><button id="prev-day" aria-label="前一天">← <span>前一天</span></button><span id="day-position">01 / 10</span><button id="next-day" aria-label="後一天"><span>後一天</span> →</button><button class="text-button" id="all-days" aria-expanded="false" aria-controls="all-days-panel">展開十天總覽 ＋</button></div><div id="all-days-panel" hidden></div>
 </section>
 <section class="stays-section" id="stays" aria-labelledby="stays-title"><div class="section-heading"><div><p class="eyebrow">02 / A PLACE TO STAY</p><h2 id="stays-title">住的地方，也是目的地。</h2></div><p>五段旅宿，剛好九晚。<br>東洋館與博多新大谷已決定保留。</p></div><div class="hotel-grid" id="hotel-grid"></div><p class="fine-print">住宿金額為兩人一室的整筆訂單，當地另收稅費依住宿方確認。東洋館配圖為官方空間示意，不代表已訂「藤」房型的景觀。</p></section>
