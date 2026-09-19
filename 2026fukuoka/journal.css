@@ -112,3 +112,29 @@
  .section-heading{align-items:start}.section-heading>p{max-width:40%}
 }
 footer .couple-signature{flex-basis:100%;width:100%;margin:10px 0 0;padding-top:28px;border-top:1px solid #cad3c340;text-align:center;font:600 clamp(20px,2vw,30px)/1.8 var(--serif);letter-spacing:.12em;color:#d9be87;max-width:none}
+
+/* Huis Ten Bosch schematic park map + click-to-enlarge lightbox */
+.parkmap{margin:24px 0 8px;max-width:none}
+.parkmap-open{display:block;width:100%;padding:0;border:1px solid var(--line);background:var(--paper);position:relative;border-radius:var(--radius);overflow:hidden}
+.parkmap-open:hover{border-color:var(--orange)}
+.parkmap-open svg{display:block;width:100%;height:auto}
+.parkmap-hint{position:absolute;right:12px;bottom:12px;background:#172f2ae6;color:#f4f1e9;font-size:11px;letter-spacing:.06em;padding:7px 12px;border-radius:2px;pointer-events:none}
+.parkmap figcaption{font-size:11px;color:var(--muted);line-height:1.9;margin-top:12px}
+.parkmap figcaption b{color:var(--ink)}
+.mapbox{position:fixed;inset:0;z-index:120;background:#0f231dfa;display:flex;flex-direction:column;padding:16px;gap:12px}
+.mapbox-bar{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.mapbox-tip{font-size:11px;color:#cad8ca}
+.mapbox-close{background:var(--paper);color:var(--ink);border:0;border-radius:2px;padding:11px 18px;font-size:12px;min-height:44px;white-space:nowrap}
+.mapbox-inner{flex:1;min-height:0;overflow:auto;background:var(--paper);border-radius:var(--radius);padding:12px}
+.mapbox-inner svg{display:block;width:100%;min-width:720px;height:auto}
+@media(min-width:760px){.mapbox-inner{display:flex;align-items:center;justify-content:center}.mapbox-inner svg{width:auto;height:auto;min-width:0;max-width:100%;max-height:100%}}
+@media(max-width:620px){.parkmap-hint{font-size:13px}.parkmap figcaption{font-size:14px}.mapbox-tip{font-size:14px}.mapbox{padding:12px}.mapbox-inner svg{min-width:660px}}
+.essentials>details{min-width:0}
+.essential-body .tw{overflow:auto;margin:4px 0 18px}
+.essential-body table{border-collapse:collapse;width:100%;font-size:11px;min-width:420px}
+.essential-body td,.essential-body th{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.essential-body th{font-size:10px;color:var(--ink);white-space:nowrap}
+.essential-body .num{white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--ink)}
+.essential-body tr.pick{background:#efe9d5}
+.essential-body tr.pick td{color:var(--ink)}
+@media screen and (max-width:699px){.essential-body table{font-size:16px;min-width:520px}.essential-body th{font-size:14px}}
