@@ -139,3 +139,9 @@ footer .couple-signature{flex-basis:100%;width:100%;margin:10px 0 0;padding-top:
 @media (max-width:600px){.fm-stage{aspect-ratio:4/5}.fm-shade{background:linear-gradient(0deg,#0b1210d9 0%,#0b121066 38%,#0b121000 60%)}.fm-text{top:auto;bottom:64px;transform:none;max-width:none;right:5%}.fm-text p{font-size:13px}.fm-route li{font-size:11px}.fm-route li span{display:none}}
 @media (prefers-reduced-motion:reduce){.ukiyo-film *{animation:none!important;transition:none!important}}
 @media print{.ukiyo-film{display:none}}
+/* 封面影片 */
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.cover-film .ukiyo-film{margin:0;border-radius:0}
+.cover-film .fm-stage{aspect-ratio:auto;height:min(78vh,760px);min-height:420px}
+@media (max-width:600px){.cover-film .fm-stage{height:78svh;min-height:480px}}
+.cover-film .fm-text h3{font-size:clamp(28px,5vw,64px)}.cover-film .fm-text p{font-size:clamp(14px,1.3vw,17px)}.cover-film .fm-text small{font-size:12px}
