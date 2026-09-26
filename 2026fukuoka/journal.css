@@ -113,3 +113,28 @@
  .section-heading{align-items:start}.section-heading>p{max-width:40%}
 }
 footer .couple-signature{flex-basis:100%;width:100%;margin:10px 0 0;padding-top:28px;border-top:1px solid #cad3c340;text-align:center;font:600 clamp(20px,2vw,30px)/1.8 var(--serif);letter-spacing:.12em;color:#d9be87;max-width:none}
+/* 懶人包動畫：現代浮世繪 */
+.ukiyo-film{margin:28px 0 8px;border:2px solid var(--ink);background:#f2e6cf;box-shadow:6px 6px 0 var(--orange)}
+.uk-head{display:flex;align-items:baseline;gap:14px;padding:14px 18px 10px;border-bottom:2px solid var(--ink)}.uk-head h3{margin:0;font-family:var(--serif);font-size:clamp(18px,3vw,24px)}.uk-head .eyebrow{margin:0}
+.uk-stage{position:relative;aspect-ratio:16/9;overflow:hidden;background:#f2e6cf}.uk-stage svg{display:block;width:100%;height:100%}
+.uk-card{position:absolute;left:14px;bottom:14px;max-width:min(78%,420px);padding:10px 14px;background:#f7f1e3f0;border:2px solid var(--ink);font-family:var(--serif);color:var(--ink)}
+.uk-card small{display:block;font:600 12px var(--sans);letter-spacing:.08em;color:#d9482b}.uk-card strong{display:block;font-size:clamp(16px,2.6vw,22px);line-height:1.3;margin:2px 0}.uk-card span{display:block;font:13px var(--sans);color:var(--muted)}
+.uk-seal{position:absolute;right:14px;top:14px;width:46px;height:46px;display:grid;place-items:center;background:#d9482b;color:#f7f1e3;font:700 18px var(--serif);border-radius:6px;transform:rotate(-4deg)}
+.uk-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px 14px;border-top:2px solid var(--ink)}.uk-bar button{font:600 13px var(--sans);border:2px solid var(--ink);background:#f7f1e3;color:var(--ink);padding:6px 10px;cursor:pointer}
+.uk-dots{display:flex;gap:6px;margin-left:auto}.uk-dots button{width:14px;height:14px;padding:0;border-radius:50%}.uk-dots button[aria-current=true]{background:#d9482b}
+.uk-in{animation:ukIn .8s ease both}@keyframes ukIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.uk-drift{animation:ukDrift var(--d) ease-in-out infinite alternate}@keyframes ukDrift{to{transform:translateX(var(--dx))}}
+.uk-sun{animation:ukPulse 5s ease-in-out infinite;transform-box:fill-box;transform-origin:center}@keyframes ukPulse{50%{transform:scale(1.06)}}
+.uk-train{animation:ukTrain 4.2s linear infinite}@keyframes ukTrain{from{transform:translateX(-300px)}to{transform:translateX(660px)}}
+.uk-plane.in{animation:ukPlaneIn 4.2s ease-out infinite}@keyframes ukPlaneIn{from{transform:translate(-120px,40px)}to{transform:translate(560px,140px)}}
+.uk-plane.out{animation:ukPlaneOut 4.2s ease-in infinite}@keyframes ukPlaneOut{from{transform:translate(120px,220px)}to{transform:translate(700px,20px) rotate(-12deg)}}
+.uk-boat{animation:ukBoat 4.2s linear infinite}@keyframes ukBoat{from{transform:translateX(660px)}to{transform:translateX(-100px)}}
+.uk-steam{animation:ukSteam 2.4s ease-in-out infinite var(--s);opacity:0}@keyframes ukSteam{40%{opacity:.9}to{opacity:0;transform:translateY(-16px)}}
+.uk-spin{animation:ukSpin 6s linear infinite}@keyframes ukSpin{to{transform:rotate(360deg)}}
+.uk-burst{animation:ukBurst 2.1s ease-out infinite var(--s)}@keyframes ukBurst{from{transform:scale(.2);opacity:0}30%{opacity:1}to{transform:scale(1.2);opacity:0}}
+.uk-sway{animation:ukSway 3s ease-in-out infinite alternate;transform-origin:320px 0}@keyframes ukSway{to{transform:rotate(1deg)}}
+.uk-win{animation:ukWin 1.8s steps(2) infinite var(--s)}@keyframes ukWin{50%{opacity:.2}}
+.uk-rise{animation:ukRise 1s ease both}@keyframes ukRise{from{transform:translateY(30px)}}
+@media (max-width:600px){.uk-card{left:8px;right:8px;bottom:8px;max-width:none;padding:8px 10px}.uk-card span{display:none}.uk-seal{width:36px;height:36px;font-size:14px}.uk-dots{margin-left:0;width:100%}}
+@media (prefers-reduced-motion:reduce){.ukiyo-film *{animation:none!important}}
+@media print{.ukiyo-film{display:none}}
