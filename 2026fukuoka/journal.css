@@ -149,7 +149,7 @@ footer .couple-signature{flex-basis:100%;width:100%;margin:10px 0 0;padding-top:
 .fm-layer::before,.fm-layer::after{content:"";position:absolute;inset:0;background:var(--img) center/cover no-repeat}
 .fm-layer::before{inset:-10%;filter:blur(22px) brightness(.55) saturate(1.1)}
 .fm-layer::after{inset:auto 0;top:21%;height:63%;-webkit-mask-image:linear-gradient(transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(transparent,#000 7%,#000 93%,transparent)}
-.fm-layer.on::after{animation:fmSoft 6.5s ease-out forwards}}
+.fm-layer.on::after{animation:fmMZin 6.5s ease-in-out forwards}.fm-layer.on.fm-zout::after{animation-name:fmMZout}.fm-layer.on.fm-pl::after{animation-name:fmMPl}.fm-layer.on.fm-pr::after{animation-name:fmMPr}}
 /* 手機橫式（矮螢幕）：整段影片塞進一個畫面，照片整張放中間、兩側模糊補滿，控制列不會被擠出畫面 */
 @media (orientation:landscape) and (max-height:500px){.topbar{height:52px}html{scroll-padding-top:56px}
 .cover-film .fm-stage{height:calc(100svh - 52px - 50px);min-height:0}
@@ -157,11 +157,15 @@ footer .couple-signature{flex-basis:100%;width:100%;margin:10px 0 0;padding-top:
 .fm-layer::before,.fm-layer::after{content:"";position:absolute;inset:0;background:var(--img) center/cover no-repeat}
 .fm-layer::before{inset:-10%;filter:blur(22px) brightness(.55) saturate(1.1)}
 .fm-layer::after{background:var(--img) center/contain no-repeat}
-.fm-layer.on::after{animation:fmSoft 6.5s ease-out forwards}
+.fm-layer.on::after{animation:fmMZin 6.5s ease-in-out forwards}.fm-layer.on.fm-zout::after{animation-name:fmMZout}.fm-layer.on.fm-pl::after{animation-name:fmMPl}.fm-layer.on.fm-pr::after{animation-name:fmMPr}
 .cover-film .fm-text{right:3%;top:7%;gap:8px}.cover-film .fm-text h3{font-size:clamp(18px,6.5svh,28px);letter-spacing:.16em}.cover-film .fm-text small{font-size:11px;padding-top:1.2em;line-height:1.6}
 .cover-film .fm-map{left:10px;top:10px;width:clamp(110px,34svh,150px)}
 .fm-route{bottom:10px}.fm-route li{font-size:11px;padding-top:6px}.fm-bar{padding:6px 12px}}
-@keyframes fmSoft{from{transform:scale(1)}to{transform:scale(1.05)}}
+/* 手機版動態：畫面小，幅度要比桌機大才看得出來（放大 16%／左右平移 4%） */
+@keyframes fmMZin{from{transform:scale(1)}to{transform:scale(1.16)}}
+@keyframes fmMZout{from{transform:scale(1.16)}to{transform:scale(1.02)}}
+@keyframes fmMPl{from{transform:scale(1.12) translateX(4%)}to{transform:scale(1.12) translateX(-4%)}}
+@keyframes fmMPr{from{transform:scale(1.12) translateX(-4%)}to{transform:scale(1.12) translateX(4%)}}
 .day-photo,.day-photo:is(*){min-height:0!important;height:auto!important;aspect-ratio:4/3;align-self:start;width:100%}
 .cover-film .fm-shade{background:linear-gradient(270deg,#0b121066 0%,#0b121000 38%)}
 .cover-film .fm-text,.cover-film .fm-text{left:auto;right:7%;top:12%;bottom:auto;transform:none;max-width:none;display:flex;flex-direction:column;align-items:flex-start;gap:14px;writing-mode:vertical-rl}
