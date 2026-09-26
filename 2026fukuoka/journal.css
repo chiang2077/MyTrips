@@ -143,13 +143,24 @@ footer .couple-signature{flex-basis:100%;width:100%;margin:10px 0 0;padding-top:
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .cover-film .ukiyo-film{margin:0;border-radius:0}
 .cover-film .fm-stage{aspect-ratio:auto;height:min(78vh,760px);min-height:420px}
-@media (max-width:600px){.cover-film .fm-stage{height:78svh;min-height:480px}}
-/* 手機直式畫面：照片整張放進來（寬度貼齊），上下用同一張照片的模糊版補滿，不再裁成特寫 */
+@media (max-width:600px){.cover-film .fm-stage{height:72svh;min-height:440px}}
+/* 手機直式：照片放在中間一條「寬幅帶」裡（寬度貼齊、左右略裁），上下用同一張照片的模糊版補滿，交界處淡入淡出 */
 @media (max-width:600px){.fm-layer{inset:0;background-image:none!important;animation:none!important}
 .fm-layer::before,.fm-layer::after{content:"";position:absolute;inset:0;background:var(--img) center/cover no-repeat}
 .fm-layer::before{inset:-10%;filter:blur(22px) brightness(.55) saturate(1.1)}
-.fm-layer::after{background:var(--img) center 58%/100% auto no-repeat}
+.fm-layer::after{inset:auto 0;top:21%;height:63%;-webkit-mask-image:linear-gradient(transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(transparent,#000 7%,#000 93%,transparent)}
 .fm-layer.on::after{animation:fmSoft 6.5s ease-out forwards}}
+/* 手機橫式（矮螢幕）：整段影片塞進一個畫面，照片整張放中間、兩側模糊補滿，控制列不會被擠出畫面 */
+@media (orientation:landscape) and (max-height:500px){.topbar{height:52px}html{scroll-padding-top:56px}
+.cover-film .fm-stage{height:calc(100svh - 52px - 50px);min-height:0}
+.fm-layer{inset:0;background-image:none!important;animation:none!important}
+.fm-layer::before,.fm-layer::after{content:"";position:absolute;inset:0;background:var(--img) center/cover no-repeat}
+.fm-layer::before{inset:-10%;filter:blur(22px) brightness(.55) saturate(1.1)}
+.fm-layer::after{background:var(--img) center/contain no-repeat}
+.fm-layer.on::after{animation:fmSoft 6.5s ease-out forwards}
+.cover-film .fm-text{right:3%;top:7%;gap:8px}.cover-film .fm-text h3{font-size:clamp(18px,6.5svh,28px);letter-spacing:.16em}.cover-film .fm-text small{font-size:11px;padding-top:1.2em;line-height:1.6}
+.cover-film .fm-map{left:10px;top:10px;width:clamp(110px,34svh,150px)}
+.fm-route{bottom:10px}.fm-route li{font-size:11px;padding-top:6px}.fm-bar{padding:6px 12px}}
 @keyframes fmSoft{from{transform:scale(1)}to{transform:scale(1.05)}}
 .day-photo,.day-photo:is(*){min-height:0!important;height:auto!important;aspect-ratio:4/3;align-self:start;width:100%}
 .cover-film .fm-shade{background:linear-gradient(270deg,#0b121066 0%,#0b121000 38%)}
@@ -183,5 +194,5 @@ footer .couple-signature{flex-basis:100%;width:100%;margin:10px 0 0;padding-top:
 .fm-map .fm-pin text{font:700 10.5px/1 var(--serif);fill:#4a3320;paint-order:stroke;stroke:#f3e4bf;stroke-width:3px;stroke-linejoin:round}
 .fm-map .fm-pin.now circle{fill:#b33a24;stroke:#f7ecd0;stroke-width:1.4;r:4.8}
 .fm-map .fm-pin.now text{fill:#8e2a18}
-@media (max-width:600px){.cover-film .fm-map{left:12px;top:12px;width:124px}}
+@media (max-width:600px){.cover-film .fm-map{left:10px;top:10px;width:158px}}
 @media (prefers-reduced-motion:reduce){.fm-map .fm-seg.draw{animation:none}}
