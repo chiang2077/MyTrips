@@ -144,6 +144,13 @@ footer .couple-signature{flex-basis:100%;width:100%;margin:10px 0 0;padding-top:
 .cover-film .ukiyo-film{margin:0;border-radius:0}
 .cover-film .fm-stage{aspect-ratio:auto;height:min(78vh,760px);min-height:420px}
 @media (max-width:600px){.cover-film .fm-stage{height:78svh;min-height:480px}}
+/* 手機直式畫面：照片整張放進來（寬度貼齊），上下用同一張照片的模糊版補滿，不再裁成特寫 */
+@media (max-width:600px){.fm-layer{inset:0;background-image:none!important;animation:none!important}
+.fm-layer::before,.fm-layer::after{content:"";position:absolute;inset:0;background:var(--img) center/cover no-repeat}
+.fm-layer::before{inset:-10%;filter:blur(22px) brightness(.55) saturate(1.1)}
+.fm-layer::after{background:var(--img) center 58%/100% auto no-repeat}
+.fm-layer.on::after{animation:fmSoft 6.5s ease-out forwards}}
+@keyframes fmSoft{from{transform:scale(1)}to{transform:scale(1.05)}}
 .day-photo,.day-photo:is(*){min-height:0!important;height:auto!important;aspect-ratio:4/3;align-self:start;width:100%}
 .cover-film .fm-shade{background:linear-gradient(270deg,#0b121066 0%,#0b121000 38%)}
 .cover-film .fm-text,.cover-film .fm-text{left:auto;right:7%;top:12%;bottom:auto;transform:none;max-width:none;display:flex;flex-direction:column;align-items:flex-start;gap:14px;writing-mode:vertical-rl}
