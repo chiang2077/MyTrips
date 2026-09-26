@@ -2,7 +2,7 @@
 (function(){
 if(typeof days==='undefined')return;
 const root=document.getElementById('ukiyo-film');if(!root)return;
-const story=['穿過雲層，九州','先泡一場湯','朱紅樓門，白瓷器','沿著海，慢慢走','看島，聽城市','帶一盒甜，往北','今天不趕路','把可愛留一晚','走進祭典的燈','好好逛，好好慶祝','市場的早餐','下次，再回來'];
+const story=['從空中看見，九州','先泡一場湯','朱紅樓門，白瓷器','沿著海，慢慢走','看島，聽城市','帶一盒甜，往北','今天不趕路','把可愛留一晚','走進祭典的燈','好好逛，好好慶祝','市場的早餐','下次，再回來'];
 /* 手繪地圖：九州西北部示意，座標由經緯度粗略換算（非精確比例）；第三個值是標籤左右偏移 */
 const PL={福岡:[150,35,7],武雄:[87,102,7],有田:[63,102,-7],豪斯登堡:[48,118,-7],長崎:[62,175,7],軍艦島:[40,195,7]};
 const V={諫早:[100,150]};
@@ -22,7 +22,7 @@ const DUR=5600,moves=['fm-zin','fm-zout','fm-pl','fm-pr'];let i=0,front=0,timer=
 function show(n){i=(n+shots.length)%shots.length;const s=shots[i];
  const img=s.d?s.d.image:(s.intro?'aerial-kyushu.jpg':'takeoff.jpg');
  front^=1;const L=layers[front],B=layers[front^1];
- L.style.backgroundImage=`url("img/${img}")`;L.className='fm-layer on '+moves[i%4];B.classList.remove('on');
+ L.style.backgroundImage=`url("img/${img}")`;L.style.setProperty('--img',`url("img/${img}")`);L.className='fm-layer on '+moves[i%4];B.classList.remove('on');
  const date=s.d?s.d.date:(s.intro?'10.24':'11.02'),place=s.d?s.d.city.replace('・','／'):(s.intro?'九州':'福岡機場');
  text.innerHTML=`<h3>${story[i]}</h3><small>${date}<br>${place}</small>`;
  text.classList.remove('in');void text.offsetWidth;text.classList.add('in');
