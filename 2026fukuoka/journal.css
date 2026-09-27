@@ -200,6 +200,10 @@ footer .couple-signature{flex-basis:100%;width:100%;margin:10px 0 0;padding-top:
 .fm-map .fm-pin.now text{fill:#8e2a18}
 @media (max-width:600px){.cover-film .fm-map{left:10px;top:10px;width:158px}}
 @media (prefers-reduced-motion:reduce){.fm-map .fm-seg.draw{animation:none}}
+/* 個別照片的取景重心（journey.js 的 fp）：背景位置與縮放中心一起移，手機直式裁左右、桌機裁上下都吃得到 */
+.fm-layer{background-position:var(--fp,center);transform-origin:var(--fp,center)}
+@media (max-width:600px){.fm-layer::after{background-position:var(--fp,center);transform-origin:var(--fp,center)}}
+@media (orientation:landscape) and (max-height:500px){.fm-layer::after{background-position:center;transform-origin:var(--fp,center)}}
 
 /* 豪斯登堡指南：卡片的「看詳細攻略」與詳細頁（dialog） */
 .guide-body .card:has(.more){display:flex;flex-direction:column}

@@ -22,7 +22,7 @@ const DUR=5600,moves=['fm-zin','fm-zout','fm-pl','fm-pr'];let i=0,front=0,timer=
 function show(n){i=(n+shots.length)%shots.length;const s=shots[i];
  const img=s.d?s.d.image:(s.intro?'aerial-kyushu.jpg':'takeoff.jpg');
  front^=1;const L=layers[front],B=layers[front^1];
- L.style.backgroundImage=`url("img/${img}")`;L.style.setProperty('--img',`url("img/${img}")`);L.className='fm-layer on '+moves[i%4];B.classList.remove('on');
+ L.style.backgroundImage=`url("img/${img}")`;L.style.setProperty('--img',`url("img/${img}")`);L.style.setProperty('--fp',(s.d&&s.d.fp)||(s.outro?'0% center':'center'));L.className='fm-layer on '+((s.d&&s.d.mv)||moves[i%4]);B.classList.remove('on');
  const date=s.d?s.d.date:(s.intro?'10.24':'11.02'),place=s.d?s.d.city.replace('・','／'):(s.intro?'九州':'福岡機場');
  text.innerHTML=`<h3>${story[i]}</h3><small>${date}<br>${place}</small>`;
  text.classList.remove('in');void text.offsetWidth;text.classList.add('in');
