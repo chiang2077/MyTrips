@@ -204,3 +204,51 @@ footer .couple-signature{flex-basis:100%;width:100%;margin:10px 0 0;padding-top:
 .fm-layer{background-position:var(--fp,center);transform-origin:var(--fp,center)}
 @media (max-width:600px){.fm-layer::after{background-position:var(--fp,center);transform-origin:var(--fp,center)}}
 @media (orientation:landscape) and (max-height:500px){.fm-layer::after{background-position:center;transform-origin:var(--fp,center)}}
+
+/* 豪斯登堡指南：卡片的「看詳細攻略」與詳細頁（dialog） */
+.guide-body .card:has(.more){display:flex;flex-direction:column}
+.guide-body .card .more{margin-top:auto;align-self:flex-start;font:600 13px var(--sans);letter-spacing:.06em;color:var(--orange);background:none;border:0;border-bottom:1px solid currentColor;padding:6px 0 3px;cursor:pointer}
+.guide-body .card .more:hover{color:var(--ink)}
+.guide-body .card .more:focus-visible,.htb-close:focus-visible,.htb-dialog a:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+.htb-dialog{width:min(760px,calc(100vw - 48px));max-height:calc(100vh - 64px);max-height:calc(100dvh - 64px);padding:0;border:1px solid var(--line);border-radius:var(--radius);background:var(--paper);color:var(--ink);box-shadow:0 30px 80px #0f1f1a55;overflow:auto;overscroll-behavior:contain;font:400 16px/1.9 var(--sans)}
+.htb-dialog::backdrop{background:#10201bb3;backdrop-filter:blur(3px)}
+.htb-dialog[open]{animation:htb-in .25s ease-out}
+@keyframes htb-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.htb-bar{position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 16px 12px 32px;background:#f4f1e9f2;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);font:600 12px var(--sans);letter-spacing:.14em;color:var(--muted)}
+.htb-close{font:600 14px var(--sans);color:var(--ink);background:none;border:1px solid var(--line);border-radius:999px;padding:8px 16px;cursor:pointer;min-height:44px}
+.htb-close:hover{border-color:var(--ink)}
+.sheet{padding:28px 32px 8px}
+.sheet header{border-bottom:1px solid var(--ink);padding-bottom:22px;margin-bottom:8px}
+.sheet .eyebrow{font:600 12px var(--sans);letter-spacing:.16em;color:#91663a;margin:0}
+.sheet h3{font:600 34px/1.3 var(--serif);margin:10px 0 4px}
+.sheet .jp{font-size:14px;color:var(--muted);margin:0 0 16px}
+.sheet .why{font:500 18px/1.85 var(--serif);margin:0}
+.sheet figure{margin:22px 0 0}.sheet figure img{width:100%;height:auto;display:block}
+.sheet h4{font:600 12px var(--sans);letter-spacing:.2em;color:var(--orange);margin:30px 0 12px;padding-top:14px;border-top:1px solid var(--line)}
+.sheet p,.sheet li{color:#34473f}
+.sheet p{margin:0 0 12px}
+.sheet ul{margin:0;padding:0;list-style:none}
+.sheet ul li{padding:10px 0 10px 18px;position:relative;border-bottom:1px dashed var(--line)}
+.sheet ul li:last-child{border-bottom:0}
+.sheet ul li::before{content:"";position:absolute;left:0;top:1.35em;width:7px;height:7px;background:var(--gold);transform:rotate(45deg)}
+.sheet .hl li>b:first-child{display:block;font:600 18px var(--serif);color:var(--ink);margin-bottom:2px}
+.sheet li b,.sheet p b{color:var(--ink)}
+.sheet .facts{margin:0;display:grid;background:#eeece2;border-left:2px solid #b1ad8b}
+.sheet .facts>div{display:grid;grid-template-columns:7.5em 1fr;gap:16px;padding:12px 18px;border-bottom:1px solid var(--line)}
+.sheet .facts>div:last-child{border-bottom:0}
+.sheet .facts dt{font:600 13px var(--sans);letter-spacing:.06em;color:var(--muted);padding-top:2px}
+.sheet .facts dd{margin:0}
+.sheet .tbc{display:inline-block;margin-left:8px;font:600 11px var(--sans);letter-spacing:.04em;color:#8a4a2f;border:1px solid #c4613e66;border-radius:999px;padding:0 8px;line-height:1.8;vertical-align:1px}
+.sheet .src{font-size:13px;color:var(--muted);margin-top:26px;line-height:2}
+.sheet a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+.htb-foot{font-size:13px;color:var(--muted);margin:8px 32px 28px;padding-top:14px;border-top:1px solid var(--line)}
+@media screen and (min-width:700px){.htb-dialog{font-size:18px}.sheet h3{font-size:40px}.sheet .why{font-size:20px}.sheet .hl li>b:first-child{font-size:20px}}
+@media screen and (max-width:699px){
+ .htb-dialog{width:100vw;max-width:100vw;height:100%;max-height:100%;margin:0;border:0;border-radius:0}
+ .htb-bar{padding:10px 12px 10px 16px;padding-top:max(10px,env(safe-area-inset-top))}
+ .sheet{padding:22px 16px 4px}.sheet h3{font-size:30px}
+ .sheet .facts>div{grid-template-columns:1fr;gap:2px;padding:12px 14px}
+ .htb-foot{margin:8px 16px 28px;padding-bottom:env(safe-area-inset-bottom)}
+}
+@media(prefers-reduced-motion:reduce){.htb-dialog[open]{animation:none}}
+@media print{.htb-dialog{display:none!important}}
