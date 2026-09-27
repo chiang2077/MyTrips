@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0d10">
+<title>九州一鏡到底</title>
+<link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;900&family=Noto+Sans+TC:wght@500;700&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#f6f1e7;--dim:rgba(246,241,231,.72);--accent:#e9b872;--bg:#0b0d10}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;background:var(--bg);color:var(--ink);overflow:hidden}
+body{font-family:'Noto Sans TC',system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
+.stage{position:fixed;inset:0;height:100dvh}
+canvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:pointer}
+.shade{position:absolute;inset:0;pointer-events:none;
+ background:radial-gradient(120% 90% at 50% 40%,transparent 55%,rgba(0,0,0,.45)),
+ linear-gradient(to top,rgba(0,0,0,.8),rgba(0,0,0,.4) 26%,transparent 50%),
+ linear-gradient(to bottom,rgba(0,0,0,.4),transparent 16%)}
+.top{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;
+ padding:calc(env(safe-area-inset-top) + 14px) max(16px,env(safe-area-inset-right)) 0 max(16px,env(safe-area-inset-left));
+ font:700 12px/1 Manrope,sans-serif;letter-spacing:.18em;pointer-events:none}
+.top a{pointer-events:auto;color:var(--ink);text-decoration:none;letter-spacing:.06em;font:500 13px/1 'Noto Sans TC',sans-serif;
+ padding:8px 12px;border:1px solid rgba(246,241,231,.35);border-radius:99px;background:rgba(0,0,0,.25);backdrop-filter:blur(6px)}
+.cap{position:absolute;left:max(20px,env(safe-area-inset-left));right:20px;bottom:calc(env(safe-area-inset-bottom) + 74px);
+ pointer-events:none;max-width:min(100%,60rem)}
+.cap>*{opacity:0;transform:translateY(14px);transition:opacity .25s ease,transform .25s ease}
+.cap.on>*{opacity:1;transform:none;transition:opacity .7s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.cap.on>:nth-child(2){transition-delay:.12s}.cap.on>:nth-child(3){transition-delay:.26s}
+.cap .k{font:800 clamp(12px,1.6vmin + 6px,16px)/1 Manrope,'Noto Sans TC',sans-serif;letter-spacing:.2em;color:var(--accent);text-shadow:0 1px 2px rgba(0,0,0,.9),0 0 12px rgba(0,0,0,.6)}
+.cap h2{font:900 clamp(30px,6.2vmin + 10px,68px)/1.15 'Noto Serif TC',serif;margin:.28em 0 .3em;text-shadow:0 2px 24px rgba(0,0,0,.45)}
+.cap .c{font:500 clamp(13px,1.4vmin + 8px,17px)/1.5 'Noto Sans TC',sans-serif;color:var(--dim)}
+.cap .c span{font-family:Manrope,sans-serif;font-weight:700;letter-spacing:.16em;font-size:.82em;margin-left:.6em}
+.cap.title h2{font-size:clamp(32px,6.8vmin + 10px,88px);white-space:nowrap}
+.bar{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:14px;
+ padding:0 max(16px,env(safe-area-inset-right)) calc(env(safe-area-inset-bottom) + 18px) max(16px,env(safe-area-inset-left))}
+.bar button{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid rgba(246,241,231,.45);background:rgba(0,0,0,.3);
+ color:var(--ink);display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px)}
+.bar button svg{width:16px;height:16px;fill:currentColor}
+.track{position:relative;flex:1;height:40px;cursor:pointer;touch-action:none}
+.track::before,.fill{content:'';position:absolute;left:0;top:19px;height:2px;border-radius:2px}
+.track::before{right:0;background:rgba(246,241,231,.25)}
+.fill{background:var(--ink);width:0}
+.tick{position:absolute;top:15px;width:1px;height:10px;background:rgba(246,241,231,.5)}
+.time{font:600 12px/1 Manrope,sans-serif;letter-spacing:.08em;color:var(--dim);min-width:3.6em;text-align:right}
+.load{position:absolute;inset:0;display:grid;place-items:center;font:500 14px/1 'Noto Sans TC',sans-serif;color:var(--dim);
+ letter-spacing:.2em;transition:opacity .6s}
+.load.done{opacity:0;pointer-events:none}
+@media (orientation:landscape) and (max-height:500px){
+ .cap{bottom:calc(env(safe-area-inset-bottom) + 58px)}
+ .cap h2{font-size:clamp(26px,7vmin,44px)}.cap.title h2{font-size:clamp(32px,9vmin,56px)}
+ .bar{padding-bottom:calc(env(safe-area-inset-bottom) + 10px)}
+}
+</style>
+</head>
+<body>
+<div class="stage">
+ <canvas id="cv" aria-label="九州行程一鏡到底影片，點一下暫停或播放"></canvas>
+ <div class="shade"></div>
+ <div class="top"><span>KYUSHU · ONE TAKE</span><a href="./">回行程頁</a></div>
+ <div class="cap" id="cap" aria-live="polite"><div class="k" id="capK"></div><h2 id="capH"></h2><div class="c" id="capC"></div></div>
+ <div class="bar">
+  <button id="play" type="button" aria-label="暫停"></button>
+  <div class="track" id="track" role="slider" aria-label="影片進度" tabindex="0"><div class="fill" id="fill"></div></div>
+  <span class="time" id="time">0:00</span>
+ </div>
+ <div class="load" id="load">載入照片中…</div>
+</div>
+<script>
+'use strict';
+// 每段：照片、鏡頭起點 a → 入口 p（照片寬高比例）、推近倍率 s、出場轉場
+const SHOTS=[
+ {img:'aerial-kyushu.jpg',a:[.3,.72],p:[.55,.36],s:[1,1.3],out:'zoom',hold:4.4,title:1,
+  k:'2026 秋 · 十天九夜',h:'從空中看見，九州',c:'福岡 → 武雄 → 長崎 → 豪斯登堡 → 福岡'},
+ {img:'toyokan.jpg',a:[.34,.62],p:[.52,.31],out:'zoom',k:'DAY 01 · 10.24 六',h:'先泡一場湯',c:'武雄',en:'TAKEO'},
+ {img:'toyokan-bath.jpg',a:[.22,.62],p:[.54,.45],out:'whip',k:'DAY 02 · 10.25 日',h:'朱紅樓門，白瓷器',c:'武雄・有田',en:'TAKEO & ARITA'},
+ {img:'nagasaki.jpg',a:[.22,.6],p:[.5,.45],out:'zoom',k:'DAY 03 · 10.26 一',h:'沿著海，慢慢走',c:'長崎',en:'NAGASAKI'},
+ {img:'gunkanjima.jpg',a:[.2,.46],p:[.62,.42],out:'whip',k:'DAY 04 · 10.27 二',h:'看島，聽城市',c:'長崎・軍艦島',en:'HASHIMA'},
+ {img:'fvgarden.jpg',a:[.3,.72],p:[.79,.69],out:'zoom',k:'DAY 05 · 10.28 三',h:'帶一盒甜，往北',c:'豪斯登堡・森林小屋',en:'HUIS TEN BOSCH'},
+ {img:'htbillum.jpg',a:[.3,.62],p:[.67,.33],out:'zoom',k:'DAY 06 · 10.29 四',h:'今天不趕路',c:'豪斯登堡・光之城',en:'A DAY WITH NO RUSH'},
+ {img:'miffyroom.jpg',a:[.78,.3],p:[.44,.55],out:'whip',k:'DAY 07 · 10.30 五',h:'把可愛留一晚',c:'豪斯登堡・米菲兔房',en:'A LITTLE MIFFY DAY'},
+ {img:'nakasu-matsuri.jpg',a:[.62,.72],p:[.36,.35],out:'zoom',k:'DAY 08 · 10.31 六',h:'走進祭典的燈',c:'福岡・中洲祭',en:'NAKASU NIGHT'},
+ {img:'tenjin.jpg',a:[.25,.7],p:[.78,.82],out:'whip',k:'DAY 09 · 11.01 日',h:'好好逛，好好慶祝',c:'福岡・天神',en:'TENJIN'},
+ {img:'yanagibashi.jpg',a:[.08,.5],p:[.36,.56],out:'whip',k:'DAY 10 · 11.02 一',h:'市場的早餐',c:'福岡・柳橋市場',en:'YANAGIBASHI'},
+ {img:'takeoff.jpg',a:[.12,.56],p:[.3,.58],s:[1.18,1],hold:4.8,title:1,k:'11.02 · 福岡 → 桃園',h:'下次，再回來',c:'KYUSHU 2026'}
+];
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const HOLD=3.2,TT={zoom:1.35,whip:.8,fade:1},K=3.2;
+// 時間軸：start = 這一段開始進場的時間；len = 進場＋停留＋出場
+let t0=0;
+SHOTS.forEach((s,i)=>{
+ if(RM){s.out=i<SHOTS.length-1?'fade':undefined;s.s=[1,1.04];}
+ s.tin=i?TT[SHOTS[i-1].out]:0;s.tout=s.out?TT[s.out]:0;
+ s.start=t0;s.len=s.tin+(s.hold||HOLD)+s.tout;t0+=s.tin+(s.hold||HOLD);
+});
+const TOTAL=t0;
+const cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+let W=0,H=0,DPR=1;
+function resize(){DPR=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;
+ const px=W*H*DPR*DPR;if(px>4.2e6)DPR=Math.sqrt(4.2e6/(W*H));
+ cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);ctx.setTransform(DPR,0,0,DPR,0,0);
+ ctx.imageSmoothingQuality='high';draw();}
+const ease=u=>u<.5?4*u*u*u:1-Math.pow(-2*u+2,3)/2;
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+// 某段在時間 t 的鏡頭：回傳照片在畫面上的位置與大小（已確保蓋滿畫面）
+function cam(s,t){const im=s.im;if(!im)return null;
+ const u=clamp((t-s.start)/s.len,0,1),sc=s.s||[1,1.12];
+ const base=Math.max(W/im.naturalWidth,H/im.naturalHeight),z=base*sc[0]*Math.pow(sc[1]/sc[0],u);
+ const cx=s.a[0]+(s.p[0]-s.a[0])*u,cy=s.a[1]+(s.p[1]-s.a[1])*u;
+ const w=im.naturalWidth*z,h=im.naturalHeight*z;
+ const x=clamp(W/2-cx*w,W-w,0),y=clamp(H/2-cy*h,H-h,0);
+ return {x,y,w,h,px:x+s.p[0]*w,py:y+s.p[1]*h};}
+// 以 (ox,oy) 為中心再放大 g 倍、往右位移 dx
+function paint(s,c,g,ox,oy,dx,alpha){if(!c)return;
+ ctx.globalAlpha=alpha;ctx.drawImage(s.im,ox+(c.x-ox)*g+dx,oy+(c.y-oy)*g,c.w*g,c.h*g);ctx.globalAlpha=1;}
+function frame(t){ctx.fillStyle='#0b0d10';ctx.fillRect(0,0,W,H);
+ let k=0;while(k<SHOTS.length-1&&t>=SHOTS[k+1].start)k++;
+ const B=SHOTS[k],cb=cam(B,t);
+ if(k===0||t>=B.start+B.tin){paint(B,cb,1,0,0,0,1);return k;}
+ const A=SHOTS[k-1],ca=cam(A,t),u=(t-B.start)/B.tin,e=ease(u);
+ if(A.out==='zoom'&&ca){
+  const g=Math.pow(K,e),ox=ca.px,oy=ca.py,v=Math.sin(Math.PI*u);
+  // 鑽入：舊畫面往入口衝，帶一點放射狀殘影
+  const n=v>.2?7:1;for(let j=0;j<n;j++)paint(A,ca,g*(1+j*.012*v),ox,oy,0,1/(j+1));
+  // 新畫面從入口像一扇窗打開
+  const f=g/K,rx=ox+(0-ox)*f,ry=oy+(0-oy)*f,rw=W*f,rh=H*f,r=22*(1-e);
+  ctx.save();ctx.beginPath();ctx.roundRect?ctx.roundRect(rx,ry,rw,rh,r):ctx.rect(rx,ry,rw,rh);
+  ctx.shadowColor='rgba(0,0,0,.55)';ctx.shadowBlur=40*(1-e);ctx.fillStyle='#000';ctx.fill();ctx.shadowColor='transparent';
+  ctx.clip();paint(B,cb,f,ox,oy,0,clamp(u*3.2,0,1));ctx.restore();
+  if(e<.98){ctx.strokeStyle=`rgba(246,241,231,${.5*(1-e)})`;ctx.lineWidth=1;ctx.strokeRect(rx+.5,ry+.5,rw-1,rh-1);}
+ }else if(A.out==='whip'){
+  // 甩鏡：兩張照片接成一條往左甩，接縫也一起糊掉；速度越快殘影越長
+  const v=6*u*(1-u)*(u<.5?4*u:4*(1-u)),L=Math.min(W*.16,W*.2*v),n=L>4?Math.min(12,Math.ceil(L/10)):1;
+  for(let j=0;j<n;j++){const o=n>1?(j/(n-1)-.5)*L:0,a=1/(j+1),sx=W-e*W+o;
+   paint(A,ca,1,0,0,-e*W+o,a);
+   ctx.save();ctx.beginPath();ctx.rect(sx,0,W,H);ctx.clip();paint(B,cb,1,0,0,sx,a);ctx.restore();}
+ }else{paint(A,ca,1,0,0,0,1);paint(B,cb,1,0,0,0,e);}
+ return k;}
+// 字卡
+const cap=document.getElementById('cap'),capK=document.getElementById('capK'),capH=document.getElementById('capH'),capC=document.getElementById('capC');
+let capIdx=-1;
+function caption(k,t){const s=SHOTS[k];
+ if(capIdx!==k){capIdx=k;cap.classList.remove('on');capK.textContent=s.k;capH.textContent=s.h;
+  capC.innerHTML='';capC.append(s.c);if(s.en){const sp=document.createElement('span');sp.textContent=s.en;capC.append(sp);}
+  cap.classList.toggle('title',!!s.title);}
+ const next=SHOTS[k+1],show=t>=s.start+s.tin*.6+(k?0:.5)&&(!next||t<next.start-.25);
+ cap.classList.toggle('on',show);}
+// 播放控制
+let T=0,playing=false,last=0;
+const fill=document.getElementById('fill'),time=document.getElementById('time'),btn=document.getElementById('play'),track=document.getElementById('track');
+const ICON={pause:'<svg viewBox="0 0 16 16"><rect x="3" y="2" width="3.5" height="12"/><rect x="9.5" y="2" width="3.5" height="12"/></svg>',
+ play:'<svg viewBox="0 0 16 16"><path d="M4 2l10 6-10 6z"/></svg>',
+ again:'<svg viewBox="0 0 16 16"><path d="M8 2.5a5.5 5.5 0 1 1-5.2 3.7l1.4.5A4 4 0 1 0 8 4v2.2L4.6 3.2 8 .2z"/></svg>'};
+function ui(){btn.innerHTML=playing?ICON.pause:(T>=TOTAL?ICON.again:ICON.play);
+ btn.setAttribute('aria-label',playing?'暫停':(T>=TOTAL?'重播':'播放'));}
+function draw(){if(!W)return;const k=frame(T);caption(k,T);
+ fill.style.width=(T/TOTAL*100)+'%';const sec=Math.floor(T);time.textContent=Math.floor(sec/60)+':'+String(sec%60).padStart(2,'0');
+ track.setAttribute('aria-valuenow',Math.round(T/TOTAL*100));}
+function loop(now){if(!playing)return;const dt=Math.min((now-last)/1000,.1);last=now;
+ T=Math.min(T+dt,TOTAL);draw();if(T>=TOTAL){playing=false;ui();return;}requestAnimationFrame(loop);}
+function play(){if(T>=TOTAL){T=0;capIdx=-1;}playing=true;ui();last=performance.now();requestAnimationFrame(loop);}
+function pause(){playing=false;ui();}
+const toggle=()=>playing?pause():play();
+btn.addEventListener('click',toggle);cv.addEventListener('click',toggle);
+addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();toggle();}
+ else if(e.key==='ArrowRight'||e.key==='ArrowLeft'){T=clamp(T+(e.key==='ArrowRight'?5:-5),0,TOTAL);capIdx=-1;draw();ui();}});
+function seek(e){const r=track.getBoundingClientRect();T=clamp((e.clientX-r.left)/r.width,0,1)*TOTAL;capIdx=-1;draw();ui();}
+track.addEventListener('pointerdown',e=>{track.setPointerCapture(e.pointerId);seek(e);});
+track.addEventListener('pointermove',e=>{if(track.hasPointerCapture(e.pointerId))seek(e);});
+SHOTS.forEach((s,i)=>{if(!i)return;const d=document.createElement('i');d.className='tick';d.style.left=(s.start/TOTAL*100)+'%';track.append(d);});
+addEventListener('resize',resize);
+// 照片全部載入再開播；?t=秒數 可直接停在某一格（檢查用）
+Promise.all(SHOTS.map(s=>new Promise(ok=>{const im=new Image();im.onload=()=>{s.im=im;if(im.decode)im.decode().catch(()=>{});ok();};im.onerror=ok;im.src='img/'+s.img;})))
+.then(()=>Promise.race([document.fonts?document.fonts.ready:0,new Promise(r=>setTimeout(r,1500))])).then(()=>{
+ const q=new URLSearchParams(location.search).get('t'),ld=document.getElementById('load');
+ if(q!==null)ld.style.transition='none';ld.classList.add('done');resize();
+ if(q!==null){T=clamp(+q||0,0,TOTAL);draw();ui();}else play();});
+</script>
+</body>
+</html>
