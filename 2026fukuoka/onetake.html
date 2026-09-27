@@ -71,6 +71,9 @@ canvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:poi
 </div>
 <script>
 'use strict';
+// ?embed=1：放在行程頁封面的 iframe 裡；右上角改成「全螢幕看」開獨立頁
+const EMBED=new URLSearchParams(location.search).has('embed');
+if(EMBED){const a=document.querySelector('.top a');a.href='onetake.html';a.target='_top';a.textContent='全螢幕看';}
 // 每段：照片、鏡頭起點 a → 入口 p（照片寬高比例）、推近倍率 s、出場轉場
 const SHOTS=[
  {img:'aerial-kyushu.jpg',a:[.3,.72],p:[.55,.36],s:[1,1.3],out:'zoom',hold:4.4,title:1,
@@ -159,12 +162,16 @@ function ui(){btn.innerHTML=playing?ICON.pause:(T>=TOTAL?ICON.again:ICON.play);
 function draw(){if(!W)return;const k=frame(T);caption(k,T);
  fill.style.width=(T/TOTAL*100)+'%';const sec=Math.floor(T);time.textContent=Math.floor(sec/60)+':'+String(sec%60).padStart(2,'0');
  track.setAttribute('aria-valuenow',Math.round(T/TOTAL*100));}
-function loop(now){if(!playing)return;const dt=Math.min((now-last)/1000,.1);last=now;
+function loop(now){if(!playing)return;const dt=clamp((now-last)/1000,0,.1);last=now;
  T=Math.min(T+dt,TOTAL);draw();if(T>=TOTAL){playing=false;ui();return;}requestAnimationFrame(loop);}
 function play(){if(T>=TOTAL){T=0;capIdx=-1;}playing=true;ui();last=performance.now();requestAnimationFrame(loop);}
 function pause(){playing=false;ui();}
-const toggle=()=>playing?pause():play();
+const toggle=()=>{auto=false;playing?pause():play();};
 btn.addEventListener('click',toggle);cv.addEventListener('click',toggle);
+// 封面捲出畫面就暫停、捲回來接著播；使用者自己按的暫停不會被自動恢復
+let vis=true,auto=false;
+if(EMBED&&'IntersectionObserver' in window)new IntersectionObserver(([e])=>{vis=e.isIntersecting;
+ if(!vis&&playing){auto=true;pause();}else if(vis&&auto){auto=false;play();}},{threshold:.3}).observe(document.querySelector('.stage'));
 addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();toggle();}
  else if(e.key==='ArrowRight'||e.key==='ArrowLeft'){T=clamp(T+(e.key==='ArrowRight'?5:-5),0,TOTAL);capIdx=-1;draw();ui();}});
 function seek(e){const r=track.getBoundingClientRect();T=clamp((e.clientX-r.left)/r.width,0,1)*TOTAL;capIdx=-1;draw();ui();}
@@ -177,7 +184,7 @@ Promise.all(SHOTS.map(s=>new Promise(ok=>{const im=new Image();im.onload=()=>{s.
 .then(()=>Promise.race([document.fonts?document.fonts.ready:0,new Promise(r=>setTimeout(r,1500))])).then(()=>{
  const q=new URLSearchParams(location.search).get('t'),ld=document.getElementById('load');
  if(q!==null)ld.style.transition='none';ld.classList.add('done');resize();
- if(q!==null){T=clamp(+q||0,0,TOTAL);draw();ui();}else play();});
+ if(q!==null){T=clamp(+q||0,0,TOTAL);draw();ui();}else if(vis)play();else auto=true;});
 </script>
 </body>
 </html>

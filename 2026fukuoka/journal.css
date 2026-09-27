@@ -113,97 +113,16 @@
  .section-heading{align-items:start}.section-heading>p{max-width:40%}
 }
 footer .couple-signature{flex-basis:100%;width:100%;margin:10px 0 0;padding-top:28px;border-top:1px solid #cad3c340;text-align:center;font:600 clamp(20px,2vw,30px)/1.8 var(--serif);letter-spacing:.12em;color:#d9be87;max-width:none}
-/* 懶人包影片：實景照片慢推鏡 */
-.ukiyo-film{margin:28px 0 8px;background:#0e1714;color:#f4f1e9;border-radius:4px;overflow:hidden}
-.fm-stage{position:relative;aspect-ratio:16/9;overflow:hidden}
-.fm-layer{position:absolute;inset:-4%;background:center/cover no-repeat;opacity:0;transition:opacity 1.2s ease}
-.fm-layer.on{opacity:1}
-.fm-zin{animation:fmZin 6.5s ease-out forwards}.fm-zout{animation:fmZout 6.5s ease-out forwards}.fm-pl{animation:fmPl 6.5s ease-out forwards}.fm-pr{animation:fmPr 6.5s ease-out forwards}
-@keyframes fmZin{from{transform:scale(1)}to{transform:scale(1.12)}}@keyframes fmZout{from{transform:scale(1.14)}to{transform:scale(1.02)}}
-@keyframes fmPl{from{transform:scale(1.1) translateX(2%)}to{transform:scale(1.1) translateX(-2%)}}@keyframes fmPr{from{transform:scale(1.1) translateX(-2%)}to{transform:scale(1.1) translateX(2%)}}
-.fm-shade{position:absolute;inset:0;background:linear-gradient(90deg,#0b121099 0%,#0b121040 34%,#0b121000 56%),linear-gradient(0deg,#0b121099 0%,#0b121000 22%)}
-.fm-text{position:absolute;left:5%;top:50%;transform:translateY(-58%);max-width:min(52%,480px)}
-.fm-text small{display:block;font:700 11px/1.4 var(--sans);letter-spacing:.18em;color:var(--gold);margin-bottom:10px}
-.fm-text h3{margin:0 0 12px;font:600 clamp(24px,4.2vw,46px)/1.18 var(--serif);text-shadow:0 2px 14px #000a,0 0 2px #0008}
-.fm-text p{margin:0;font:15px/1.75 var(--sans);color:#fff;text-shadow:0 1px 8px #000c}
-.fm-text.in>*{animation:fmUp .9s cubic-bezier(.2,.7,.2,1) both}.fm-text.in h3{animation-delay:.15s}.fm-text.in p{animation-delay:.3s}
-@keyframes fmUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-.fm-route{position:absolute;left:5%;right:5%;bottom:18px;display:flex;gap:0;margin:0;padding:0;list-style:none}
-.fm-route li{flex:1;padding-top:10px;border-top:2px solid #f4f1e944;font:12px var(--sans);color:#f4f1e9aa;transition:.5s}
-.fm-route li b{font-weight:700;margin-right:6px}.fm-route li.now{border-color:var(--orange);color:#fff}
-.fm-progress{position:absolute;left:0;right:0;top:0;height:3px;background:#ffffff1a}.fm-progress i{display:block;height:100%;width:0;background:var(--orange)}
-@keyframes fmBar{to{width:100%}}
-.fm-bar{display:flex;align-items:center;gap:8px;padding:10px 14px}
-.fm-bar button{font:600 13px var(--sans);background:none;border:1px solid #f4f1e955;color:#f4f1e9;padding:6px 12px;border-radius:99px;cursor:pointer}
-.fm-bar button:hover{border-color:var(--gold)}#fm-count{margin-left:auto;font:12px var(--sans);letter-spacing:.1em;color:#f4f1e999}
-@media (max-width:600px){.fm-stage{aspect-ratio:4/5}.fm-shade{background:linear-gradient(0deg,#0b1210d9 0%,#0b121066 38%,#0b121000 60%)}.fm-text{top:auto;bottom:64px;transform:none;max-width:none;right:5%}.fm-text p{font-size:13px}.fm-route li{font-size:11px}.fm-route li span{display:none}}
-@media (prefers-reduced-motion:reduce){.ukiyo-film *{animation:none!important;transition:none!important}}
-@media print{.ukiyo-film{display:none}}
-/* 封面影片 */
+/* 封面影片：一鏡到底（onetake.html?embed=1 放在 iframe 裡，播放控制在影片內） */
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.cover-film .ukiyo-film{margin:0;border-radius:0}
-.cover-film .fm-stage{aspect-ratio:auto;height:min(78vh,760px);min-height:420px}
-@media (max-width:600px){.cover-film .fm-stage{height:72svh;min-height:440px}}
-/* 手機直式：照片放在中間一條「寬幅帶」裡（寬度貼齊、左右略裁），上下用同一張照片的模糊版補滿，交界處淡入淡出 */
-@media (max-width:600px){.fm-layer{inset:0;background-image:none!important;animation:none!important}
-.fm-layer::before,.fm-layer::after{content:"";position:absolute;inset:0;background:var(--img) center/cover no-repeat}
-.fm-layer::before{inset:-10%;filter:blur(22px) brightness(.55) saturate(1.1)}
-.fm-layer::after{inset:auto 0;top:21%;height:63%;-webkit-mask-image:linear-gradient(transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(transparent,#000 7%,#000 93%,transparent)}
-.fm-layer.on::after{animation:fmMZin 6.5s ease-in-out forwards}.fm-layer.on.fm-zout::after{animation-name:fmMZout}.fm-layer.on.fm-pl::after{animation-name:fmMPl}.fm-layer.on.fm-pr::after{animation-name:fmMPr}}
-/* 手機橫式（矮螢幕）：整段影片塞進一個畫面，照片整張放中間、兩側模糊補滿，控制列不會被擠出畫面 */
+.cover-film{background:#0b0d10}
+.cover-film iframe{display:block;width:100%;height:min(78vh,760px);min-height:420px;border:0;background:#0b0d10}
+@media (max-width:600px){.cover-film iframe{height:72svh;min-height:440px}}
+/* 手機橫式（矮螢幕）：頂欄壓矮，影片剛好塞滿頂欄以下的畫面 */
 @media (orientation:landscape) and (max-height:500px){.topbar{height:52px}html{scroll-padding-top:56px}
-.cover-film .fm-stage{height:calc(100svh - 52px - 50px);min-height:0}
-.fm-layer{inset:0;background-image:none!important;animation:none!important}
-.fm-layer::before,.fm-layer::after{content:"";position:absolute;inset:0;background:var(--img) center/cover no-repeat}
-.fm-layer::before{inset:-10%;filter:blur(22px) brightness(.55) saturate(1.1)}
-.fm-layer::after{background:var(--img) center/contain no-repeat}
-.fm-layer.on::after{animation:fmMZin 6.5s ease-in-out forwards}.fm-layer.on.fm-zout::after{animation-name:fmMZout}.fm-layer.on.fm-pl::after{animation-name:fmMPl}.fm-layer.on.fm-pr::after{animation-name:fmMPr}
-.cover-film .fm-text{right:3%;top:7%;gap:8px}.cover-film .fm-text h3{font-size:clamp(18px,6.5svh,28px);letter-spacing:.16em}.cover-film .fm-text small{font-size:11px;padding-top:1.2em;line-height:1.6}
-.cover-film .fm-map{left:10px;top:10px;width:clamp(110px,34svh,150px)}
-.fm-route{bottom:10px}.fm-route li{font-size:11px;padding-top:6px}.fm-bar{padding:6px 12px}}
-/* 手機版動態：畫面小，幅度要比桌機大才看得出來（放大 16%／左右平移 4%） */
-@keyframes fmMZin{from{transform:scale(1)}to{transform:scale(1.16)}}
-@keyframes fmMZout{from{transform:scale(1.16)}to{transform:scale(1.02)}}
-@keyframes fmMPl{from{transform:scale(1.12) translateX(4%)}to{transform:scale(1.12) translateX(-4%)}}
-@keyframes fmMPr{from{transform:scale(1.12) translateX(-4%)}to{transform:scale(1.12) translateX(4%)}}
+.cover-film iframe{height:calc(100svh - 52px);min-height:0}}
+@media print{.cover-film{display:none}}
 .day-photo,.day-photo:is(*){min-height:0!important;height:auto!important;aspect-ratio:4/3;align-self:start;width:100%}
-.cover-film .fm-shade{background:linear-gradient(270deg,#0b121066 0%,#0b121000 38%)}
-.cover-film .fm-text,.cover-film .fm-text{left:auto;right:7%;top:12%;bottom:auto;transform:none;max-width:none;display:flex;flex-direction:column;align-items:flex-start;gap:14px;writing-mode:vertical-rl}
-.cover-film .fm-text h3{margin:0;font:500 clamp(34px,4.4vw,60px)/1.3 var(--serif);letter-spacing:.22em;color:#fff;text-shadow:0 2px 18px #0009}
-.cover-film .fm-text small{margin:0;padding-top:2.2em;font:500 15px/1.9 var(--sans);letter-spacing:.2em;color:#fff;text-shadow:0 1px 8px #000b}
-.cover-film .fm-text small br{display:block}
-@media (max-width:600px){.cover-film .fm-text{right:6%;top:10%;gap:12px}.cover-film .fm-text h3{font-size:30px}.cover-film .fm-text small{font-size:13px}}
-.cover-film .fm-map{position:absolute;left:22px;top:20px;width:clamp(150px,16vw,210px);height:auto;z-index:3;overflow:visible;pointer-events:none;filter:drop-shadow(0 3px 12px #0007);transform:rotate(-1.5deg)}
-.fm-map .fm-paper{fill:url(#fm-parch);stroke:#7a5530;stroke-width:1.4}
-.fm-map .fm-frame{fill:none;stroke:#7a553099;stroke-width:.8}
-.fm-map .fm-ripple{fill:none;stroke:#6f9c9a;stroke-linejoin:round}
-.fm-map .fm-ripple.r1{stroke-width:7;opacity:.28}.fm-map .fm-ripple.r2{stroke-width:14;opacity:.16}.fm-map .fm-ripple.r3{stroke-width:22;opacity:.09}
-.fm-map .fm-land{fill:#b7c98a;stroke:none}
-.fm-map .fm-coast{fill:none;stroke:#5a3d24;stroke-width:1.3;stroke-linejoin:round}
-.fm-map .fm-hill{fill:#8fa56b;stroke:#5a3d24;stroke-width:.9;stroke-linejoin:round}
-.fm-map .fm-tree circle{fill:#6f8f55;stroke:#4a3320;stroke-width:.6}
-.fm-map .fm-isle{fill:#9aa77a;stroke:#5a3d24;stroke-width:.9}
-.fm-map .fm-cloud{fill:#fbf4e2;stroke:#8a6a45;stroke-width:.8;opacity:.95}
-.fm-map .fm-hillsh{fill:none;stroke:#5a3d2499;stroke-width:.7}
-.fm-map .fm-all{fill:none;stroke:#6b4a2b99;stroke-width:1.2;stroke-dasharray:1.5 3.5;stroke-linecap:round}
-.fm-map .fm-seg{fill:none;stroke:#b33a24;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:0}
-.fm-map .fm-seg.draw{animation:fmDraw 1.8s .3s ease-in-out both}
-@keyframes fmDraw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
-.fm-map .fm-sea{font:italic 500 9px/1 var(--serif);letter-spacing:.35em;fill:#4f7d7a;opacity:.8}
-.fm-map .fm-compass circle{fill:#f3e4bf;stroke:#6b4a2b;stroke-width:.8}
-.fm-map .fm-compass path{fill:#6b4a2b}.fm-map .fm-compass path.n{fill:#b33a24}
-.fm-map .fm-compass text{font:700 7px/1 var(--serif);fill:#6b4a2b;text-anchor:middle}
-.fm-map .fm-ship path{fill:#f3e4bf;stroke:#5a3d24;stroke-width:.8;stroke-linejoin:round}
-.fm-map .fm-pin circle{fill:#f7ecd0;stroke:#5a3d24;stroke-width:1.1}
-.fm-map .fm-pin text{font:700 10.5px/1 var(--serif);fill:#4a3320;paint-order:stroke;stroke:#f3e4bf;stroke-width:3px;stroke-linejoin:round}
-.fm-map .fm-pin.now circle{fill:#b33a24;stroke:#f7ecd0;stroke-width:1.4;r:4.8}
-.fm-map .fm-pin.now text{fill:#8e2a18}
-@media (max-width:600px){.cover-film .fm-map{left:10px;top:10px;width:158px}}
-@media (prefers-reduced-motion:reduce){.fm-map .fm-seg.draw{animation:none}}
-/* 個別照片的取景重心（journey.js 的 fp）：背景位置與縮放中心一起移，手機直式裁左右、桌機裁上下都吃得到 */
-.fm-layer{background-position:var(--fp,center);transform-origin:var(--fp,center)}
-@media (max-width:600px){.fm-layer::after{background-position:var(--fp,center);transform-origin:var(--fp,center)}}
-@media (orientation:landscape) and (max-height:500px){.fm-layer::after{background-position:center;transform-origin:var(--fp,center)}}
 
 /* 豪斯登堡指南：卡片的「看詳細攻略」與詳細頁（dialog） */
 .guide-body .card:has(.more){display:flex;flex-direction:column}
