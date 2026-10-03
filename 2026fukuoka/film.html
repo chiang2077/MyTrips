@@ -72,8 +72,8 @@ video{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:
 // 影片由 film/ 的 MP4 播放（照片做成緩慢推移＋淡入淡出），字卡依時間切換
 const EMBED=new URLSearchParams(location.search).has('embed');
 if(EMBED){const a=document.querySelector('.top a');a.href='film.html';a.target='_top';a.textContent='全螢幕看';}
-// 每段 5 秒、交疊 1.2 秒 → 第 i 段從 i×3.8 秒開始（與 render 參數一致）
-const STEP=3.8,CAPS=[
+// 每段 3.5 秒、交疊 0.9 秒 → 第 i 段從 i×2.6 秒開始（與 render 參數一致）
+const STEP=2.6,CAPS=[
  {k:'2026 秋 · 十天九夜',h:'從空中看見，九州',c:'福岡 → 武雄 → 長崎 → 豪斯登堡 → 福岡',en:'',title:1},
  {k:'DAY 01 · 10.24 六',h:'先泡一場湯',c:'武雄',en:'TAKEO'},
  {k:'DAY 02 · 10.25 日',h:'朱紅樓門，白瓷器',c:'武雄・有田',en:'TAKEO & ARITA'},
