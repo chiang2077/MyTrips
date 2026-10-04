@@ -39,6 +39,7 @@ video{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:
 .bar button{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid rgba(246,241,231,.45);background:rgba(0,0,0,.3);
  color:var(--ink);display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px)}
 .bar button svg{width:16px;height:16px;fill:currentColor}
+#snd svg path:not([fill]){stroke:currentColor;stroke-width:1.4}
 .track{position:relative;flex:1;height:40px;cursor:pointer;touch-action:none}
 .track::before,.fill{content:'';position:absolute;left:0;top:19px;height:2px;border-radius:2px}
 .track::before{right:0;background:rgba(246,241,231,.25)}
@@ -74,6 +75,7 @@ video{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:
    <li>特急豪斯登堡號：MaedaAkihiko，<a href="https://commons.wikimedia.org/wiki/File:Series783-R-HuisTenBosch.jpg">CC BY-SA 4.0</a></li>
    <li>市場畫面：WorldContributor，<a href="https://commons.wikimedia.org/wiki/File:Stalls_inside_the_Tsukiji_fish_market,_Tokyo,_Japan.webm">CC BY-SA 4.0</a>（東京築地）</li>
    <li>魚市場：U.S. Navy／Grant Gorzocoski，<a href="https://commons.wikimedia.org/wiki/File:Sasebo_Fish_Market_(951512).webm">公有領域</a></li>
+   <li>背景音樂：本站自製（程式合成）</li>
    <li>部分畫面為 AI 生成：武雄、有田、海岸、軍艦島、長崎蛋糕、豪斯登堡街景與夜景、中洲祭、天神、晚餐</li>
   </ul>
  </details>
@@ -81,6 +83,7 @@ video{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:
   <button id="play" type="button" aria-label="暫停"></button>
   <div class="track" id="track" role="slider" aria-label="影片進度" tabindex="0"><div class="fill" id="fill"></div></div>
   <span class="time" id="time">0:00</span>
+  <button id="snd" type="button" aria-label="開啟聲音"></button>
  </div>
 </div>
 <script>
@@ -110,7 +113,13 @@ addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();toggle();
 function seek(e){const r=track.getBoundingClientRect();v.currentTime=Math.min(1,Math.max(0,(e.clientX-r.left)/r.width))*(v.duration||0);}
 track.addEventListener('pointerdown',e=>{track.setPointerCapture(e.pointerId);seek(e);});
 track.addEventListener('pointermove',e=>{if(track.hasPointerCapture(e.pointerId))seek(e);});
-ui();
+// 瀏覽器只允許靜音自動播放；按喇叭才開聲音
+const snd=$('snd'),MUTE='<svg viewBox="0 0 16 16"><path d="M2 6h3l4-3v10l-4-3H2zM11 5.5l4 5M15 5.5l-4 5"/></svg>',
+ SOUND='<svg viewBox="0 0 16 16"><path d="M2 6h3l4-3v10l-4-3H2z"/><path d="M11 5a4 4 0 010 6M12.5 3a7 7 0 010 10" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>';
+function sui(){snd.innerHTML=v.muted?MUTE:SOUND;snd.setAttribute('aria-label',v.muted?'開啟聲音':'關閉聲音');}
+snd.addEventListener('click',()=>{v.muted=!v.muted;if(!v.muted&&v.paused){auto=false;v.play();}sui();});
+v.addEventListener('volumechange',sui);
+ui();sui();
 </script>
 </body>
 </html>
