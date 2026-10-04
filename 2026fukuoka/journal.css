@@ -173,3 +173,5 @@ footer .couple-signature{flex-basis:100%;width:100%;margin:10px 0 0;padding-top:
 @media print{.htb-dialog{display:none!important}}
 /* 平板與桌機（700px 以上）：左右配置時插圖太小，改上下配置、插圖寬幅 */
 @media screen and (min-width:700px){.day-page,.day-page:is(*){grid-template-columns:1fr!important}.day-photo,.day-photo:is(*){aspect-ratio:16/9;max-height:460px}}
+
+.hotel-tags{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}.hotel-tags span{font-size:12px;line-height:1;padding:5px 9px;border-radius:99px;border:1px solid currentColor;color:#5b5a52}.hotel-tags .paid{color:#2f6b45}.hotel-tags .due{color:#b5452c}
