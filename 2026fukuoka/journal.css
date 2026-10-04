@@ -122,7 +122,7 @@ footer .couple-signature{flex-basis:100%;width:100%;margin:10px 0 0;padding-top:
 @media (orientation:landscape) and (max-height:500px){.topbar{height:52px}html{scroll-padding-top:56px}
 .cover-film iframe{height:calc(100svh - 52px);min-height:0}}
 @media print{.cover-film{display:none}}
-.day-photo,.day-photo:is(*){min-height:0!important;height:auto!important;aspect-ratio:4/3;align-self:start;width:100%}
+.day-photo,.day-photo:is(*){min-height:0!important;height:auto!important;aspect-ratio:3/2;align-self:start;width:100%}
 
 /* 豪斯登堡指南：卡片的「看詳細攻略」與詳細頁（dialog） */
 .guide-body .card:has(.more){display:flex;flex-direction:column}
@@ -172,7 +172,7 @@ footer .couple-signature{flex-basis:100%;width:100%;margin:10px 0 0;padding-top:
 @media(prefers-reduced-motion:reduce){.htb-dialog[open]{animation:none}}
 @media print{.htb-dialog{display:none!important}}
 /* 平板與桌機（700px 以上）：左右配置時插圖太小，改上下配置、插圖寬幅 */
-@media screen and (min-width:700px){.day-page,.day-page:is(*){grid-template-columns:1fr!important}.day-photo,.day-photo:is(*){aspect-ratio:16/9;max-height:460px}}
+@media screen and (min-width:700px){.day-page,.day-page:is(*){grid-template-columns:1fr!important}.day-photo,.day-photo:is(*){aspect-ratio:3/2;width:min(100%,105vh)!important;justify-self:center}}
 
 .hotel-tags{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}.hotel-tags span{font-size:13px;line-height:1;padding:5px 9px;border-radius:99px;border:1px solid currentColor;color:#5b5a52}.hotel-tags .paid{color:#2f6b45}.hotel-tags .due{color:#b5452c}
 .gt{display:inline-block;font-size:13px;font-weight:500;line-height:1;padding:4px 8px;border-radius:99px;margin-right:6px;vertical-align:2px;white-space:nowrap}.gt.t{border:1px solid #9a9a8c;color:#55554c}.gt.ok{background:#dbe7d9;color:#2f6b45}.gt.todo{background:#f6dcd4;color:#b5452c}.gt.opt{background:#eceae0;color:#5b5a52}
