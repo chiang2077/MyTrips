@@ -61,3 +61,8 @@
 ### 第三輪（2026-10-04）
 - 只發布橫式版，直式版不做。
 - 「3天／盡情體驗」改用 Commons〈200320 Huis Ten Bosch Sasebo Nagasaki pref Japan04s3.jpg〉，作者 663highland，CC BY 2.5（片尾署名要列）。Commons 上找不到園區小木屋（Forest Villa）的照片。
+
+### 第四輪（2026-10-04）
+- 光之幻想第二格的文字改成「盡收／眼底」。
+- 開場換成 Commons 上的〈Fukuoka Airport FUK from airplane window 2025-03-30.jpg〉，作者 Eric Salard，授權 CC BY-SA 2.0；畫面是從機窗俯瞰福岡機場。
+- 中洲祭換成 Commons 上的〈2022 Danjiri Festival at Otori Shrine in Sakai, Osaka 002.webm〉，授權 CC BY-SA 4.0。⚠ 這是大阪的祭典，不是中洲祭，待使用者確認；Commons 上找不到中洲祭或山笠的影片。另一個可選的是佐世保千燈籠祭的影片（美國政府作品，屬公共領域）。
