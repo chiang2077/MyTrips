@@ -171,3 +171,5 @@ footer .couple-signature{flex-basis:100%;width:100%;margin:10px 0 0;padding-top:
 }
 @media(prefers-reduced-motion:reduce){.htb-dialog[open]{animation:none}}
 @media print{.htb-dialog{display:none!important}}
+/* 平板與桌機（700px 以上）：左右配置時插圖太小，改上下配置、插圖寬幅 */
+@media screen and (min-width:700px){.day-page,.day-page:is(*){grid-template-columns:1fr!important}.day-photo,.day-photo:is(*){aspect-ratio:16/9;max-height:460px}}
