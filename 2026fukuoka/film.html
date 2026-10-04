@@ -49,6 +49,13 @@ video{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:
 .load{position:absolute;inset:0;display:grid;place-items:center;font:500 14px/1 'Noto Sans TC',sans-serif;color:var(--dim);
  letter-spacing:.2em;transition:opacity .6s}
 .load.done{opacity:0;pointer-events:none}
+.credit{position:absolute;right:max(16px,env(safe-area-inset-right));bottom:calc(env(safe-area-inset-bottom) + 66px);
+ max-width:min(92vw,34rem);font:500 12px/1.6 'Noto Sans TC',sans-serif;color:var(--dim);text-align:right}
+.credit summary{cursor:pointer;list-style:none;letter-spacing:.08em}
+.credit summary::-webkit-details-marker{display:none}
+.credit[open]{background:rgba(0,0,0,.75);padding:12px 14px;border-radius:10px;text-align:left}
+.credit ul{padding-left:1.1em;margin-top:6px}.credit a{color:var(--ink)}
+@media (max-aspect-ratio:1/1){video{object-fit:contain}}
 @media (orientation:landscape) and (max-height:500px){
  .cap{bottom:calc(env(safe-area-inset-bottom) + 58px)}
  .cap h2{font-size:clamp(26px,7vmin,44px)}.cap.title h2{font-size:clamp(32px,9vmin,56px)}
@@ -60,7 +67,18 @@ video{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:
  <video id="v" muted playsinline loop preload="auto" aria-label="九州十天行程旅行短片，點一下暫停或播放"></video>
  <div class="shade"></div>
  <div class="top"><span>KYUSHU · 2026 AUTUMN</span><a href="./">回行程頁</a></div>
- <div class="cap" id="cap" aria-live="polite"><div class="k" id="capK"></div><h2 id="capH"></h2><div class="c" id="capC"></div></div>
+ <details class="credit"><summary>素材來源・部分畫面為 AI 生成</summary>
+  <ul>
+   <li>福岡機場空拍：Eric Salard，<a href="https://commons.wikimedia.org/wiki/File:Fukuoka_Airport_FUK_from_airplane_window_2025-03-30.jpg">CC BY-SA 2.0</a></li>
+   <li>長崎路面電車：Nesnad，<a href="https://commons.wikimedia.org/wiki/File:Nagasaki_Electric_Tramway_tram_-_2016_1_3.webm">CC BY 4.0</a></li>
+   <li>豪斯登堡空拍：663highland，Wikimedia Commons，CC BY 2.5</li>
+   <li>豪斯登堡燈海：Nagasaki Prefecture，<a href="https://commons.wikimedia.org/wiki/File:C%C3%B4ng_vi%C3%AAn_Huis_Ten_Bosch.jpg">CC BY-SA 4.0</a></li>
+   <li>特急豪斯登堡號：MaedaAkihiko，<a href="https://commons.wikimedia.org/wiki/File:Series783-R-HuisTenBosch.jpg">CC BY-SA 4.0</a></li>
+   <li>市場畫面：WorldContributor，<a href="https://commons.wikimedia.org/wiki/File:Stalls_inside_the_Tsukiji_fish_market,_Tokyo,_Japan.webm">CC BY-SA 4.0</a>（東京築地）</li>
+   <li>魚市場：U.S. Navy／Grant Gorzocoski，<a href="https://commons.wikimedia.org/wiki/File:Sasebo_Fish_Market_(951512).webm">公有領域</a></li>
+   <li>武雄、有田、海岸、軍艦島、長崎蛋糕、豪斯登堡街景與夜景、中洲祭、天神、晚餐：AI 生成示意畫面</li>
+  </ul>
+ </details>
  <div class="bar">
   <button id="play" type="button" aria-label="暫停"></button>
   <div class="track" id="track" role="slider" aria-label="影片進度" tabindex="0"><div class="fill" id="fill"></div></div>
@@ -69,35 +87,14 @@ video{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:
 </div>
 <script>
 'use strict';
-// 影片由 film/ 的 MP4 播放（照片做成緩慢推移＋淡入淡出），字卡依時間切換
+// 影片由 film/ 的 MP4 播放，字卡已燒進畫面（v2 快節奏大字版，只有橫式）
 const EMBED=new URLSearchParams(location.search).has('embed');
 if(EMBED){const a=document.querySelector('.top a');a.href='film.html';a.target='_top';a.textContent='全螢幕看';}
-// 每段 3.5 秒、交疊 0.9 秒 → 第 i 段從 i×2.6 秒開始（與 render 參數一致）
-const STEP=2.6,CAPS=[
- {k:'2026 秋 · 十天九夜',h:'從空中看見，九州',c:'福岡 → 武雄 → 長崎 → 豪斯登堡 → 福岡',en:'',title:1},
- {k:'DAY 01 · 10.24 六',h:'先泡一場湯',c:'武雄',en:'TAKEO'},
- {k:'DAY 02 · 10.25 日',h:'朱紅樓門，白瓷器',c:'武雄・有田',en:'TAKEO & ARITA'},
- {k:'DAY 03 · 10.26 一',h:'沿著海，慢慢走',c:'長崎',en:'NAGASAKI'},
- {k:'DAY 04 · 10.27 二',h:'看島，聽城市',c:'長崎・軍艦島',en:'HASHIMA'},
- {k:'DAY 05 · 10.28 三',h:'帶一盒甜，往北',c:'豪斯登堡・森林小屋',en:'HUIS TEN BOSCH'},
- {k:'DAY 06 · 10.29 四',h:'今天不趕路',c:'豪斯登堡・光之城',en:'A DAY WITH NO RUSH'},
- {k:'DAY 07 · 10.30 五',h:'把可愛留一晚',c:'豪斯登堡・米菲兔房',en:'A LITTLE MIFFY DAY'},
- {k:'DAY 08 · 10.31 六',h:'走進祭典的燈',c:'福岡・中洲祭',en:'NAKASU NIGHT'},
- {k:'DAY 09 · 11.01 日',h:'好好逛，好好慶祝',c:'福岡・天神',en:'TENJIN'},
- {k:'DAY 10 · 11.02 一',h:'市場的早餐',c:'福岡・柳橋市場',en:'YANAGIBASHI'},
- {k:'11.02 · 福岡 → 桃園',h:'下次，再回來',c:'KYUSHU 2026',en:'',title:1}];
-const $=id=>document.getElementById(id),v=$('v'),cap=$('cap'),btn=$('play'),track=$('track');
+const $=id=>document.getElementById(id),v=$('v'),btn=$('play'),track=$('track');
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const tall=matchMedia('(max-aspect-ratio: 4/5)').matches;
-v.poster='film/poster-'+(tall?'tall':'wide')+'.jpg';v.src='film/kyushu-'+(tall?'tall':'wide')+'.mp4';
-let ci=-1;
-function showCap(i){if(i===ci)return;ci=i;cap.classList.remove('on');const c=CAPS[i];
- setTimeout(()=>{if(ci!==i)return;$('capK').textContent=c.k;$('capH').textContent=c.h;
-  $('capC').innerHTML='';$('capC').append(c.c);if(c.en){const e=document.createElement('span');e.textContent=c.en;$('capC').append(e);}
-  cap.classList.toggle('title',!!c.title);cap.classList.add('on');},200);}
+v.poster='film/poster-wide.jpg';v.src='film/kyushu-wide.mp4';
 const fmt=t=>Math.floor(t/60)+':'+String(Math.floor(t%60)).padStart(2,'0');
-function tick(){const t=v.currentTime,d=v.duration||1;showCap(Math.min(CAPS.length-1,Math.floor((t+.6)/STEP)));
- $('fill').style.width=(t/d*100)+'%';$('time').textContent=fmt(t);}
+function tick(){const t=v.currentTime,d=v.duration||1; $('fill').style.width=(t/d*100)+'%';$('time').textContent=fmt(t);}
 v.addEventListener('timeupdate',tick);
 const PLAY='<svg viewBox="0 0 16 16"><path d="M4 2l10 6-10 6z"/></svg>',PAUSE='<svg viewBox="0 0 16 16"><path d="M3 2h3.5v12H3zM9.5 2H13v12H9.5z"/></svg>';
 function ui(){btn.innerHTML=v.paused?PLAY:PAUSE;btn.setAttribute('aria-label',v.paused?'播放':'暫停');}
@@ -105,8 +102,8 @@ v.addEventListener('play',ui);v.addEventListener('pause',ui);
 let auto=false;
 const toggle=()=>{auto=false;v.paused?v.play():v.pause();};
 btn.addEventListener('click',toggle);v.addEventListener('click',toggle);
-// 減少動態效果：只顯示海報與第一張字卡，不自動播放
-if(RM){showCap(0);ui();}else v.play().catch(ui);
+// 減少動態效果：只顯示海報，不自動播放
+if(RM){ui();}else v.play().catch(ui);
 // 封面捲出畫面就暫停、捲回來接著播；使用者自己按的暫停不會被自動恢復
 if(EMBED&&'IntersectionObserver' in window)new IntersectionObserver(([e])=>{
  if(!e.isIntersecting&&!v.paused){auto=true;v.pause();}else if(e.isIntersecting&&auto){auto=false;v.play();}},{threshold:.3}).observe(document.querySelector('.stage'));
@@ -115,7 +112,6 @@ addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();toggle();
 function seek(e){const r=track.getBoundingClientRect();v.currentTime=Math.min(1,Math.max(0,(e.clientX-r.left)/r.width))*(v.duration||0);}
 track.addEventListener('pointerdown',e=>{track.setPointerCapture(e.pointerId);seek(e);});
 track.addEventListener('pointermove',e=>{if(track.hasPointerCapture(e.pointerId))seek(e);});
-v.addEventListener('loadedmetadata',()=>{for(let i=1;i<CAPS.length;i++){const d=document.createElement('i');d.className='tick';d.style.left=(i*STEP/v.duration*100)+'%';track.append(d);}});
 ui();
 </script>
 </body>
