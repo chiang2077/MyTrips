@@ -68,16 +68,8 @@ video{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:
  <div class="top"><span></span><a href="./">回行程頁</a></div>
  <details class="credit"><summary>素材來源</summary>
   <ul>
-   <li>福岡機場空拍：Eric Salard，<a href="https://commons.wikimedia.org/wiki/File:Fukuoka_Airport_FUK_from_airplane_window_2025-03-30.jpg">CC BY-SA 2.0</a></li>
-   <li>長崎路面電車：Nesnad，<a href="https://commons.wikimedia.org/wiki/File:Nagasaki_Electric_Tramway_tram_-_2016_1_3.webm">CC BY 4.0</a></li>
-   <li>豪斯登堡空拍：663highland，Wikimedia Commons，CC BY 2.5</li>
-   <li>豪斯登堡燈海：Nagasaki Prefecture，<a href="https://commons.wikimedia.org/wiki/File:C%C3%B4ng_vi%C3%AAn_Huis_Ten_Bosch.jpg">CC BY-SA 4.0</a></li>
-   <li>長崎蛋糕：Wikimedia Commons，<a href="https://commons.wikimedia.org/wiki/File:Castella_002.jpg">CC0</a></li>
-   <li>特急豪斯登堡號：MaedaAkihiko，<a href="https://commons.wikimedia.org/wiki/File:Series783-R-HuisTenBosch.jpg">CC BY-SA 4.0</a></li>
-   <li>市場畫面：WorldContributor，<a href="https://commons.wikimedia.org/wiki/File:Stalls_inside_the_Tsukiji_fish_market,_Tokyo,_Japan.webm">CC BY-SA 4.0</a>（東京築地）</li>
-   <li>魚市場：U.S. Navy／Grant Gorzocoski，<a href="https://commons.wikimedia.org/wiki/File:Sasebo_Fish_Market_(951512).webm">公有領域</a></li>
-   <li>背景音樂：本站自製（程式合成）</li>
-   <li>部分畫面為 AI 生成：武雄、有田、海岸、軍艦島、長崎蛋糕、豪斯登堡街景與夜景、中洲祭、天神、晚餐</li>
+   <li>畫面照片取自本站行程頁，作者與授權見行程頁最下方「照片來源與授權」</li>
+   <li>動態設計、地圖與背景音樂：本站自製（程式繪製與合成）</li>
   </ul>
  </details>
  <div class="bar">
@@ -89,7 +81,7 @@ video{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:
 </div>
 <script>
 'use strict';
-// 影片由 film/ 的 MP4 播放，字卡已燒進畫面（v2 快節奏大字版，只有橫式）
+// 影片由 film/ 的 MP4 播放，字卡已燒進畫面（v3 30 秒動態設計版，只有橫式）
 const EMBED=new URLSearchParams(location.search).has('embed');
 if(EMBED){const a=document.querySelector('.top a');a.href='film.html';a.target='_top';a.textContent='全螢幕看';}
 const $=id=>document.getElementById(id),v=$('v'),btn=$('play'),track=$('track');
