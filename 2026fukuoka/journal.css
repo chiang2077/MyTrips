@@ -178,3 +178,86 @@ footer .couple-signature{flex-basis:100%;width:100%;margin:10px 0 0;padding-top:
 .gt{display:inline-block;font-size:13px;font-weight:500;line-height:1;padding:4px 8px;border-radius:99px;margin-right:6px;vertical-align:2px;white-space:nowrap}.gt.t{border:1px solid #9a9a8c;color:#55554c}.gt.ok{background:#dbe7d9;color:#2f6b45}.gt.todo{background:#f6dcd4;color:#b5452c}.gt.opt{background:#eceae0;color:#5b5a52}
 .budget-note{margin-top:16px;font-size:14px;line-height:1.6}.budget-note dl{margin:8px 0}.budget-note dl div{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid #0001}.budget-note dt{font-weight:600}.budget-note dd{margin:0;text-align:right}.budget-note dd small{display:block;font-size:13px;color:#6b6a60}
 .credits{margin:12px 0}.credits summary{cursor:pointer;font-size:13px;color:inherit;opacity:.8}.credits p{margin-top:8px}
+
+/* 時間軸每一站地圖按鈕 */
+.step-actions{margin-top:8px}
+.step-map{display:inline-flex;align-items:center;min-height:40px;padding:6px 12px;font-size:13px;font-weight:600;border:1px solid var(--line);border-radius:var(--radius);text-decoration:none;color:var(--ink);background:#fcfbf7;line-height:1}
+.step-map:hover{background:var(--ink);color:var(--paper)}
+
+/* 旅宿卡詳細資料 */
+.hotel-details-body{margin-top:12px;font-size:13px}
+.hotel-jp-info{margin:8px 0;line-height:1.6;color:var(--ink)}
+.hotel-tel-info{margin:8px 0;line-height:1.6}
+.hotel-tel-info a{font-weight:600;color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.hotel-tel-note{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+.hotel-links{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.hotel-driver-btn{font:600 13px var(--sans);color:var(--orange);background:none;border:1px solid var(--orange);border-radius:var(--radius);padding:6px 12px;cursor:pointer;min-height:40px}
+.hotel-driver-btn:hover{background:var(--orange);color:white}
+
+/* 司機卡與用指的日語彈窗 */
+.driver-dialog{width:min(640px,calc(100vw - 32px));max-height:calc(100vh - 48px);max-height:calc(100dvh - 48px);padding:0;border:1px solid var(--line);border-radius:var(--radius);background:var(--paper);color:var(--ink);box-shadow:0 30px 80px #0f1f1a55;overflow:auto;overscroll-behavior:contain}
+.driver-dialog::backdrop{background:#10201bb3;backdrop-filter:blur(3px)}
+.driver-dialog[open]{animation:htb-in .25s ease-out}
+.driver-bar{position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:#f4f1e9f2;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);font:600 13px var(--sans);letter-spacing:.1em;color:var(--muted)}
+.driver-close{font:600 14px var(--sans);color:var(--ink);background:none;border:1px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer;min-height:40px}
+.driver-close:hover{border-color:var(--ink)}
+.driver-dialog-body{padding:32px 24px 20px;text-align:center}
+.driver-jp{font-size:clamp(24px,5.5vw,40px);font-weight:700;line-height:1.45;color:var(--ink);word-break:break-word;overflow-wrap:break-word}
+.driver-addr{font-size:clamp(14px,3.5vw,18px);line-height:1.6;color:#394c44;margin-top:20px;padding:14px 18px;background:#e9e7dc;border-radius:4px;word-break:break-word;overflow-wrap:break-word}
+.driver-zh{font-size:16px;color:var(--muted);margin-top:18px;line-height:1.6}
+.driver-dialog-foot{padding:0 24px 28px;text-align:center}
+.driver-dismiss-btn{font:600 15px var(--sans);background:var(--ink);color:var(--paper);border:0;border-radius:999px;padding:10px 36px;cursor:pointer;min-height:44px}
+.driver-dismiss-btn:hover{background:#2a4d43}
+
+/* 口袋指南日語卡片列表 */
+.driver-cards-grid,.phrase-cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin:14px 0 24px}
+.driver-item-btn,.phrase-item-btn{display:flex;flex-direction:column;justify-content:center;gap:4px;min-height:56px;padding:12px 14px;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);text-align:left;cursor:pointer;font-family:inherit}
+.driver-item-btn:hover,.phrase-item-btn:hover{background:#ede9dc;border-color:var(--ink)}
+.driver-item-btn b,.phrase-item-btn b{font-size:15px;color:var(--ink);line-height:1.4}
+.driver-item-btn small,.phrase-item-btn small{font-size:13px;color:var(--muted);line-height:1.4}
+
+/* 行李打包清單 */
+.task-content{min-width:0}
+.pack-section{margin-top:36px;padding-top:28px;border-top:2px solid var(--line)}
+.pack-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:20px}
+.pack-header-left{display:flex;align-items:baseline;gap:12px}
+.pack-title{font:600 22px var(--serif);margin:0}
+.pack-count{font-size:14px;color:var(--muted);font-weight:600}
+.pack-clear-btn{font:600 13px var(--sans);color:var(--muted);background:none;border:1px solid var(--line);border-radius:var(--radius);padding:6px 12px;cursor:pointer;min-height:40px}
+.pack-clear-btn:hover{color:#b5452c;border-color:#b5452c}
+.pack-confirm{display:flex;align-items:center;gap:8px;font-size:13px;background:#f8ece8;padding:6px 12px;border-radius:var(--radius);border:1px solid #e2bcb2}
+.pack-confirm-yes{background:#b5452c;color:white;border:0;padding:6px 12px;border-radius:var(--radius);cursor:pointer;font-weight:600}
+.pack-confirm-no{background:none;border:1px solid var(--line);padding:6px 12px;border-radius:var(--radius);cursor:pointer}
+.pack-group{margin-bottom:24px}
+.pack-group-title{font:600 14px var(--sans);letter-spacing:.08em;color:var(--orange);margin:0 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.pack-group-items{display:grid;grid-template-columns:1fr;gap:6px}
+.pack-item{display:grid;grid-template-columns:26px 1fr;gap:12px;align-items:center;min-height:44px;padding:6px 10px;border-radius:var(--radius);cursor:pointer;background:#f9f8f4;border:1px solid transparent;transition:background .2s}
+.pack-item:hover{background:#ede9dc}
+.pack-item input{position:absolute;opacity:0;pointer-events:none}
+.pack-check-box{display:grid;place-items:center;width:22px;height:22px;border:1px solid #8b9683;color:transparent;border-radius:50%;transition:all .2s;font-size:12px}
+.pack-item input:checked+.pack-check-box{background:var(--ink);color:var(--gold);border-color:var(--ink)}
+.pack-item.checked .pack-item-text{text-decoration:line-through;color:var(--muted)}
+.pack-item-text{font-size:14px;line-height:1.5;color:var(--ink)}
+
+/* 離線與更新按鈕 */
+.sw-status-panel{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:16px 0;padding:12px 16px;background:#132822;border:1px solid #ffffff20;border-radius:var(--radius);font-size:12px;color:#c7d3c8}
+.sw-version code{font-family:monospace;background:#ffffff15;padding:2px 6px;border-radius:3px;color:var(--gold)}
+.sw-check-btn{font:600 12px var(--sans);background:none;border:1px solid var(--gold);color:var(--gold);padding:6px 14px;border-radius:999px;cursor:pointer;min-height:36px}
+.sw-check-btn:hover:not(:disabled){background:var(--gold);color:var(--ink)}
+.sw-check-btn:disabled{opacity:.5;cursor:default}
+.footer-offline-note{font-size:12px;color:#b2c1b4;margin-top:8px}
+.sw-update-banner{position:fixed;bottom:84px;left:50%;transform:translateX(-50%);z-index:100;background:var(--orange);color:white;padding:12px 24px;border-radius:999px;font:600 14px var(--sans);box-shadow:0 8px 24px #00000045;cursor:pointer;animation:pageIn .3s ease-out;text-align:center;max-width:90vw}
+.sw-update-banner:hover{background:#b24f2d}
+
+@media screen and (max-width:699px){
+ .driver-dialog{width:100vw;max-width:100vw;height:100%;max-height:100%;margin:0;border:0;border-radius:0}
+ .driver-bar{padding:10px 14px;padding-top:max(10px,env(safe-area-inset-top))}
+ .driver-dialog-body{padding:24px 16px 16px}
+ .driver-dialog-foot{padding-bottom:max(24px,env(safe-area-inset-bottom))}
+ .pack-item-text{font-size:16px}
+ .step-map{min-height:42px;font-size:14px}
+ .sw-update-banner{bottom:80px;font-size:14px;padding:14px 20px}
+}
+@media print{
+ .driver-dialog,.sw-status-panel,.sw-update-banner,.step-actions{display:none!important}
+}

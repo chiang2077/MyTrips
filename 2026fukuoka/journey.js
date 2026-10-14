@@ -1,10 +1,111 @@
 'use strict';
 const hotels = [
- {name:'武雄・湯元莊東洋館',en:'YUMOTOSO TOYOKAN',dates:'10.24 — 10.26',nights:2,img:'toyokan.jpg',alt:'東洋館白色外牆與枝垂櫻裝飾，官方照片',room:'「藤」和室・雙人床',meals:'含早晚餐',price:101200,payment:'現場付款',check:'15:00 入住 / 11:00 退房',note:'早晚餐都在房間吃。早餐 07:00–09:00；晚餐時間入住時跟櫃台約。',query:'湯元荘 東洋館 武雄',url:'https://takeo-toyokan.jp/'},
- {name:'長崎・花園露台酒店',en:'GARDEN TERRACE NAGASAKI',dates:'10.26 — 10.28',nights:2,img:'nagasaki.jpg',alt:'長崎港灣黃昏夜景，非飯店照片',room:'離棟海景套房・雙床',meals:'含早餐',price:73010,payment:'已付款',check:'16:00 入住 / 12:00 退房',bus:'https://www.gt-nagasaki.jp/bus/',note:'',query:'Garden Terrace Nagasaki Hotel Resort',url:'https://www.gt-nagasaki.jp/'},
- {name:'豪斯登堡・森林小屋',en:'FOREST VILLA',dates:'10.28 — 10.30',nights:2,img:'forestvilla.jpg',alt:'森林小屋的湖畔紅磚別墅，前景是花草（豪斯登堡官方提供）',room:'湖畔別墅・兩人入住',meals:'含早餐',price:58800,payment:'已付款',check:'15:00 入住 / 11:00 退房',note:'',query:'Huis Ten Bosch Forest Villa',url:'https://www.huistenbosch.co.jp/hotels/fv/'},
- {name:'豪斯登堡・米菲兔房',en:'HOTEL AMSTERDAM',dates:'10.30 — 10.31',nights:1,img:'amsterdamhotel.jpg',alt:'阿姆斯特丹飯店正面，紅磚外牆與紅色遮陽棚（豪斯登堡官方提供）',room:'米菲兔基本房型',meals:'含早餐',price:69200,payment:'已付款',check:'15:00–23:00 入住 / 11:00 退房',note:'',query:'Huis Ten Bosch Hotel Amsterdam',url:'https://www.huistenbosch.co.jp/hotels/am/'},
- {name:'福岡・博多新大谷',en:'HOTEL NEW OTANI HAKATA',dates:'10.31 — 11.02',nights:2,img:'newotani.jpg',alt:'博多新大谷飯店外觀，官方照片',room:'行政雙人房・禁菸・高樓層',meals:'不含早餐',price:55008,payment:'現場付款',check:'14:00–24:00 入住 / 11:00 退房',note:'渡邊通站走路約 1 分鐘。',query:'Hotel New Otani Hakata',url:'https://www.kys-newotani.co.jp/hakata/'}
+ {
+  name:'武雄・湯元莊東洋館',
+  en:'YUMOTOSO TOYOKAN',
+  jpName:'武雄温泉 湯元荘 東洋館',
+  addr:'〒843-0022 佐賀県武雄市武雄町大字武雄7408',
+  tel:'0954-22-2191',
+  telHref:'tel:+81954222191',
+  telNote:'代表號',
+  dates:'10.24 — 10.26',
+  nights:2,
+  img:'toyokan.jpg',
+  alt:'東洋館白色外牆與枝垂櫻裝飾，官方照片',
+  room:'「藤」和室・雙人床',
+  meals:'含早晚餐',
+  price:101200,
+  payment:'現場付款',
+  check:'15:00 入住 / 11:00 退房',
+  note:'早晚餐都在房間吃。早餐 07:00–09:00；晚餐時間入住時跟櫃台約。',
+  query:'湯元荘 東洋館 武雄',
+  url:'https://takeo-toyokan.jp/'
+ },
+ {
+  name:'長崎・花園露台酒店',
+  en:'GARDEN TERRACE NAGASAKI',
+  jpName:'ガーデンテラス長崎ホテル＆リゾート',
+  addr:'〒850-0064 長崎県長崎市秋月町2-3',
+  tel:'0570-014-173',
+  telHref:'tel:0570014173',
+  telNote:'0570 是日本國內付費專線，台灣門號漫遊或網路電話可能撥不通',
+  dates:'10.26 — 10.28',
+  nights:2,
+  img:'nagasaki.jpg',
+  alt:'長崎港灣黃昏夜景，非飯店照片',
+  room:'離棟海景套房・雙床',
+  meals:'含早餐',
+  price:73010,
+  payment:'已付款',
+  check:'16:00 入住 / 12:00 退房',
+  bus:'https://www.gt-nagasaki.jp/bus/',
+  note:'',
+  query:'Garden Terrace Nagasaki Hotel Resort',
+  url:'https://www.gt-nagasaki.jp/'
+ },
+ {
+  name:'豪斯登堡・森林小屋',
+  en:'FOREST VILLA',
+  jpName:'フォレストヴィラ（ハウステンボス）',
+  addr:'〒859-3293 長崎県佐世保市ハウステンボス町7-7',
+  tel:'0570-064-110',
+  telHref:'tel:0570064110',
+  telNote:'豪斯登堡綜合服務專線（語音選單轉接）；0570 是日本國內付費專線，台灣門號漫遊或網路電話可能撥不通',
+  dates:'10.28 — 10.30',
+  nights:2,
+  img:'forestvilla.jpg',
+  alt:'森林小屋的湖畔紅磚別墅，前景是花草（豪斯登堡官方提供）',
+  room:'湖畔別墅・兩人入住',
+  meals:'含早餐',
+  price:58800,
+  payment:'已付款',
+  check:'15:00 入住 / 11:00 退房',
+  note:'',
+  query:'Huis Ten Bosch Forest Villa',
+  url:'https://www.huistenbosch.co.jp/hotels/fv/'
+ },
+ {
+  name:'豪斯登堡・米菲兔房',
+  en:'HOTEL AMSTERDAM',
+  jpName:'ホテルアムステルダム（ハウステンボス）',
+  addr:'〒859-3293 長崎県佐世保市ハウステンボス町7-7',
+  tel:'0570-064-110',
+  telHref:'tel:0570064110',
+  telNote:'豪斯登堡綜合服務專線（語音選單轉接）；0570 是日本國內付費專線，台灣門號漫遊或網路電話可能撥不通',
+  dates:'10.30 — 10.31',
+  nights:1,
+  img:'amsterdamhotel.jpg',
+  alt:'阿姆斯特丹飯店正面，紅磚外牆與紅色遮陽棚（豪斯登堡官方提供）',
+  room:'米菲兔基本房型',
+  meals:'含早餐',
+  price:69200,
+  payment:'已付款',
+  check:'15:00–23:00 入住 / 11:00 退房',
+  note:'',
+  query:'Huis Ten Bosch Hotel Amsterdam',
+  url:'https://www.huistenbosch.co.jp/hotels/am/'
+ },
+ {
+  name:'福岡・博多新大谷',
+  en:'HOTEL NEW OTANI HAKATA',
+  jpName:'ホテルニューオータニ博多',
+  addr:'〒810-0004 福岡市中央区渡辺通1-1-2',
+  tel:'092-714-1111',
+  telHref:'tel:+81927141111',
+  telNote:'代表號',
+  dates:'10.31 — 11.02',
+  nights:2,
+  img:'newotani.jpg',
+  alt:'博多新大谷飯店外觀，官方照片',
+  room:'行政雙人房・禁菸・高樓層',
+  meals:'不含早餐',
+  price:55008,
+  payment:'現場付款',
+  check:'14:00–24:00 入住 / 11:00 退房',
+  note:'渡邊通站走路約 1 分鐘。',
+  query:'Hotel New Otani Hakata',
+  url:'https://www.kys-newotani.co.jp/hakata/'
+ }
 ];
 const days = [
  {date:'10.24',week:'六',city:'武雄',en:'TAKEO',title:'抵達後，<br>把步調交給溫泉。',image:'toyokan.jpg',alt:'武雄湯元莊東洋館官方外觀照片',hotel:0,intro:'落地後不在福岡逗留，直接搭指定席到武雄溫泉。行李寄在車站，吃個午餐、逛武雄神社，再入住東洋館吃晚餐。',route:'福岡國際線 → 博多 → 武雄溫泉站（寄放行李、午餐）→ 武雄神社 → 東洋館',map:'湯元荘 東洋館 武雄',steps:[['04:00','Klook 送機到桃園機場','5 人座休旅車到府接送（詳見 9/25 Klook 確認信）。提早 15 分鐘在上車處等，司機只等 15 分鐘；24 小時前可免費取消。','已訂'],['06:35','長榮 BR104 起飛','桃園第二航廈出發，09:55（當地時間）抵達福岡國際線。','已開票'],['11:53–12:53','博多搭特急往武雄溫泉（指定席）','落地後搭地鐵到博多站（約 5 分鐘），在售票機或綠色窗口買 2 張指定席，每人 ¥3,660，目標 11:53 開、12:53 到。入境慢就改搭 12:54→13:55，快的話 11:18→12:23，一樣買指定席。','規劃','博多駅'],['抵達後','武雄溫泉站寄放行李','大行李先放車站的投幣式置物櫃，空手吃飯、散步；大櫃位滿了，就問站務員或觀光服務處。','規劃','武雄温泉駅'],['13:00 左右','車站周邊午餐','就在車站附近吃，不另外跑。','規劃','武雄温泉駅'],['午後','武雄神社與大楠','從車站搭計程車約 5 分鐘，沿竹林小路去看千年大楠樹，逛完回車站拿行李。','確認','武雄神社'],['15:00 後','拿行李、東洋館入住','從車站搭計程車到東洋館。辦入住時順便問櫃台怎麼叫計程車（電話或請櫃台代叫），明天會用到。已訂「藤」和室雙人床。','已訂','湯元荘 東洋館 武雄'],['晚間','佐賀牛陶板燒與泡湯','住宿含晚餐，用餐時間問旅館就好，今晚不用找餐廳。','含餐','湯元荘 東洋館 武雄']],note:'全程搭指定席。行李寄在武雄溫泉站，午餐和神社都空手走，最後回車站拿行李再去旅館。入住時記得問叫車方式，10/25 會用到。'},
@@ -14,26 +115,106 @@ const days = [
  {date:'10.28',week:'三',city:'長崎・豪斯登堡',en:'NAGASAKI TO HUIS TEN BOSCH',title:'一盒長崎菓子，<br>接上園區長住。',image:'fvgarden.jpg',fp:'center 80%',alt:'森林小屋，綠蔭環繞的湖畔磚造小屋（豪斯登堡官方提供）',hotel:2,intro:'吃完飯店早餐，去岩永梅壽軒排隊買菓子，午餐後前往豪斯登堡。從今天下午一直待到 10/31 中午過後。',route:'花園露台 → 岩永梅壽軒 → 午餐 → 豪斯登堡',map:'Huis Ten Bosch Forest Villa',steps:[['早餐','花園露台早餐與退房','住宿含早餐，12:00 前退房。吃完去岩永梅壽軒排隊，買得到哪些以現場為準。','含餐','Garden Terrace Nagasaki Hotel Resort'],['中午','長崎站周邊午餐','買完到長崎站一帶吃（站內 AMU PLAZA 餐廳很多），順便拿行李。','規劃','長崎駅'],['午後','前往豪斯登堡','JR 九州 10 月的運行日曆顯示，10/28 雙星4047 沒有開。改搭 13:03 長崎發的直達車，14:34 到豪斯登堡站，¥1,730，不用轉車、也不用劃位。','確認','ハウステンボス'],['入住後','森林小屋與園內晚餐','湖畔別墅兩晚已付款；住在豪斯登堡這幾天，正餐都在園區裡解決。','已訂','フォレストヴィラ ハウステンボス']],note:'10/28 午餐後到 10/31 中午過後都在豪斯登堡。園內餐廳不先訂，看玩到哪、排隊狀況和當天營業再決定。'},
  {date:'10.29',week:'四',city:'豪斯登堡',en:'A DAY WITH NO RUSH',title:'今天的待辦，<br>只有好好玩。',image:'htbillum.jpg',alt:'豪斯登堡傍晚點燈，塔樓與運河旁的街屋亮起燈飾',hotel:2,intro:'吃完早餐，好好玩一整天。午餐後可以回湖邊休息，等天黑再出門；三餐都在園裡解決。',route:'森林小屋 → 園內設施 → 運河散步 → 森林小屋',map:'Huis Ten Bosch',steps:[['早餐後','森林小屋早餐，挑兩個最想玩的','住宿含早餐。吃完先把最想玩的兩項排進去；提早入園特典要現場確認。','含餐','フォレストヴィラ ハウステンボス'],['中午','園內午餐與小店','不指定餐廳，看當時在哪一區、排隊情況再選。','自由'],['午後','回森林小屋歇一下','連住兩晚不用收行李，午睡也算行程。','自由'],['夜間','園內晚餐與點燈散步','在園裡吃晚餐，再挑一場當天確定有的表演；下雨就改室內體驗。','自由','ハウステンボス']],note:'萬聖節、玫瑰和夜間秀的檔期，當天看公告；餐廳也以當天營業為準。'},
  {date:'10.30',week:'五',city:'豪斯登堡',en:'A LITTLE MIFFY DAY',title:'換一間房，<br>把可愛留一晚。',image:'miffyroom.jpg',alt:'阿姆斯特丹飯店的米菲兔房（豪斯登堡官方提供，實際房型以入住為準）',hotel:3,intro:'吃完早餐搬到園區中央。今天留給米菲兔、逛街和拍紀念照，午晚餐都在園裡吃。',route:'森林小屋 → 阿姆斯特丹飯店 → 園區中央',map:'Huis Ten Bosch Hotel Amsterdam',steps:[['早餐後','森林小屋早餐、退房、搬行李','住宿含早餐。吃完先問飯店能不能幫忙把行李送過去，不行就自己搬。','含餐','フォレストヴィラ ハウステンボス'],['白天','米菲兔主題區、商店與園內午餐','逛喜歡的周邊，午餐看在哪區就在哪吃；下雨就去室內設施。','規劃','ミッフィー・ワンダースクエア ハウステンボス'],['入住時','米菲兔房・一晚','基本房型，含隔天早餐和備品，¥69,200 已付。入住後把行李放好就能出門。','已訂','ホテルアムステルダム ハウステンボス'],['夜間','園內晚餐與最後一晚散步','晚餐一樣在園裡吃。今晚住在園區正中央，走回房間的路也是風景。','自由','ハウステンボス']],note:'10/31 中午過後才離開。今晚先把戰利品整理好，免得退房時才手忙腳亂塞行李。'},
- {date:'10.31',week:'六',city:'福岡',en:'NAKASU NIGHT',title:'午後回福岡，<br>晚上走進中洲祭。',image:'nakasu-matsuri.jpg',alt:'中洲祭夜晚的「花魅道中」遊行，街上擠滿人潮（Fukuoka Now 提供）',hotel:4,intro:'吃完早餐，上午繼續留在豪斯登堡，中午過後搭特急回福岡。入住博多新大谷後去中洲祭。',route:'豪斯登堡 → 特急豪斯登堡 → 博多新大谷 → 中洲祭 → 柳橋市場周邊',map:'中洲中央通り 福岡',steps:[['早餐後至中午','米菲兔房早餐、最後散步與園內午餐','住宿含早餐。吃完再逛一圈、吃個午餐，中午過後出發。','含餐','ホテルアムステルダム ハウステンボス'],['午後','搭特急豪斯登堡回博多','搭 12:42 的特急豪斯登堡 32 號，14:28 到博多，不用轉車。想多玩一下可改搭 14:43 的 40 號，16:35 到博多，也是直達（13:00–15:00 只有這班）。指定席 10/1 開賣，見待辦。','規劃','ハウステンボス駅'],['抵達後','博多新大谷入住','連住到 11/02，行政雙人房、禁菸、高樓層，不含早餐。','已訂','Hotel New Otani Hakata'],['18:00–21:30','中洲祭（中洲まつり）','第 51 屆中洲祭官方時段是 18:00–23:00。想留住祭典後吃飯的選擇，21:30 左右就開始往柳橋方向走，最晚 22:00 離開。','確認','中洲中央通り 福岡'],['21:45 後','柳橋連合市場周邊找居酒屋','市場店家晚上已經休息，目標是市場和渡邊通一帶還開著的居酒屋；如果看到 23:00，能選的店會少很多。','彈性','柳橋連合市場']],note:'中洲祭 10/31 當天是 18:00–23:00，建議早點離開去吃飯。特急豪斯登堡 32 號 12:42 開、14:28 到博多（週六時刻），10/1 開賣就買指定席。'},
+ {date:'10.31',week:'六',city:'福岡',en:'NAKASU NIGHT',title:'午後回福岡，<br>晚上走進中洲祭。',image:'nakasu-matsuri.jpg',alt:'中洲祭夜晚的「花魅道中」遊行，街上擠滿人潮（Fukuoka Now 提供）',hotel:4,intro:'吃完早餐，上午繼續留在豪斯登堡，中午過後搭特急回福岡。入住博多新大谷後去中洲祭。',route:'豪斯登堡 → 特急豪斯登堡 → 博多新大谷 → 中洲祭 → 柳橋市場周邊',map:'中洲中央通り 福岡',steps:[['早餐後至中午','米菲兔房早餐、最後散步與園內午餐','住宿含早餐。吃完再逛一圈、吃個午餐，中午過後出發。','含餐','ホテルアムステルダム ハウステンボス'],['午後','搭特急豪斯登堡回博多','搭 12:42 的特急豪斯登堡 32 號，14:28 到博多，不用轉車。想多玩一下可改搭 14:43 的 40 號，16:35 到博多，也是直達（13:00–15:00 只有這班）。指定席已開賣，還沒買的話見待辦。','規劃','ハウステンボス駅'],['抵達後','博多新大谷入住','連住到 11/02，行政雙人房、禁菸、高樓層，不含早餐。','已訂','Hotel New Otani Hakata'],['18:00–21:30','中洲祭（中洲まつり）','第 51 屆中洲祭官方時段是 18:00–23:00。想留住祭典後吃飯的選擇，21:30 左右就開始往柳橋方向走，最晚 22:00 離開。','確認','中洲中央通り 福岡'],['21:45 後','柳橋連合市場周邊找居酒屋','市場店家晚上已經休息，目標是市場和渡邊通一帶還開著的居酒屋；如果看到 23:00，能選的店會少很多。','彈性','柳橋連合市場']],note:'中洲祭 10/31 當天是 18:00–23:00，建議早點離開去吃飯。特急豪斯登堡 32 號 12:42 開、14:28 到博多（週六時刻），指定席已開賣，還沒買的話見待辦。'},
  {date:'11.01',week:'日',city:'福岡',en:'SHOPPING DAY',title:'一整天購物，<br>用紀念日晚餐收尾。',image:'tenjin.jpg',fp:'center 85%',alt:'天神的主街渡邊通，三越與天神地下街入口一帶（日本國家旅遊局提供）',hotel:4,intro:'柳橋市場和海木週日休息。今天主力放在這幾年變化最大的天神，再到博多站買茅乃舍和伴手禮，19:00 回渡邊通吃已訂好的晚餐。',route:'新大谷 → 天神・大名 → 博多站 → 博多 Kagen → 新大谷',map:'博多 かげん 福岡',steps:[['10:00–15:30','天神、大名主力購物','以 ONE FUKUOKA、岩田屋、三越、PARCO、天神地下街和大名為主，這一區是福岡這幾年變化最大的地方。','確認','天神 福岡'],['備忘','柳橋市場與海木週日休息','11/1 是週日，柳橋連合市場和海木（だしいなり海木）福岡本店都休息，不排。','不可行','柳橋連合市場'],['16:00–18:00','博多車站買茅乃舍與伴手禮','先到 DEITOS 1 樓伴手禮市場的茅乃舍，再逛博多阪急、AMU、DEITOS 和一品通。茅乃舍營業時間 08:00–21:00。','確認','茅乃舎 博多駅デイトス店'],['18:10–18:30','搭七隈線回渡邊通','從博多站回渡邊通，留點時間走路找店。運河城除非有想買的品牌，這天不繞過去。','規劃','渡辺通駅'],['19:00','博多 Kagen（博多 かげん）','Tabelog 已確認 2 位，可用餐 3 小時。套餐每人 ¥12,100，另收座位費每人 ¥770；座位不指定，餐費當天在店裡付。','已訂','博多 かげん 福岡']],note:'購物順序：天神看新地標和服飾選物，博多站先買茅乃舍再補其他伴手禮；運河城有特定品牌才去。Kagen 取消規則：前一天收 30%，當天有聯絡收 50%，沒聯絡收 100%。'},
  {date:'11.02',week:'一',city:'返程',en:'UNTIL NEXT TIME',title:'市場吃早餐，<br>再把秋天帶回家。',image:'yanagibashi.jpg',fp:'22% center',mv:'fm-pr',alt:'柳橋連合市場的攤位與通道',hotel:null,intro:'飯店不含早餐。先線上報到、把行李寄在飯店，08:00 去柳橋連合市場邊逛邊吃早餐；再走回飯店拿行李，搭計程車 10:00 到福岡國際線。',route:'博多新大谷 → 柳橋連合市場 → 走回飯店 → 計程車 → 福岡國際線',map:'福岡空港 国際線',steps:[['07:30 前','線上報到、退房、寄放行李','先在航空公司網站完成線上報到，退房後把大行李留在飯店，輕裝去市場。','規劃'],['08:00–09:15','柳橋連合市場採買與早餐','市場 08:00 起陸續開店，可以先逛生鮮和伴手禮；F・Concept 09:00 開門，能簡單吃早餐。柳橋食堂 09:30 才開，這天等不到。','確認','柳橋連合市場'],['09:15–09:25','走回博多新大谷拿行李','飯店標示市場走路約 2 分鐘，加上提東西和拿行李，抓 10 分鐘。','規劃','Hotel New Otani Hakata'],['09:25–10:00','叫計程車到福岡國際線','預留 10 分鐘等車，車程約 20–25 分鐘。跟司機說要到國際線航廈，在 3 樓下車最方便。','規劃','福岡空港 国際線'],['10:00','抵達國際線，託運、安檢','已線上報到、不辦退稅，直接託運、出境、安檢。','確認','福岡空港 国際線'],['12:15','長榮 BR105 起飛','福岡國際線出發，13:50 抵達桃園第二航廈（都是當地時間）。','已開票']],note:'11/2 是週一，市場有開，但每家店時間不一樣。09:15 離開市場、09:25 叫車，已經算進 10 分鐘等車時間，目標 10:00 到國際線。海木 11:00 才開，這天還是趕不上。'}
 ];
 const tasks = [
- {id:'buy-htb-express',type:'買票',title:'買特急豪斯登堡 32 號',date:'10/1 開賣',note:'10/31 12:42 豪斯登堡 → 14:28 博多，指定席 2 位；備案 40 號 14:43 → 16:35。在 JR 九州網路訂票購買。',platform:'JR 九州',url:'https://train.yoyaku.jrkyushu.co.jp/',search:''},
- {id:'pack',type:'行李',title:'收行李',date:'10/23 晚',note:'充電器、行動電源（放隨身行李）、換洗衣物、電動牙刷、個人藥品。',platform:'',url:'',search:''},
+ {id:'buy-htb-express',type:'買票',title:'買特急豪斯登堡 32 號',date:'已開賣，盡快買',note:'10/31 12:42 豪斯登堡 → 14:28 博多，指定席 2 位；備案 40 號 14:43 → 16:35。在 JR 九州網路訂票購買。',platform:'JR 九州',url:'https://train.yoyaku.jrkyushu.co.jp/',search:''},
+ {id:'pack',type:'行李',title:'收行李',date:'10/23 晚',note:'請看下方「行李清單」逐項準備與勾選。',platform:'',url:'',search:''}
 ];
+
+const packingGroups = [
+ {
+  category: '證件與錢',
+  items: [
+   { id: 'pack:passport', name: '護照' },
+   { id: 'pack:money', name: '信用卡與日圓現金' },
+   { id: 'pack:vjw', name: 'Visit Japan Web 填好並截圖' },
+   { id: 'pack:esim', name: 'eSIM 裝好、出發當天再開' },
+   { id: 'pack:confirmation', name: '訂房與車票確認信在手機裡找得到' }
+  ]
+ },
+ {
+  category: '電子用品',
+  items: [
+   { id: 'pack:charger', name: '手機充電器與充電線' },
+   { id: 'pack:powerbank', name: '行動電源（只能放隨身行李，不能託運）' }
+  ]
+ },
+ {
+  category: '衣物',
+  items: [
+   { id: 'pack:clothes', name: '換洗衣物' },
+   { id: 'pack:jacket', name: '薄外套（十月底早晚偏涼）' },
+   { id: 'pack:shoes', name: '好走的鞋' },
+   { id: 'pack:umbrella', name: '摺疊傘' }
+  ]
+ },
+ {
+  category: '盥洗與藥品',
+  items: [
+   { id: 'pack:toothbrush', name: '電動牙刷' },
+   { id: 'pack:medicine', name: '個人藥品' }
+  ]
+ },
+ {
+  category: '回程',
+  items: [
+   { id: 'pack:bag', name: '多留行李空間或帶一個摺疊袋（有田的陶器、伴手禮）' }
+  ]
+ }
+];
+
+const driverDestinations = [
+ { zh: '東洋館（武雄）', jp: '武雄温泉 湯元荘 東洋館', addr: '〒843-0022 佐賀県武雄市武雄町大字武雄7408' },
+ { zh: '武雄溫泉站', jp: '武雄温泉駅', addr: '' },
+ { zh: '武雄神社', jp: '武雄神社', addr: '' },
+ { zh: '陶山神社（有田）', jp: '陶山神社', addr: '' },
+ { zh: '九州陶瓷文化館', jp: '佐賀県立九州陶磁文化館', addr: '' },
+ { zh: '有田瓷器城', jp: 'アリタセラ', addr: '' },
+ { zh: '有田站', jp: '有田駅', addr: '' },
+ { zh: '長崎站', jp: '長崎駅', addr: '' },
+ { zh: '哥拉巴天空步道入口', jp: 'グラバースカイロード', addr: '' },
+ { zh: '長崎花園露台酒店', jp: 'ガーデンテラス長崎ホテル＆リゾート', addr: '〒850-0064 長崎県長崎市秋月町2-3' },
+ { zh: '軍艦島數位博物館', jp: '軍艦島デジタルミュージアム', addr: '' },
+ { zh: '大阪屋濱町店', jp: '大阪屋 浜町店', addr: '' },
+ { zh: '博多新大谷', jp: 'ホテルニューオータニ博多', addr: '〒810-0004 福岡市中央区渡辺通1-1-2' },
+ { zh: '福岡機場國際線', jp: '福岡空港 国際線ターミナル', addr: '' }
+];
+
+const driverPhrases = [
+ { zh: '請幫我寄放行李', jp: '荷物を預かっていただけますか。' },
+ { zh: '投幣置物櫃在哪裡？', jp: 'コインロッカーはどこですか。' },
+ { zh: '請幫我叫計程車', jp: 'タクシーを呼んでいただけますか。' },
+ { zh: '指定席兩張', jp: '指定席を２枚お願いします。' },
+ { zh: '我來領預訂的便當', jp: '予約したお弁当を受け取りに来ました。' },
+ { zh: '我有訂位（兩位）', jp: '予約しています。２名です。' },
+ { zh: '今晚想訂飯店餐廳，兩位', jp: '今夜、ホテルのレストランを２名で予約したいです。' },
+ { zh: '可以刷卡嗎？', jp: 'クレジットカードは使えますか。' },
+ { zh: '請幫我辦免稅，我有護照', jp: '免税でお願いします。パスポートがあります。' },
+ { zh: '可以幫我把行李送到阿姆斯特丹飯店嗎？', jp: '荷物をホテルアムステルダムまで運んでいただけますか。' }
+];
+
 const $ = s => document.querySelector(s);
 const yen = n => '¥'+n.toLocaleString('en-US');
 const mapLink = q => 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);
 const confirmedMaps=[['武雄・有田',[['武雄溫泉站','武雄温泉駅'],['武雄神社','武雄神社'],['東洋館','湯元荘 東洋館 武雄'],['武雄溫泉樓門','武雄温泉楼門'],['陶山神社','陶山神社 有田'],['九州陶瓷文化館','佐賀県立九州陶磁文化館'],['有田瓷器城','アリタセラ']]],['長崎',[['長崎站','長崎駅'],['哥拉巴天空步道','グラバースカイロード'],['哥拉巴園','グラバー園'],['大浦天主堂','大浦天主堂'],['長崎花園露台酒店','Garden Terrace Nagasaki Hotel Resort'],['軍艦島數位博物館','軍艦島デジタルミュージアム'],['原爆資料館','長崎原爆資料館'],['大阪屋濱町店','大阪屋 浜町店 長崎'],['岩永梅壽軒','岩永梅寿軒']]],['豪斯登堡',[['豪斯登堡站','ハウステンボス駅'],['森林小屋','フォレストヴィラ ハウステンボス'],['阿姆斯特丹飯店','ホテルアムステルダム ハウステンボス']]],['福岡',[['博多新大谷','Hotel New Otani Hakata'],['中洲中央通','中洲中央通り 福岡'],['柳橋連合市場','柳橋連合市場 福岡'],['天神','天神 福岡'],['茅乃舍博多站店','茅乃舎 博多駅デイトス店'],['博多 Kagen','博多 かげん 福岡'],['福岡機場國際線','福岡空港 国際線ターミナル']]]];
+
+// stateKey 名字是歷史遺留，不可更改以保留既有勾選記錄
 const stateKey = 'kyushu-2026-cancellation-checklist-v3';
 let checked = {},storageOK=true;
 try{const stored=JSON.parse(localStorage.getItem(stateKey)||'{}');if(stored&&typeof stored==='object'&&!Array.isArray(stored))checked=stored;}catch{storageOK=false;}
 let activeDay=0;
-$('#confirmed-maps').innerHTML=confirmedMaps.map(group=>`<div><b>${group[0]}</b>${group[1].map(place=>`<a href="${mapLink(place[1])}" target="_blank" rel="noopener noreferrer">${place[0]}</a>`).join('')}</div>`).join('');
+
+const confirmedMapsEl = $('#confirmed-maps');
+if(confirmedMapsEl){
+ confirmedMapsEl.innerHTML=confirmedMaps.map(group=>`<div><b>${group[0]}</b>${group[1].map(place=>`<a href="${mapLink(place[1])}" target="_blank" rel="noopener noreferrer">${place[0]}</a>`).join('')}</div>`).join('');
+}
+
 function renderDay(index){
  activeDay=Math.max(0,Math.min(9,index));const d=days[activeDay],h=hotels[d.hotel];
- $('#day-stage').innerHTML=`<article class="day-page"><figure class="day-photo"><img src="img/${d.image}" alt="${d.alt}" width="1000" height="1200"></figure><div class="day-copy"><div class="day-label"><span>${d.date}（${d.week}）・${d.city}</span></div><h3>${d.title}</h3><p class="day-intro">${d.intro}</p><ol class="timeline">${d.steps.map(s=>`<li><time>${s[0]}</time><div><h4>${s[1]}<small class="badge ${s[3]==='已訂'||s[3]==='已開票'?'confirmed':''}">${s[3]}</small></h4><p>${s[2]}</p></div></li>`).join('')}</ol>${d.task?`<div class="day-note attention">${d.note} <a href="#tasks">處理待辦 ↗</a></div>`:''}<div class="day-bottom">${h?`<a href="#hotel-${d.hotel}" class="sleep-link"><small>今晚住這裡</small><strong>${h.name}</strong></a>`:'<div class="sleep-link"><small>下一站</small><strong>回到溫暖的家</strong></div>'}<a class="map-link" href="${mapLink(d.map)}" target="_blank" rel="noopener noreferrer">開啟地圖 ↗</a></div></div></article>`;
+ $('#day-stage').innerHTML=`<article class="day-page"><figure class="day-photo"><img src="img/${d.image}" alt="${d.alt}" width="1000" height="1200"></figure><div class="day-copy"><div class="day-label"><span>${d.date}（${d.week}）・${d.city}</span></div><h3>${d.title}</h3><p class="day-intro">${d.intro}</p><ol class="timeline">${d.steps.map(s=>`<li><time>${s[0]}</time><div><h4>${s[1]}<small class="badge ${s[3]==='已訂'||s[3]==='已開票'?'confirmed':''}">${s[3]}</small></h4><p>${s[2]}</p>${s[4]?`<div class="step-actions"><a class="step-map" href="${mapLink(s[4])}" target="_blank" rel="noopener noreferrer">地圖 ↗</a></div>`:''}</div></li>`).join('')}</ol>${d.task?`<div class="day-note attention">${d.note} <a href="#tasks">處理待辦 ↗</a></div>`:''}<div class="day-bottom">${h?`<a href="#hotel-${d.hotel}" class="sleep-link"><small>今晚住這裡</small><strong>${h.name}</strong></a>`:'<div class="sleep-link"><small>下一站</small><strong>回到溫暖的家</strong></div>'}<a class="map-link" href="${mapLink(d.map)}" target="_blank" rel="noopener noreferrer">開啟地圖 ↗</a></div></div></article>`;
  document.querySelectorAll('.day-rail a').forEach((a,i)=>{if(i===activeDay)a.setAttribute('aria-current','date');else a.removeAttribute('aria-current');});
  $('#prev-day').disabled=activeDay===0;$('#next-day').disabled=activeDay===9;$('#day-position').textContent=String(activeDay+1).padStart(2,'0')+' / 10';
  $('#mobile-day-select').value=String(activeDay);
@@ -42,13 +223,197 @@ function renderDay(index){
 }
 $('#mobile-day-select').innerHTML=days.map((d,i)=>`<option value="${i}">第 ${i+1} 天　${d.date}（${d.week}）${d.city}</option>`).join('');
 $('#day-rail').innerHTML=days.map((d,i)=>`<a href="#day-${i+1}" data-day="${i}" aria-label="第 ${i+1} 天 ${d.date} ${d.city}"><span>${String(i+1).padStart(2,'0')}</span><b>${d.city}</b><small>${d.date}</small></a>`).join('');
-$('#hotel-grid').innerHTML=hotels.map((h,i)=>`<article class="hotel-card" id="hotel-${i}"><figure><img src="img/${h.img}" alt="${h.alt}" loading="lazy" width="1000" height="700"><span>${h.nights} 晚</span></figure><div class="hotel-info"><div class="hotel-top"><small>${h.dates}</small></div><h3>${h.name}</h3><p>${h.room}</p><div class="hotel-tags"><span class="${h.payment==='已付款'?'paid':'due'}">${h.payment}</span><span>${h.meals}</span></div><div class="hotel-price"><strong>${yen(h.price)}</strong></div><details><summary>入住資訊與地圖 <span>＋</span></summary><p>${h.check}${h.note?'<br>'+h.note:''}</p><a href="${mapLink(h.query)}" target="_blank" rel="noopener noreferrer">地圖導航 ↗</a> <a href="${h.url}" target="_blank" rel="noopener noreferrer">飯店官網 ↗</a>${h.bus?` <a href="${h.bus}" target="_blank" rel="noopener noreferrer">接駁車時刻 ↗</a>`:''}</details></div></article>`).join('');
+
+$('#hotel-grid').innerHTML=hotels.map((h,i)=>`<article class="hotel-card" id="hotel-${i}"><figure><img src="img/${h.img}" alt="${h.alt}" loading="lazy" width="1000" height="700"><span>${h.nights} 晚</span></figure><div class="hotel-info"><div class="hotel-top"><small>${h.dates}</small></div><h3>${h.name}</h3><p>${h.room}</p><div class="hotel-tags"><span class="${h.payment==='已付款'?'paid':'due'}">${h.payment}</span><span>${h.meals}</span></div><div class="hotel-price"><strong>${yen(h.price)}</strong></div><details><summary>入住資訊與地圖 <span>＋</span></summary><div class="hotel-details-body"><p class="hotel-jp-info"><b>日文名：</b>${h.jpName}<br><b>地址：</b>${h.addr}</p><p class="hotel-tel-info"><b>電話：</b><a href="${h.telHref}">${h.tel}</a>${h.telNote?`<small class="hotel-tel-note">（${h.telNote}）</small>`:''}</p><p>${h.check}${h.note?'<br>'+h.note:''}</p><div class="hotel-links"><button type="button" class="hotel-driver-btn" data-hotel-driver="${i}">給司機看 ↗</button><a href="${mapLink(h.query)}" target="_blank" rel="noopener noreferrer">地圖導航 ↗</a> <a href="${h.url}" target="_blank" rel="noopener noreferrer">飯店官網 ↗</a>${h.bus?` <a href="${h.bus}" target="_blank" rel="noopener noreferrer">接駁車時刻 ↗</a>`:''}</div></div></details></div></article>`).join('');
+
 $('#task-list').innerHTML=tasks.map((t,i)=>`<article class="task-item" data-task="${t.id}"><label class="check-wrap"><input type="checkbox" data-check="${t.id}" ${checked[t.id]===true?'checked':''} aria-label="${t.title}：已完成"><span aria-hidden="true">✓</span></label><div><div class="task-meta"><span>${t.type}</span><small>${t.date}</small></div><h3>${t.title}</h3><p>${t.note}</p>${t.url||t.search?`<div class="task-actions">${t.url?`<a href="${t.url}" target="_blank" rel="noopener noreferrer">前往 ${t.platform} ↗</a>`:''}${t.search?`<button data-copy="${i}">複製郵件搜尋詞</button>`:''}</div>`:''}</div></article>`).join('');
-function updateTasks(){let done=tasks.filter(t=>checked[t.id]===true).length;$('#task-count').textContent=done+' / '+tasks.length;$('#nav-count').textContent=tasks.length-done;$('#mobile-count').textContent=tasks.length-done;$('#task-fill').style.width=(done/tasks.length*100)+'%';document.querySelectorAll('.task-item').forEach(el=>el.classList.toggle('done',checked[el.dataset.task]===true));if(!storageOK)$('#storage-note').textContent='這個瀏覽器不能存檔，勾選只在這次開著時有效；勾選不會取消任何訂單。';}
+
+function updateTasks(){
+ let done=tasks.filter(t=>checked[t.id]===true).length;
+ $('#task-count').textContent=done+' / '+tasks.length;
+ $('#nav-count').textContent=tasks.length-done;
+ $('#mobile-count').textContent=tasks.length-done;
+ $('#task-fill').style.width=(done/tasks.length*100)+'%';
+ document.querySelectorAll('.task-item').forEach(el=>el.classList.toggle('done',checked[el.dataset.task]===true));
+ if(!storageOK)$('#storage-note').textContent='這個瀏覽器不能存檔，勾選只在這次開著時有效。';
+}
+
 let toastTimer;
-function toast(message){$('#toast').textContent=message;$('#toast').classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').classList.remove('visible'),3000);}
-$('#task-list').addEventListener('change',e=>{if(!e.target.dataset.check)return;checked[e.target.dataset.check]=e.target.checked;try{localStorage.setItem(stateKey,JSON.stringify(checked));}catch{storageOK=false;}updateTasks();toast(e.target.checked?'記下來了。訂單有沒有真的取消，還是以平台為準。':'改回還沒處理。');});
-$('#task-list').addEventListener('click',async e=>{const b=e.target.closest('[data-copy]');if(!b)return;const term=tasks[Number(b.dataset.copy)].search;try{await navigator.clipboard.writeText(term);toast('已複製：'+term);}catch{toast('搜尋原信：'+term);}});
+function toast(message){
+ $('#toast').textContent=message;
+ $('#toast').classList.add('visible');
+ clearTimeout(toastTimer);
+ toastTimer=setTimeout(()=>$('#toast').classList.remove('visible'),3000);
+}
+
+$('#task-list').addEventListener('change',e=>{
+ if(!e.target.dataset.check)return;
+ checked[e.target.dataset.check]=e.target.checked;
+ try{localStorage.setItem(stateKey,JSON.stringify(checked));}catch{storageOK=false;}
+ updateTasks();
+ toast(e.target.checked?'記下來了。':'改回還沒處理。');
+});
+
+$('#task-list').addEventListener('click',async e=>{
+ const b=e.target.closest('[data-copy]');
+ if(!b)return;
+ const term=tasks[Number(b.dataset.copy)].search;
+ try{await navigator.clipboard.writeText(term);toast('已複製：'+term);}catch{toast('搜尋原信：'+term);}
+});
+
+// 行李打包清單
+function renderPackGroups(){
+ const container=$('#pack-groups');
+ if(!container)return;
+ container.innerHTML=packingGroups.map(g=>`
+  <div class="pack-group">
+   <h4 class="pack-group-title">${g.category}</h4>
+   <div class="pack-group-items">
+    ${g.items.map(item=>`
+     <label class="pack-item ${checked[item.id]===true?'checked':''}">
+      <input type="checkbox" data-pack-check="${item.id}" ${checked[item.id]===true?'checked':''}>
+      <span class="pack-check-box" aria-hidden="true">✓</span>
+      <span class="pack-item-text">${item.name}</span>
+     </label>
+    `).join('')}
+   </div>
+  </div>
+ `).join('');
+ updatePackCount();
+}
+
+function updatePackCount(){
+ const countEl=$('#pack-count');
+ if(!countEl)return;
+ let total=0,done=0;
+ packingGroups.forEach(g=>{
+  g.items.forEach(it=>{
+   total++;
+   if(checked[it.id]===true)done++;
+  });
+ });
+ countEl.textContent=`已收 ${done} / ${total} 項`;
+}
+
+const packSection=$('#pack-section');
+if(packSection){
+ packSection.addEventListener('change',e=>{
+  const chk=e.target.closest('[data-pack-check]');
+  if(!chk)return;
+  const id=chk.dataset.packCheck;
+  if(chk.checked){
+   checked[id]=true;
+  }else{
+   delete checked[id];
+  }
+  try{localStorage.setItem(stateKey,JSON.stringify(checked));}catch{storageOK=false;}
+  const label=chk.closest('.pack-item');
+  if(label)label.classList.toggle('checked',chk.checked);
+  updatePackCount();
+  toast(chk.checked?'記下來了。':'改回還沒處理。');
+ });
+
+ const clearBtn=$('#pack-clear-btn');
+ const confirmBox=$('#pack-confirm');
+ const yesBtn=$('#pack-confirm-yes');
+ const noBtn=$('#pack-confirm-no');
+ if(clearBtn&&confirmBox){
+  clearBtn.addEventListener('click',()=>{
+   clearBtn.hidden=true;
+   confirmBox.hidden=false;
+  });
+  if(noBtn){
+   noBtn.addEventListener('click',()=>{
+    confirmBox.hidden=true;
+    clearBtn.hidden=false;
+   });
+  }
+  if(yesBtn){
+   yesBtn.addEventListener('click',()=>{
+    Object.keys(checked).forEach(k=>{
+     if(k.startsWith('pack:'))delete checked[k];
+    });
+    try{localStorage.setItem(stateKey,JSON.stringify(checked));}catch{storageOK=false;}
+    renderPackGroups();
+    confirmBox.hidden=true;
+    clearBtn.hidden=false;
+    toast('行李清單已全部清空。');
+   });
+  }
+ }
+}
+
+// 司機卡與用指的日語
+const dGrid=$('#driver-cards-grid');
+if(dGrid){
+ dGrid.innerHTML=driverDestinations.map((d,i)=>`
+  <button type="button" class="driver-item-btn" data-driver-dest="${i}">
+   <b>${d.zh}</b>
+   <small>${d.jp}</small>
+  </button>
+ `).join('');
+}
+const pGrid=$('#phrase-cards-grid');
+if(pGrid){
+ pGrid.innerHTML=driverPhrases.map((p,i)=>`
+  <button type="button" class="phrase-item-btn" data-phrase="${i}">
+   <b>${p.zh}</b>
+   <small>${p.jp}</small>
+  </button>
+ `).join('');
+}
+
+const driverDlg=$('#driver-dialog');
+let driverOpener=null;
+function openDriverDialog(jpText,addrText,zhText,btn){
+ if(!driverDlg||typeof driverDlg.showModal!=='function')return;
+ $('#driver-dialog-jp').textContent=jpText;
+ const addrEl=$('#driver-dialog-addr');
+ if(addrText){
+  addrEl.textContent=addrText;
+  addrEl.hidden=false;
+ }else{
+  addrEl.textContent='';
+  addrEl.hidden=true;
+ }
+ $('#driver-dialog-zh').textContent=zhText;
+ driverOpener=btn||null;
+ driverDlg.showModal();
+ driverDlg.scrollTop=0;
+}
+if(driverDlg){
+ driverDlg.addEventListener('click',e=>{
+  if(e.target.closest('[data-driver-close]')||e.target===driverDlg){
+   driverDlg.close();
+  }
+ });
+ driverDlg.addEventListener('close',()=>{
+  if(driverOpener)driverOpener.focus();
+  driverOpener=null;
+ });
+}
+
+document.addEventListener('click',e=>{
+ const destBtn=e.target.closest('[data-driver-dest]');
+ if(destBtn){
+  const d=driverDestinations[Number(destBtn.dataset.driverDest)];
+  if(d)openDriverDialog(d.jp+'までお願いします。',d.addr,d.zh,destBtn);
+  return;
+ }
+ const phraseBtn=e.target.closest('[data-phrase]');
+ if(phraseBtn){
+  const p=driverPhrases[Number(phraseBtn.dataset.phrase)];
+  if(p)openDriverDialog(p.jp,'',p.zh,phraseBtn);
+  return;
+ }
+ const hotelDriverBtn=e.target.closest('[data-hotel-driver]');
+ if(hotelDriverBtn){
+  const h=hotels[Number(hotelDriverBtn.dataset.hotelDriver)];
+  if(h)openDriverDialog(h.jpName+'までお願いします。',h.addr,h.name,hotelDriverBtn);
+  return;
+ }
+});
+
 function scrollToDay(){
  const behavior=matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth';
  if(getComputedStyle($('#mobile-day-nav')).display!=='none'){
@@ -64,10 +429,175 @@ $('#mobile-next-day').addEventListener('click',()=>selectDay(activeDay+1));
 window.addEventListener('hashchange',dayFromHash);
 $('#prev-day').addEventListener('click',()=>{location.hash='day-'+activeDay;});$('#next-day').addEventListener('click',()=>{location.hash='day-'+(activeDay+2);});
 $('#day-rail').addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();const next=Math.max(0,Math.min(9,activeDay+(e.key==='ArrowRight'?1:-1)));location.hash='day-'+(next+1);document.querySelectorAll('.day-rail a')[next].focus();}});
+
 function renderBudget(){let input=$('#extra-budget'),v=Number(input.value);if(!Number.isFinite(v)||v<0||v>2000000){input.setCustomValidity('請輸入 0 至 2,000,000 日圓');return;}input.setCustomValidity('');let sum=357218+12300+22000+9920+5600+25740+v;$('#budget-total').textContent='NT$ '+Math.round(sum*Number($('#budget-rate').value)+9250+1352).toLocaleString('en-US');$('#budget-jpy').textContent='日本境內 '+yen(sum)+' ＋ 機票與 eSIM（台幣）';$('#extra-value').textContent=yen(v);}
 $('#budget-rate').addEventListener('change',renderBudget);$('#extra-budget').addEventListener('input',renderBudget);
-function downloadReminder(){const remaining=tasks.filter(t=>!checked[t.id]);if(!remaining.length){toast('待辦都勾完了。');return;}const esc=s=>s.replace(/\\/g,'\\\\').replace(/\n/g,'\\n').replace(/,/g,'\\,').replace(/;/g,'\\;');const dt=new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d{3}Z/,'Z');const lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Kyushu Journal//Trip Reminder//ZH','CALSCALE:GREGORIAN','BEGIN:VEVENT','UID:kyushu-cancel-20261016@personal-trip','DTSTAMP:'+dt,'DTSTART:20261016T010000Z','DTEND:20261016T013000Z','SUMMARY:'+esc('九州旅行：出發前待辦'),'DESCRIPTION:'+esc('其他備案住宿和博多紀念日晚餐都已確認取消；這個提醒不會幫你取消訂單。\n'+remaining.map(t=>t.title+' '+t.date+'；'+t.note).join('\n')),'BEGIN:VALARM','TRIGGER:PT0M','ACTION:DISPLAY','DESCRIPTION:記得處理九州旅行的待辦','END:VALARM','END:VEVENT','END:VCALENDAR'];const folded=lines.map(line=>{let result='',bytes=0;for(const ch of line){const size=new TextEncoder().encode(ch).length;if(bytes+size>73){result+='\r\n ';bytes=1;}result+=ch;bytes+=size;}return result;}).join('\r\n')+'\r\n';const url=URL.createObjectURL(new Blob([folded],{type:'text/calendar;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='九州退訂提醒-20261016.ics';a.click();setTimeout(()=>URL.revokeObjectURL(url),3000);toast('提醒檔已下載，匯入行事曆後才會跳通知。');}
-$('#download-reminder').addEventListener('click',downloadReminder);$('#print-trip').addEventListener('click',()=>{window.print();});
-const printSummary=document.createElement('section');printSummary.className='print-summary';printSummary.innerHTML='<h2>十天行程總覽</h2>'+days.map((d,i)=>`<article><h3>${d.date} ${d.city}・${d.title.replace('<br>','')}</h3><p>${d.route}</p>${d.steps.map(s=>`<p>${s[0]}　${s[1]}：${s[2]}</p>`).join('')}<p>${d.hotel===null?'返程':hotels[d.hotel].name}。${d.note}</p></article>`).join('');$('#journey').appendChild(printSummary);
-updateTasks();renderBudget();renderDay(0);dayFromHash();
-if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){document.querySelectorAll('.topbar nav a,.mobile-nav a').forEach(a=>{if(a.hash==='#'+e.target.id)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});}});},{rootMargin:'-15% 0px -60% 0px'});['journey','stays','tasks','guide','budget'].forEach(id=>observer.observe(document.getElementById(id)));}
+
+function downloadReminder(){
+ const remaining=tasks.filter(t=>!checked[t.id]);
+ if(!remaining.length){toast('待辦都勾完了。');return;}
+ const esc=s=>s.replace(/\\/g,'\\\\').replace(/\n/g,'\\n').replace(/,/g,'\\,').replace(/;/g,'\\;');
+ const dt=new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d{3}Z/,'Z');
+ const lines=[
+  'BEGIN:VCALENDAR',
+  'VERSION:2.0',
+  'PRODID:-//Kyushu Journal//Trip Reminder//ZH',
+  'CALSCALE:GREGORIAN',
+  'BEGIN:VEVENT',
+  'UID:kyushu-todo-20261016@personal-trip',
+  'DTSTAMP:'+dt,
+  'DTSTART:20261016T010000Z',
+  'DTEND:20261016T013000Z',
+  'SUMMARY:'+esc('九州旅行：出發前待辦'),
+  'DESCRIPTION:'+esc(remaining.map(t=>t.title+' '+t.date+'；'+t.note).join('\n')),
+  'BEGIN:VALARM',
+  'TRIGGER:PT0M',
+  'ACTION:DISPLAY',
+  'DESCRIPTION:記得處理九州旅行的待辦',
+  'END:VALARM',
+  'END:VEVENT',
+  'END:VCALENDAR'
+ ];
+ const folded=lines.map(line=>{let result='',bytes=0;for(const ch of line){const size=new TextEncoder().encode(ch).length;if(bytes+size>73){result+='\r\n ';bytes=1;}result+=ch;bytes+=size;}return result;}).join('\r\n')+'\r\n';
+ const url=URL.createObjectURL(new Blob([folded],{type:'text/calendar;charset=utf-8'}));
+ const a=document.createElement('a');
+ a.href=url;
+ a.download='九州行前待辦-20261016.ics';
+ a.click();
+ setTimeout(()=>URL.revokeObjectURL(url),3000);
+ toast('提醒檔已下載，匯入行事曆後才會跳通知。');
+}
+$('#download-reminder').addEventListener('click',downloadReminder);
+$('#print-trip').addEventListener('click',()=>{window.print();});
+
+const printSummary=document.createElement('section');
+printSummary.className='print-summary';
+printSummary.innerHTML='<h2>十天行程總覽</h2>'+days.map((d,i)=>`<article><h3>${d.date} ${d.city}・${d.title.replace('<br>','')}</h3><p>${d.route}</p>${d.steps.map(s=>`<p>${s[0]}　${s[1]}：${s[2]}</p>`).join('')}<p>${d.hotel===null?'返程':hotels[d.hotel].name}。${d.note}</p></article>`).join('');
+$('#journey').appendChild(printSummary);
+
+// 離線瀏覽與更新機制
+const hadSWController = Boolean(navigator.serviceWorker && navigator.serviceWorker.controller);
+function showSWUpdateBanner(){
+ let banner=$('#sw-update-banner');
+ if(!banner){
+  banner=document.createElement('div');
+  banner.id='sw-update-banner';
+  banner.className='sw-update-banner';
+  banner.setAttribute('role','alert');
+  banner.textContent='有新版行程，點這裡更新';
+  banner.addEventListener('click',()=>{location.reload();});
+  document.body.appendChild(banner);
+ }
+}
+
+function updateSWVersionDisplay(){
+ if(!('caches' in window))return;
+ caches.keys().then(keys=>{
+  const cur=keys.find(k=>k.startsWith('mytrips-2026fukuoka-'));
+  if(cur){
+   const hash=cur.replace('mytrips-2026fukuoka-','');
+   const code=$('#sw-version-code');
+   if(code)code.textContent=hash.slice(0,7);
+  }
+ }).catch(()=>{});
+}
+
+if('serviceWorker' in navigator && location.protocol!=='file:'){
+ navigator.serviceWorker.addEventListener('controllerchange',()=>{
+  if(hadSWController){
+   showSWUpdateBanner();
+  }
+ });
+ addEventListener('load',()=>{
+  navigator.serviceWorker.register('sw.js').then(()=>{
+   updateSWVersionDisplay();
+   return navigator.serviceWorker.ready;
+  }).then(()=>{
+   updateSWVersionDisplay();
+   let seen=false;
+   try{seen=localStorage.getItem('kyushu-offline-ready')==='1';localStorage.setItem('kyushu-offline-ready','1');}catch(e){}
+   if(!seen)toast('已存到這支手機，沒網路也能看');
+  }).catch(()=>{});
+ });
+
+ const checkBtn=$('#sw-check-btn');
+ if(checkBtn){
+  checkBtn.addEventListener('click',async ()=>{
+   if(!navigator.onLine){
+    toast('現在沒網路');
+    return;
+   }
+   checkBtn.disabled=true;
+   checkBtn.textContent='檢查中...';
+   try{
+    // 先確認真的連得上（有 Wi-Fi 訊號但沒網路時 navigator.onLine 仍是 true）；sw.js 不在快取裡，連不上就會失敗
+    const probe=new AbortController();
+    const probeTimer=setTimeout(()=>probe.abort(),6000);
+    try{
+     const live=await fetch('sw.js',{cache:'no-store',signal:probe.signal});
+     if(!live.ok)throw new Error('offline');
+    }finally{clearTimeout(probeTimer);}
+    const reg=await navigator.serviceWorker.ready;
+    await reg.update().catch(()=>{});
+    const keys=await caches.keys();
+    const curCache=keys.find(k=>k.startsWith('mytrips-2026fukuoka-'));
+    let updated=false;
+    if(curCache){
+     const cache=await caches.open(curCache);
+     const textFiles=['./','journey.js','journal.css','htb.js','manifest.webmanifest'];
+     for(const f of textFiles){
+      const res=await fetch(f,{cache:'no-cache'});
+      if(res.ok){
+       const old=await cache.match(f);
+       if(old){
+        const [oldText,newText]=await Promise.all([old.text(),res.clone().text()]);
+        if(oldText!==newText)updated=true;
+       }
+       await cache.put(f,res);
+      }
+     }
+    }
+    if(updated){
+     toast('已更新，重新載入中');
+     setTimeout(()=>location.reload(),1000);
+    }else{
+     toast('已是最新');
+    }
+   }catch{
+    toast('現在沒網路');
+   }finally{
+    checkBtn.disabled=false;
+    checkBtn.textContent='檢查更新';
+    updateSWVersionDisplay();
+   }
+  });
+ }
+}else{
+ const checkBtn=$('#sw-check-btn');
+ if(checkBtn)checkBtn.hidden=true;
+ const vCode=$('#sw-version-code');
+ if(vCode)vCode.textContent='離線模式（本機瀏覽）';
+}
+
+updateTasks();
+renderPackGroups();
+renderBudget();
+renderDay(0);
+dayFromHash();
+
+if('IntersectionObserver' in window){
+ const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+   if(e.isIntersecting){
+    document.querySelectorAll('.topbar nav a,.mobile-nav a').forEach(a=>{
+     if(a.hash==='#'+e.target.id)a.setAttribute('aria-current','location');
+     else a.removeAttribute('aria-current');
+    });
+   }
+  });
+ },{rootMargin:'-15% 0px -60% 0px'});
+ ['journey','stays','tasks','guide','budget'].forEach(id=>{
+  const el=document.getElementById(id);
+  if(el)observer.observe(el);
+ });
+}
