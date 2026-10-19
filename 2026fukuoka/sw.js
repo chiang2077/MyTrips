@@ -1,7 +1,7 @@
 // 九州慢行誌：離線瀏覽（由產生器建立，內容變動時版本號會跟著換）
 // 改版後要做什麼：改完跑一次 py -3 tools/build_sw.py 2026fukuoka；忘了跑，連網的手機仍會更新文字內容，只有換掉同檔名的圖片才一定要跑。
 const PREFIX = 'mytrips-2026fukuoka-';
-const CACHE = PREFIX + 'fdd683e4d3a2';
+const CACHE = PREFIX + 'a68bddb93081';
 const FILES = [
   './',
   'film.html',
@@ -33,7 +33,8 @@ const FILES = [
   'img/yanagibashi.jpg',
   'journal.css',
   'journey.js',
-  'manifest.webmanifest'
+  'manifest.webmanifest',
+  'typhoon.js'
 ];
 
 self.addEventListener('install', e => {
