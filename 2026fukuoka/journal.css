@@ -264,3 +264,14 @@ footer .couple-signature{flex-basis:100%;width:100%;margin:10px 0 0;padding-top:
 
 /* 颱風應變：手機版表格改為卡片式 */
 @media(max-width:600px){.typhoon-section table.stack{min-width:0}.typhoon-section table.stack,.typhoon-section table.stack tbody{display:block}.typhoon-section table.stack thead{display:none}.typhoon-section table.stack tr{display:block;padding:12px 0;border-bottom:1px solid var(--line)}.typhoon-section table.stack td{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:10px;border:0;padding:3px 4px;overflow-wrap:anywhere}.typhoon-section table.stack td::before{content:attr(data-label);color:var(--muted);font-size:12px}.typhoon-section table.stack td:empty{display:none}}
+/* 颱風應變：班次篩選 */
+.ty-cwa{font-size:13px;margin:0 0 26px;line-height:2}
+.ty-cwa a{text-decoration:underline;text-underline-offset:3px}
+.ty-filters{display:flex;flex-wrap:wrap;gap:10px 18px;margin:4px 0 14px}
+.ty-group{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.ty-group button{font:500 13px var(--sans);padding:8px 14px;background:none;border:0;border-right:1px solid var(--line);color:var(--muted);cursor:pointer}
+.ty-group button:last-child{border-right:0}
+.ty-group button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.guide-body .ty-count{font-size:13px;color:var(--ink);margin:0 0 6px}
+.ty-flights .gt{margin:0 0 0 6px}
+@media(max-width:600px){.ty-group{width:100%}.ty-group button{flex:1;padding:9px 6px}}

@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="journal.css">
 <script src="journey.js" defer></script>
 <script src="htb.js" defer></script>
+<script src="typhoon.js" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">跳至主要內容</a>
@@ -225,21 +226,22 @@
 </section>
 <section class="journal-section guide-section typhoon-section" id="typhoon" aria-labelledby="typhoon-title"><div class="section-heading"><div><h2 id="typhoon-title">颱風應變</h2></div><p>航班停飛、列車停駛時，先照這裡做，再申請理賠。</p></div>
 <div class="guide">
-<p class="note warn"><b>10/19 更新：</b>強烈颱風薔琵預估 10/23 下半天到 10/24 最接近台灣，剛好是去程當天。安達條款規定：<b>投保時中央氣象署已發布海上颱風警報，班機延誤、旅程更改、列車延誤三項都不賠。</b>看的是「申請投保的時間」，不是保單生效的時間。兩人的保單都要確認投保時間早於警報。</p>
+<p class="ty-cwa">颱風動態：<a href="https://www.cwa.gov.tw/V8/C/P/Typhoon/TY_NEWS.html" target="_blank" rel="noopener noreferrer">中央氣象署颱風消息 ↗</a>　<a href="https://www.jma.go.jp/bosai/map.html#contents=typhoon" target="_blank" rel="noopener noreferrer">日本氣象廳颱風資訊 ↗</a></p>
 
 <h3 class="guide-sub">航班</h3>
-<details class="guide-detail" open><summary><span>10/24</span>長榮往九州、廣島、四國的航班<b>＋</b></summary><div class="guide-body">
+<details class="guide-detail" open><summary><span>10/24–25</span>台灣往九州、廣島、岡山、神戶、大阪的直飛班次<b>＋</b></summary><div class="guide-body">
+<div class="ty-flights" id="ty-flights">
+<div class="ty-filters">
+<div class="ty-group" role="group" aria-label="出發日期"><button type="button" data-k="d" data-v="10/24" aria-pressed="true">10/24（六）</button><button type="button" data-k="d" data-v="10/25" aria-pressed="false">10/25（日）</button></div>
+<div class="ty-group" role="group" aria-label="航空公司"><button type="button" data-k="al" data-v="all" aria-pressed="true">全部航空</button><button type="button" data-k="al" data-v="eva" aria-pressed="false">長榮</button><button type="button" data-k="al" data-v="other" aria-pressed="false">非長榮</button></div>
+<div class="ty-group" role="group" aria-label="目的地"><button type="button" data-k="re" data-v="all" aria-pressed="true">全部地區</button><button type="button" data-k="re" data-v="kyushu" aria-pressed="false">九州</button><button type="button" data-k="re" data-v="other" aria-pressed="false">非九州</button></div>
+</div>
+<p class="ty-count" aria-live="polite"></p>
 <div class="tw"><table class="stack">
-<thead><tr><th>航線</th><th>班次</th><th>起飛 → 抵達</th><th>備註</th></tr></thead>
-<tbody>
-<tr class="pick"><td data-label="航線">桃園 → 福岡</td><td data-label="班次">長榮 BR104</td><td data-label="起飛 → 抵達">06:35 → 09:55</td><td data-label="備註">我們訂的班次</td></tr>
-<tr><td data-label="航線">桃園 → 福岡</td><td data-label="班次">長榮 BR106</td><td data-label="起飛 → 抵達">08:00 → 11:20</td><td data-label="備註"></td></tr>
-<tr><td data-label="航線">桃園 → 福岡</td><td data-label="班次">長榮 BR102</td><td data-label="起飛 → 抵達">15:10 → 18:20</td><td data-label="備註">當天最後一班桃園出發</td></tr>
-<tr><td data-label="航線">高雄 → 福岡</td><td data-label="班次">長榮 BR120</td><td data-label="起飛 → 抵達">15:30 → 19:20</td><td data-label="備註">高雄出發</td></tr>
-<tr><td data-label="航線">桃園 → 四國松山</td><td data-label="班次">長榮 BR110</td><td data-label="起飛 → 抵達">當天沒有班次</td><td data-label="備註">同一週只有 10/21、10/22、10/25 有飛</td></tr>
-<tr><td data-label="航線">廣島、九州其他機場</td><td data-label="班次">—</td><td data-label="起飛 → 抵達">長榮沒有航線</td><td data-label="備註">長榮在九州只飛福岡，四國只飛松山</td></tr>
-</tbody></table></div>
-<p class="source">時間都是當地時間。依長榮官網航班時刻表（10/19 查詢）的表定時刻，颱風期間會臨時異動，出發前一天用長榮 App 再看一次。</p>
+<thead><tr><th>起飛 → 抵達</th><th>班次</th><th>航線</th><th>備註</th></tr></thead>
+<tbody><tr><td colspan="4">要開啟 JavaScript 才看得到班次。</td></tr></tbody></table></div>
+</div>
+<p class="source">依出發時間排序，時間為當地時間。資料：Google 航班 10/20 查詢的直飛班次（只列得到仍可訂位的班次），長榮另以長榮官網時刻表核對補齊。九州包含福岡、北九州、熊本、鹿兒島、大分、佐賀；當天查無宮崎、長崎直飛班次。</p>
 <p class="lede"><b>BR104 取消或延誤時，長榮怎麼處理</b></p>
 <p>依長榮「因應班機取消、異動之改退票作業辦法」：航班取消且沒提供替代班機、時間差 2 小時以上、轉機時間不足，或換了起降機場，都可以<b>免費改到原日期前後 14 天內</b>的同艙等航班，或免手續費退票。系統已幫你轉到替代航班卻不接受、又不符合上面條件，就算自願改退票，要付手續費和差價。</p>
 <p>無限萬哩遊的里程機票另有規定，要打長榮訂位票務中心辦理：退票免手續費、改日期免費、改航點可改成同條件的酬賓機票。</p>
