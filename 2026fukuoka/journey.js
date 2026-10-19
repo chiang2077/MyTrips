@@ -596,7 +596,7 @@ if('IntersectionObserver' in window){
    }
   });
  },{rootMargin:'-15% 0px -60% 0px'});
- ['journey','stays','tasks','guide','budget'].forEach(id=>{
+ ['journey','stays','tasks','guide','typhoon','budget'].forEach(id=>{
   const el=document.getElementById(id);
   if(el)observer.observe(el);
  });
