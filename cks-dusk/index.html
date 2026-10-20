@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>中正紀念堂・黃昏</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #111; overflow: hidden; }
+  canvas { display: block; width: 100%; height: 100%; }
+  #ui { position: fixed; left: 12px; right: 12px; bottom: 12px; display: flex; gap: 10px; align-items: center;
+        font: 13px/1.4 system-ui, "Noto Sans TC", sans-serif; color: #f3ead8; text-shadow: 0 1px 2px #000; }
+  #scrub { flex: 1; }
+  #play { background: #0008; color: #f3ead8; border: 1px solid #f3ead855; border-radius: 4px; padding: 4px 10px; }
+  body.capture #ui { display: none; }
+</style>
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.js", "three/addons/": "./vendor/addons/" } }
+</script>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="ui"><button id="play" type="button">播放／暫停</button><input id="scrub" type="range" min="0" max="70" step="0.01" value="0"><span id="hud"></span></div>
+<script>
+  if (/[?&](capture|w)=/.test(location.search)) document.body.classList.add('capture');
+</script>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
