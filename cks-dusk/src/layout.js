@@ -222,8 +222,8 @@ export const HALLS2 = {
   colonnade: { columnHeight: 13.5, spacing: 6.0, diameter: 1.4 },
   roof: {
     lowerEave: { y: 18.5, overhang: 5.0 },
-    upperEave: { y: 25.0, inset: 7.0 },
-    ridge: 33.0,
+    upperEave: { y: 27.0, inset: 7.0 },
+    ridge: 39.0,               // 兩坡面交線高；正脊瓦件與鴟吻再往上疊 [估，依照片屋頂約為柱高 1.6～2 倍]
   },
   frontStairs: { halfWidth: 22, run: 9 },            // 面向廣場的大台階 [估]
 };
