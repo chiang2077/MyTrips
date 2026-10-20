@@ -93,6 +93,9 @@ if (mode === 'still' || mode === 'free') {
     draw();
   }
   if (hud) hud.textContent = `zones: ${zones.join(', ')}`;
+} else if (q.has('capture') || fixedW) {
+  // 輸出／截圖模式：不跑動畫迴圈，由 __renderAt(t) 逐格驅動
+  window.__renderAt(Number(q.get('t')) || 0);
 } else {
   let t = Number(q.get('t')) || 0;
   let playing = !q.has('t');
