@@ -11,7 +11,7 @@ const SPOTS={
 const BY_DATE={'10.24':'takeo','10.25':'arita','10.26':'nagasaki','10.27':'nagasaki','10.28':'htb','10.29':'htb','10.30':'htb','10.31':'fukuoka','11.01':'fukuoka','11.02':'fukuoka'};
 const KEY='kyushu-2026-weather-v1',MAX_AGE=60*60*1000;
 const keys=Object.keys(SPOTS);
-let store=null,failed=false;
+let store=null,failed=false,busy=false;
 try{store=JSON.parse(localStorage.getItem(KEY)||'null');}catch{}
 
 // WMO 天氣代碼
@@ -53,7 +53,8 @@ function html(date){
 }
 
 async function refresh(){
- if(store&&Date.now()-store.t<MAX_AGE)return;
+ if(busy||(store&&Date.now()-store.t<MAX_AGE))return;
+ busy=true;
  const q=new URLSearchParams({
   latitude:keys.map(k=>SPOTS[k].lat).join(','),
   longitude:keys.map(k=>SPOTS[k].lon).join(','),
@@ -79,6 +80,7 @@ async function refresh(){
  }catch{
   failed=true;
  }finally{
+  busy=false;
   clearTimeout(timer);
   document.dispatchEvent(new Event('trip-weather'));
  }
@@ -87,4 +89,7 @@ async function refresh(){
 window.tripWeather={html};
 refresh();
 addEventListener('online',()=>refresh());
+// 主畫面 App 從背景切回來時，iOS 常直接恢復舊畫面而不重新載入，所以切回來也檢查一次
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')refresh();});
+addEventListener('pageshow',e=>{if(e.persisted)refresh();});
 })();
