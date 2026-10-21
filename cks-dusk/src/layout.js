@@ -165,10 +165,10 @@ export const GATE = {
     { z: 30.5,  w: 7.5, h: 10.5 },
   ],
   plinthHeight: 1.2,          // 柱基座 [估]
-  plaque: { text: '自由廣場', y: 21.5, width: 14, height: 3.6, bothFaces: true }, // 橫匾，傳統由右至左 [估]
+  plaque: { text: '自由廣場', y: 21.5, width: 14, height: 3.6, bothFaces: true }, // 橫匾；現況照片為白底黑字、由左至右（舊匾「大中至正」才是由右至左）[估]
   // 中央最高樓的正脊：沿 z 方向、脊頂（含鴟吻）達 height；兩端鴟吻中心在 z = ±halfLength [估]
   topRidge: { halfLength: 7 },
-  focus: { x: -476, y: 21.5, z: 0 },  // 西面匾額中心（鏡頭用）
+  focus: { x: -472, y: 21.5, z: 0 },  // 西面匾額中心（鏡頭用；匾面約在 x −471.6）
 };
 
 // 側門：大忠門（信義路）、大孝門（愛國東路）

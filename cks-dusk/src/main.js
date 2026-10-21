@@ -29,13 +29,16 @@ const camera = new THREE.PerspectiveCamera(Number(q.get('fov')) || 40, W() / H()
 const world = await buildScene(renderer, { zones, quality: q.get('quality') || 'high' });
 const { scene, setShadowFocus } = world;
 
-const rt = new THREE.WebGLRenderTarget(W(), H(), { type: THREE.HalfFloatType, samples: 4 });
+// 效能參數（輸出工具可調）：msaa=取樣數、bloom=0 關閉光暈、smap=陰影貼圖邊長
+const MSAA = q.has('msaa') ? Number(q.get('msaa')) : 4;
+if (q.has('smap')) world.sun.shadow.mapSize.setScalar(Number(q.get('smap')));
+const rt = new THREE.WebGLRenderTarget(W(), H(), { type: THREE.HalfFloatType, samples: MSAA });
 const composer = new EffectComposer(renderer, rt);
 composer.setPixelRatio(renderer.getPixelRatio());
 composer.setSize(W(), H());
 composer.addPass(new RenderPass(scene, camera));
 const bloom = new UnrealBloomPass(new THREE.Vector2(W(), H()), 0.22, 0.6, 0.92);
-composer.addPass(bloom);
+if (q.get('bloom') !== '0') composer.addPass(bloom);
 composer.addPass(new OutputPass());
 
 function resize() {

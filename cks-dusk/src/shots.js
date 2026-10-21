@@ -13,7 +13,7 @@ const theater = HALLS2.theater.center;
 export const SHOTS = [
   {
     id: 1, title: '牌樓匾額 → 牌樓與民主大道全景', subject: '牌樓',
-    from: { pos: v(F.gatePlaque, -9, -1.2, 3.5), target: v(F.gatePlaque), fov: 30 },
+    from: { pos: v(F.gatePlaque, -13, -1.6, 4.5), target: v(F.gatePlaque), fov: 30 },
     to:   { pos: v(GATE.center, -52, 56, 55), target: v(GATE.center, 150, 8, 0), fov: 46 },  // 中山南路對街上空
     shadow: [30, 320],
   },

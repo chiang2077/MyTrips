@@ -29,7 +29,7 @@ export function createRenderer(canvas, { width, height, pixelRatio = 1 }) {
   renderer.setSize(width, height, false);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 0.62;
+  renderer.toneMappingExposure = 0.82;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   return renderer;
@@ -42,7 +42,7 @@ export async function buildScene(renderer, { zones = ZONES, quality = 'high' } =
   const sunVec = new THREE.Vector3(sd.x, sd.y, sd.z).normalize();
 
   // --- 天空（程式生成的黃昏漸層，見 sky.js）---
-  const sky = makeSky(sunVec);
+  const sky = makeSky(sunVec, { exposure: 0.8 });  // 補償整體曝光提高，天空維持原亮度
   scene.add(sky);
 
   // 環境光照：把天空烘成 PMREM，給琉璃、水面反射
@@ -54,7 +54,7 @@ export async function buildScene(renderer, { zones = ZONES, quality = 'high' } =
     new THREE.MeshBasicMaterial({ color: 0x3b3428, side: THREE.BackSide }));
   envScene.add(groundDome);
   scene.environment = pmrem.fromScene(envScene, 0.02, 0.1, 400).texture;
-  scene.environmentIntensity = 0.55;
+  scene.environmentIntensity = 0.85;
   pmrem.dispose();
 
   // --- 太陽 ---
@@ -67,10 +67,10 @@ export async function buildScene(renderer, { zones = ZONES, quality = 'high' } =
   scene.add(sun, sun.target);
 
   // 天光補光（偏藍）＋地面反彈（偏暖）
-  const hemi = new THREE.HemisphereLight(0x8fa6c8, 0x5a4a38, 0.35);
+  const hemi = new THREE.HemisphereLight(0x9cb2d6, 0x6a5440, 0.7);
   scene.add(hemi);
 
-  scene.fog = new THREE.FogExp2(0xb9a08e, 0.000085);
+  scene.fog = new THREE.FogExp2(0xc4a28c, 0.00024);
 
   // --- 各區 ---
   const loaded = {};

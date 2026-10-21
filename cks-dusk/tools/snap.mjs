@@ -49,7 +49,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   page.on('pageerror', (e) => errors.push(`[pageerror] ${e.message}`));
   const t0 = Date.now();
   const first = a.ts.length ? `mode=shots&t=${a.ts[0]}` : `mode=still&cam=${a.cams[0] || '-700,160,250'}&target=${a.targets[0] || '-150,0,0'}`;
-  await page.goto(`http://127.0.0.1:${port}/index.html?zones=${a.zones}&w=${a.w}&h=${a.h}&fov=${a.fov}&${first}`);
+  await page.goto(`http://127.0.0.1:${port}/index.html?zones=${a.zones}&w=${a.w}&h=${a.h}&fov=${a.fov}&${first}${a.extra ? '&' + a.extra : ''}`);
   try {
     await page.waitForFunction(() => window.__ready === true, null, { timeout: 600000 });
   } catch (e) { console.log('場景載入失敗或逾時'); }
