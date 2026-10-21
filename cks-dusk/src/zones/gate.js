@@ -321,7 +321,7 @@ export function build(ctx) {
     const zl = pillars[ai] + PW / 2, zr = pillars[ai + 1] - PW / 2;   // 左右柱內緣
     const wt = wallTopAt(a.z);
     const yb = PED_TOP;
-    const n = 36;
+    const n = Math.round(14 + R * 2);
     // 拱圈（U 形帶，從基座頂高度沿拱腳上升、繞過拱頂）
     const bandShape = (r0, r1) => {
       const pts = [[a.z - r1, yb], [a.z - r1, spring]];
@@ -337,7 +337,7 @@ export function build(ctx) {
     // 拱圈上的卷草浮雕（一串小凸塊）
     {
       const rm = (Ri + 0.16 + Ro - 0.14) / 2;
-      const arcLen = Math.PI * rm, step = 0.55;
+      const arcLen = Math.PI * rm, step = 0.68;
       const nb = Math.round(arcLen / step);
       for (let i = 0; i < nb; i++) {
         const t = Math.PI * (i + 0.5) / nb;
@@ -357,7 +357,7 @@ export function build(ctx) {
     }
     // 拱腹：靠前後面的兩條線腳＋中央一串方格（兩面對稱，直接整體做）
     {
-      const segs = 28;
+      const segs = Math.round(12 + R * 1.6);
       const ringAt = (x, w, dep) => {
         for (let i = 0; i < segs; i++) {
           const t0 = Math.PI * i / segs, t1 = Math.PI * (i + 1) / segs;
@@ -373,8 +373,6 @@ export function build(ctx) {
       };
       ringAt(-HT + 0.32, 0.22, 0.1);
       ringAt(HT - 0.32, 0.22, 0.1);
-      ringAt(-HT + 0.62, 0.08, 0.06);
-      ringAt(HT - 0.62, 0.08, 0.06);
       // 拱腹中央方格
       const nc = Math.round((Math.PI * R) / 0.9);
       for (let i = 0; i < nc; i++) {
@@ -529,7 +527,7 @@ export function build(ctx) {
     // 主樓：每座樓座上一座；夾樓：每根柱上一座（嵌在相鄰樓座之間）
     const S = {  // 依 rank 的主樓參數（30 m 時）
       0: { hl: 11.7, hd: 4.7, ye: 25.05, chi: 1.0, lift: 1.0, kick: 0.6, th: 0.36, reach: 2.25, tiers: 4, sc: 1.0, sp: 1.45 },
-      1: { hl: 7.8, hd: 4.2, ye: 22.85, rt: 25.6, rl: 3.0, chi: 0.6, lift: 0.85, kick: 0.5, th: 0.32, reach: 2.0, tiers: 4, sc: 0.9, sp: 1.4 },
+      1: { hl: 7.8, hd: 4.2, ye: 22.85, rt: 25.6, rl: 3.0, chi: 0.6, lift: 0.85, kick: 0.5, th: 0.32, reach: 2.0, tiers: 3, sc: 0.9, sp: 1.5 },
       2: { hl: 6.6, hd: 3.9, ye: 21.0, rt: 23.45, rl: 2.4, chi: 0.55, lift: 0.8, kick: 0.45, th: 0.3, reach: 1.8, tiers: 3, sc: 0.85, sp: 1.4 },
     };
     for (const t of towers) {
@@ -669,11 +667,30 @@ export function build(ctx) {
         g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
         g.computeVertexNormals();
         add('smooth', g);
-        // 勾頭滴水：連檐上緣一條琉璃細邊
-        for (let i = 0; i < na; i++) {
-          const a0 = -1 + 2 * i / na, a1 = -1 + 2 * (i + 1) / na;
-          const p0 = pt(side, a0, 0.0).add(new V3(0, 0.03, 0)), p1 = pt(side, a1, 0.0).add(new V3(0, 0.03, 0));
-          add('glaze', beamG(p0, p1, 0.16, 0.1));
+        // 勾頭滴水：連檐上緣一條琉璃細邊（外側立面＋頂面兩條帶）
+        {
+          const q = [];
+          const ring = [];
+          for (let i = 0; i <= na; i++) {
+            const a0 = -1 + 2 * i / na;
+            const top = pt(side, a0, 0), inn = pt(side, a0, 0.035);
+            const o = new V3().subVectors(top, inn).setY(0).normalize();
+            ring.push([top.clone().addScaledVector(o, 0.04).add(new V3(0, 0.1, 0)), top.clone().addScaledVector(o, 0.04).add(new V3(0, -0.06, 0)), inn.clone().add(new V3(0, 0.12, 0))]);
+          }
+          const quad = (a, b, c, d) => {   // a-b-c-d 依外側看逆時針
+            const n = new V3().crossVectors(new V3().subVectors(b, a), new V3().subVectors(c, a));
+            const tri = n.dot(out) + n.y * 2 >= 0 ? [a, b, c, a, c, d] : [a, c, b, a, d, c];
+            for (const v of tri) q.push(v.x, v.y, v.z);
+          };
+          for (let i = 0; i < na; i++) {
+            const [t0, b0, i0] = ring[i], [t1, b1, i1] = ring[i + 1];
+            quad(b0, b1, t1, t0);   // 外側立面
+            quad(t0, t1, i1, i0);   // 頂面
+          }
+          const g = new THREE.BufferGeometry();
+          g.setAttribute('position', new THREE.Float32BufferAttribute(q, 3));
+          g.computeVertexNormals();
+          add('glaze', g);
         }
       }
     }
@@ -763,7 +780,7 @@ export function build(ctx) {
     });
     // 飛椽（前後簷）
     if (R.rafters) {
-      const stepR = R.big ? 0.42 : 0.5;
+      const stepR = R.big ? 0.5 : 0.6;
       const n = Math.floor((2 * R.hl) / stepR);
       for (const side of [0, 1]) for (let k = 1; k < n; k++) {
         const a = -1 + 2 * k / n;

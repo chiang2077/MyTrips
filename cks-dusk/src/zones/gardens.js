@@ -182,7 +182,7 @@ export function build(ctx) {
     g = mergeVertices(g);
     const r = makeRng(`gardens/blob/${name}`);
     const lobes = [];
-    const nL = kind === 'flower' ? 26 : kind === 'leafy' ? 20 : 9;
+    const nL = kind === 'flower' ? 16 : kind === 'leafy' ? 20 : 9;
     for (let i = 0; i < nL; i++) {
       const v = new V3(r.gauss(), r.gauss(), r.gauss()).normalize();
       lobes.push({ v, f: r.range(0.6, 1.4), ph: r.range(0, TAU), w: r.range(0.5, 1) });
@@ -193,7 +193,7 @@ export function build(ctx) {
       let d = 1;
       if (kind === 'flower' || kind === 'leafy') {
         let m = 0;
-        const cut = kind === 'flower' ? 0.9 : 0.86;
+        const cut = kind === 'flower' ? 0.78 : 0.86;
         for (const l of lobes) m = Math.max(m, smooth(cut, 1, v.dot(l.v)) * l.w);
         d = 1 - amp * 0.45 + amp * m;
       } else { // rock：低頻起伏＋稜角
@@ -364,7 +364,7 @@ export function build(ctx) {
   const n3 = (x, y, z) => (leafN(x + 0.37 * y, z - 0.21 * y) + leafN(y * 1.13 + 17.3, x * 0.71 - z * 0.69 + 5.1)) * 0.5;
   const hedgeDisp = (x, y, z, h) => {
     const k = Math.min(1, h / 0.12);
-    return k * (0.05 * (n3(x * 6.5, y * 6.5, z * 6.5) - 0.5) + 0.07 * (n3(x * 1.6, y * 1.6, z * 1.6) - 0.5));
+    return k * (0.07 * (n3(x * 8, y * 8, z * 8) - 0.5) + 0.07 * (n3(x * 1.6, y * 1.6, z * 1.6) - 0.5));
   };
   const flowerDisp = (x, y, z, h) => {
     const k = Math.min(1, h / 0.06);
@@ -396,6 +396,9 @@ export function build(ctx) {
     const d = dFocus(x, z);
     const lod = d < NEAR_R ? 0 : d < MID_R ? 1 : -1;
     if (lod < 0) return;
+    // 接近 MID_R 邊界時漸縮、沉入花帶表面，避免出現明顯的分界
+    const f = 1 - smooth(MID_R - 2.8, MID_R, d);
+    rad *= 0.3 + 0.7 * f; y -= (1 - f) * 0.06;
     clumps[key][lod].push({ x, y, z, sx: rad, sy: rad * rngCl.range(0.62, 0.8), sz: rad * rngCl.range(0.9, 1.1),
       ry: rngCl.range(0, TAU), c: CLUMP_TINT[key]() });
   }
