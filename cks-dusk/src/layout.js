@@ -314,7 +314,7 @@ export const TREES = {
     { name: 'hallS', x0: -60, x1: 86, z0: 95, z1: 170, density: 1 / 110 },
   ],
   // 中式庭園內的散植（避開池面與步道）
-  gardenScatter: { density: 1 / 160 },
+  gardenScatter: { density: 1 / 110 },   // 依空拍照片 ae415efc 調密
   // 主殿前的造型松（照片 1、10 可見的團狀松）[估]
   hallPines: [
     { x: -90, z: -32 }, { x: -90, z: 32 },

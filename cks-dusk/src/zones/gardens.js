@@ -223,6 +223,7 @@ export function build(ctx) {
     return out;
   }
   function resample(d, closed, stepFn, maxTurn = 0.2) {
+    const turnFn = typeof maxTurn === 'function' ? maxTurn : () => maxTurn;
     const out = [d[0]];
     let acc = 0, turn = 0;
     for (let i = 1; i < d.length; i++) {
@@ -233,7 +234,7 @@ export function build(ctx) {
         const ux = a.x - p.x, uz = a.z - p.z, vx = b.x - a.x, vz = b.z - a.z;
         turn += Math.abs(Math.atan2(ux * vz - uz * vx, ux * vx + uz * vz));
       }
-      if (acc >= stepFn(b) || turn >= maxTurn) { out.push(b); acc = 0; turn = 0; }
+      if (acc >= stepFn(b) || turn >= turnFn(b)) { out.push(b); acc = 0; turn = 0; }
     }
     const last = d[d.length - 1];
     if (!closed) {
@@ -375,9 +376,11 @@ export function build(ctx) {
   // ==========================================================================
   const FP = L.FOCUS.parterreBed;
   const dFocus = (x, z) => Math.hypot(x - FP.x, z - FP.z);
-  const NEAR_R = 5.0, MID_R = 11.0;                         // 花團 instancing 的兩級半徑
-  const pStep = (p) => clamp(0.05 + 0.04 * Math.max(0, dFocus(p.x, p.z) - 2.5), 0.06, 0.6);
-  const pNear = (p) => dFocus(p.x, p.z) < 9;
+  const NEAR_R = 3.6, MID_R = 7.5;                           // 花團 instancing 的兩級半徑
+  const pStep = (p) => clamp(0.05 + 0.05 * Math.max(0, dFocus(p.x, p.z) - 2.5), 0.06, 1.0);
+  const pNear = (p) => dFocus(p.x, p.z) < 6.5;
+  // 遠處轉角容許較大角度（遠景看不出折線）
+  const pTurn = (p) => (dFocus(p.x, p.z) < 12 ? 0.2 : 0.34);
   const lawnY = 0.03;                                       // 花壇草皮頂面（略高於地形草地 0）
   const bedY = LV.parterreBed;                              // 花帶土面
   const clumps = { maroon: [[], []], yellow: [[], []], red: [[], []], pink: [[], []] };
@@ -398,26 +401,26 @@ export function build(ctx) {
   }
 
   function addHedge(dense, closed, w, h, o = {}) {
-    const pts = resample(dense, closed, o.step || pStep, 0.2);
+    const pts = resample(dense, closed, o.step || pStep, o.turn || pTurn);
     const near = o.near || pNear;
-    const hi = superProfile(w, h, 14, 4), lo = superProfile(w, h, 6, 4);
+    const hi = superProfile(w, h, 12, 4), lo = superProfile(w, h, 5, 4);
     for (const g of sweepLOD(pts, closed, hi, lo, near, { base: o.base ?? 0, disp: hedgeDisp })) add('hedge', g);
   }
 
   // 花帶：圓拱截面＋小凹凸；土面墊底；特寫範圍內撒一顆顆的花團
   function addBand(key, dense, closed, w, h) {
-    const pts = resample(dense, closed, pStep, 0.2);
-    for (const g of sweepLOD(pts, closed, superProfile(w, h, 10, 2.5), superProfile(w, h, 4, 2.5), pNear,
+    const pts = resample(dense, closed, (p) => pStep(p) * (dFocus(p.x, p.z) > 12 ? 1.4 : 1), pTurn);
+    for (const g of sweepLOD(pts, closed, superProfile(w, h, 8, 2.5), superProfile(w, h, 3, 2.5), pNear,
       { base: lawnY - 0.02, disp: flowerDisp })) add(key, g);
     const soilProf = [[-w / 2 - 0.13, lawnY - 0.01], [-w / 2 - 0.07, bedY], [w / 2 + 0.07, bedY], [w / 2 + 0.13, lawnY - 0.01]];
-    add('soil', sweep(resample(dense, closed, (p) => pStep(p) * 1.5, 0.3), soilProf, { closed, base: 0 }));
+    add('soil', sweep(resample(dense, closed, (p) => Math.max(0.5, pStep(p) * 2.5), 0.45), soilProf, { closed, base: 0 }));
     // 花團
     let acc = 1e9;
     const n = dense.length;
     for (let i = 0; i < n; i++) {
       const p = dense[i], d = dFocus(p.x, p.z);
       if (d > MID_R + w) { acc = 1e9; continue; }
-      const sp = d < NEAR_R ? 0.2 : 0.3;
+      const sp = d < NEAR_R ? 0.24 : 0.38;
       const q = dense[Math.max(0, i - 1)];
       acc += Math.hypot(p.x - q.x, p.z - q.z);
       if (acc < sp) continue;
@@ -439,7 +442,7 @@ export function build(ctx) {
   // 填滿式花床（超橢圓）
   function addFill(key, cx, cz, a, b, p, h) {
     const near = dFocus(cx, cz) < 12 + Math.max(a, b);
-    const R = near ? 9 : 4, S = near ? 56 : 28;
+    const R = near ? 7 : 3, S = near ? 44 : 22;
     const pos = [], idx = [], hr = [];
     const bnd = (th) => {
       const c = Math.cos(th), s = Math.sin(th);
@@ -480,13 +483,14 @@ export function build(ctx) {
     add('soil', sg);
     // 花團
     if (dFocus(cx, cz) - Math.max(a, b) > MID_R) return;
-    for (let u = -a; u <= a; u += 0.2) for (let v = -b; v <= b; v += 0.2) {
+    for (let u = -a; u <= a; u += 0.12) for (let v = -b; v <= b; v += 0.12) {
+      const d0 = dFocus(cx + u, cz + v);
+      if (d0 > MID_R) continue;
+      // 近距離格距 0.24、中距離 0.36（以 0.12 細格取子集）
+      const iu = Math.round((u + a) / 0.12), iv = Math.round((v + b) / 0.12);
+      const sp2 = d0 < NEAR_R ? 0.24 : 0.36, kk = d0 < NEAR_R ? 2 : 3;
+      if (iu % kk || iv % kk) continue;
       const x = cx + u + rngCl.range(-0.06, 0.06), z = cz + v + rngCl.range(-0.06, 0.06);
-      const d = dFocus(x, z);
-      if (d > MID_R) continue;
-      const sp2 = d < NEAR_R ? 0.2 : 0.3;
-      // 中距離用較疏的格點
-      if (sp2 > 0.2 && (Math.round(u / 0.2) % 3 === 1 || Math.round(v / 0.2) % 3 === 1)) continue;
       const s = Math.pow(Math.pow(Math.abs(u / a), p) + Math.pow(Math.abs(v / b), p), 1 / p);
       if (s > 0.96) continue;
       const yy = h * Math.sqrt(Math.max(0, 1 - Math.pow(s, 4)));
@@ -618,7 +622,7 @@ export function build(ctx) {
     const rwRaw = (phi) => {
       let r = (ellR(phi) - bankW(phi)) * (1 + Hh(phi));
       const d = Math.min(angDist(phi, waist), angDist(phi, waist + PI));
-      const w = Math.exp(-Math.pow(d / 0.6, 4));
+      const w = Math.exp(-Math.pow(d / 0.95, 2));
       return r * (1 - w) + neck * w;
     };
     const wf = pond.waterfall;
@@ -672,10 +676,10 @@ export function build(ctx) {
 
   // 池岸地形網格（極座標格網）＋水面
   function buildPondGround(P) {
-    const NA = 220;
+    const NA = 180;
     const ringsFor = (rW, rE) => {
       const out = [0, 0.45 * rW, 0.75 * rW, rW - 0.9, rW - 0.35, rW, rW + 0.2, rW + 0.45, rW + 0.75, rW + 1.1];
-      const J = 10;
+      const J = 8;
       for (let j = 1; j <= J; j++) out.push(rW + 1.1 + (rE - rW - 1.1) * Math.pow(j / J, 1.2));
       out.push(rE + 1.5, rE + 3.0);
       return out;
@@ -912,7 +916,7 @@ export function build(ctx) {
       }
     }
     // 欄杆（地栿、欄板、尋杖、望柱、淨瓶、抱鼓石）
-    const NS = 90;
+    const NS = 64;
     const curvePts = (s0, s1, dy = 0, t = 0) => Array.from({ length: NS + 1 }, (_, i) => { const s = lerp(s0, s1, i / NS); return { x: s, z: t, y: yd(s) + dy }; });
     const boxProf = (hw, y0, y1) => [[-hw, y0], [-hw, y1], [hw, y1], [hw, y0]];
     // 弧長表（擺望柱）
@@ -922,8 +926,8 @@ export function build(ctx) {
     const lA = arc.find((q) => q.s >= -Lh + 0.35).l, lB = arc.findLast((q) => q.s <= Lh - 0.35).l;
     const nPost = Math.max(2, Math.round((lB - lA) / 1.35) + 1);
     const postS = Array.from({ length: nPost }, (_, i) => sAtL(lerp(lA, lB, i / (nPost - 1))));
-    const capG = new THREE.LatheGeometry([[0, 0], [0.12, 0], [0.13, 0.05], [0.1, 0.12], [0.06, 0.2], [0.02, 0.25], [0, 0.26]].map(([a, b]) => new THREE.Vector2(a, b)), 8);
-    const vaseG = new THREE.LatheGeometry([[0, 0], [0.07, 0], [0.05, 0.05], [0.1, 0.15], [0.06, 0.26], [0.04, 0.3], [0.08, 0.34], [0, 0.34]].map(([a, b]) => new THREE.Vector2(a, b)), 8);
+    const capG = new THREE.LatheGeometry([[0, 0], [0.12, 0], [0.13, 0.05], [0.1, 0.12], [0.06, 0.2], [0.02, 0.25], [0, 0.26]].map(([a, b]) => new THREE.Vector2(a, b)), 6);
+    const vaseG = new THREE.LatheGeometry([[0, 0], [0.07, 0], [0.05, 0.05], [0.1, 0.15], [0.06, 0.26], [0.04, 0.3], [0.08, 0.34], [0, 0.34]].map(([a, b]) => new THREE.Vector2(a, b)), 6);
     for (const side of [-1, 1]) {
       const tc = side * (W / 2 - 0.12);
       const sA = postS[0], sB = postS[postS.length - 1];
@@ -1021,7 +1025,7 @@ export function build(ctx) {
     };
     // 灌木團
     let made = 0, tries = 0;
-    while (made < 46 && tries++ < 900) {
+    while (made < 38 && tries++ < 900) {
       let cx, cz;
       if (r() < 0.6) { // 沿步道兩側
         const line = r.pick(pathLines), p = line[r.int(0, line.length - 1)];
@@ -1135,7 +1139,7 @@ export function build(ctx) {
   instanced('lilypads', padGeom, M.foliage, pads, { cast: false });
   instanced('lotus', blob(1, 'lotus', 'flower', 0.4), M.flowerPink, lotus, { cast: false });
   // 水花
-  const sp = instanced('splash', blob(1, 'splash', 'leafy', 0.3), splashMat, splashes, { cast: false, receive: false });
+  const sp = instanced('splash', blob(0, 'splash', 'leafy', 0.3), splashMat, splashes, { cast: false, receive: false });
   if (sp) sp.renderOrder = 3;
 
   // DEBUG-TRI

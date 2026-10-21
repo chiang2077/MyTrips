@@ -63,9 +63,17 @@ export function build(ctx) {
   // 正面（朝 −x）面上的凸出方塊：f = 面的 |x|、d = 凸出量
   const fbox = (k, f, d, y0, y1, z0, z1) => { const g = boxG(-f - d, -f + 0.02, y0, y1, z0, z1); DEC.push([k, g]); return g; };
   // 正面上的圓盤（花盤、圓釘）
-  const fdisc = (k, f, d, y, z, r, seg = 16) => {
-    const g = new THREE.CylinderGeometry(r, r, d + 0.02, seg, 1);
-    g.rotateZ(Math.PI / 2);
+  // 圓盤只做側面＋外蓋（貼牆那一面看不到，不做）
+  const discG = (r, d, seg) => {
+    const side = new THREE.CylinderGeometry(r, r, d, seg, 1, true);
+    const cap = new THREE.CircleGeometry(r, seg);
+    cap.rotateX(-Math.PI / 2);
+    cap.translate(0, d / 2, 0);
+    return utils.mergeGeometries([side.toNonIndexed(), cap.toNonIndexed()].map((g) => { g.deleteAttribute('uv'); return g; }), false);
+  };
+  const fdisc = (k, f, d, y, z, r, seg = 12) => {
+    const g = discG(r, d + 0.02, Math.max(8, Math.min(seg, Math.round(8 + r * 16))));
+    g.rotateZ(Math.PI / 2);           // 外蓋朝 −x
     g.translate(-f - d / 2 + 0.01, y, z);
     DEC.push([k, g]);
     return g;
@@ -137,7 +145,7 @@ export function build(ctx) {
   const TW = [Math.max(plq.width / 2 + 1.0, 6), 4.3, 4.2];   // 樓座半寬（依 rank）
   const LV = {
     wallTop: [lv(19.0), lv(19.0), lv(17.4)],    // 牆頂（依所在間的 rank）
-    towerTop: [lv(24.3), lv(22.2), lv(20.4)],
+    towerTop: [lv(23.95), lv(21.8), lv(20.0)],
   };
   const towers = arches.map((a) => {
     const r = rankOf(a);
@@ -200,9 +208,9 @@ export function build(ctx) {
     P(0, 2.2);
     return shapeOf(pts);
   };
-  const zdisc = (k, x, y, zFace, dir, r, d, seg = 18) => {  // 朝 ±z 的圓盤
-    const g = new THREE.CylinderGeometry(r, r, d + 0.02, seg, 1);
-    g.rotateX(Math.PI / 2);
+  const zdisc = (k, x, y, zFace, dir, r, d, seg = 14) => {  // 朝 ±z 的圓盤
+    const g = discG(r, d + 0.02, Math.max(8, Math.min(seg, Math.round(8 + r * 12))));
+    g.rotateX(dir * Math.PI / 2);     // 外蓋朝 dir·z
     g.translate(x, y, zFace + dir * (d / 2 - 0.01));
     return add(k, g);
   };
@@ -520,9 +528,9 @@ export function build(ctx) {
   {
     // 主樓：每座樓座上一座；夾樓：每根柱上一座（嵌在相鄰樓座之間）
     const S = {  // 依 rank 的主樓參數（30 m 時）
-      0: { hl: 11.7, hd: 4.7, ye: 25.6, chi: 1.0, lift: 0.95, kick: 0.55, th: 0.3, reach: 2.25, tiers: 4, sc: 1.0, sp: 1.45 },
-      1: { hl: 7.8, hd: 4.2, ye: 23.4, rt: 25.6, rl: 3.0, chi: 0.6, lift: 0.8, kick: 0.45, th: 0.28, reach: 2.0, tiers: 4, sc: 0.9, sp: 1.4 },
-      2: { hl: 6.6, hd: 3.9, ye: 21.5, rt: 23.45, rl: 2.4, chi: 0.55, lift: 0.75, kick: 0.4, th: 0.26, reach: 1.8, tiers: 3, sc: 0.85, sp: 1.4 },
+      0: { hl: 11.7, hd: 4.7, ye: 25.05, chi: 1.0, lift: 1.0, kick: 0.6, th: 0.36, reach: 2.25, tiers: 4, sc: 1.0, sp: 1.45 },
+      1: { hl: 7.8, hd: 4.2, ye: 22.85, rt: 25.6, rl: 3.0, chi: 0.6, lift: 0.85, kick: 0.5, th: 0.32, reach: 2.0, tiers: 4, sc: 0.9, sp: 1.4 },
+      2: { hl: 6.6, hd: 3.9, ye: 21.0, rt: 23.45, rl: 2.4, chi: 0.55, lift: 0.8, kick: 0.45, th: 0.3, reach: 1.8, tiers: 3, sc: 0.85, sp: 1.4 },
     };
     for (const t of towers) {
       const s = S[t.r];
@@ -561,7 +569,7 @@ export function build(ctx) {
       const sup = [left ? left.z1 : zEndN, right ? right.z0 : zEndS];
       roofs.push({
         cz: (za + zb) / 2, hl, hd, rl: Math.max(0.5, hl - (outer ? 1.9 : 2.0)),
-        ye: base + lv(1.0), ridgeTop: base + lv(outer ? 2.35 : 2.3), lift: 0.42, kick: 0.25, th: 0.22,
+        ye: base + lv(0.95), ridgeTop: base + lv(outer ? 2.6 : 2.55), lift: 0.45, kick: 0.28, th: 0.24,
         base, sup, endsFree, chi: 0.4,
         br: { reach: 0.95, tiers: 3, sc: 0.62, sp: 1.15 }, big: false, rafters: true,
       });
@@ -598,12 +606,13 @@ export function build(ctx) {
       return new V3(x, y, z);
     };
     R.pt = pt;
-    const naF = R.big ? 30 : 12, naE = R.big ? 12 : 8, nv = R.big ? 11 : 7;
+    const naF = R.big ? 30 : 12, naE = R.big ? 12 : 8, nvT = R.big ? 11 : 6, nvU = R.big ? 6 : 4;
     const outward = [new V3(-1, 0, 0), new V3(1, 0, 0), new V3(0, 0, -1), new V3(0, 0, 1)];
 
     for (let side = 0; side < 4; side++) {
       const na = side < 2 ? naF : naE;
       for (const under of [false, true]) {
+        const nv = under ? nvU : nvT;   // 簷底只需較粗的分段
         const pos = [], uvA = [];
         const grid = [];
         for (let j = 0; j <= nv; j++) {
@@ -786,9 +795,11 @@ export function build(ctx) {
       // 橫栱（愈上愈長）
       const L2 = (0.55 + 0.28 * k) * sc;
       pb(rk - 0.12 * sc, rk + 0.1 * sc, yk + th * 0.12, yk + th * 0.58, -L2, L2);
-      // 橫栱兩端小斗
-      pb(rk - 0.15 * sc, rk + 0.13 * sc, yk + th * 0.58, yk + th, -L2, -L2 + 0.3 * sc);
-      pb(rk - 0.15 * sc, rk + 0.13 * sc, yk + th * 0.58, yk + th, L2 - 0.3 * sc, L2);
+      // 橫栱兩端小斗（夾樓的小斗栱省略）
+      if (sc >= 0.8) {
+        pb(rk - 0.15 * sc, rk + 0.13 * sc, yk + th * 0.58, yk + th, -L2, -L2 + 0.3 * sc);
+        pb(rk - 0.15 * sc, rk + 0.13 * sc, yk + th * 0.58, yk + th, L2 - 0.3 * sc, L2);
+      }
     }
     // 耍頭（最上層挑出）
     const yt = y0 + th * (0.55 + tiers);
@@ -822,13 +833,14 @@ export function build(ctx) {
     for (let i = 0; i <= 14; i++) { const a = (i / 14) * Math.PI * 2; const fn = i ? 'lineTo' : 'moveTo'; hole[fn](hc[0] + hr * Math.cos(a), hc[1] + hr * Math.sin(a)); }
     sh.holes.push(hole);
     const dep = 0.46 * k;
-    const g = new THREE.ExtrudeGeometry(sh, { depth: dep, bevelEnabled: true, bevelThickness: 0.06 * k, bevelSize: 0.05 * k, bevelSegments: 2, curveSegments: 4 });
+    const big = k >= 0.9;
+    const g = new THREE.ExtrudeGeometry(sh, { depth: dep, bevelEnabled: true, bevelThickness: 0.06 * k, bevelSize: 0.05 * k, bevelSegments: big ? 2 : 1, curveSegments: 4 });
     g.translate(0, 0, -dep / 2);
     g.rotateY(-Math.PI / 2);   // shape x(s) → z、擠出 → x
     const parts = [g];
     // 兩側面：渦紋環、眼睛、背上的劍把孔環
     const faceX = dep / 2 + 0.06 * k;
-    const ring = (cs, cy, r0, r1, d, seg = 20) => {
+    const ring = (cs, cy, r0, r1, d, seg = big ? 10 : 6) => {
       const s2 = new THREE.Shape();
       s2.absarc(0, 0, r1, 0, Math.PI * 2, false);
       const h2 = new THREE.Path(); h2.absarc(0, 0, r0, 0, Math.PI * 2, true);
@@ -840,19 +852,23 @@ export function build(ctx) {
         parts.push(rg);
       }
     };
-    ring(hc[0], hc[1], hr + 0.06 * k, hr + 0.13 * k, 0.05 * k);
-    ring(hc[0], hc[1], hr + 0.22 * k, hr + 0.3 * k, 0.05 * k);
+    if (k >= 0.5) {
+      ring(hc[0], hc[1], hr + 0.06 * k, hr + 0.13 * k, 0.05 * k);
+      if (big) ring(hc[0], hc[1], hr + 0.22 * k, hr + 0.3 * k, 0.05 * k);
+    }
     const disc = (cs, cy, r, d) => {
       for (const fx of [-1, 1]) {
-        const c = new THREE.CylinderGeometry(r, r, d, 12, 1);
+        const c = new THREE.CylinderGeometry(r, r, d, big ? 10 : 6, 1);
         c.rotateZ(Math.PI / 2);
         c.translate(fx * (faceX + d / 2 - 0.01), cy, cs);
         parts.push(c);
       }
     };
     disc(-0.62 * dir * k, 1.3 * k, 0.09 * k, 0.07 * k);   // 眼
-    disc(0.2 * dir * k, 0.55 * k, 0.16 * k, 0.05 * k);    // 腮上圓紋
-    disc(0.2 * dir * k, 1.0 * k, 0.13 * k, 0.05 * k);
+    if (big) {
+      disc(0.2 * dir * k, 0.55 * k, 0.16 * k, 0.05 * k);  // 腮上圓紋
+      disc(0.2 * dir * k, 1.0 * k, 0.13 * k, 0.05 * k);
+    }
     // 背鰭（外緣三片）
     const fins = [[0.68, 0.36], [0.66, 0.72], [0.62, 1.06]];
     for (const [fs, fy] of fins) {

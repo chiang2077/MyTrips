@@ -533,15 +533,24 @@ export function build(ctx) {
     addG('bronze', uv.boxUV(head));
   }
   // 直式匾額（藍底金字）＋白石框
+  // layout 的 plaque.y＝33.5、高 7.5 → 下緣 29.75，會壓到 16 m 大門的拱頂（30.5）與門框。
+  // 照片中匾額在拱頂之上、上半段疊在斗栱層前方，所以這裡把中心往上推到「剛好避開門框」，
+  // 匾額掛在頂板／額枋外側（斗栱層正前方），該處的斗栱單元讓開（見 bracketRing 的 skip）。
+  const PL = H.plaque, plHW = PL.width / 2, plHH = PL.height / 2, plFB = 0.5;
+  const plY = Math.max(PL.y, dSpring + dHalf + 1.85 + 0.45 + plFB + plHH);
+  const plX = -slabHalf - 0.5;                       // 匾額底板正面
+  const plSkip = plHW + plFB + 1.6;                  // 正面中央這個寬度內不放斗栱
   {
-    const P = H.plaque, hW = P.width / 2, hH = P.height / 2, fb = 0.5;
-    boxG('white', xF - 0.25, xF, P.y - hH - fb, P.y + hH + fb, -hW - fb, hW + fb);   // 底板
-    boxG('white', xF - 0.6, xF, P.y + hH, P.y + hH + fb, -hW - fb, hW + fb);         // 上框
-    boxG('white', xF - 0.6, xF, P.y - hH - fb, P.y - hH, -hW - fb, hW + fb);         // 下框
-    for (const zs of [-1, 1]) boxG('white', xF - 0.6, xF, P.y - hH, P.y + hH, zs * hW, zs * (hW + fb));
-    const pg = new THREE.PlaneGeometry(P.width, P.height);
+    const xb = plX, xf = plX - 0.35;
+    boxG('white', xb, xF, plY - plHH - plFB, plY + plHH + plFB, -plHW - plFB, plHW + plFB);   // 底板（貼牆）
+    boxG('white', xf, xb, plY + plHH, plY + plHH + plFB, -plHW - plFB, plHW + plFB);         // 上框
+    boxG('white', xf, xb, plY - plHH - plFB, plY - plHH, -plHW - plFB, plHW + plFB);         // 下框
+    for (const zs of [-1, 1]) boxG('white', xf, xb, plY - plHH, plY + plHH, zs * plHW, zs * (plHW + plFB));
+    boxG('gold', xf - 0.03, xf + 0.02, plY - plHH - 0.08, plY + plHH + 0.08, -plHW - 0.08, -plHW);  // 金色內緣線
+    boxG('gold', xf - 0.03, xf + 0.02, plY - plHH - 0.08, plY + plHH + 0.08, plHW, plHW + 0.08);
+    const pg = new THREE.PlaneGeometry(PL.width, PL.height);
     pg.rotateY(-Math.PI / 2);
-    pg.translate(xF - 0.27, P.y, 0);
+    pg.translate(xb - 0.02, plY, 0);
     addG('plaque', pg);
   }
 
@@ -561,8 +570,9 @@ export function build(ctx) {
     const Rr = a / C8, half = a * TN, sp = soup(k0, k0 === 'paint' ? 'custom' : 'box');
     for (let k = 0; k < NSIDE; k++) {
       const [x0, z0] = plan(k, -1, Rr), [x1, z1] = plan(k, 1, Rr), [nx, nz] = dirOf(k);
+      // bracketPaint 每 2 m 一循環，v∈[0.78,1.98] 是青／綠／藍帶（避開紅、金帶，照片的額枋以青綠為主）
       sp.quad([x0, y0, z0], [x1, y0, z1], [x1, y1, z1], [x0, y1, z0], [nx, 0, nz],
-        [[-half, y0], [half, y0], [half, y1], [-half, y1]]);
+        [[-half, 0.78], [half, 0.78], [half, 1.98], [-half, 1.98]]);
     }
   }
   // 八角環（封閉）
@@ -610,16 +620,25 @@ export function build(ctx) {
     }
   }
   const unitTealG = uv.boxUV(utils.mergeGeometries(unitTeal.map((g) => g.toNonIndexed())));
+  {
+    // 斗栱 UV 壓到彩畫的青綠藍帶：立面 v = 0.85 + 0.4·y、水平面 v = 1.4 + 0.3·z
+    const ua = unitTealG.attributes.uv, na = unitTealG.attributes.normal, pa = unitTealG.attributes.position;
+    for (let i = 0; i < ua.count; i++) {
+      const horiz = Math.abs(na.getY(i)) > 0.5;
+      ua.setY(i, horiz ? 1.4 + 0.3 * pa.getZ(i) : 0.85 + 0.4 * pa.getY(i));
+    }
+  }
   const unitWhiteG = uv.boxUV(utils.mergeGeometries(unitWhite.map((g) => g.toNonIndexed())));
   const unitMats = [];
   const _m = new THREE.Matrix4(), _n = new THREE.Vector3(), _t = new THREE.Vector3(), _up = new THREE.Vector3(0, 1, 0);
-  function bracketRing(a, yb, sy, sx) {
+  function bracketRing(a, yb, sy, sx, skip = null) {
     const side = 2 * a * TN, m = Math.max(2, Math.round(side / 2.0)), spc = side / m;
     for (let k = 0; k < NSIDE; k++) {
       const [nx, nz] = dirOf(k);
       _n.set(nx, 0, nz); _t.set(-nz, 0, nx);
       for (let i = 0; i < m; i++) {
         const off = -side / 2 + (i + 0.5) * spc;
+        if (skip && k === skip.k && Math.abs(off) < skip.half) continue;
         const mm = new THREE.Matrix4().makeBasis(_n, _up, _t).scale(new THREE.Vector3(sx, sy, spc / 2.0));
         mm.setPosition(nx * a - nz * off, yb, nz * a + nx * off);
         unitMats.push(mm);
@@ -682,9 +701,9 @@ export function build(ctx) {
     // 垂脊（藍琉璃）＋白色起翹翼角
     for (let k = 0; k < NSIDE; k++) {
       const pts = [];
-      for (const e of [2.0, 1.4, 0.75]) {
+      for (const e of [1.5, 1.0, 0.5]) {
         const [x, z] = plan(k, 1, rhoE(1) + e);
-        pts.push([x, yE + liftAt(1) + 0.32 * e + 0.2 * e * e + 0.25, z]);
+        pts.push([x, yE + liftAt(1) + 0.3 * e + 0.16 * e * e + 0.25, z]);
       }
       const nH = Q(14);
       for (let j = 0; j <= nH; j++) { const p = P3(k, 1, j / nH); pts.push([p[0], p[1] + 0.25, p[2]]); }
@@ -741,7 +760,16 @@ export function build(ctx) {
     lift: 1.4, sag: 0.07, prof: (t) => 0.62 * t + 0.38 * t * t,
   };
   const lowEaveFace = R.lowerEave.radius * (1 - lowerSpec.sag) * C8;
-  bracketRing(aL + 0.12, lowArch1, (lowRingTop - lowArch1) / 2.7, Math.min(1.2, (lowEaveFace - aL - 0.5) / 2.6));
+  const lowSy = (lowRingTop - lowArch1) / 2.7, lowSx = Math.min(1.2, (lowEaveFace - aL - 0.5) / 2.6);
+  const westK = Math.round(NSIDE / 2);              // 面向 −x 的那一面
+  bracketRing(aL + 0.12, lowArch1, lowSy, lowSx, { k: westK, half: plSkip });
+  {
+    // 匾額後方讓開的斗栱段：補上連續的挑檐枋與正心枋，簷下不留缺口
+    const a0 = aL + 0.12;
+    boxG('soffit', -(a0 + 2.6 * lowSx), -(a0 + 2.15 * lowSx), lowArch1 + 2.1 * lowSy, lowArch1 + 2.7 * lowSy, -plSkip, plSkip);
+    boxG('soffit', -(a0 + 0.45 * lowSx), -(a0 - 0.1 * lowSx), lowArch1 + 2.1 * lowSy, lowArch1 + 2.7 * lowSy, -plSkip, plSkip);
+    boxG('white', -(a0 + 2.66 * lowSx), -(a0 + 2.12 * lowSx), lowArch1 + 2.05 * lowSy, lowArch1 + 2.12 * lowSy, -plSkip, plSkip);
+  }
   const lowRoof = roofLayer(lowerSpec);
   soffit(lowRoof, lowerSpec.yE, aL / C8, lowRingTop);
 

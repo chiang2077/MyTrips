@@ -46,7 +46,7 @@ export const SHOTS = [
   {
     id: 6, title: '大孝門 → 圍牆迴廊與主殿', subject: '牌樓',
     from: { pos: v(F.sideGate, -4.5, -0.6, 7.5), target: v(F.sideGate), fov: 32 },
-    to:   { pos: v(F.sideGate, -35, 30, 24), target: v(F.sideGate, 95, 0, -125), fov: 46 },
+    to:   { pos: v(F.sideGate, -62, 34, 26), target: v(F.sideGate, 90, -14, -105), fov: 48 },
     via:  v(F.sideGate, -18, 6, 20),
     shadow: [18, 260],
   },
@@ -71,7 +71,7 @@ export const SHOTS = [
   },
   {
     id: 10, title: '逆光樹木 → 空拍整座中正紀念堂', subject: '樹木',
-    from: { pos: v(F.backlitTree, 13, -2.5, 5), target: v(F.backlitTree, 0, 1, -2), fov: 36 },
+    from: { pos: v(F.backlitTree, 12.8, -2.5, -5.3), target: v(F.backlitTree, 0, 0.5, 0), fov: 36 },  // 相機在樹的東北東，正對西南西的夕陽
     to:   { pos: v(F.siteCenter, -470, 340, 400), target: v(F.siteCenter, 30, -20, -20), fov: 42 },
     via:  v(F.backlitTree, -40, 110, 120),
     shadow: [30, 420],
