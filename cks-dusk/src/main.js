@@ -8,10 +8,7 @@
 //   shadow=cx,cz,radius             （mode=still 時的陰影範圍）
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
-import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+import { makeComposer } from './post.js';
 import { buildScene, createRenderer, ZONES } from './scene.js';
 import { SHOTS, TOTAL_DURATION, evaluateTimeline } from './shots.js';
 
@@ -32,14 +29,7 @@ const { scene, setShadowFocus } = world;
 // 效能參數（輸出工具可調）：msaa=取樣數、bloom=0 關閉光暈、smap=陰影貼圖邊長
 const MSAA = q.has('msaa') ? Number(q.get('msaa')) : 4;
 if (q.has('smap')) world.sun.shadow.mapSize.setScalar(Number(q.get('smap')));
-const rt = new THREE.WebGLRenderTarget(W(), H(), { type: THREE.HalfFloatType, samples: MSAA });
-const composer = new EffectComposer(renderer, rt);
-composer.setPixelRatio(renderer.getPixelRatio());
-composer.setSize(W(), H());
-composer.addPass(new RenderPass(scene, camera));
-const bloom = new UnrealBloomPass(new THREE.Vector2(W(), H()), 0.22, 0.6, 0.92);
-if (q.get('bloom') !== '0') composer.addPass(bloom);
-composer.addPass(new OutputPass());
+const composer = makeComposer(renderer, scene, camera, { width: W(), height: H(), msaa: MSAA, bloom: q.get('bloom') !== '0' });
 
 function resize() {
   if (fixedW) return;
@@ -72,6 +62,7 @@ window.__still = (cam, target, fov = 40) => {
   return true;
 };
 window.__stats = world.stats;
+window.__three = { THREE, renderer, scene, camera }; // 除錯用
 window.__shots = SHOTS.map((s) => ({ id: s.id, title: s.title }));
 window.__duration = TOTAL_DURATION;
 

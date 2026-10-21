@@ -2,10 +2,7 @@
 // 鍵盤：WASD／方向鍵移動、Shift 跑、Q/E 升降、R 回到地面；滑鼠拖曳轉頭
 // 觸控：左半邊搖桿移動、右半邊拖曳轉頭、▲▼ 升降
 import * as THREE from 'three';
-import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
-import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+import { makeComposer } from './post.js';
 import { buildScene, createRenderer } from './scene.js';
 import { evaluateTimeline, TOTAL_DURATION, SHOTS } from './shots.js';
 import * as L from './layout.js';
@@ -55,7 +52,10 @@ const SPOTS = [
 // 啟動
 // ---------------------------------------------------------------------------
 const canvas = $('view');
-const renderer = createRenderer(canvas, { width: innerWidth, height: innerHeight, pixelRatio: Math.min(devicePixelRatio, coarse ? 1.5 : 2) });
+// 解析度上限：高 DPI 螢幕全尺寸算圖太重，先壓在 1.25（觸控裝置 1），之後依實測幀時間自動升降
+const PR_MAX = Math.min(devicePixelRatio, coarse ? 1 : 1.25), PR_MIN = 0.5;
+let pixelRatio = PR_MAX;
+const renderer = createRenderer(canvas, { width: innerWidth, height: innerHeight, pixelRatio });
 const camera = new THREE.PerspectiveCamera(60, innerWidth / innerHeight, 0.3, 60000);
 
 // 匾額用的字型先載好，canvas 才畫得出正確字形
@@ -75,12 +75,29 @@ const world = await buildScene(renderer, {
 const { scene, sun, setShadowFocus } = world;
 if (coarse) sun.shadow.mapSize.setScalar(2048);
 
-const composer = new EffectComposer(renderer, new THREE.WebGLRenderTarget(innerWidth, innerHeight, { type: THREE.HalfFloatType, samples: coarse ? 2 : 4 }));
-composer.setPixelRatio(renderer.getPixelRatio());
-composer.setSize(innerWidth, innerHeight);
-composer.addPass(new RenderPass(scene, camera));
-composer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.22, 0.6, 0.92));
-composer.addPass(new OutputPass());
+const composer = makeComposer(renderer, scene, camera, { width: innerWidth, height: innerHeight, msaa: coarse ? 2 : 4 });
+
+// 場景是靜止的：陰影只在範圍改變時重算，不必每格重畫（約省一半算圖量）
+renderer.shadowMap.autoUpdate = false;
+const focusShadow = (c, r) => { setShadowFocus(c, r); renderer.shadowMap.needsUpdate = true; };
+
+// 自動解析度：移動中量幀時間，太慢就降、很快就升
+const perf = { acc: 0, n: 0 };
+function adaptResolution(frameMs) {
+  perf.acc += frameMs; perf.n++;
+  if (perf.n < 20) return;
+  const avg = perf.acc / perf.n;
+  perf.acc = perf.n = 0;
+  let next = pixelRatio;
+  if (avg > 40) next = Math.max(PR_MIN, pixelRatio * 0.8);
+  else if (avg < 18) next = Math.min(PR_MAX, pixelRatio * 1.1);
+  if (Math.abs(next - pixelRatio) > 0.02) {
+    pixelRatio = next;
+    renderer.setPixelRatio(pixelRatio);
+    composer.setPixelRatio(pixelRatio);
+    composer.setSize(innerWidth, innerHeight);
+  }
+}
 
 addEventListener('resize', () => {
   renderer.setSize(innerWidth, innerHeight, false);
@@ -221,7 +238,7 @@ renderer.setAnimationLoop(() => {
     camera.position.copy(s.position);
     camera.lookAt(s.target);
     camera.fov = s.fov; camera.updateProjectionMatrix();
-    setShadowFocus(s.shadowCenter, s.shadowRadius);
+    focusShadow(s.shadowCenter, s.shadowRadius);
     progEl.style.setProperty('--p', `${(playT / TOTAL_DURATION) * 100}%`);
     shotEl.textContent = `鏡頭 ${s.index + 1}／${SHOTS.length}　${s.title}`;
     composer.render();
@@ -269,11 +286,12 @@ renderer.setAnimationLoop(() => {
   const r = THREE.MathUtils.clamp(140 + st.fly * 1.2, 140, 420);
   const cx = st.x + fwd.x * r * 0.6, cz = st.z + fwd.z * r * 0.6;
   if (Math.hypot(cx - lastShadow.x, cz - lastShadow.z) > r * 0.15 || Math.abs(r - lastShadow.r) > 20) {
-    setShadowFocus({ x: cx, z: cz }, r);
+    focusShadow({ x: cx, z: cz }, r);
     lastShadow = { x: cx, z: cz, r };
   }
   composer.render();
   updateReadout();
+  if (dirty > 0) adaptResolution(dt * 1000); // 連續移動中才量
 });
 
 goSpot(SPOTS[0]);

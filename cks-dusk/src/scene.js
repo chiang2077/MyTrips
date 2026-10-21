@@ -80,8 +80,9 @@ export async function buildScene(renderer, { zones = ZONES, quality = 'high', on
     const t0 = performance.now();
     const obj = await mod.build(ctx);
     obj.name = `zone:${z}`;
+    const fixedNormals = sanitizeNormals(obj);
     scene.add(obj);
-    loaded[z] = { ms: Math.round(performance.now() - t0), triangles: countTriangles(obj) };
+    loaded[z] = { ms: Math.round(performance.now() - t0), triangles: countTriangles(obj), fixedNormals };
   }
 
   // 陰影範圍：預設涵蓋整個園區；鏡頭可呼叫 setShadowFocus 收緊以提高解析度
@@ -111,4 +112,21 @@ export function countTriangles(obj) {
     n += tri * (o.isInstancedMesh ? o.count : 1);
   });
   return Math.round(n);
+}
+
+// 退化三角形會留下長度為 0 的法向量；真 GPU 正規化時算出 NaN，像素變壞、再被光暈擴散成黑塊。
+// 每區建完就把這些法向量改成朝上，回傳修正數量。
+export function sanitizeNormals(root) {
+  let fixed = 0;
+  root.traverse((o) => {
+    const n = o.geometry?.attributes?.normal;
+    if (!n) return;
+    let here = 0;
+    for (let i = 0; i < n.count; i++) {
+      const l = Math.hypot(n.getX(i), n.getY(i), n.getZ(i));
+      if (!(l > 1e-6)) { n.setXYZ(i, 0, 1, 0); here++; }
+    }
+    if (here) { n.needsUpdate = true; fixed += here; }
+  });
+  return fixed;
 }
