@@ -50,7 +50,7 @@ export function build(ctx) {
   // ------------------------------------------------------------------------
   // 幾何收集桶（同材質最後 merge 成一個 mesh）
   // ------------------------------------------------------------------------
-  const B = { marble: [], smooth: [], tile: [], glaze: [], bracket: [], soffit: [], floor: [] };
+  const B = { marble: [], smooth: [], tile: [], glaze: [], bracket: [], soffit: [] };
   const DEC = [];  // 正面（−x）的浮雕元件，最後鏡射一份到背面：[bucket, geom]
 
   const add = (k, g) => { B[k].push(g); return g; };
@@ -149,10 +149,7 @@ export function build(ctx) {
   const innerLimitS = outerT.length ? Math.min(...outerT.filter((t) => t.z > 0).map((t) => t.z0)) : zEndS;
   const wallTopAt = (z) => (z > innerLimitN && z < innerLimitS ? LV.wallTop[0] : LV.wallTop[2]);
 
-  // ------------------------------------------------------------------------
-  // 1. 地坪石板（拱下與基座下）
-  // ------------------------------------------------------------------------
-  box('floor', -G.depth / 2, G.depth / 2, -0.25, L.LEVELS.paving + 0.04, zEndN - 0.8, zEndS + 0.8);
+  // 地坪：牌樓腳下的地磚由廣場區（plaza）鋪設，本區不另鋪地板。
 
   // ------------------------------------------------------------------------
   // 2. 牆身：立面輪廓（含五個拱）擠出成厚 T 的牆
@@ -883,7 +880,6 @@ export function build(ctx) {
   const MAT = {
     marble: [M.marble, 'box'], smooth: [M.marbleSmooth, 'box'], tile: [M.roofTileBlue, 'keep'],
     glaze: [M.glazeBlue, 'none'], bracket: [M.bracketPaint, 'box'], soffit: [M.bracketPaintFlat, 'none'],
-    floor: [M.marbleGrey, 'box'],
   };
   for (const [k, list] of Object.entries(B)) {
     if (!list.length) continue;
@@ -894,9 +890,10 @@ export function build(ctx) {
     merged.computeBoundingSphere();
     const mesh = new THREE.Mesh(merged, mat);
     mesh.name = `gate:${k}`;
-    mesh.castShadow = k !== 'floor';
+    mesh.castShadow = true;
     mesh.receiveShadow = true;
     group.add(mesh);
+    console.warn(`[gate] ${k}: ${merged.attributes.position.count / 3} tris`); // DEBUG
     for (const g of list) g.dispose();
   }
 
