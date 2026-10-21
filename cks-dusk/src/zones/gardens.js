@@ -1145,7 +1145,5 @@ export function build(ctx) {
   const sp = instanced('splash', blob(0, 'splash', 'leafy', 0.3), splashMat, splashes, { cast: false, receive: false });
   if (sp) sp.renderOrder = 3;
 
-  // DEBUG-TRI
-  { const rows = []; group.children.forEach((o) => { const g = o.geometry; const t = (g.index ? g.index.count : g.attributes.position.count) / 3 * (o.isInstancedMesh ? o.count : 1); rows.push(`${o.name}=${Math.round(t)}${o.isInstancedMesh ? `(${o.count})` : ''}`); }); console.warn('TRI ' + rows.join(' ')); }
   return group;
 }

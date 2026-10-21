@@ -115,16 +115,16 @@ export const HALL = {
     top: 38.5,                // 14.5 + 24 [官方]
     coreHalf: 20,             // 40 / 2
     cornerProtrusion: 7.5,    // 四角突出 → 外輪廓半寬 27.5
-    wallBatter: 0.06,         // 牆面微內傾（照片可見略呈梯形）[估]
+    wallBatter: 0.10,         // 牆面內傾（照片可見明顯梯形）[估]
   },
-  door: { width: 9, height: 16, bottom: 14.5 }, // 大門高 16 m [官方 S1]；寬 [估]
-  plaque: { text: '中正紀念堂', y: 33.5, width: 3.2, height: 7.5 }, // 直式匾額 [估]
+  door: { width: 11, height: 16, bottom: 14.5 }, // 大門高 16 m [官方 S1]；寬 [估，依正立面照片]
+  plaque: { text: '中正紀念堂', y: 37, width: 3.2, height: 7.5 }, // 直式匾額 [估]
   // 屋頂：八角攢尖重簷，藍色琉璃瓦；寶頂 5.25 m [官方 S2]；出簷寬 [估]
   roof: {
     bracketBottom: 38.5,
-    lowerEave: { y: 44.0, radius: 33.0 },    // 下簷（八角形外接圓半徑）[估]
-    drum:      { y0: 47.0, y1: 52.5, radius: 22.0 }, // 兩簷之間的斗栱層 [估]
-    upperEave: { y: 54.0, radius: 26.0 },    // 上簷 [估]
+    lowerEave: { y: 44.0, radius: 29.5 },    // 下簷（八角形外接圓半徑）[估]
+    drum:      { y0: 47.0, y1: 52.5, radius: 20.0 }, // 兩簷之間的斗栱層 [估]
+    upperEave: { y: 54.0, radius: 24.0 },    // 上簷 [估]
     apex: 64.75,              // 屋面尖 = 70 − 5.25
     finial: { y0: 64.75, y1: 70.0, maxRadius: 2.2 }, // 寶頂（金色）
     sides: 8,

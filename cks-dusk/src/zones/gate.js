@@ -145,7 +145,7 @@ export function build(ctx) {
   const TW = [Math.max(plq.width / 2 + 1.0, 6), 4.3, 4.2];   // 樓座半寬（依 rank）
   const LV = {
     wallTop: [lv(19.0), lv(19.0), lv(17.4)],    // 牆頂（依所在間的 rank）
-    towerTop: [lv(23.95), lv(21.8), lv(20.0)],
+    towerTop: [lv(23.95), lv(21.3), lv(19.6)],
   };
   const towers = arches.map((a) => {
     const r = rankOf(a);
@@ -526,9 +526,9 @@ export function build(ctx) {
   {
     // 主樓：每座樓座上一座；夾樓：每根柱上一座（嵌在相鄰樓座之間）
     const S = {  // 依 rank 的主樓參數（30 m 時）
-      0: { hl: 11.7, hd: 4.7, ye: 25.05, chi: 1.0, lift: 1.0, kick: 0.6, th: 0.36, reach: 2.25, tiers: 4, sc: 1.0, sp: 1.45 },
-      1: { hl: 7.8, hd: 4.2, ye: 22.85, rt: 25.6, rl: 3.0, chi: 0.6, lift: 0.85, kick: 0.5, th: 0.32, reach: 2.0, tiers: 3, sc: 0.9, sp: 1.5 },
-      2: { hl: 6.6, hd: 3.9, ye: 21.0, rt: 23.45, rl: 2.4, chi: 0.55, lift: 0.8, kick: 0.45, th: 0.3, reach: 1.8, tiers: 3, sc: 0.85, sp: 1.4 },
+      0: { hl: 11.7, hd: 4.7, ye: 25.05, chi: 1.0, lift: 1.0, kick: 0.6, th: 0.42, reach: 2.25, tiers: 4, sc: 1.0, sp: 1.45 },
+      1: { hl: 7.8, hd: 4.2, ye: 23.1, rt: 25.85, rl: 3.0, chi: 0.6, lift: 0.85, kick: 0.5, th: 0.38, reach: 2.0, tiers: 3, sc: 0.9, sp: 1.5 },
+      2: { hl: 6.6, hd: 3.9, ye: 21.1, rt: 23.6, rl: 2.4, chi: 0.55, lift: 0.8, kick: 0.45, th: 0.36, reach: 1.8, tiers: 3, sc: 0.85, sp: 1.4 },
     };
     for (const t of towers) {
       const s = S[t.r];
@@ -926,7 +926,6 @@ export function build(ctx) {
     mesh.castShadow = true;
     mesh.receiveShadow = true;
     group.add(mesh);
-    console.warn(`[gate] ${k}: ${merged.attributes.position.count / 3} tris`); // DEBUG
     for (const g of list) g.dispose();
   }
 
