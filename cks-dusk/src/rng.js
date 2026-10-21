@@ -63,5 +63,19 @@ export function makeNoise2D(name) {
     for (let i = 0; i < octaves; i++) { sum += amp * noise(x * f, y * f); norm += amp; amp *= 0.5; f *= 2; }
     return sum / norm;
   };
+  // 週期版（給要無縫拼接的紋理用）：period 為整數格數，第 i 層週期 = period × 2^i
+  const vp = (x, y, P) => vals[perm[(perm[((x % P) + P) % P & 255] + (((y % P) + P) % P)) & 511]];
+  const noiseP = (x, y, P) => {
+    const xi = Math.floor(x), yi = Math.floor(y), xf = x - xi, yf = y - yi;
+    const a = vp(xi, yi, P), b = vp(xi + 1, yi, P), c = vp(xi, yi + 1, P), d = vp(xi + 1, yi + 1, P);
+    const u = s(xf), w = s(yf);
+    return a + (b - a) * u + (c - a) * w + (a - b - c + d) * u * w;
+  };
+  // u、v ∈ [0,1) 為紋理座標；period = 第一層的格數
+  noise.fbmTile = (u, v, period, octaves = 4) => {
+    let sum = 0, amp = 0.5, f = 1, norm = 0;
+    for (let i = 0; i < octaves; i++) { sum += amp * noiseP(u * period * f, v * period * f, period * f); norm += amp; amp *= 0.5; f *= 2; }
+    return sum / norm;
+  };
   return noise;
 }

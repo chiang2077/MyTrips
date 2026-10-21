@@ -70,7 +70,7 @@ function grassTex() {
   return canvasTexture('grass', TEX_SIZE, (g, s, r, n) => {
     const img = g.createImageData(s, s);
     for (let y = 0; y < s; y++) for (let x = 0; x < s; x++) {
-      const big = n.fbm((x / s) * 6, (y / s) * 6, 4);
+      const big = n.fbmTile(x / s, y / s, 6, 4);
       const fine = r();
       const i = (y * s + x) * 4;
       img.data[i] = 70 + big * 40 + fine * 22;
@@ -93,7 +93,7 @@ function pavingTex(name, base, spread, tileMeters = 4, grid = 4) {
     }
     const img = g.getImageData(0, 0, s, s);
     for (let p = 0; p < s * s; p++) {
-      const sp = (r() - 0.5) * 26 + (n.fbm((p % s) / 40, Math.floor(p / s) / 40, 3) - 0.5) * 18;
+      const sp = (r() - 0.5) * 26 + (n.fbmTile((p % s) / s, Math.floor(p / s) / s, 12, 3) - 0.5) * 18;
       img.data[p * 4] += sp; img.data[p * 4 + 1] += sp; img.data[p * 4 + 2] += sp;
     }
     g.putImageData(img, 0, 0);
@@ -111,10 +111,10 @@ function marbleTex(name, base, blocks = true) {
   return canvasTexture(name, TEX_SIZE, (g, s, r, n) => {
     const img = g.createImageData(s, s);
     for (let y = 0; y < s; y++) for (let x = 0; x < s; x++) {
-      const vein = Math.abs(Math.sin((x / s) * 9 + n.fbm((x / s) * 5, (y / s) * 5, 4) * 7));
-      const v = Math.pow(vein, 18) * 26;
+      const vein = Math.abs(Math.sin((x / s) * Math.PI * 4 + n.fbmTile(x / s, y / s, 5, 4) * 7));
+      const v = Math.pow(vein, 30) * 12;
       const i = (y * s + x) * 4;
-      const t = (r() - 0.5) * 6 + (n.fbm(x / 60, y / 60, 3) - 0.5) * 10;
+      const t = (r() - 0.5) * 6 + (n.fbmTile(x / s, y / s, 8, 3) - 0.5) * 10;
       img.data[i] = base[0] + t - v; img.data[i + 1] = base[1] + t - v; img.data[i + 2] = base[2] + t - v * 0.8;
       img.data[i + 3] = 255;
     }
@@ -136,7 +136,7 @@ function marbleTex(name, base, blocks = true) {
 }
 
 // 筒瓦屋面：瓦壟沿 v（坡向）延伸，壟距 0.4 m；每 0.33 m 一片瓦的接縫
-const TILE_PITCH = 0.4, TILE_LEN = 0.33, ROOF_TILE_METERS = 4;
+const TILE_PITCH = 0.4, TILE_LEN = 1 / 3, ROOF_TILE_METERS = 4;
 function roofTileTextures(name, base) {
   const map = canvasTexture(name, TEX_SIZE, (g, s, r, n) => {
     const img = g.createImageData(s, s);
@@ -195,7 +195,7 @@ function asphaltTex() {
   return canvasTexture('asphalt', TEX_SIZE, (g, s, r, n) => {
     const img = g.createImageData(s, s);
     for (let y = 0; y < s; y++) for (let x = 0; x < s; x++) {
-      const k = 44 + (r() - 0.5) * 18 + (n.fbm(x / 50, y / 50, 3) - 0.5) * 14;
+      const k = 44 + (r() - 0.5) * 18 + (n.fbmTile(x / s, y / s, 10, 3) - 0.5) * 14;
       const i = (y * s + x) * 4;
       img.data[i] = k; img.data[i + 1] = k; img.data[i + 2] = k + 3; img.data[i + 3] = 255;
     }
@@ -207,7 +207,7 @@ function stoneTex() {
   return canvasTexture('stone', TEX_SIZE, (g, s, r, n) => {
     const img = g.createImageData(s, s);
     for (let y = 0; y < s; y++) for (let x = 0; x < s; x++) {
-      const f = n.fbm(x / 30, y / 30, 5);
+      const f = n.fbmTile(x / s, y / s, 16, 5);
       const k = 70 + f * 80 + (r() - 0.5) * 20;
       const i = (y * s + x) * 4;
       img.data[i] = k * 1.02; img.data[i + 1] = k; img.data[i + 2] = k * 0.92; img.data[i + 3] = 255;
@@ -229,7 +229,7 @@ function facadeTextures() {
     g.fillStyle = emissive ? '#000' : '#b9b4aa';
     g.fillRect(0, 0, c.width, c.height);
     for (let f = 0; f < FACADE_FLOORS; f++) for (let b = 0; b < FACADE_BAYS; b++) {
-      const lit = r() < 0.22;
+      const lit = r() < 0.1;
       const tone = r();
       if (emissive) {
         if (lit) { g.fillStyle = tone < 0.7 ? '#ffcf8a' : '#fff1d6'; g.fillRect(b * cw + 4, f * ch + 6, cw - 8, ch - 12); }
@@ -326,7 +326,7 @@ export function getMaterials() {
 
     // --- 城市背景 ---
     cityFacade: std({ name: 'cityFacade', map: facade.map, emissiveMap: facade.emissive,
-      emissive: 0xffffff, emissiveIntensity: 0.9, roughness: 0.75 }),
+      emissive: 0xffffff, emissiveIntensity: 0.35, roughness: 0.75 }),
     cityRoof: std({ name: 'cityRoof', color: 0x77736c, roughness: 0.95 }),
     cityGlass: std({ name: 'cityGlass', color: 0x56677a, roughness: 0.15, metalness: 0.6 }),
     mountain: std({ name: 'mountain', color: 0x4c5a55, roughness: 1.0, flatShading: true }),

@@ -398,8 +398,9 @@ export async function build(ctx) {
       const out = c.p.clone().sub(cc).normalize();
       const bumps = o.hero
         ? makeBumps(r, 26, { wMin: 0.35, wMax: 0.62, aMin: 0.2, aMax: 0.34, upBias: 0.2 })
-        : makeBumps(r, 11, { wMin: 0.55, wMax: 0.9, aMin: 0.2, aMax: 0.32, upBias: 0.25 });
-      // （主角樹的核心葉團用較細的 icosahedron，上面 26 顆小凸起才看得出來）
+        : det >= 2
+          ? makeBumps(r, 15, { wMin: 0.42, wMax: 0.7, aMin: 0.22, aMax: 0.34, upBias: 0.25 })
+          : makeBumps(r, 11, { wMin: 0.55, wMax: 0.9, aMin: 0.2, aMax: 0.32, upBias: 0.25 });
       const col = (ux, uy, uz, bump, wx, wy, wz) => {
         const od = ux * out.x + uy * out.y + uz * out.z;
         const hgt = clamp((wy - crownBot) / (Ht - crownBot), 0, 1);
@@ -410,7 +411,7 @@ export async function build(ctx) {
       const hint = (ux, uy, uz, wx, wy, wz) => blendHint(ux, uy, uz, wx, wy, wz, cc, 0.45, 0.45);
       fol.blob({
         c: c.p, rx: c.r, ry: c.r * sq, rz: c.r * r.range(0.88, 1.1), detail: det, bumps, base: 0.8, flatBottom: 0.72,
-        noiseAmp: o.hero ? 0.1 : 0.05, noiseFreq: o.hero ? 3 : 1.6, noiseOff: r() * 50, color: col, hint,
+        noiseAmp: o.hero ? 0.1 : det >= 2 ? 0.07 : 0.05, noiseFreq: o.hero ? 3 : det >= 2 ? 2.2 : 1.6, noiseOff: r() * 50, color: col, hint,
       });
       if (!o.hero) continue;
       // 主角樹：葉團外側再黏一圈小葉簇（花椰菜狀），剪影邊緣碎而有層次
@@ -431,10 +432,10 @@ export async function build(ctx) {
       const ns = o.satellites ? r.int(o.satellites[0], o.satellites[1]) : 0;
       for (let k = 0; k < ns; k++) {
         const dir = out.clone().multiplyScalar(0.8).add(randUnit(r));
-        dir.y = Math.max(dir.y, -0.3);
+        dir.y = clamp(dir.y, -0.3, 0.35);
         dir.normalize();
         const sr = c.r * r.range(0.2, 0.32);
-        const sp = c.p.clone().addScaledVector(dir, c.r * r.range(1.15, 1.4));
+        const sp = c.p.clone().addScaledVector(dir, c.r * r.range(1.02, 1.2));
         fol.blob({
           c: sp, rx: sr, ry: sr * 0.8, rz: sr, detail: 1, bumps: makeBumps(r, 8, { wMin: 0.6, wMax: 1.0, aMin: 0.2, aMax: 0.35 }),
           base: 0.78, flatBottom: 0.8, noiseAmp: 0.06, noiseFreq: 2, noiseOff: r() * 50, color: col, hint,
@@ -559,7 +560,7 @@ export async function build(ctx) {
       for (let j = 0; j < nb; j++) {
         if (r() < 0.18) continue; // 缺枝，讓剪影不規則
         const az = rotW + (j / nb) * TAU + r.range(-0.35, 0.35);
-        const Lb = ((0.06 + 0.17 * (1 - t)) * Ht * r.range(0.7, 1.15)) + 0.6;
+        const Lb = ((0.07 + 0.2 * (1 - t)) * Ht * r.range(0.7, 1.15)) + 0.8;
         const dir = new V3(Math.cos(az), 0, Math.sin(az));
         const p0 = tc(y);
         const p1 = p0.clone().addScaledVector(dir, Lb * 0.5); p1.y -= Lb * 0.08;
@@ -568,17 +569,18 @@ export async function build(ctx) {
         const side = new V3(-dir.z, 0, dir.x);
         const up = new V3(0, 1, 0);
         const basis = [dir, up, side]; // dir × up = side → 右手系
-        const nt = Lb > 3 ? 2 : 1;
+        const nt = Lb > 4.5 ? 3 : Lb > 2.5 ? 2 : 1;
         for (let q = 0; q < nt; q++) {
-          const s = nt === 1 ? 0.82 : lerp(0.62, 1.0, q);
-          const c = p0.clone().lerp(p2, s); c.y += 0.15;
-          tuft(c, basis, Math.max(0.7, Lb * 0.3) * r.range(0.85, 1.1), r.range(0.45, 0.7), r.range(0.8, 1.2));
+          const s = nt === 1 ? 0.8 : lerp(0.5, 1.0, q / (nt - 1));
+          const c = p0.clone().lerp(p2, s); c.y += 0.2;
+          tuft(c, basis, Math.max(0.9, Lb * 0.24) * r.range(0.85, 1.15), r.range(0.65, 0.95), r.range(1.1, 1.6));
         }
       }
-      y += r.range(1.3, 2.0);
+      y += r.range(1.1, 1.7);
     }
     const top = tc(Ht - 1.2);
-    tuft(top, null, 0.8, 1.3, 0.8);
+    tuft(top, null, 1.0, 1.6, 1.0);
+    tuft(tc(Ht - 2.6), null, 1.4, 1.0, 1.4);
     return { fol: fol.geometry(), bark: bark.geometry() };
   }
 
@@ -601,17 +603,17 @@ export async function build(ctx) {
     for (let i = 0; i < 5; i++) { const y = lerp(hT - 0.15, Ht, i / 4); cs.push(new V3(cx(y), y, cz(y))); }
     crown.tube(cs, crad, 9, null, true);
     const Tp = new V3(cx(Ht), Ht + 0.05, cz(Ht));
-    const nF = 12, S = 12;
+    const nF = 15, S = 16;
     let phi = r() * TAU;
     for (let f = 0; f < nF; f++) {
       phi += GOLDEN + r.range(-0.15, 0.15);
       const age = f / (nF - 1);
-      const e0 = lerp(75, -12, age) * Math.PI / 180 + r.range(-0.1, 0.1);
-      const droop = r.range(40, 70) * Math.PI / 180 * lerp(0.7, 1.15, age);
-      const Lf = r.range(3.6, 4.6);
+      const e0 = lerp(62, -22, age) * Math.PI / 180 + r.range(-0.1, 0.1);
+      const droop = r.range(55, 85) * Math.PI / 180 * lerp(0.75, 1.2, age);
+      const Lf = r.range(3.8, 4.8);
       const dirH = new V3(Math.cos(phi), 0, Math.sin(phi));
       const side = new V3(-dirH.z, 0, dirH.x);
-      const beta = r.range(0.35, 0.6); // 小葉往下垂的角度
+      const beta = r.range(0.55, 0.85); // 小葉往下垂的角度（大王椰子小葉多方向下垂，羽葉看起來蓬鬆）
       const lD = side.clone().multiplyScalar(Math.cos(beta)).add(new V3(0, -Math.sin(beta), 0));
       const rD = side.clone().multiplyScalar(-Math.cos(beta)).add(new V3(0, -Math.sin(beta), 0));
       let p = Tp.clone().addScaledVector(dirH, 0.15);
@@ -620,7 +622,7 @@ export async function build(ctx) {
         const s = i / S;
         const e = e0 - droop * Math.pow(s, 1.3);
         if (i > 0) p = p.clone().add(new V3(Math.cos(e) * dirH.x, Math.sin(e), Math.cos(e) * dirH.z).multiplyScalar(Lf / S));
-        const w = (1.05 * Math.pow(Math.sin(Math.PI * Math.min(1, s * 1.1 + 0.02)), 0.8) + 0.04) * (i % 2 ? 0.6 : 1);
+        const w = (0.85 * Math.pow(Math.sin(Math.PI * Math.min(1, s * 1.1 + 0.02)), 0.7) + 0.04) * (i % 2 ? 0.35 : 1);
         rach.push(crown.vert(p.x, p.y, p.z));
         ls.push(crown.vert(p.x + lD.x * w, p.y + lD.y * w, p.z + lD.z * w));
         rs.push(crown.vert(p.x + rD.x * w, p.y + rD.y * w, p.z + rD.z * w));
@@ -645,11 +647,12 @@ export async function build(ctx) {
   for (const sh of SHOTS) {
     for (let k = 0; k <= 16; k++) camPts.push(sh.from.pos.clone().lerp(sh.from.target, (k / 16) * 0.85));
   }
+  let camRemoved = 0;
   const camClear = (x, z, h, cr) => {
     for (const p of camPts) {
       if (p.y > h + 1.0) continue;
       const dx = p.x - x, dz = p.z - z;
-      if (dx * dx + dz * dz < (cr + 1.2) * (cr + 1.2)) return false;
+      if (dx * dx + dz * dz < (cr + 1.2) * (cr + 1.2)) { camRemoved++; return false; }
     }
     return true;
   };
@@ -743,6 +746,17 @@ export async function build(ctx) {
         detail: 1, limbs: 3, twigs: false, trunkClear: rv.range(2.6, 3.2), radialT: 6, radialL: 4,
       }));
     }
+    // 近景變體：中式庭園散植（鏡頭 2、5、6 會近看），葉團細分高一級
+    const near0 = vars.length;
+    const nearH = [8, 9.5, 11, 12, 13, 14];
+    for (let i = 0; i < nearH.length; i++) {
+      const rv = r.fork(`n${i}`);
+      const Hh = nearH[i];
+      vars.push(makeBroadleaf(rv, {
+        H: Hh, W: Hh * rv.range(0.8, 1.02), clumps: rv.int(10, 13), clumpR: Hh * rv.range(0.15, 0.18), spacing: 0.66,
+        detail: 2, limbs: rv.int(3, 5), twigs: true, radialT: 8, radialL: 5,
+      }));
+    }
     // 主角逆光樹：高細節、葉團之間留縫、外緣有小葉簇、枝條伸進葉團
     const heroIdx = vars.length;
     const heroDefs = [H.backlit, H.backlit2];
@@ -800,7 +814,7 @@ export async function build(ctx) {
         for (let x = g.x0 + cell / 2; x < g.x1; x += cell) {
           const px = x + r.range(-0.45, 0.45) * cell, pz = z + r.range(-0.45, 0.45) * cell;
           if (!geo.inRect(px, pz, g, -2) || !geo.isFree(px, pz, 3.0)) continue;
-          tryPlace(px, pz, r.range(8, 14), L.LEVELS.lawn, 0, street0, varH, 7);
+          tryPlace(px, pz, r.range(8, 14), L.LEVELS.lawn, near0, heroIdx, nearH, 7);
         }
       }
     }
@@ -810,7 +824,7 @@ export async function build(ctx) {
       for (let u = s.from; u <= s.to + 1e-6; u += s.spacing) {
         const x = s.axis === 'x' ? u : s.x, z = s.axis === 'x' ? s.z : u;
         if (!geo.isFree(x, z, 0.5)) continue; // 路口、側門前
-        tryPlace(x, z, r.range(7, 10), L.LEVELS.sidewalk, street0, heroIdx, streetH, 0);
+        tryPlace(x, z, r.range(7, 10), L.LEVELS.sidewalk, street0, near0, streetH, 0);
       }
     }
     const nStreet = places.length - nPark;
@@ -887,6 +901,7 @@ export async function build(ctx) {
   let total = 0;
   for (const s of Object.values(stats.species)) total += s.triangles;
   stats.triangles = Math.round(total);
+  stats.removedForCamera = camRemoved;
   group.userData.stats = stats;
   return group;
 }

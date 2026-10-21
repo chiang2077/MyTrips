@@ -196,6 +196,8 @@ export function build(ctx) {
     if (r.R > 0.05) {
       const y = r.ridgeY + 0.1 * k;
       put('glazeBlue', beam(v3(-r.R - 0.05, y, 0), v3(r.R + 0.05, y, 0), 0.34 * k, 0.42 * k), m);
+      put('glazeBlue', beam(v3(-r.R, y + 0.25 * k, 0), v3(r.R, y + 0.25 * k, 0), 0.24 * k, 0.1 * k), m);   // 脊頂蓋
+      put('glazeGold', beam(v3(-r.R, y + 0.02 * k, 0), v3(r.R, y + 0.02 * k, 0), 0.36 * k, 0.05 * k), m);  // 脊身金線
       if (chiwen > 0) {
         for (const sgn of [-1, 1]) {
           const g = chiwenGeom(chiwen);
@@ -297,16 +299,19 @@ export function build(ctx) {
   // 外牆一段（含牆基、漏窗洞口與窗格），在邊的局部座標系
   let winIndex = 0;
   function wallRun(m, s0, s1, centers, top) {
-    put('marbleGrey', bx(s0, s1, -0.3, 0.75, -0.08, wallT + 0.08), m, 'box');
-    put('plasterWhite', bx(s0, s1, 0.75, SILL, 0, wallT), m);
-    put('plasterWhite', bx(s0, s1, SILL + WH, top, 0, wallT), m);
-    let cur = s0;
+    put('concrete', bx(s0, s1, -0.3, 0.75, -0.08, wallT + 0.08), m);   // 牆基
+    // 牆身：一整片帶窗洞的擠出體（避免方塊拼接的接縫線）
+    const sh = new THREE.Shape();
+    sh.moveTo(s0, 0.75); sh.lineTo(s1, 0.75); sh.lineTo(s1, top); sh.lineTo(s0, top); sh.lineTo(s0, 0.75);
     for (const c of centers) {
-      if (c - WW / 2 > cur + 0.01) put('plasterWhite', bx(cur, c - WW / 2, SILL, SILL + WH, 0, wallT), m);
-      cur = c + WW / 2;
+      const h = new THREE.Path();
+      h.moveTo(c - WW / 2, SILL); h.lineTo(c + WW / 2, SILL); h.lineTo(c + WW / 2, SILL + WH); h.lineTo(c - WW / 2, SILL + WH); h.lineTo(c - WW / 2, SILL);
+      sh.holes.push(h);
       (winIndex++ % 2 ? inst.winB : inst.winA).push(mul(m, T(c, SILL + WH / 2, wallT / 2)));
     }
-    if (s1 > cur + 0.01) put('plasterWhite', bx(cur, s1, SILL, SILL + WH, 0, wallT), m);
+    put('plasterWhite', new THREE.ExtrudeGeometry(sh, { depth: wallT, bevelEnabled: false }), m);
+    // 牆頂下緣一道藍色琉璃細帶（外側）
+    put('glazeBlue', bx(s0, s1, top - 0.32, top - 0.2, -0.05, 0), m);
   }
 
   // 迴廊屋頂（兩坡）＋正脊；端點 e0/e1；gable 端加垂脊與脊端翹
