@@ -1,0 +1,122 @@
+<title>中正紀念堂漫遊</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500&family=Noto+Serif+TC:wght@600;700&display=swap">
+<style>
+  /* 版面：全螢幕 3D 畫面，資訊浮在四角，像夕陽下的導覽牌。刻意單一深色調（疊在黃昏畫面上）。 */
+  :root {
+    color-scheme: dark;
+    --dusk: #161a2b;          /* 載入畫面底、面板底色 */
+    --panel: rgba(22, 26, 43, 0.66);
+    --ink: #f3e8d6;           /* 主要文字：暖白，像被夕陽照到的大理石 */
+    --ink-dim: rgba(243, 232, 214, 0.68);
+    --line: rgba(243, 232, 214, 0.2);
+    --sun: #eda35b;           /* 強調：夕陽橘 */
+    --glaze: #3b5bb8;         /* 琉璃藍，用在按下狀態 */
+    --display: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+    --body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  }
+  [hidden] { display: none !important; }
+  html, body { height: 100%; }
+  body { background: var(--dusk); color: var(--ink); font-family: var(--body); overflow: hidden; touch-action: none; }
+  #view { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+
+  .hud { position: fixed; z-index: 2; pointer-events: none; }
+  .hud > * { pointer-events: auto; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+
+  /* 左上：名稱與讀數 */
+  #top { top: calc(10px + env(safe-area-inset-top, 0px)); left: max(16px, env(safe-area-inset-left, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+  #title { padding: 10px 14px; display: grid; gap: 2px; max-width: 100%; }
+  #title h1 { margin: 0; font: 700 1.25rem/1.2 var(--display); letter-spacing: 0.08em; text-wrap: balance; }
+  #title p { margin: 0; font-size: 0.75rem; color: var(--ink-dim); letter-spacing: 0.04em; font-variant-numeric: tabular-nums; }
+  #readout { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 0.75rem; color: var(--ink-dim); font-variant-numeric: tabular-nums; }
+  body[data-mode="play"] #readout { display: none; }
+
+  /* 傳送點：一列可橫向捲動的按鈕 */
+  #spots { display: flex; gap: 6px; overflow-x: auto; max-width: 100%; padding: 6px; scrollbar-width: none; }
+  #spots::-webkit-scrollbar { display: none; }
+  button { font: 500 0.8125rem/1 var(--body); color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 8px 12px; white-space: nowrap; cursor: pointer; letter-spacing: 0.03em; }
+  button:hover { border-color: var(--ink-dim); }
+  button:focus-visible { outline: 2px solid var(--sun); outline-offset: 2px; }
+  button[aria-pressed="true"] { background: var(--glaze); border-color: var(--glaze); }
+  #btn-play { background: var(--sun); color: #1d1408; border-color: var(--sun); }
+  #btn-play[aria-pressed="true"] { background: transparent; color: var(--ink); border-color: var(--line); }
+
+  /* 右下：操作說明與升降 */
+  #bottom { bottom: calc(12px + env(safe-area-inset-bottom, 0px)); left: max(16px, env(safe-area-inset-left, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; flex-wrap: wrap; }
+  #help { padding: 8px 12px; font-size: 0.75rem; color: var(--ink-dim); line-height: 1.6; max-width: 34em; }
+  #help kbd { font: 500 0.6875rem/1 var(--body); color: var(--ink); border: 1px solid var(--line); border-radius: 4px; padding: 2px 5px; }
+  .touch-only { display: none; }
+  @media (pointer: coarse) { .touch-only { display: revert; } .mouse-only { display: none; } }
+  #lift { display: flex; gap: 6px; align-items: center; margin-left: auto; padding: 6px; }
+  #lift button { min-width: 44px; min-height: 40px; padding: 8px 10px; }
+  body[data-mode="play"] #lift button:not(#btn-play), body[data-mode="play"] #help { display: none; }
+
+  /* 播放進度 */
+  #play-bar { display: none; flex: 1 1 100%; gap: 6px; flex-direction: column; padding: 10px 12px; }
+  body[data-mode="play"] #play-bar { display: flex; }
+  #shot-title { font: 600 0.9375rem/1.3 var(--display); letter-spacing: 0.04em; }
+  #play-prog { height: 3px; border-radius: 2px; background: var(--line); position: relative; overflow: hidden; }
+  #play-prog::after { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--p, 0%); background: var(--sun); }
+
+  /* 觸控搖桿 */
+  #stick { position: fixed; left: 0; top: 0; width: 120px; height: 120px; border-radius: 50%; border: 1px solid var(--line); background: rgba(22, 26, 43, 0.3); z-index: 3; pointer-events: none; display: grid; place-items: center; }
+  #knob { width: 44px; height: 44px; border-radius: 50%; background: var(--ink); opacity: 0.75; }
+
+  /* 載入畫面 */
+  #loading { position: fixed; inset: 0; z-index: 5; display: grid; place-items: center; background: linear-gradient(180deg, #24304f 0%, #6f5466 55%, #e09a62 100%); padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px)); }
+  #loading .card { width: min(26rem, 100%); display: grid; gap: 14px; }
+  #loading h2 { margin: 0; font: 700 2rem/1.2 var(--display); letter-spacing: 0.12em; text-wrap: balance; }
+  #loading p { margin: 0; color: var(--ink-dim); font-size: 0.875rem; line-height: 1.7; }
+  #load-bar { height: 3px; background: var(--line); border-radius: 2px; position: relative; overflow: hidden; }
+  #load-bar::after { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--p, 4%); background: var(--ink); transition: width 0.3s; }
+  #load-list { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px; font-size: 0.75rem; color: var(--ink-dim); }
+  #load-list li { border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; }
+  @media (prefers-reduced-motion: reduce) { #load-bar::after { transition: none; } }
+</style>
+
+<canvas id="view" aria-label="中正紀念堂黃昏 3D 場景"></canvas>
+
+<div id="loading" role="status">
+  <div class="card">
+    <h2>中正紀念堂・黃昏</h2>
+    <p>整座園區沒有任何模型檔或照片，正在你的瀏覽器裡用程式即時生成：主殿高 70 公尺、牌樓寬 80 公尺，太陽停在西南西、仰角 7 度。</p>
+    <div id="load-bar"></div>
+    <ul id="load-list" aria-label="已生成的區域"></ul>
+  </div>
+</div>
+
+<div id="top" class="hud">
+  <div id="title" class="panel">
+    <h1>中正紀念堂・黃昏</h1>
+    <p>太陽 西南西 247.5°・仰角 7°</p>
+    <div id="readout"><span id="ro-pos">x 0 m　z 0 m</span><span id="ro-alt">視高 1.7 m</span><span id="ro-dir">面向東</span></div>
+  </div>
+  <div id="spots" class="panel" aria-label="快速傳送"></div>
+</div>
+
+<div id="bottom" class="hud">
+  <div id="help" class="panel">
+    <span class="mouse-only"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> 或方向鍵走路，拖曳滑鼠轉頭，按住 <kbd>Shift</kbd> 跑，<kbd>E</kbd>／<kbd>Q</kbd> 或滾輪升降，<kbd>R</kbd> 回到地面。可以走上主殿大階梯。</span>
+    <span class="touch-only">左半邊按住拖曳走路，右半邊拖曳轉頭，右下按鈕升降。可以走上主殿大階梯。</span>
+  </div>
+  <div id="lift" class="panel">
+    <button id="btn-play" type="button" aria-pressed="false">播放 70 秒鏡頭</button>
+    <button id="btn-up" type="button" aria-label="升高">▲</button>
+    <button id="btn-down" type="button" aria-label="降低">▼</button>
+    <button id="btn-ground" type="button">落地</button>
+  </div>
+  <div id="play-bar" class="panel">
+    <span id="shot-title">鏡頭 1／10</span>
+    <div id="play-prog"></div>
+  </div>
+</div>
+
+<div id="stick" hidden><div id="knob"></div></div>
+
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.js", "three/addons/": "./vendor/addons/" } }
+</script>
+<script type="module" src="./src/walk.js"></script>

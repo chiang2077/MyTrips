@@ -35,7 +35,7 @@ export function createRenderer(canvas, { width, height, pixelRatio = 1 }) {
   return renderer;
 }
 
-export async function buildScene(renderer, { zones = ZONES, quality = 'high' } = {}) {
+export async function buildScene(renderer, { zones = ZONES, quality = 'high', onProgress = null } = {}) {
   const scene = new THREE.Scene();
   const ctx = makeContext(quality);
   const sd = L.SUN.dir;
@@ -74,7 +74,8 @@ export async function buildScene(renderer, { zones = ZONES, quality = 'high' } =
 
   // --- 各區 ---
   const loaded = {};
-  for (const z of zones) {
+  for (const [i, z] of zones.entries()) {
+    if (onProgress) await onProgress(z, i, zones.length);
     const mod = await import(`./zones/${z}.js`);
     const t0 = performance.now();
     const obj = await mod.build(ctx);
