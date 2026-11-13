@@ -63,7 +63,7 @@ video{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:
 </style>
 <body>
 <div class="stage">
- <video id="v" muted playsinline loop preload="auto" aria-label="九州十天行程旅行短片，點一下暫停或播放"></video>
+ <video id="v" muted playsinline loop preload="auto" poster="film/poster-wide.jpg" src="film/kyushu-wide.mp4" width="1920" height="1080" aria-label="九州十天行程旅行短片，點一下暫停或播放"></video>
  <div class="shade"></div>
  <div class="top"><span></span><a href="./">回行程頁</a></div>
  <details class="credit"><summary>素材來源</summary>
@@ -74,7 +74,7 @@ video{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:
  </details>
  <div class="bar">
   <button id="play" type="button" aria-label="暫停"></button>
-  <div class="track" id="track" role="slider" aria-label="影片進度" tabindex="0"><div class="fill" id="fill"></div></div>
+  <div class="track" id="track" role="slider" aria-label="影片進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0"><div class="fill" id="fill"></div></div>
   <span class="time" id="time">0:00</span>
   <button id="snd" type="button" aria-label="開啟聲音"></button>
  </div>
@@ -86,9 +86,9 @@ const EMBED=new URLSearchParams(location.search).has('embed');
 if(EMBED){const a=document.querySelector('.top a');a.href='film.html';a.target='_top';a.textContent='全螢幕看';}
 const $=id=>document.getElementById(id),v=$('v'),btn=$('play'),track=$('track');
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
-v.poster='film/poster-wide.jpg';v.src='film/kyushu-wide.mp4';
 const fmt=t=>Math.floor(t/60)+':'+String(Math.floor(t%60)).padStart(2,'0');
-function tick(){const t=v.currentTime,d=v.duration||1; $('fill').style.width=(t/d*100)+'%';$('time').textContent=fmt(t);}
+function tick(){const t=v.currentTime,d=v.duration||1; $('fill').style.width=(t/d*100)+'%';$('time').textContent=fmt(t);
+ track.setAttribute('aria-valuenow',Math.round(t/d*100));track.setAttribute('aria-valuetext',fmt(t)+'，共 '+fmt(v.duration||0));}
 v.addEventListener('timeupdate',tick);
 const PLAY='<svg viewBox="0 0 16 16"><path d="M4 2l10 6-10 6z"/></svg>',PAUSE='<svg viewBox="0 0 16 16"><path d="M3 2h3.5v12H3zM9.5 2H13v12H9.5z"/></svg>';
 function ui(){btn.innerHTML=v.paused?PLAY:PAUSE;btn.setAttribute('aria-label',v.paused?'播放':'暫停');}
